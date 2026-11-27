@@ -270,3 +270,24 @@ fn activation_trace_reports_attention_and_logit_lens() {
     assert!(html.contains("const DATA = {"));
     assert!(html.contains("\"tokens\":[1,2,3,4,5]"));
 }
+
+
+#[test]
+fn binary_reader_rejects_truncated_arrays_before_allocating() {
+    let mut reader = mini_gpt::serialize::BytesReader::from_bytes(vec![0; 4]);
+    assert!(reader.values(2).is_err());
+    assert_eq!(reader.remaining(), 4);
+}
+
+#[test]
+fn binary_writer_replaces_checkpoint_after_complete_write() {
+    let path = temp_path("atomic-checkpoint.bin");
+    std::fs::write(&path, b"old checkpoint").unwrap();
+
+    let mut writer = mini_gpt::serialize::BytesWriter::new();
+    writer.bytes(b"new checkpoint");
+    writer.finish(&path).unwrap();
+
+    assert_eq!(std::fs::read(&path).unwrap(), b"new checkpoint");
+    let _ = std::fs::remove_file(path);
+}
