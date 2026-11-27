@@ -30,14 +30,14 @@ Binarios resultantes:
 - `target/release/gpt_train`
 - `target/release/gpt_chat`
 
-Son compatibles en argumentos con los del proyecto C++.
+
 
 ## Compatibilidad de checkpoints
 
 Los formatos binarios (`MINIEMBD`, `MINIATTN`, `MINITRFB`, `MINIGPTM`,
 `MINIADAM`) y el estado de entrenamiento (`*.data`) se conservan byte a byte,
 incluido el orden de los tensores. Se verificó la carga cruzada en ambos
-sentidos: un modelo guardado por C++ se carga y ejecuta en Rust, y un modelo
+sentidos: un modelo guardado por rust se carga y ejecuta en Rust, y un modelo
 guardado por Rust se carga y ejecuta en Rust
 
 La inicialización aleatoria usa un generador distinto (xoshiro256** frente a
@@ -57,7 +57,7 @@ tienen los mismos pesos. Los checkpoints ya guardados sí son intercambiables.
   backward, y perfil `release` con LTO, `codegen-units = 1` y `opt-level = 3`.
 - Sin dependencias externas.
 
-No se ha medido una comparación de rendimiento frente a la versión C++; las
+No se ha medido una comparación de rendimiento frente a la versión rust; las
 comprobaciones realizadas son los tests y el flujo completo de extremo a
 extremo.
 
