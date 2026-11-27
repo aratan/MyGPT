@@ -2,6 +2,7 @@
 
 use crate::data::DataLoaderState;
 use crate::error::{Error, Result};
+use crate::serialize::write_atomic;
 use std::path::Path;
 
 #[derive(Clone, Debug, PartialEq, Eq)]
@@ -41,8 +42,7 @@ pub fn save_training_state(path: &Path, state: &TrainingState) -> Result<()> {
         output.push_str(&index.to_string());
     }
     output.push('\n');
-    std::fs::write(path, output)
-        .map_err(|error| Error::new(format!("Failed to write training state: {error}")))
+    write_atomic(path, output.as_bytes())
 }
 
 pub fn load_training_state(path: &Path) -> Result<TrainingState> {
