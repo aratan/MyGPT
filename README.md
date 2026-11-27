@@ -192,8 +192,8 @@ letras, tiempo, cortesía, identidad y preguntas sin respuesta):
   determinista; `--overwrite` permite reemplazar el archivo.
 - Cada línea sigue el formato de `gpt_chat`:
   `<|user|> pregunta <|eot|>` / `<|assistant|> respuesta <|eot|>`.
-- Con `--seed 42 --count 2000` se obtienen ~500 conversaciones únicas y unas
-  45 000 palabras.
+- Con `--seed 42 --count 2000` se obtienen 433 conversaciones únicas y unas
+  27 900 palabras.
 
 También puedes usar tu propio corpus: cualquier archivo UTF-8 con el mismo
 formato de tokens especiales.
@@ -386,6 +386,238 @@ Opciones específicas:
 La traza se calcula con un forward extra solo cuando se pide, requiere lote 1 y
 no afecta a la generación normal. El HTML incluye las etiquetas de los tokens
 del prompt y de las predicciones del logit lens.
+
+## 9. Guía de los binarios compilados
+
+Tras `cargo build --release`, todos los ejecutables están en `target/release/`:
+
+| Binario | Para qué sirve |
+|---|---|
+| `synth_data` | Genera un corpus de conversaciones sintéticas |
+| `tokenizer_train` | Entrena el vocabulario BPE |
+| `gpt_train` | Entrena o reanuda el modelo |
+| `gpt_chat` | Consultas, chat interactivo y trazas |
+
+Cada uno muestra su ayuda con `--help`:
+
+```bash
+./target/release/synth_data --help
+./target/release/tokenizer_train --help
+./target/release/gpt_train --help
+./target/release/gpt_chat --help
+```
+
+También puedes ejecutarlos sin compilar aparte:
+
+```bash
+cargo run --release --bin synth_data -- --count 100
+```
+
+### 9.1 `synth_data`
+
+Genera conversaciones con el formato exacto de `gpt_chat`:
+
+```bash
+./target/release/synth_data \
+  --output artifacts/synthetic.txt \
+  --count 4000 \
+  --seed 42 \
+  --overwrite
+```
+
+Salida típica:
+
+```
+Conversaciones generadas: 4000
+Conversaciones únicas: 563
+Bytes: 374919
+Categorías:
+  animales: 317
+  ...
+Salida: artifacts/synthetic.txt
+```
+
+| Opción | Defecto | Descripción |
+|---|---|---|
+| `--output` | `data/synthetic.txt` | Archivo de salida |
+| `--count` | `2000` | Número de conversaciones |
+| `--seed` | `42` | Semilla determinista |
+| `--overwrite` | desactivado | Permite reemplazar la salida |
+
+### 9.2 `tokenizer_train`
+
+Entrena el BPE byte-level; el vocabulario base es 260 y cada merge añade uno.
+
+```bash
+./target/release/tokenizer_train \
+  --corpus artifacts/synthetic.txt \
+  --vocab-size 512 \
+  --output artifacts/tokenizer.bpe \
+  --progress-every 100 \
+  --overwrite
+```
+
+| Opción | Defecto | Descripción |
+|---|---|---|
+| `--corpus` | obligatorio | Corpus UTF-8 |
+| `--vocab-size` | `2048` | Tamaño máximo del vocabulario |
+| `--output` | `tokenizer.bpe` | Archivo de salida |
+| `--validation-ratio` | `0.1` | Fracción reservada para validación |
+| `--progress-every` | `25` | Progreso cada N merges |
+| `--overwrite` | desactivado | Permite reemplazar la salida |
+
+### 9.3 `gpt_train`
+
+Entrenamiento desde cero, con evaluación y checkpoints:
+
+```bash
+./target/release/gpt_train \
+  --corpus artifacts/synthetic.txt \
+  --tokenizer artifacts/tokenizer.bpe \
+  --steps 200 --batch-size 4 --context-length 64 \
+  --embedding-dim 128 --num-heads 4 --num-layers 2 --mlp-hidden-dim 256 \
+  --max-seq-len 64 --lr 0.0003 \
+  --eval-every 25 --save-every 50 \
+  --output-model artifacts/model.bin \
+  --output-optimizer artifacts/model_adamw.bin \
+  --output-state artifacts/model.bin.data
+```
+
+Reanudar leyendo corpus, tokenizer y configuración del `.data`:
+
+```bash
+./target/release/gpt_train \
+  --resume artifacts/model.bin \
+  --steps 200 \
+  --output-model artifacts/model_next.bin \
+  --output-optimizer artifacts/model_next_adamw.bin \
+  --output-state artifacts/model_next.data
+```
+
+Batch efectivo grande sin multiplicar la memoria de activaciones:
+
+```bash
+./target/release/gpt_train ... --batch-size 2 --grad-accum 8
+```
+
+| Opción | Defecto | Descripción |
+|---|---|---|
+| `--corpus`, `--tokenizer` | obligatorios al empezar | Datos de entrenamiento |
+| `--resume` | – | Checkpoint a continuar |
+| `--steps` | `20` | Pasos de optimizador |
+| `--batch-size` | `2` | Secuencias por micro-batch |
+| `--grad-accum` | `1` | Micro-batches por paso |
+| `--context-length` | `128` | Tokens por secuencia |
+| `--embedding-dim`, `--num-heads`, `--num-layers`, `--mlp-hidden-dim` | `256/4/4/1024` | Arquitectura (solo desde cero) |
+| `--max-seq-len` | `128` | Longitud máxima (≤ 256) |
+| `--lr`, `--clip`, `--weight-decay` | `0.0003/1.0/0.01` | Optimización |
+| `--eval-every`, `--save-every` | `10/50` | Evaluación y checkpoints; `0` desactiva |
+| `--overwrite` | desactivado | Permite reemplazar salidas |
+
+### 9.4 `gpt_chat`
+
+Pregunta única en modo chat:
+
+```bash
+./target/release/gpt_chat \
+  --model artifacts/model.bin \
+  --tokenizer artifacts/tokenizer.bpe \
+  --mode chat \
+  --prompt "¿Cuál es la capital de Francia?" \
+  --max-tokens 24 \
+  --show-top 3
+```
+
+Continuar texto en modo completion:
+
+```bash
+./target/release/gpt_chat \
+  --model artifacts/model.bin \
+  --tokenizer artifacts/tokenizer.bpe \
+  --mode completion \
+  --prompt "Había una vez" \
+  --strategy sampling --temperature 0.8 --top-k 40 \
+  --repetition-penalty 1.1 \
+  --max-tokens 40
+```
+
+Evaluar una respuesta esperada sin generar:
+
+```bash
+./target/release/gpt_chat \
+  --model artifacts/model.bin \
+  --tokenizer artifacts/tokenizer.bpe \
+  --prompt "hola" \
+  --expected "Hola. ¿En qué puedo ayudarte?"
+```
+
+Chat interactivo (sin `--prompt`): escribe mensajes, `/reset` limpia el
+contexto y `/exit` termina.
+
+Ver la traza interna en terminal o en HTML:
+
+```bash
+./target/release/gpt_chat \
+  --model artifacts/model.bin \
+  --tokenizer artifacts/tokenizer.bpe \
+  --mode chat --prompt "¿Cuál es la capital de Francia?" \
+  --trace --trace-html artifacts/trace.html
+
+./target/release/gpt_chat ... --trace-tui
+```
+
+| Opción | Defecto | Descripción |
+|---|---|---|
+| `--model`, `--tokenizer` | obligatorios | Checkpoint y vocabulario |
+| `--mode` | `chat` | `chat` o `completion` |
+| `--strategy` | `greedy` | `greedy` o `sampling` |
+| `--temperature` | `1.0` | Temperatura de muestreo |
+| `--top-k` | `0` | Candidatos; `0` desactiva |
+| `--repetition-penalty` | `1.0` | Penalización (≥ 1) |
+| `--max-tokens` | `16` | Tokens nuevos por turno |
+| `--seed` | `42` | Semilla de muestreo |
+| `--show-top` | `0` | Muestra las N predicciones |
+| `--prompt`, `--expected` | – | Consulta única / evaluación |
+| `--trace`, `--trace-tui`, `--trace-html` | desactivado | Interpretabilidad |
+
+### 9.5 Flujo completo copiable
+
+```bash
+cargo build --release
+
+./target/release/synth_data \
+  --output artifacts/synthetic.txt --count 4000 --seed 42 --overwrite
+
+./target/release/tokenizer_train \
+  --corpus artifacts/synthetic.txt --vocab-size 512 \
+  --output artifacts/tokenizer.bpe --overwrite
+
+./target/release/gpt_train \
+  --corpus artifacts/synthetic.txt --tokenizer artifacts/tokenizer.bpe \
+  --steps 300 --batch-size 4 --context-length 64 \
+  --embedding-dim 128 --num-heads 4 --num-layers 2 --mlp-hidden-dim 256 \
+  --max-seq-len 64 --eval-every 50 --save-every 100 \
+  --output-model artifacts/model.bin \
+  --output-optimizer artifacts/model_adamw.bin \
+  --output-state artifacts/model.bin.data
+
+./target/release/gpt_chat \
+  --model artifacts/model.bin --tokenizer artifacts/tokenizer.bpe \
+  --mode chat --prompt "¿Cuál es la capital de Francia?" --max-tokens 24
+```
+
+### 9.6 Artefactos
+
+| Archivo | Contenido |
+|---|---|
+| `artifacts/synthetic.txt` | Corpus generado |
+| `artifacts/tokenizer.bpe` | Vocabulario BPE (`MINIGPTB`) |
+| `artifacts/model.bin` | Pesos (`MINIGPTM`) |
+| `artifacts/model_adamw.bin` | Estado de AdamW (`MINIADAM`) |
+| `artifacts/model.bin.data` | Estado del data loader y metadatos |
+| `artifacts/trace.html` | Visor de interpretabilidad |
+
+`artifacts/`, `*.bin` y `*.bpe` están en `.gitignore`.
 
 ## 10. Estructura del proyecto
 

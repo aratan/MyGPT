@@ -28,25 +28,25 @@ const CAPITALS: &[(&str, &str)] = &[
     ("Grecia", "Atenas"),
 ];
 
-const ANIMALS: &[(&str, &str)] = &[
-    ("perro", "guau"),
-    ("gato", "miau"),
-    ("vaca", "muu"),
-    ("oveja", "bee"),
-    ("pato", "cuac"),
-    ("gallina", "cocorocó"),
-    ("caballo", "hiiii"),
-    ("rana", "croac"),
-    ("lobo", "aullido"),
-    ("pájaro", "pío"),
+const ANIMALS: &[(&str, &str, &str)] = &[
+    ("el", "perro", "guau"),
+    ("el", "gato", "miau"),
+    ("la", "vaca", "muu"),
+    ("la", "oveja", "bee"),
+    ("el", "pato", "cuac"),
+    ("la", "gallina", "cocorocó"),
+    ("el", "caballo", "hiiii"),
+    ("la", "rana", "croac"),
+    ("el", "lobo", "aullido"),
+    ("el", "pájaro", "pío"),
 ];
 
 const COLORS: &[(&str, &str)] = &[
     ("el cielo", "azul"),
     ("la hierba", "verde"),
-    ("la nieve", "blanca"),
+    ("la nieve", "blanco"),
     ("el carbón", "negro"),
-    ("la sangre", "roja"),
+    ("la sangre", "rojo"),
     ("el sol", "amarillo"),
     ("una naranja", "naranja"),
     ("el chocolate", "marrón"),
@@ -161,16 +161,25 @@ fn arithmetic(rng: &mut Rng) -> String {
     }
 }
 
+fn capitalized(text: &str) -> String {
+    let mut characters = text.chars();
+    match characters.next() {
+        Some(first) => first.to_uppercase().collect::<String>() + characters.as_str(),
+        None => String::new(),
+    }
+}
+
 fn animal(rng: &mut Rng) -> String {
-    let (animal, sound) = pick(rng, ANIMALS);
+    let (article, animal, sound) = pick(rng, ANIMALS);
     let question = match rng.below(3) {
-        0 => format!("¿Qué sonido hace el {animal}?"),
-        1 => format!("¿Cómo hace el {animal}?"),
-        _ => format!("¿Qué dice el {animal}?"),
+        0 => format!("¿Qué sonido hace {article} {animal}?"),
+        1 => format!("¿Cómo hace {article} {animal}?"),
+        _ => format!("¿Qué dice {article} {animal}?"),
     };
+    let subject = format!("{} {animal}", capitalized(article));
     let answer = match rng.below(2) {
-        0 => format!("El {animal} hace «{sound}»."),
-        _ => format!("El {animal} dice «{sound}»."),
+        0 => format!("{subject} hace «{sound}»."),
+        _ => format!("{subject} dice «{sound}»."),
     };
     conversation(&question, &answer)
 }
