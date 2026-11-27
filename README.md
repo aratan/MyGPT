@@ -1,6 +1,4 @@
-# mini_gpt (Rust)
-
-Port a Rust del proyecto C++ `mini-gpt-cpp`. Incluye el núcleo completo:
+# mi_gpt (Rust)
 
 - `tensor`: tensor denso 2D/3D en fila mayor, operaciones elemento a elemento,
   `matmul` y `transpose`.
@@ -40,7 +38,7 @@ Los formatos binarios (`MINIEMBD`, `MINIATTN`, `MINITRFB`, `MINIGPTM`,
 `MINIADAM`) y el estado de entrenamiento (`*.data`) se conservan byte a byte,
 incluido el orden de los tensores. Se verificó la carga cruzada en ambos
 sentidos: un modelo guardado por C++ se carga y ejecuta en Rust, y un modelo
-guardado por Rust se carga y ejecuta en C++.
+guardado por Rust se carga y ejecuta en Rust
 
 La inicialización aleatoria usa un generador distinto (xoshiro256** frente a
 `std::mt19937`), así que dos modelos nuevos creados con la misma semilla no
@@ -66,7 +64,7 @@ extremo.
 ## Limitaciones
 
 - No se porta la ruta CUDA (`src/cuda`); este port usa CPU.
-- No se portaron los binarios de demostración (`apps/*_demo.cpp`), solo las
+- No se portaron los binarios de demostración (`apps/*_demo.rs`), solo las
   tres herramientas de producción y la librería.
 - `gpt_train` no captura Ctrl+C: hay que esperar al final del paso o del
   entrenamiento. Los checkpoints periódicos (`--save-every`) siguen activos.
