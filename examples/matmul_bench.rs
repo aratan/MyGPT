@@ -1,9 +1,7 @@
-//! Benchmark mínimo de matmul cuadrado: CPU (con hilos) o CUDA.
+//! Benchmark mínimo de matmul cuadrado en CPU (con hilos).
 //!
 //! ```bash
 //! cargo run --release --example matmul_bench -- 1024 10
-//! MINI_GPT_DEVICE=cpu cargo run --release --example matmul_bench -- 1024 10
-//! cargo run --release --features cuda --example matmul_bench -- 1024 10
 //! ```
 
 use mini_gpt::tensor::Tensor;
@@ -45,7 +43,7 @@ fn main() {
     let flops = 2.0 * (size as f64).powi(3) * iterations as f64;
     println!(
         "backend={} tamano={size} iteraciones={iterations} tiempo={:.3}s {:.1} GFLOP/s",
-        mini_gpt::cuda::backend_description(),
+        "CPU",
         elapsed,
         flops / elapsed / 1e9
     );

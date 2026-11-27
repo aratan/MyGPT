@@ -219,31 +219,54 @@ fn inference_reports_probabilities() {
     assert_eq!(evaluation.tokens.len(), 2);
 }
 
-#[cfg(feature = "cuda")]
 #[test]
-fn cuda_matmul_matches_cpu() {
-    use mini_gpt::cuda;
-    let (m, k, n) = (37usize, 29usize, 41usize);
-    let a: Vec<f32> = (0..m * k)
-        .map(|i| ((i * 7 + 3) % 19) as f32 * 0.25 - 2.0)
-        .collect();
-    let b: Vec<f32> = (0..k * n)
-        .map(|i| ((i * 5 + 1) % 23) as f32 * 0.125 - 1.0)
-        .collect();
-    let gpu = cuda::matmul(&a, &b, m, k, n).expect("matmul CUDA");
-    let mut cpu = vec![0.0f32; m * n];
-    for row in 0..m {
-        for inner in 0..k {
-            let value = a[row * k + inner];
-            for column in 0..n {
-                cpu[row * n + column] += value * b[inner * n + column];
+fn synthetic_corpus_is_deterministic_and_well_formed() {
+    let first = mini_gpt::synthetic::generate(300, 7);
+    let second = mini_gpt::synthetic::generate(300, 7);
+    assert_eq!(first, second);
+    assert_eq!(first.len(), 300);
+    for conversation in &first {
+        assert!(conversation.starts_with("<|user|> "));
+        assert!(conversation.contains(" <|eot|>\n<|assistant|> "));
+        assert!(conversation.ends_with(" <|eot|>\n"));
+    }
+    let unique: std::collections::BTreeSet<&String> = first.iter().collect();
+    assert!(unique.len() > 120, "solo {} únicas", unique.len());
+}
+
+#[test]
+fn activation_trace_reports_attention_and_logit_lens() {
+    use mini_gpt::trace;
+    use std::collections::HashMap;
+
+    let model = GPT::new(24, 8, 2, 2, 16, 8, 3, 1e-5).unwrap();
+    let ids = [1u32, 2, 3, 4, 5];
+    let (logits, trace) = model.forward_traced(&ids, 1, ids.len(), 4).unwrap();
+    assert_eq!(logits.shape(), [1, 5, 24]);
+    assert_eq!(trace.layers.len(), 2);
+    assert_eq!(trace.tokens, ids);
+    for layer in &trace.layers {
+        assert_eq!(layer.block.attention.len(), 2);
+        for head in &layer.block.attention {
+            assert_eq!(head.len(), 25);
+            for query in 0..5 {
+                let sum: f32 = head[query * 5..query * 5 + 5].iter().sum();
+                assert!((sum - 1.0).abs() < 1e-4);
+                for key in query + 1..5 {
+                    assert_eq!(head[query * 5 + key], 0.0);
+                }
             }
         }
+        assert!(layer.residual_input_norm > 0.0);
+        assert_eq!(layer.logit_lens.len(), 4);
     }
-    let max_error = gpu
-        .iter()
-        .zip(&cpu)
-        .map(|(left, right)| (left - right).abs())
-        .fold(0.0f32, f32::max);
-    assert!(max_error < 1e-3, "error máximo {max_error}");
+    assert_eq!(trace.final_predictions.len(), 4);
+
+    let labels: HashMap<u32, String> = ids.iter().map(|&id| (id, format!("t{id}"))).collect();
+    let terminal = trace::render_terminal(&trace, &labels, 1, 0).unwrap();
+    assert!(terminal.contains("Atención"));
+    let html = trace::render_html(&trace, &labels, "test").unwrap();
+    assert!(html.starts_with("<!doctype html>"));
+    assert!(html.contains("const DATA = {"));
+    assert!(html.contains("\"tokens\":[1,2,3,4,5]"));
 }

@@ -1,15 +1,13 @@
-# mini GPT en Rust + CUDA
+# mini GPT en Rust
 
 Mini GPT escrito desde cero en Rust para aprender cómo funcionan un
-transformer, el tokenizador BPE y el entrenamiento. Incluye la librería, las
-tres herramientas de CLI (`tokenizer_train`, `gpt_train`, `gpt_chat`), un visor
-de interpretabilidad y un **backend CUDA opcional** para entrenar en una GPU
-(probado en una RTX 4060).
+transformer, el tokenizador BPE y el entrenamiento. Incluye la librería, cuatro
+herramientas de CLI (`synth_data`, `tokenizer_train`, `gpt_train`, `gpt_chat`)
+y un visor de interpretabilidad.
 
-Todo el proyecto es Rust: no hay código C++ de aplicación, ni `.cpp`, `.hpp`
-ni `CMakeLists.txt`. La única pieza compilada fuera de Rust es
-`cuda/kernels.cu`, el código de dispositivo que `nvcc` necesita para usar
-cuBLAS; sin la feature `cuda` ni siquiera se compila.
+El proyecto es **100 % Rust**: sin dependencias externas, sin C/C++, sin CUDA,
+sin `build.rs` y sin `CMakeLists.txt`. Todo el código de aplicación y todas las
+herramientas viven en archivos `.rs`.
 
 ---
 
@@ -155,52 +153,52 @@ primer paso, con los logits originales o ajustados (`--show-adjusted`).
 
 **Solo CPU**
 
-- Rust estable reciente (`cargo`, `rustc`). El crate no usa dependencias
-  externas.
-
-**CUDA (opcional)**
-
-- GPU NVIDIA (probado en RTX 4060 Laptop, 8 GB, compute capability 8.9).
-- Driver NVIDIA y CUDA Toolkit con `nvcc` (probado con CUDA 13.5).
-- `cuBLAS` y `cudart`, que vienen con el toolkit.
+- Rust estable reciente (`cargo`, `rustc`). El crate usa únicamente la
+  librería estándar.
 
 ## 6. Compilación
 
 ```bash
-# CPU
 cargo build --release
-
-# GPU (RTX 4060)
-cargo build --release --features cuda
-
-# Tests
 cargo test
-cargo test --features cuda
 ```
 
-El `build.rs` localiza `nvcc` en `NVCC`, `/opt/cuda/bin/nvcc`,
-`/usr/local/cuda/bin/nvcc` o el `PATH`, detecta la compute capability con
-`nvidia-smi` (si falla usa `sm_89`) y enlaza `cuda/kernels.cu` con cuBLAS.
-
-Variables útiles:
-
-| Variable | Efecto |
-|---|---|
-| `NVCC` | Ruta a `nvcc` |
-| `CUDA_LIB_DIR` | Directorio con `libcublas.so` / `libcudart.so` |
-| `MINI_GPT_CUDA_ARCH` | Arquitectura, p. ej. `sm_89` |
-| `MINI_GPT_DEVICE=cpu` | Fuerza CPU con un binario compilado con CUDA |
-
-Los binarios quedan en `target/release/`. Al entrenar, la primera línea
-indica el backend activo:
+Los cuatro binarios quedan en `target/release/`:
 
 ```
-Backend: CUDA (NVIDIA GeForce RTX 4060 Laptop GPU)
+target/release/synth_data
+target/release/tokenizer_train
+target/release/gpt_train
+target/release/gpt_chat
 ```
+
+Para desarrollo también puedes usar `cargo run --release --bin <nombre> -- <args>`.
 
 ## 7. Uso paso a paso
 
-### 7.1 Entrenar el tokenizador BPE
+### 7.1 Generar datos sintéticos
+
+Incluye un generador de conversaciones en español (13 categorías: saludos,
+capitales, aritmética, animales, colores, conteo, paridad, traducciones,
+letras, tiempo, cortesía, identidad y preguntas sin respuesta):
+
+```bash
+./target/release/synth_data \
+  --output data/synthetic.txt \
+  --count 2000 --seed 42
+```
+
+- `--count` es el número de conversaciones; `--seed` hace la generación
+  determinista; `--overwrite` permite reemplazar el archivo.
+- Cada línea sigue el formato de `gpt_chat`:
+  `<|user|> pregunta <|eot|>` / `<|assistant|> respuesta <|eot|>`.
+- Con `--seed 42 --count 2000` se obtienen ~500 conversaciones únicas y unas
+  45 000 palabras.
+
+También puedes usar tu propio corpus: cualquier archivo UTF-8 con el mismo
+formato de tokens especiales.
+
+### 7.2 Entrenar el tokenizador BPE
 
 ```bash
 ./target/release/tokenizer_train \
@@ -213,7 +211,7 @@ Backend: CUDA (NVIDIA GeForce RTX 4060 Laptop GPU)
 Sustituye `data/conversations.txt` por tu corpus (UTF-8, una conversación o
 frase por línea). El vocabulario base tiene 260 tokens y cada merge añade uno.
 
-### 7.2 Entrenar el modelo
+### 7.3 Entrenar el modelo
 
 Ejemplo pequeño para comprobar que todo funciona:
 
@@ -229,14 +227,14 @@ Ejemplo pequeño para comprobar que todo funciona:
   --output-state artifacts/model.bin.data
 ```
 
-Configuración razonable para una RTX 4060 de 8 GB:
+Configuración mayor (entrenamiento en CPU; tarda más):
 
 ```bash
 ./target/release/gpt_train \
-  --corpus data/conversations.txt \
+  --corpus data/synthetic.txt \
   --tokenizer artifacts/tokenizer.bpe \
   --steps 2000 --batch-size 8 --context-length 128 \
-  --embedding-dim 384 --num-heads 6 --num-layers 6 --mlp-hidden-dim 1536 \
+  --embedding-dim 256 --num-heads 4 --num-layers 4 --mlp-hidden-dim 1024 \
   --max-seq-len 128 --lr 0.0003 \
   --save-every 100 --eval-every 50 --validation-samples 16 \
   --output-model artifacts/model.bin \
@@ -244,10 +242,8 @@ Configuración razonable para una RTX 4060 de 8 GB:
   --output-state artifacts/model.bin.data
 ```
 
-Con ~11 M de parámetros, pesos + gradientes + estado de AdamW ocupan unos
-pocos cientos de MB, así que cabe de sobra en 8 GB. Para modelos mayores sube
-`--embedding-dim`, `--num-layers` o `--batch-size`; si aparece un error de
-memoria de CUDA, reduce primero el batch.
+Para modelos mayores sube `--embedding-dim`, `--num-layers` o `--batch-size`.
+Si el equipo se queda sin memoria, reduce el batch o usa `--grad-accum`.
 
 **Reanudar** (lee corpus, tokenizer y configuración del `.data`):
 
@@ -273,7 +269,7 @@ de activaciones):
 Cada paso de optimizador promedia 8 micro-batches de 2 secuencias (batch
 efectivo 16). `--steps` cuenta pasos de AdamW, no micro-batches.
 
-### 7.3 Consultas e inferencia
+### 7.4 Consultas e inferencia
 
 **Continuar texto (completion):**
 
@@ -391,61 +387,14 @@ La traza se calcula con un forward extra solo cuando se pide, requiere lote 1 y
 no afecta a la generación normal. El HTML incluye las etiquetas de los tokens
 del prompt y de las predicciones del logit lens.
 
-## 9. CUDA en la RTX 4060
-
-### Qué se acelera
-
-Con `--features cuda`, las **matmuls y proyecciones lineales** (atención,
-MLP, proyección de salida) y su **retropropagación** se ejecutan con cuBLAS en
-la GPU. El resto —softmax de atención, LayerNorm, GELU, AdamW y el data
-loader— sigue en CPU.
-
-Las matrices se copian host → GPU → host en cada llamada y los buffers de
-dispositivo se reutilizan. Por eso la GPU se usa solo cuando el trabajo supera
-un umbral (`m·k·n ≥ 2²⁰`); las operaciones pequeñas se quedan en CPU, donde no
-compensa el tráfico PCIe.
-
-### Medidas reales en esta máquina
-
-RTX 4060 Laptop 8 GB, CUDA 13.5, mismo binario con `MINI_GPT_DEVICE=cpu|cuda`:
-
-| Prueba | CPU | CUDA | Aceleración |
-|---|---|---|---|
-| Matmul 512×512×512 | 71,5 GFLOP/s | 276,3 GFLOP/s | 3,9× |
-| Matmul 1024×1024×1024 | 111,9 GFLOP/s | 945,8 GFLOP/s | 8,5× |
-| Entrenamiento, 1,23 M parámetros, 5 pasos | 4,76 s | 0,96 s | 4,9× |
-
-La loss fue idéntica en ambos casos (`5.210534`), lo que confirma que la ruta
-CUDA calcula lo mismo que la CPU. Reproduce el benchmark con:
-
-```bash
-cargo run --release --features cuda --example matmul_bench -- 1024 20
-MINI_GPT_DEVICE=cpu cargo run --release --features cuda --example matmul_bench -- 1024 20
-```
-
-Los números dependen de la GPU, la versión de CUDA y la carga de la máquina.
-
-### Qué esperar
-
-- Modelos pequeños (dim 128, secuencias cortas) apenas notan la GPU: muchas
-  operaciones caen por debajo del umbral.
-- A partir de dim 256, batch × contexto ≥ 256 y varias capas, la diferencia
-  es clara (la medición de entrenamiento usó dim 256, 2 capas, batch 4,
-  contexto 64).
-- Si compilas sin `--features cuda`, todo funciona en CPU sin cambios.
-
----
-
 ## 10. Estructura del proyecto
 
 ```text
 .
-├── build.rs              # compila y enlaza el backend CUDA (feature `cuda`)
-├── cuda/kernels.cu       # matmul con cuBLAS y buffers de dispositivo
 ├── examples/
-│   └── matmul_bench.rs   # benchmark CPU vs CUDA
+│   └── matmul_bench.rs   # benchmark de matmul en CPU
 ├── src/
-│   ├── tensor.rs         # tensor, matmul (CPU paralela / CUDA), linear
+│   ├── tensor.rs         # tensor, matmul paralela en CPU, linear
 │   ├── tokenizer.rs      # BPE byte-level, formato MINIGPTB
 │   ├── embedding.rs      # embeddings de token y posición
 │   ├── attention.rs      # self-attention causal
@@ -458,38 +407,31 @@ Los números dependen de la GPU, la versión de CUDA y la carga de la máquina.
 │   ├── training_state.rs # metadatos y reanudación
 │   ├── inference.rs      # softmax, muestreo, evaluación de expected
 │   ├── trace.rs          # trazas: atención, residual, MLP, logit lens y HTML
-│   ├── cuda.rs           # detección de backend y FFI seguro
-│   └── bin/              # tokenizer_train, gpt_train, gpt_chat
+│   ├── synthetic.rs      # generador de conversaciones sintéticas
+│   └── bin/              # synth_data, tokenizer_train, gpt_train, gpt_chat
 └── tests/core.rs         # tests de todas las piezas
 ```
 
 ## 11. Tests y verificación
 
 ```bash
-cargo test                    # CPU
-cargo test --features cuda    # incluye contraste CUDA vs CPU
+cargo test
 cargo build --release
-cargo build --release --features cuda
 ```
 
 Se comprobó además:
 
 - Flujo completo tokenizer → entrenamiento → reanudación → chat.
 - Carga y guardado de checkpoints con los formatos binarios documentados.
-- Misma loss en CPU y CUDA para la misma semilla y datos.
+- Entrenamiento de extremo a extremo con el corpus sintético generado.
 
 ## 12. Limitaciones
 
-- El backend CUDA copia datos en cada operación; no mantiene pesos ni
-  activaciones residentes en la GPU. La atención, LayerNorm, GELU y AdamW
-  siguen en CPU, así que cada matmul paga copias PCIe. Es una primera
-  integración correcta y útil, no un framework de alto rendimiento.
-- En consecuencia, pedir más kernels sueltos (atención, LayerNorm, GELU) no
-  aportaría velocidad sin el rediseño de residencia en GPU.
-- No hay precisión mixta (fp16/bf16) ni multi-GPU. La acumulación de
-  gradientes sí está disponible (`--grad-accum`) para aumentar el batch
-  efectivo sin multiplicar la memoria de activaciones.
-- Compilar con CUDA requiere el toolkit en la máquina de compilación.
+- Entrenamiento e inferencia solo en CPU: no hay backend GPU, por lo que el
+  proyecto no usa CUDA ni código nativo externo.
+- No hay precisión mixta (fp16/bf16). La acumulación de gradientes sí está
+  disponible (`--grad-accum`) para aumentar el batch efectivo sin multiplicar
+  la memoria de activaciones.
 - El RNG de inicialización es `xoshiro256**`, determinista para una semilla
   dada.
 - GELU usa una aproximación de `erf` (~1e-7 de error).
