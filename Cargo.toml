@@ -1,0 +1,29 @@
+[package]
+name = "mini_gpt"
+version = "0.1.0"
+edition = "2021"
+description = "Port a Rust del mini GPT (tensor, BPE, transformer, entrenamiento e inferencia)"
+license = "MIT"
+
+[dependencies]
+
+[[bin]]
+name = "tokenizer_train"
+path = "src/bin/tokenizer_train.rs"
+
+[[bin]]
+name = "gpt_train"
+path = "src/bin/gpt_train.rs"
+
+[[bin]]
+name = "gpt_chat"
+path = "src/bin/gpt_chat.rs"
+
+[profile.release]
+opt-level = 3
+lto = "fat"
+codegen-units = 1
+panic = "abort"
+
+[profile.bench]
+inherits = "release"
