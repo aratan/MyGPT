@@ -44,14 +44,8 @@ impl CausalSelfAttention {
             return Err(Error::new("embedding_dim must be divisible by num_heads"));
         }
         let matrix = || [embedding_dim, embedding_dim];
-        let random = |seed: u32| {
-            Tensor::random(
-                matrix(),
-                seed,
-                -INITIALIZATION_SCALE,
-                INITIALIZATION_SCALE,
-            )
-        };
+        let random =
+            |seed: u32| Tensor::random(matrix(), seed, -INITIALIZATION_SCALE, INITIALIZATION_SCALE);
         Ok(Self {
             embedding_dim,
             num_heads,
@@ -115,9 +109,21 @@ impl CausalSelfAttention {
                 "Attention input must have shape [batch_size, seq_len, embedding_dim]",
             ));
         }
-        let queries = split_heads(&linear(input, &self.q_weights)?, self.num_heads, self.head_dim)?;
-        let keys = split_heads(&linear(input, &self.k_weights)?, self.num_heads, self.head_dim)?;
-        let values = split_heads(&linear(input, &self.v_weights)?, self.num_heads, self.head_dim)?;
+        let queries = split_heads(
+            &linear(input, &self.q_weights)?,
+            self.num_heads,
+            self.head_dim,
+        )?;
+        let keys = split_heads(
+            &linear(input, &self.k_weights)?,
+            self.num_heads,
+            self.head_dim,
+        )?;
+        let values = split_heads(
+            &linear(input, &self.v_weights)?,
+            self.num_heads,
+            self.head_dim,
+        )?;
         self.attend(queries, keys, values, include_logits)
     }
 
@@ -216,23 +222,15 @@ impl CausalSelfAttention {
             }
         }
 
-        let combined = Tensor::new(
-            vec![batch_size, seq_len, embedding_dim],
-            combined,
-        )?;
+        let combined = Tensor::new(vec![batch_size, seq_len, embedding_dim], combined)?;
         let output = linear(&combined, &self.output_weights)?;
         let logits = if include_logits {
-            Tensor::new(
-                vec![batch_size, num_heads, seq_len, seq_len],
-                logits,
-            )?
+            Tensor::new(vec![batch_size, num_heads, seq_len, seq_len], logits)?
         } else {
             Tensor::zeros([0])
         };
-        let probabilities = Tensor::new(
-            vec![batch_size, num_heads, seq_len, seq_len],
-            probabilities,
-        )?;
+        let probabilities =
+            Tensor::new(vec![batch_size, num_heads, seq_len, seq_len], probabilities)?;
 
         Ok(AttentionForward {
             output,
@@ -277,9 +275,7 @@ impl CausalSelfAttention {
             .checked_mul(16)
             .ok_or_else(|| Error::new("Attention data size exceeds file format range"))?;
         if reader.remaining() != expected {
-            return Err(Error::new(
-                "Attention dimensions do not match file size",
-            ));
+            return Err(Error::new("Attention dimensions do not match file size"));
         }
         let matrix = |reader: &mut crate::serialize::BytesReader| -> Result<Tensor> {
             Tensor::new([embedding_dim, embedding_dim], reader.values(matrix_size)?)
@@ -351,11 +347,7 @@ impl CausalSelfAttention {
 }
 
 /// `[batch, seq, embedding] -> [batch, heads, seq, head_dim]`.
-pub fn split_heads(
-    input: &Tensor,
-    num_heads: usize,
-    head_dim: usize,
-) -> Result<Tensor> {
+pub fn split_heads(input: &Tensor, num_heads: usize, head_dim: usize) -> Result<Tensor> {
     let batch_size = input.shape()[0];
     let seq_len = input.shape()[1];
     let embedding_dim = input.shape()[2];
@@ -375,11 +367,7 @@ pub fn split_heads(
 }
 
 /// `[batch, heads, seq, head_dim] -> [batch, seq, embedding]`.
-pub fn flatten_heads(
-    input: &Tensor,
-    num_heads: usize,
-    head_dim: usize,
-) -> Result<Tensor> {
+pub fn flatten_heads(input: &Tensor, num_heads: usize, head_dim: usize) -> Result<Tensor> {
     let batch_size = input.shape()[0];
     let seq_len = input.shape()[2];
     let embedding_dim = num_heads * head_dim;
@@ -388,10 +376,8 @@ pub fn flatten_heads(
     for batch in 0..batch_size {
         for head in 0..num_heads {
             for position in 0..seq_len {
-                let head_offset =
-                    ((batch * num_heads + head) * seq_len + position) * head_dim;
-                let flat_offset =
-                    (batch * seq_len + position) * embedding_dim + head * head_dim;
+                let head_offset = ((batch * num_heads + head) * seq_len + position) * head_dim;
+                let flat_offset = (batch * seq_len + position) * embedding_dim + head * head_dim;
                 output[flat_offset..flat_offset + head_dim]
                     .copy_from_slice(&input_data[head_offset..head_offset + head_dim]);
             }

@@ -37,9 +37,7 @@ pub fn utf8_codepoint_count(text: &str) -> usize {
 /// Separa el corpus por puntos de código (no parte caracteres multibyte).
 pub fn split_corpus_utf8(text: &str, validation_ratio: f64) -> Result<CorpusSplit> {
     if !validation_ratio.is_finite() || validation_ratio <= 0.0 || validation_ratio >= 1.0 {
-        return Err(Error::new(
-            "Validation ratio must be between zero and one",
-        ));
+        return Err(Error::new("Validation ratio must be between zero and one"));
     }
     let count = utf8_codepoint_count(text);
     let training_count = (count as f64 * (1.0 - validation_ratio)) as usize;
@@ -172,10 +170,7 @@ impl TextDataLoader {
             validation_order: self.validation_order.clone(),
             training_cursor: self.training_cursor,
             validation_cursor: self.validation_cursor,
-            generator_state: format!(
-                "{},{},{},{}",
-                state[0], state[1], state[2], state[3]
-            ),
+            generator_state: format!("{},{},{},{}", state[0], state[1], state[2], state[3]),
         }
     }
 

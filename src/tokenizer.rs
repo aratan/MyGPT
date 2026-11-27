@@ -102,15 +102,13 @@ impl BpeTokenizer {
         }
 
         let mut sequences: Vec<Vec<u32>> = Vec::new();
-        split_specials(
-            corpus,
-            |normal| {
+        for segment in split_specials(corpus) {
+            if let Segment::Normal(normal) = segment {
                 if !normal.is_empty() {
                     sequences.push(byte_sequence(normal));
                 }
-            },
-            |_| {},
-        );
+            }
+        }
 
         let target = self.max_vocab_size - BASE_VOCABULARY_SIZE;
         let mut counts: FastMap<(u32, u32), u64> = FastMap::default();
@@ -168,11 +166,12 @@ impl BpeTokenizer {
 
     pub fn encode(&self, text: &[u8]) -> Vec<u32> {
         let mut output = Vec::with_capacity(text.len());
-        split_specials(
-            text,
-            |normal| self.append_encoded(normal, &mut output),
-            |special| output.push(special),
-        );
+        for segment in split_specials(text) {
+            match segment {
+                Segment::Normal(normal) => self.append_encoded(normal, &mut output),
+                Segment::Special(special) => output.push(special),
+            }
+        }
         output
     }
 
@@ -348,11 +347,13 @@ fn base_vocabulary() -> Vec<Vec<u8>> {
     vocabulary
 }
 
-fn split_specials(
-    text: &[u8],
-    mut normal_callback: impl FnMut(&[u8]),
-    mut special_callback: impl FnMut(u32),
-) {
+enum Segment<'a> {
+    Normal(&'a [u8]),
+    Special(u32),
+}
+
+fn split_specials(text: &[u8]) -> Vec<Segment<'_>> {
+    let mut segments = Vec::new();
     let mut cursor = 0usize;
     while cursor < text.len() {
         let mut next_position = usize::MAX;
@@ -368,15 +369,16 @@ fn split_specials(
         }
 
         if next_position == usize::MAX {
-            normal_callback(&text[cursor..]);
-            return;
+            segments.push(Segment::Normal(&text[cursor..]));
+            break;
         }
         if next_position > cursor {
-            normal_callback(&text[cursor..next_position]);
+            segments.push(Segment::Normal(&text[cursor..next_position]));
         }
-        special_callback(USER_ID + next_special as u32);
+        segments.push(Segment::Special(USER_ID + next_special as u32));
         cursor = next_position + SPECIAL_TOKENS[next_special].len();
     }
+    segments
 }
 
 fn find(haystack: &[u8], needle: &[u8]) -> Option<usize> {

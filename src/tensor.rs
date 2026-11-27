@@ -52,12 +52,7 @@ impl Tensor {
     }
 
     /// Valores uniformes en `[min, max)` con la semilla indicada.
-    pub fn random(
-        shape: impl Into<Vec<usize>>,
-        seed: u32,
-        min: f32,
-        max: f32,
-    ) -> Result<Self> {
+    pub fn random(shape: impl Into<Vec<usize>>, seed: u32, min: f32, max: f32) -> Result<Self> {
         if !min.is_finite() || !max.is_finite() || min > max {
             return Err(Error::new(
                 "Random bounds must be finite and satisfy min <= max",
@@ -165,15 +160,12 @@ impl Tensor {
             )));
         }
 
+        if let Some(values) = crate::cuda::try_matmul(&self.data, &other.data, rows, inner, columns)
+        {
+            return Tensor::new(vec![rows, columns], values);
+        }
         let mut output = vec![0.0f32; rows * columns];
-        matmul_into(
-            &self.data,
-            &other.data,
-            &mut output,
-            rows,
-            inner,
-            columns,
-        );
+        matmul_into(&self.data, &other.data, &mut output, rows, inner, columns);
         Tensor::new(vec![rows, columns], output)
     }
 
@@ -224,7 +216,9 @@ impl Tensor {
     /// `out += term`.
     pub fn add_assign(&mut self, term: &Tensor) -> Result<()> {
         if self.shape != term.shape {
-            return Err(Error::new("Gradient shapes do not match during accumulation"));
+            return Err(Error::new(
+                "Gradient shapes do not match during accumulation",
+            ));
         }
         for (target, &source) in self.data.iter_mut().zip(&term.data) {
             *target += source;
@@ -283,7 +277,14 @@ impl std::ops::Mul for &Tensor {
     }
 }
 
-fn matmul_into(lhs: &[f32], rhs: &[f32], output: &mut [f32], rows: usize, inner: usize, columns: usize) {
+fn matmul_into(
+    lhs: &[f32],
+    rhs: &[f32],
+    output: &mut [f32],
+    rows: usize,
+    inner: usize,
+    columns: usize,
+) {
     let work = rows.saturating_mul(inner).saturating_mul(columns);
     let threads = parallel_threads(work, rows);
     if threads <= 1 {
@@ -292,19 +293,10 @@ fn matmul_into(lhs: &[f32], rhs: &[f32], output: &mut [f32], rows: usize, inner:
     }
     let rows_per_thread = rows.div_ceil(threads);
     std::thread::scope(|scope| {
-        for (chunk_index, chunk) in output
-            .chunks_mut(rows_per_thread * columns)
-            .enumerate()
-        {
+        for (chunk_index, chunk) in output.chunks_mut(rows_per_thread * columns).enumerate() {
             let first_row = chunk_index * rows_per_thread;
             scope.spawn(move || {
-                matmul_rows(
-                    &lhs[first_row * inner..],
-                    rhs,
-                    chunk,
-                    inner,
-                    columns,
-                );
+                matmul_rows(&lhs[first_row * inner..], rhs, chunk, inner, columns);
             });
         }
     });
@@ -340,10 +332,13 @@ pub fn linear_flat(
         return Err(Error::new("Input length does not match rows * input_dim"));
     }
 
-    let mut output = vec![0.0f32; rows * output_dim];
     let work = rows.saturating_mul(input_dim).saturating_mul(output_dim);
-    let threads = parallel_threads(work, rows);
     let weight_data = weights.data();
+    if let Some(values) = crate::cuda::try_matmul(input, weight_data, rows, input_dim, output_dim) {
+        return Tensor::new(vec![rows, output_dim], values);
+    }
+    let mut output = vec![0.0f32; rows * output_dim];
+    let threads = parallel_threads(work, rows);
     let compute = |first_row: usize, chunk: &mut [f32]| {
         for (local_row, out_row) in chunk.chunks_mut(output_dim).enumerate() {
             let row = first_row + local_row;
@@ -363,9 +358,7 @@ pub fn linear_flat(
     } else {
         let rows_per_thread = rows.div_ceil(threads);
         std::thread::scope(|scope| {
-            for (chunk_index, chunk) in output
-                .chunks_mut(rows_per_thread * output_dim)
-                .enumerate()
+            for (chunk_index, chunk) in output.chunks_mut(rows_per_thread * output_dim).enumerate()
             {
                 let first_row = chunk_index * rows_per_thread;
                 scope.spawn(move || compute(first_row, chunk));

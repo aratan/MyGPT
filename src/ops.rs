@@ -6,7 +6,9 @@ use crate::tensor::{linear_flat, Tensor};
 /// `input [batch, seq, input_dim] · weights [input_dim, output_dim]`.
 pub fn linear(input: &Tensor, weights: &Tensor) -> Result<Tensor> {
     if input.rank() != 3 || weights.rank() != 2 {
-        return Err(Error::new("Linear expects a 3D input and a 2D weight matrix"));
+        return Err(Error::new(
+            "Linear expects a 3D input and a 2D weight matrix",
+        ));
     }
     let batch_size = input.shape()[0];
     let seq_len = input.shape()[1];
@@ -53,10 +55,9 @@ pub fn erf(x: f64) -> f64 {
     let sign = if x < 0.0 { -1.0 } else { 1.0 };
     let x = x.abs();
     let t = 1.0 / (1.0 + 0.327_591_1 * x);
-    let polynomial = (((((1.061_405_429 * t - 1.453_152_027) * t) + 1.421_413_741) * t
-        - 0.284_496_736)
-        * t
-        + 0.254_829_592)
-        * t;
+    let polynomial =
+        (((((1.061_405_429 * t - 1.453_152_027) * t) + 1.421_413_741) * t - 0.284_496_736) * t
+            + 0.254_829_592)
+            * t;
     sign * (1.0 - polynomial * (-x * x).exp())
 }

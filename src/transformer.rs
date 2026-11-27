@@ -104,15 +104,11 @@ impl TransformerBlock {
         let num_heads = reader.dimension()?;
         let mlp_hidden_dim = reader.dimension()?;
         if embedding_dim % num_heads != 0 {
-            return Err(Error::new(
-                "Invalid Transformer Block head configuration",
-            ));
+            return Err(Error::new("Invalid Transformer Block head configuration"));
         }
         let epsilon = reader.f32()?;
         if !epsilon.is_finite() || epsilon <= 0.0 {
-            return Err(Error::new(
-                "Invalid epsilon in Transformer Block file",
-            ));
+            return Err(Error::new("Invalid epsilon in Transformer Block file"));
         }
 
         let matrix_size = embedding_dim
@@ -121,11 +117,13 @@ impl TransformerBlock {
         let mlp_matrix_size = embedding_dim
             .checked_mul(mlp_hidden_dim)
             .ok_or_else(|| Error::new("Transformer Block dimensions exceed usize range"))?;
-        let total_values = 4usize
-            .checked_mul(embedding_dim)
-            .and_then(|value| value.checked_add(4 * matrix_size))
-            .and_then(|value| value.checked_add(2 * mlp_matrix_size))
-            .ok_or_else(|| Error::new("Transformer Block parameter count exceeds usize range"))?;
+        let total_values = (|| -> Option<usize> {
+            let mut value = 4usize.checked_mul(embedding_dim)?;
+            value = value.checked_add(matrix_size.checked_mul(4)?)?;
+            value = value.checked_add(mlp_matrix_size.checked_mul(2)?)?;
+            Some(value)
+        })()
+        .ok_or_else(|| Error::new("Transformer Block parameter count exceeds usize range"))?;
         if reader.remaining() != total_values.saturating_mul(4) {
             return Err(Error::new(
                 "Transformer Block dimensions do not match file size",
@@ -218,7 +216,12 @@ impl TransformerBlock {
 
     fn validate_parameters(&self) -> Result<()> {
         let dimension = self.embedding_dim();
-        if !self.attention.q_weights().shape().eq(&[dimension, dimension]) {
+        if !self
+            .attention
+            .q_weights()
+            .shape()
+            .eq(&[dimension, dimension])
+        {
             return Err(Error::new(
                 "Transformer Block parameters have incompatible shapes",
             ));

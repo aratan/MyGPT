@@ -35,9 +35,7 @@ pub fn cross_entropy(logits: &Tensor, targets: &[u32], mask: &[u8]) -> Result<f3
         return Err(Error::new("Vocabulary size must be greater than zero"));
     }
     if targets.len() != positions {
-        return Err(Error::new(
-            "Target count must equal batch_size * seq_len",
-        ));
+        return Err(Error::new("Target count must equal batch_size * seq_len"));
     }
     if !mask.is_empty() && mask.len() != positions {
         return Err(Error::new("Mask size must equal batch_size * seq_len"));
@@ -54,9 +52,7 @@ pub fn cross_entropy(logits: &Tensor, targets: &[u32], mask: &[u8]) -> Result<f3
             continue;
         }
         if targets[position] as usize >= vocab_size {
-            return Err(Error::new(
-                "Target token ID is outside the vocabulary",
-            ));
+            return Err(Error::new("Target token ID is outside the vocabulary"));
         }
 
         let offset = position * vocab_size;
@@ -95,7 +91,9 @@ pub fn cross_entropy_backward(logits: &Tensor, targets: &[u32], mask: &[u8]) -> 
     let seq_len = logits.shape()[1];
     let vocab_size = logits.shape()[2];
     let positions = batch_size * seq_len;
-    if vocab_size == 0 || targets.len() != positions || (!mask.is_empty() && mask.len() != positions)
+    if vocab_size == 0
+        || targets.len() != positions
+        || (!mask.is_empty() && mask.len() != positions)
     {
         return Err(Error::new("Incompatible shapes in Cross-Entropy backward"));
     }
@@ -120,9 +118,7 @@ pub fn cross_entropy_backward(logits: &Tensor, targets: &[u32], mask: &[u8]) -> 
             continue;
         }
         if targets[position] as usize >= vocab_size {
-            return Err(Error::new(
-                "Target token ID is outside the vocabulary",
-            ));
+            return Err(Error::new("Target token ID is outside the vocabulary"));
         }
         let offset = position * vocab_size;
         let row = &logit_data[offset..offset + vocab_size];

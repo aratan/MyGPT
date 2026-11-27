@@ -14,9 +14,7 @@ pub struct LayerNorm {
 impl LayerNorm {
     pub fn new(normalized_dim: usize, epsilon: f32) -> Result<Self> {
         if normalized_dim == 0 {
-            return Err(Error::new(
-                "normalized_dim must be greater than zero",
-            ));
+            return Err(Error::new("normalized_dim must be greater than zero"));
         }
         if !epsilon.is_finite() || epsilon <= 0.0 {
             return Err(Error::new(
@@ -60,13 +58,13 @@ impl LayerNorm {
                 squared_differences += difference * difference;
             }
             let variance = squared_differences * inverse_dimension;
-            let inverse_standard_deviation =
-                1.0 / (variance + f64::from(self.epsilon)).sqrt();
+            let inverse_standard_deviation = 1.0 / (variance + f64::from(self.epsilon)).sqrt();
 
             let out_row = &mut output[offset..offset + dimension];
             for index in 0..dimension {
                 let normalized = (f64::from(values[index]) - mean) * inverse_standard_deviation;
-                out_row[index] = (normalized * f64::from(gamma[index]) + f64::from(beta[index])) as f32;
+                out_row[index] =
+                    (normalized * f64::from(gamma[index]) + f64::from(beta[index])) as f32;
             }
         }
 

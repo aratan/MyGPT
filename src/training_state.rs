@@ -24,10 +24,7 @@ pub fn save_training_state(path: &Path, state: &TrainingState) -> Result<()> {
         "generator {}\n",
         quote(&state.data.generator_state)
     ));
-    output.push_str(&format!(
-        "training_cursor {}\n",
-        state.data.training_cursor
-    ));
+    output.push_str(&format!("training_cursor {}\n", state.data.training_cursor));
     output.push_str(&format!(
         "validation_cursor {}\n",
         state.data.validation_cursor
@@ -66,13 +63,13 @@ pub fn load_training_state(path: &Path) -> Result<TrainingState> {
     let corpus_path = parse_quoted(next_line(&mut lines, "corpus")?, "corpus")?;
     let tokenizer_path = parse_quoted(next_line(&mut lines, "tokenizer")?, "tokenizer")?;
     let epoch = parse_number(next_line(&mut lines, "epoch")?, "epoch")?;
-    let processed_tokens =
-        parse_number(next_line(&mut lines, "processed_tokens")?, "processed_tokens")?;
-    let generator_state = parse_quoted(next_line(&mut lines, "generator")?, "generator")?;
-    let training_cursor = parse_number(
-        next_line(&mut lines, "training_cursor")?,
-        "training_cursor",
+    let processed_tokens = parse_number(
+        next_line(&mut lines, "processed_tokens")?,
+        "processed_tokens",
     )?;
+    let generator_state = parse_quoted(next_line(&mut lines, "generator")?, "generator")?;
+    let training_cursor =
+        parse_number(next_line(&mut lines, "training_cursor")?, "training_cursor")?;
     let validation_cursor = parse_number(
         next_line(&mut lines, "validation_cursor")?,
         "validation_cursor",

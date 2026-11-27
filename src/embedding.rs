@@ -86,9 +86,7 @@ impl Embedding {
         let weights = self.token_embeddings.data();
         for (index, &id) in token_ids.iter().enumerate() {
             if id as usize >= self.vocab_size {
-                return Err(Error::new(
-                    "Token ID is outside the embedding vocabulary",
-                ));
+                return Err(Error::new("Token ID is outside the embedding vocabulary"));
             }
             let source = id as usize * dimension;
             let destination = index * dimension;
@@ -98,12 +96,7 @@ impl Embedding {
         Tensor::new(vec![batch_size, seq_len, dimension], output)
     }
 
-    pub fn forward(
-        &self,
-        token_ids: &[u32],
-        batch_size: usize,
-        seq_len: usize,
-    ) -> Result<Tensor> {
+    pub fn forward(&self, token_ids: &[u32], batch_size: usize, seq_len: usize) -> Result<Tensor> {
         let mut output = self.token_forward(token_ids, batch_size, seq_len)?;
         let dimension = self.embedding_dim;
         let positions = self.positional_embeddings.data();
@@ -152,14 +145,10 @@ impl Embedding {
             .checked_mul(4)
             .ok_or_else(|| Error::new("Embedding data size exceeds file format range"))?;
         if reader.remaining() != expected {
-            return Err(Error::new(
-                "Embedding dimensions do not match file size",
-            ));
+            return Err(Error::new("Embedding dimensions do not match file size"));
         }
-        let token_embeddings = Tensor::new(
-            [vocab_size, embedding_dim],
-            reader.values(token_count)?,
-        )?;
+        let token_embeddings =
+            Tensor::new([vocab_size, embedding_dim], reader.values(token_count)?)?;
         let positional_embeddings =
             Tensor::new([max_seq_len, embedding_dim], reader.values(position_count)?)?;
         Self::from_tensors(token_embeddings, positional_embeddings)

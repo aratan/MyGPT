@@ -110,15 +110,9 @@ impl GPTGradients {
                         beta: Tensor::zeros(block.norm2().beta().shape().to_vec()),
                     },
                     attention: AttentionGradients {
-                        q_weights: Tensor::zeros(
-                            block.attention().q_weights().shape().to_vec(),
-                        ),
-                        k_weights: Tensor::zeros(
-                            block.attention().k_weights().shape().to_vec(),
-                        ),
-                        v_weights: Tensor::zeros(
-                            block.attention().v_weights().shape().to_vec(),
-                        ),
+                        q_weights: Tensor::zeros(block.attention().q_weights().shape().to_vec()),
+                        k_weights: Tensor::zeros(block.attention().k_weights().shape().to_vec()),
+                        v_weights: Tensor::zeros(block.attention().v_weights().shape().to_vec()),
                         output_weights: Tensor::zeros(
                             block.attention().output_weights().shape().to_vec(),
                         ),
@@ -190,8 +184,7 @@ pub fn linear_backward(
     if input.rank() != 3
         || weights.rank() != 2
         || input.shape()[2] != weights.shape()[0]
-        || output_gradient.shape()
-            != [input.shape()[0], input.shape()[1], weights.shape()[1]]
+        || output_gradient.shape() != [input.shape()[0], input.shape()[1], weights.shape()[1]]
     {
         return Err(Error::new("Incompatible shapes in linear backward"));
     }
@@ -207,6 +200,32 @@ pub fn linear_backward(
     let input_data = input.data();
     let weight_data = weights.data();
     let gradient_data = output_gradient.data();
+
+    if crate::cuda::enabled()
+        && rows.saturating_mul(input_dim).saturating_mul(output_dim)
+            >= crate::cuda::GPU_WORK_THRESHOLD
+    {
+        let weight_transposed = transpose_2d(weight_data, input_dim, output_dim);
+        let input_transposed = transpose_2d(input_data, rows, input_dim);
+        let input_gradient = crate::cuda::matmul(
+            gradient_data,
+            &weight_transposed,
+            rows,
+            output_dim,
+            input_dim,
+        )?;
+        let weight_gradient = crate::cuda::matmul(
+            &input_transposed,
+            gradient_data,
+            input_dim,
+            rows,
+            output_dim,
+        )?;
+        return Ok(LinearBackwardResult {
+            input_gradient: Tensor::new(input.shape().to_vec(), input_gradient)?,
+            weight_gradient: Tensor::new(weights.shape().to_vec(), weight_gradient)?,
+        });
+    }
 
     for row in 0..rows {
         let input_row = &input_data[row * input_dim..row * input_dim + input_dim];
@@ -286,7 +305,8 @@ pub fn layer_norm_backward(
         }
 
         for index in 0..dimension {
-            let value = inverse_standard_deviation * inverse_dimension
+            let value = inverse_standard_deviation
+                * inverse_dimension
                 * (dimension as f64 * normalized_gradient[index]
                     - gradient_sum
                     - normalized[index] * gradient_normalized_sum);
@@ -327,9 +347,7 @@ pub fn embedding_backward(
             let index = batch * seq_len + position;
             let id = token_ids[index] as usize;
             if id >= embedding.vocab_size() {
-                return Err(Error::new(
-                    "Token ID is outside the embedding vocabulary",
-                ));
+                return Err(Error::new("Token ID is outside the embedding vocabulary"));
             }
             let source = index * dimension;
             for i in 0..dimension {
@@ -365,8 +383,11 @@ pub fn attention_backward(
     }
 
     let forward = attention.forward_with_details(input, false)?;
-    let output_backward =
-        linear_backward(&forward.context, attention.output_weights(), output_gradient)?;
+    let output_backward = linear_backward(
+        &forward.context,
+        attention.output_weights(),
+        output_gradient,
+    )?;
     let batch_size = input.shape()[0];
     let seq_len = input.shape()[1];
     let embedding_dim = attention.embedding_dim();
@@ -391,8 +412,7 @@ pub fn attention_backward(
                 probability_gradients.fill(0.0);
                 let query_offset = (head_base + query) * head_dim;
                 let probability_offset = (head_base + query) * seq_len;
-                let context_offset =
-                    (batch * seq_len + query) * embedding_dim + head * head_dim;
+                let context_offset = (batch * seq_len + query) * embedding_dim + head * head_dim;
 
                 for key in 0..=query {
                     let value_offset = (head_base + key) * head_dim;
@@ -419,9 +439,8 @@ pub fn attention_backward(
                         * f64::from(scale);
                     let key_offset = (head_base + key) * head_dim;
                     for dimension in 0..head_dim {
-                        queries_gradient[query_offset + dimension] += (score_gradient
-                            * f64::from(key_data[key_offset + dimension]))
-                            as f32;
+                        queries_gradient[query_offset + dimension] +=
+                            (score_gradient * f64::from(key_data[key_offset + dimension])) as f32;
                         keys_gradient[key_offset + dimension] += (score_gradient
                             * f64::from(query_data[query_offset + dimension]))
                             as f32;
@@ -431,12 +450,21 @@ pub fn attention_backward(
         }
     }
 
-    let flat_queries =
-        flatten_heads(&Tensor::new(forward.queries.shape().to_vec(), queries_gradient)?, num_heads, head_dim)?;
-    let flat_keys =
-        flatten_heads(&Tensor::new(forward.keys.shape().to_vec(), keys_gradient)?, num_heads, head_dim)?;
-    let flat_values =
-        flatten_heads(&Tensor::new(forward.values.shape().to_vec(), values_gradient)?, num_heads, head_dim)?;
+    let flat_queries = flatten_heads(
+        &Tensor::new(forward.queries.shape().to_vec(), queries_gradient)?,
+        num_heads,
+        head_dim,
+    )?;
+    let flat_keys = flatten_heads(
+        &Tensor::new(forward.keys.shape().to_vec(), keys_gradient)?,
+        num_heads,
+        head_dim,
+    )?;
+    let flat_values = flatten_heads(
+        &Tensor::new(forward.values.shape().to_vec(), values_gradient)?,
+        num_heads,
+        head_dim,
+    )?;
 
     let query_backward = linear_backward(input, attention.q_weights(), &flat_queries)?;
     let key_backward = linear_backward(input, attention.k_weights(), &flat_keys)?;
@@ -480,13 +508,17 @@ pub fn transformer_block_backward(
     let fc2_backward = linear_backward(&activated, block.fc2_weights(), output_gradient)?;
     let hidden_gradient = gelu_backward(&hidden, &fc2_backward.input_gradient)?;
     let fc1_backward = linear_backward(&normalized_mlp, block.fc1_weights(), &hidden_gradient)?;
-    let norm2_backward = layer_norm_backward(block.norm2(), &residual, &fc1_backward.input_gradient)?;
+    let norm2_backward =
+        layer_norm_backward(block.norm2(), &residual, &fc1_backward.input_gradient)?;
     let residual_gradient = output_gradient.add(&norm2_backward.input_gradient)?;
 
     let attention_backward_result =
         attention_backward(block.attention(), &normalized_attention, &residual_gradient)?;
-    let norm1_backward =
-        layer_norm_backward(block.norm1(), input, &attention_backward_result.input_gradient)?;
+    let norm1_backward = layer_norm_backward(
+        block.norm1(),
+        input,
+        &attention_backward_result.input_gradient,
+    )?;
     let input_gradient = residual_gradient.add(&norm1_backward.input_gradient)?;
 
     Ok(TransformerBlockBackwardResult {
@@ -535,4 +567,14 @@ pub fn accumulate_block(
     target.fc1_weights.add_assign(&source.fc1_weights)?;
     target.fc2_weights.add_assign(&source.fc2_weights)?;
     Ok(())
+}
+
+fn transpose_2d(values: &[f32], rows: usize, columns: usize) -> Vec<f32> {
+    let mut output = vec![0.0f32; rows * columns];
+    for row in 0..rows {
+        for column in 0..columns {
+            output[column * rows + row] = values[row * columns + column];
+        }
+    }
+    output
 }

@@ -91,9 +91,7 @@ pub fn evaluate_continuation(
         let context = &sequence[start..context_size];
         let ranked = ranked_probabilities(model, context)?;
         if target as usize >= model.vocab_size() {
-            return Err(Error::new(
-                "Expected token ID is outside the vocabulary",
-            ));
+            return Err(Error::new("Expected token ID is outside the vocabulary"));
         }
         let entry = ranked
             .iter()

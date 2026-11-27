@@ -18,6 +18,7 @@ use std::path::Path;
 const INITIALIZATION_SCALE: f32 = 0.02;
 const FILE_MAGIC: &[u8; 8] = b"MINIGPTM";
 const FILE_VERSION: u32 = 1;
+const BLOCK_PARAMETERS: usize = 10;
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum SamplingStrategy {
@@ -70,22 +71,6 @@ impl GPTParameterCount {
     pub fn total(&self) -> usize {
         self.embeddings + self.transformer_blocks + self.final_layer_norm + self.output_projection
     }
-}
-
-/// Préstamo mutable de un parámetro y su gradiente, para el optimizador.
-pub struct ParamBinding<'a> {
-    pub parameter: &'a mut Tensor,
-    pub gradient: &'a Tensor,
-    pub weight_decay: bool,
-    pub name: String,
-}
-
-/// Préstamo inmutable de un parámetro y su gradiente.
-pub struct ParamRef<'a> {
-    pub parameter: &'a Tensor,
-    pub gradient: &'a Tensor,
-    pub weight_decay: bool,
-    pub name: String,
 }
 
 #[derive(Clone, Debug)]
@@ -192,18 +177,32 @@ impl GPT {
             &final_input,
             &output_backward.input_gradient,
         )?;
-        accumulate_layer_norm(&mut self.gradients.final_norm, &final_norm_backward.parameters)?;
+        accumulate_layer_norm(
+            &mut self.gradients.final_norm,
+            &final_norm_backward.parameters,
+        )?;
         let mut hidden_gradient = final_norm_backward.input_gradient;
 
         for layer in (0..self.blocks.len()).rev() {
-            let block_backward =
-                transformer_block_backward(&self.blocks[layer], &block_inputs[layer], &hidden_gradient)?;
-            accumulate_block(&mut self.gradients.blocks[layer], &block_backward.parameters)?;
+            let block_backward = transformer_block_backward(
+                &self.blocks[layer],
+                &block_inputs[layer],
+                &hidden_gradient,
+            )?;
+            accumulate_block(
+                &mut self.gradients.blocks[layer],
+                &block_backward.parameters,
+            )?;
             hidden_gradient = block_backward.input_gradient;
         }
 
-        let embedding_gradients =
-            embedding_backward(&self.embedding, token_ids, batch_size, seq_len, &hidden_gradient)?;
+        let embedding_gradients = embedding_backward(
+            &self.embedding,
+            token_ids,
+            batch_size,
+            seq_len,
+            &hidden_gradient,
+        )?;
         self.gradients
             .embedding
             .token_embeddings
@@ -344,10 +343,7 @@ impl GPT {
             candidates.truncate(top_k);
         }
 
-        let candidate_logits: Vec<f32> = candidates
-            .iter()
-            .map(|&id| logits[id as usize])
-            .collect();
+        let candidate_logits: Vec<f32> = candidates.iter().map(|&id| logits[id as usize]).collect();
         let probabilities = Self::softmax(&candidate_logits, temperature)?;
         let draw = f64::from(rng.next_f32());
         let mut cumulative = 0.0f64;
@@ -383,9 +379,7 @@ impl GPT {
         for &id in &context[first..] {
             let id = id as usize;
             if id >= logits.len() {
-                return Err(Error::new(
-                    "Context token ID is outside the vocabulary",
-                ));
+                return Err(Error::new("Context token ID is outside the vocabulary"));
             }
             if penalized[id] {
                 continue;
@@ -467,17 +461,24 @@ impl GPT {
         let mlp_values = embedding_dim
             .checked_mul(mlp_hidden_dim)
             .ok_or_else(|| Error::new("GPT dimensions exceed usize range"))?;
-        let block_values = 4usize
-            .checked_mul(embedding_dim)
-            .and_then(|value| value.checked_add(4 * matrix_values))
-            .and_then(|value| value.checked_add(2 * mlp_values))
-            .ok_or_else(|| Error::new("GPT parameter count exceeds usize range"))?;
-        let total_values = token_values
-            .checked_add(position_values)
-            .and_then(|value| value.checked_add(num_layers * block_values))
-            .and_then(|value| value.checked_add(2 * embedding_dim))
-            .and_then(|value| value.checked_add(embedding_dim * vocab_size))
-            .ok_or_else(|| Error::new("GPT parameter count exceeds usize range"))?;
+        let output_values = embedding_dim
+            .checked_mul(vocab_size)
+            .ok_or_else(|| Error::new("GPT dimensions exceed usize range"))?;
+        let block_values = (|| -> Option<usize> {
+            let mut value = 4usize.checked_mul(embedding_dim)?;
+            value = value.checked_add(matrix_values.checked_mul(4)?)?;
+            value = value.checked_add(mlp_values.checked_mul(2)?)?;
+            Some(value)
+        })()
+        .ok_or_else(|| Error::new("GPT parameter count exceeds usize range"))?;
+        let total_values = (|| -> Option<usize> {
+            let mut value = token_values.checked_add(position_values)?;
+            value = value.checked_add(num_layers.checked_mul(block_values)?)?;
+            value = value.checked_add(embedding_dim.checked_mul(2)?)?;
+            value = value.checked_add(output_values)?;
+            Some(value)
+        })()
+        .ok_or_else(|| Error::new("GPT parameter count exceeds usize range"))?;
         if reader.remaining() != total_values.saturating_mul(4) {
             return Err(Error::new("GPT dimensions do not match file size"));
         }
@@ -492,10 +493,13 @@ impl GPT {
             0,
             epsilon,
         )?;
-        model.embedding.token_embeddings_mut().clone_from(&Tensor::new(
-            [vocab_size, embedding_dim],
-            reader.values(token_values)?,
-        )?);
+        model
+            .embedding
+            .token_embeddings_mut()
+            .clone_from(&Tensor::new(
+                [vocab_size, embedding_dim],
+                reader.values(token_values)?,
+            )?);
         model
             .embedding
             .positional_embeddings_mut()
@@ -542,10 +546,8 @@ impl GPT {
         let final_gamma = Tensor::new([embedding_dim], reader.values(embedding_dim)?)?;
         let final_beta = Tensor::new([embedding_dim], reader.values(embedding_dim)?)?;
         model.final_norm.set_parameters(final_gamma, final_beta)?;
-        model.output_weights = Tensor::new(
-            [embedding_dim, vocab_size],
-            reader.values(embedding_dim * vocab_size)?,
-        )?;
+        model.output_weights =
+            Tensor::new([embedding_dim, vocab_size], reader.values(output_values)?)?;
         model.zero_grad();
         model.validate_parameters()?;
         Ok(model)
@@ -560,7 +562,10 @@ impl GPT {
     }
 
     pub fn num_heads(&self) -> usize {
-        self.blocks.first().map(|block| block.num_heads()).unwrap_or(0)
+        self.blocks
+            .first()
+            .map(|block| block.num_heads())
+            .unwrap_or(0)
     }
 
     pub fn num_layers(&self) -> usize {
@@ -655,106 +660,56 @@ impl GPT {
         &mut self.output_weights
     }
 
-    pub fn parameter_refs(&self) -> Vec<ParamRef<'_>> {
-        let mut parameters = Vec::new();
-        parameters.push(ParamRef {
-            parameter: self.embedding.token_embeddings(),
-            gradient: &self.gradients.embedding.token_embeddings,
-            weight_decay: true,
-            name: "embedding.token".to_string(),
-        });
-        parameters.push(ParamRef {
-            parameter: self.embedding.positional_embeddings(),
-            gradient: &self.gradients.embedding.positional_embeddings,
-            weight_decay: true,
-            name: "embedding.position".to_string(),
-        });
-        for (index, block) in self.blocks.iter().enumerate() {
-            let gradient = &self.gradients.blocks[index];
-            let prefix = format!("block{index}.");
-            parameters.push(ParamRef {
-                parameter: block.norm1().gamma(),
-                gradient: &gradient.norm1.gamma,
-                weight_decay: false,
-                name: format!("{prefix}norm1.gamma"),
-            });
-            parameters.push(ParamRef {
-                parameter: block.norm1().beta(),
-                gradient: &gradient.norm1.beta,
-                weight_decay: false,
-                name: format!("{prefix}norm1.beta"),
-            });
-            parameters.push(ParamRef {
-                parameter: block.norm2().gamma(),
-                gradient: &gradient.norm2.gamma,
-                weight_decay: false,
-                name: format!("{prefix}norm2.gamma"),
-            });
-            parameters.push(ParamRef {
-                parameter: block.norm2().beta(),
-                gradient: &gradient.norm2.beta,
-                weight_decay: false,
-                name: format!("{prefix}norm2.beta"),
-            });
-            parameters.push(ParamRef {
-                parameter: block.attention().q_weights(),
-                gradient: &gradient.attention.q_weights,
-                weight_decay: true,
-                name: format!("{prefix}q"),
-            });
-            parameters.push(ParamRef {
-                parameter: block.attention().k_weights(),
-                gradient: &gradient.attention.k_weights,
-                weight_decay: true,
-                name: format!("{prefix}k"),
-            });
-            parameters.push(ParamRef {
-                parameter: block.attention().v_weights(),
-                gradient: &gradient.attention.v_weights,
-                weight_decay: true,
-                name: format!("{prefix}v"),
-            });
-            parameters.push(ParamRef {
-                parameter: block.attention().output_weights(),
-                gradient: &gradient.attention.output_weights,
-                weight_decay: true,
-                name: format!("{prefix}attention.output"),
-            });
-            parameters.push(ParamRef {
-                parameter: block.fc1_weights(),
-                gradient: &gradient.fc1_weights,
-                weight_decay: true,
-                name: format!("{prefix}fc1"),
-            });
-            parameters.push(ParamRef {
-                parameter: block.fc2_weights(),
-                gradient: &gradient.fc2_weights,
-                weight_decay: true,
-                name: format!("{prefix}fc2"),
-            });
-        }
-        parameters.push(ParamRef {
-            parameter: self.final_norm.gamma(),
-            gradient: &self.gradients.final_norm.gamma,
-            weight_decay: false,
-            name: "final_norm.gamma".to_string(),
-        });
-        parameters.push(ParamRef {
-            parameter: self.final_norm.beta(),
-            gradient: &self.gradients.final_norm.beta,
-            weight_decay: false,
-            name: "final_norm.beta".to_string(),
-        });
-        parameters.push(ParamRef {
-            parameter: &self.output_weights,
-            gradient: &self.gradients.output_weights,
-            weight_decay: true,
-            name: "output_weights".to_string(),
-        });
-        parameters
+    /// Número total de tensores de parámetros (y de gradientes).
+    pub fn parameter_count_refs(&self) -> usize {
+        2 + self.blocks.len() * BLOCK_PARAMETERS + 3
     }
 
-    pub fn parameter_bindings(&mut self) -> Vec<ParamBinding<'_>> {
+    /// `(parámetro, gradiente)` del índice indicado.
+    pub fn parameter(&self, index: usize) -> Option<(&Tensor, &Tensor)> {
+        if index == 0 {
+            return Some((
+                self.embedding.token_embeddings(),
+                &self.gradients.embedding.token_embeddings,
+            ));
+        }
+        if index == 1 {
+            return Some((
+                self.embedding.positional_embeddings(),
+                &self.gradients.embedding.positional_embeddings,
+            ));
+        }
+        let final_base = 2 + self.blocks.len() * BLOCK_PARAMETERS;
+        if index < final_base {
+            let relative = index - 2;
+            let block = &self.blocks[relative / BLOCK_PARAMETERS];
+            let gradient = &self.gradients.blocks[relative / BLOCK_PARAMETERS];
+            return Some(match relative % BLOCK_PARAMETERS {
+                0 => (block.norm1().gamma(), &gradient.norm1.gamma),
+                1 => (block.norm1().beta(), &gradient.norm1.beta),
+                2 => (block.norm2().gamma(), &gradient.norm2.gamma),
+                3 => (block.norm2().beta(), &gradient.norm2.beta),
+                4 => (block.attention().q_weights(), &gradient.attention.q_weights),
+                5 => (block.attention().k_weights(), &gradient.attention.k_weights),
+                6 => (block.attention().v_weights(), &gradient.attention.v_weights),
+                7 => (
+                    block.attention().output_weights(),
+                    &gradient.attention.output_weights,
+                ),
+                8 => (block.fc1_weights(), &gradient.fc1_weights),
+                _ => (block.fc2_weights(), &gradient.fc2_weights),
+            });
+        }
+        Some(match index - final_base {
+            0 => (self.final_norm.gamma(), &self.gradients.final_norm.gamma),
+            1 => (self.final_norm.beta(), &self.gradients.final_norm.beta),
+            2 => (&self.output_weights, &self.gradients.output_weights),
+            _ => return None,
+        })
+    }
+
+    /// `(parámetro mutable, gradiente)` del índice indicado.
+    pub fn parameter_mut(&mut self, index: usize) -> Option<(&mut Tensor, &Tensor)> {
         let Self {
             embedding,
             blocks,
@@ -763,104 +718,90 @@ impl GPT {
             gradients,
             ..
         } = self;
-        let mut parameters = Vec::new();
-        parameters.push(ParamBinding {
-            parameter: embedding.token_embeddings_mut(),
-            gradient: &gradients.embedding.token_embeddings,
-            weight_decay: true,
-            name: "embedding.token".to_string(),
-        });
-        parameters.push(ParamBinding {
-            parameter: embedding.positional_embeddings_mut(),
-            gradient: &gradients.embedding.positional_embeddings,
-            weight_decay: true,
-            name: "embedding.position".to_string(),
-        });
-        for (index, block) in blocks.iter_mut().enumerate() {
-            let gradient = &gradients.blocks[index];
-            let prefix = format!("block{index}.");
-            parameters.push(ParamBinding {
-                parameter: block.norm1_mut().gamma_mut(),
-                gradient: &gradient.norm1.gamma,
-                weight_decay: false,
-                name: format!("{prefix}norm1.gamma"),
-            });
-            parameters.push(ParamBinding {
-                parameter: block.norm1_mut().beta_mut(),
-                gradient: &gradient.norm1.beta,
-                weight_decay: false,
-                name: format!("{prefix}norm1.beta"),
-            });
-            parameters.push(ParamBinding {
-                parameter: block.norm2_mut().gamma_mut(),
-                gradient: &gradient.norm2.gamma,
-                weight_decay: false,
-                name: format!("{prefix}norm2.gamma"),
-            });
-            parameters.push(ParamBinding {
-                parameter: block.norm2_mut().beta_mut(),
-                gradient: &gradient.norm2.beta,
-                weight_decay: false,
-                name: format!("{prefix}norm2.beta"),
-            });
-            parameters.push(ParamBinding {
-                parameter: block.attention_mut().q_weights_mut(),
-                gradient: &gradient.attention.q_weights,
-                weight_decay: true,
-                name: format!("{prefix}q"),
-            });
-            parameters.push(ParamBinding {
-                parameter: block.attention_mut().k_weights_mut(),
-                gradient: &gradient.attention.k_weights,
-                weight_decay: true,
-                name: format!("{prefix}k"),
-            });
-            parameters.push(ParamBinding {
-                parameter: block.attention_mut().v_weights_mut(),
-                gradient: &gradient.attention.v_weights,
-                weight_decay: true,
-                name: format!("{prefix}v"),
-            });
-            parameters.push(ParamBinding {
-                parameter: block.attention_mut().output_weights_mut(),
-                gradient: &gradient.attention.output_weights,
-                weight_decay: true,
-                name: format!("{prefix}attention.output"),
-            });
-            parameters.push(ParamBinding {
-                parameter: block.fc1_weights_mut(),
-                gradient: &gradient.fc1_weights,
-                weight_decay: true,
-                name: format!("{prefix}fc1"),
-            });
-            parameters.push(ParamBinding {
-                parameter: block.fc2_weights_mut(),
-                gradient: &gradient.fc2_weights,
-                weight_decay: true,
-                name: format!("{prefix}fc2"),
+        if index == 0 {
+            return Some((
+                embedding.token_embeddings_mut(),
+                &gradients.embedding.token_embeddings,
+            ));
+        }
+        if index == 1 {
+            return Some((
+                embedding.positional_embeddings_mut(),
+                &gradients.embedding.positional_embeddings,
+            ));
+        }
+        let final_base = 2 + blocks.len() * BLOCK_PARAMETERS;
+        if index < final_base {
+            let relative = index - 2;
+            let block = &mut blocks[relative / BLOCK_PARAMETERS];
+            let gradient = &gradients.blocks[relative / BLOCK_PARAMETERS];
+            return Some(match relative % BLOCK_PARAMETERS {
+                0 => (block.norm1_mut().gamma_mut(), &gradient.norm1.gamma),
+                1 => (block.norm1_mut().beta_mut(), &gradient.norm1.beta),
+                2 => (block.norm2_mut().gamma_mut(), &gradient.norm2.gamma),
+                3 => (block.norm2_mut().beta_mut(), &gradient.norm2.beta),
+                4 => (
+                    block.attention_mut().q_weights_mut(),
+                    &gradient.attention.q_weights,
+                ),
+                5 => (
+                    block.attention_mut().k_weights_mut(),
+                    &gradient.attention.k_weights,
+                ),
+                6 => (
+                    block.attention_mut().v_weights_mut(),
+                    &gradient.attention.v_weights,
+                ),
+                7 => (
+                    block.attention_mut().output_weights_mut(),
+                    &gradient.attention.output_weights,
+                ),
+                8 => (block.fc1_weights_mut(), &gradient.fc1_weights),
+                _ => (block.fc2_weights_mut(), &gradient.fc2_weights),
             });
         }
-        parameters.push(ParamBinding {
-            parameter: final_norm.gamma_mut(),
-            gradient: &gradients.final_norm.gamma,
-            weight_decay: false,
-            name: "final_norm.gamma".to_string(),
-        });
-        parameters.push(ParamBinding {
-            parameter: final_norm.beta_mut(),
-            gradient: &gradients.final_norm.beta,
-            weight_decay: false,
-            name: "final_norm.beta".to_string(),
-        });
-        parameters.push(ParamBinding {
-            parameter: output_weights,
-            gradient: &gradients.output_weights,
-            weight_decay: true,
-            name: "output_weights".to_string(),
-        });
-        parameters
+        Some(match index - final_base {
+            0 => (final_norm.gamma_mut(), &gradients.final_norm.gamma),
+            1 => (final_norm.beta_mut(), &gradients.final_norm.beta),
+            2 => (output_weights, &gradients.output_weights),
+            _ => return None,
+        })
     }
 
+    /// `(nombre, weight_decay)` del parámetro indicado.
+    pub fn parameter_spec(&self, index: usize) -> Option<(String, bool)> {
+        if index == 0 {
+            return Some(("embedding.token".to_string(), true));
+        }
+        if index == 1 {
+            return Some(("embedding.position".to_string(), true));
+        }
+        let final_base = 2 + self.blocks.len() * BLOCK_PARAMETERS;
+        if index < final_base {
+            let relative = index - 2;
+            let block_index = relative / BLOCK_PARAMETERS;
+            let slot = relative % BLOCK_PARAMETERS;
+            let name = match slot {
+                0 => "norm1.gamma",
+                1 => "norm1.beta",
+                2 => "norm2.gamma",
+                3 => "norm2.beta",
+                4 => "q",
+                5 => "k",
+                6 => "v",
+                7 => "attention.output",
+                8 => "fc1",
+                _ => "fc2",
+            };
+            return Some((format!("block{block_index}.{name}"), slot >= 4));
+        }
+        Some(match index - final_base {
+            0 => ("final_norm.gamma".to_string(), false),
+            1 => ("final_norm.beta".to_string(), false),
+            2 => ("output_weights".to_string(), true),
+            _ => return None,
+        })
+    }
     fn validate_parameters(&self) -> Result<()> {
         let vocab_size = self.embedding.vocab_size();
         let embedding_dim = self.embedding.embedding_dim();

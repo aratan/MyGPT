@@ -38,9 +38,7 @@ pub fn value(args: &[String], option: &str, default_value: &str) -> Result<Strin
 pub fn required(args: &[String], option: &str) -> Result<String> {
     let result = value(args, option, "")?;
     if result.is_empty() {
-        return Err(Error::new(format!(
-            "Falta la opción obligatoria {option}"
-        )));
+        return Err(Error::new(format!("Falta la opción obligatoria {option}")));
     }
     Ok(result)
 }

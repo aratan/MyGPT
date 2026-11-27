@@ -7,6 +7,7 @@ pub mod attention;
 pub mod backprop;
 pub mod chat_mode;
 pub mod cli;
+pub mod cuda;
 pub mod data;
 pub mod embedding;
 pub mod error;
@@ -27,9 +28,7 @@ pub use backprop::GPTGradients;
 pub use data::{CorpusSplit, DataLoaderState, SequenceBatch, TextDataLoader};
 pub use embedding::Embedding;
 pub use error::{Error, Result};
-pub use gpt::{
-    GPTParameterCount, GPT, GenerationConfig, SamplingStrategy, StopCondition,
-};
+pub use gpt::{GPTParameterCount, GenerationConfig, SamplingStrategy, StopCondition, GPT};
 pub use layer_norm::LayerNorm;
 pub use loss::{cross_entropy, cross_entropy_backward, perplexity, shift_tokens};
 pub use tensor::Tensor;
@@ -38,9 +37,7 @@ pub use training_state::{load_training_state, save_training_state, TrainingState
 pub use transformer::TransformerBlock;
 
 pub mod optim {
-    pub use crate::adamw::{
-        clip_gradients, gradient_global_norm, AdamW, AdamWConfig,
-    };
+    pub use crate::adamw::{clip_gradients, gradient_global_norm, AdamW, AdamWConfig};
 }
 
 pub mod adamw;

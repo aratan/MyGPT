@@ -7,6 +7,9 @@ license = "MIT"
 
 [dependencies]
 
+[features]
+cuda = []
+
 [[bin]]
 name = "tokenizer_train"
 path = "src/bin/tokenizer_train.rs"
