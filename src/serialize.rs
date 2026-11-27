@@ -15,47 +15,66 @@ static TEMP_FILE_SEQUENCE: AtomicU64 = AtomicU64::new(0);
 /// stays on the same filesystem. The destination remains untouched if writing
 /// or syncing the temporary file fails.
 pub(crate) fn write_atomic(path: &Path, contents: &[u8]) -> Result<()> {
-    let parent = path.parent().filter(|parent| !parent.as_os_str().is_empty())
+    let parent = path
+        .parent()
+        .filter(|parent| !parent.as_os_str().is_empty())
         .unwrap_or_else(|| Path::new("."));
-    let file_name = path.file_name()
+    let file_name = path
+        .file_name()
         .ok_or_else(|| Error::new(format!("Invalid output path: {}", path.display())))?;
 
     let (temporary_path, mut file) = create_temporary_file(parent, file_name)?;
-    let write_result = file.write_all(contents)
+    let write_result = file
+        .write_all(contents)
         .and_then(|()| file.sync_all());
     drop(file);
 
     if let Err(error) = write_result {
         let _ = fs::remove_file(&temporary_path);
-        return Err(Error::new(format!("Failed to write {}: {error}", path.display())));
+        return Err(Error::new(format!(
+            "Failed to write {}: {error}",
+            path.display()
+        )));
     }
 
     if let Err(error) = fs::rename(&temporary_path, path) {
         let _ = fs::remove_file(&temporary_path);
-        return Err(Error::new(format!("Cannot replace {}: {error}", path.display())));
+        return Err(Error::new(format!(
+            "Cannot replace {}: {error}",
+            path.display()
+        )));
     }
     Ok(())
 }
 
-fn create_temporary_file(parent: &Path, file_name: &std::ffi::OsStr)
-    -> Result<(PathBuf, fs::File)>
-{
+fn create_temporary_file(
+    parent: &Path,
+    file_name: &std::ffi::OsStr,
+) -> Result<(PathBuf, fs::File)> {
     for _ in 0..100 {
         let sequence = TEMP_FILE_SEQUENCE.fetch_add(1, Ordering::Relaxed);
         let mut temporary_name = std::ffi::OsString::from(".");
         temporary_name.push(file_name);
         temporary_name.push(format!(".{}.{}.tmp", std::process::id(), sequence));
         let temporary_path = parent.join(temporary_name);
-        match OpenOptions::new().write(true).create_new(true).open(&temporary_path) {
+        match OpenOptions::new()
+            .write(true)
+            .create_new(true)
+            .open(&temporary_path)
+        {
             Ok(file) => return Ok((temporary_path, file)),
             Err(error) if error.kind() == std::io::ErrorKind::AlreadyExists => continue,
-            Err(error) => return Err(Error::new(format!(
-                "Cannot create temporary file beside {}: {error}", parent.display()
-            ))),
+            Err(error) => {
+                return Err(Error::new(format!(
+                    "Cannot create temporary file beside {}: {error}",
+                    parent.display()
+                )))
+            }
         }
     }
     Err(Error::new(format!(
-        "Cannot allocate a unique temporary file beside {}", parent.display()
+        "Cannot allocate a unique temporary file beside {}",
+        parent.display()
     )))
 }
 
