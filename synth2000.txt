@@ -1,0 +1,4000 @@
+<|user|> ¿Cómo hace la oveja? <|eot|>
+<|assistant|> La oveja hace «bee». <|eot|>
+<|user|> ¿Sabes cuál es la capital de Canadá? <|eot|>
+<|assistant|> Ottawa es la capital de Canadá. <|eot|>
+<|user|> ¿Cuántos minutos tiene una hora? <|eot|>
+<|assistant|> Una hora tiene 60 minutos. <|eot|>
+<|user|> ¿El número 2 es par o impar? <|eot|>
+<|assistant|> El número 2 es par. <|eot|>
+<|user|> Cuenta del 1 al 6. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5, 6. <|eot|>
+<|user|> ¿cómo estás? <|eot|>
+<|assistant|> Hola, ¿qué quieres saber? <|eot|>
+<|user|> ¿Con qué letra empieza «amigo»? <|eot|>
+<|assistant|> «amigo» empieza con la letra a. <|eot|>
+<|user|> ¿Cómo se dice «libro» en inglés? <|eot|>
+<|assistant|> «libro» en inglés es «book». <|eot|>
+<|user|> ¿Cuánto es 3 por 1? <|eot|>
+<|assistant|> 3 por 1 = 3. <|eot|>
+<|user|> ¿De qué color es una violeta? <|eot|>
+<|assistant|> una violeta es de color violeta. <|eot|>
+<|user|> ¿Qué desayuna un robot? <|eot|>
+<|assistant|> No lo sé. <|eot|>
+<|user|> ¿Con qué letra empieza «libro»? <|eot|>
+<|assistant|> «libro» empieza con la letra l. <|eot|>
+<|user|> ¿Cuánto es 20 + 13? <|eot|>
+<|assistant|> 20 + 13 = 33. <|eot|>
+<|user|> ¿El número 5 es par o impar? <|eot|>
+<|assistant|> El número 5 es impar. <|eot|>
+<|user|> ¿Cuál es la capital de Marte? <|eot|>
+<|assistant|> No tengo esa información. <|eot|>
+<|user|> ¿Qué hay dentro de un agujero negro? <|eot|>
+<|assistant|> No lo sé. <|eot|>
+<|user|> ¿Con qué letra empieza «mesa»? <|eot|>
+<|assistant|> «mesa» empieza con la letra m. <|eot|>
+<|user|> ¿Qué puedes hacer? <|eot|>
+<|assistant|> Soy un modelo pequeño entrenado con datos sintéticos. <|eot|>
+<|user|> adiós <|eot|>
+<|assistant|> Hasta luego. <|eot|>
+<|user|> ¿Cuántas horas tiene un día? <|eot|>
+<|assistant|> Un día tiene 24 horas. <|eot|>
+<|user|> ¿Quién eres? <|eot|>
+<|assistant|> Me llamo mini GPT y estoy aprendiendo español. <|eot|>
+<|user|> ¿cómo estás? <|eot|>
+<|assistant|> Estoy bien, gracias. ¿Y tú? <|eot|>
+<|user|> ¿Cuántos días tiene un año? <|eot|>
+<|assistant|> Un año tiene 365 días. <|eot|>
+<|user|> Cuenta del 1 al 6. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5, 6. <|eot|>
+<|user|> ¿Con qué letra empieza «libro»? <|eot|>
+<|assistant|> «libro» empieza con la letra l. <|eot|>
+<|user|> ¿Cómo hace la rana? <|eot|>
+<|assistant|> La rana dice «croac». <|eot|>
+<|user|> ¿Cuántos segundos tiene un minuto? <|eot|>
+<|assistant|> Un minuto tiene 60 segundos. <|eot|>
+<|user|> adiós <|eot|>
+<|assistant|> Hasta luego. <|eot|>
+<|user|> ¿De qué color es el cielo? <|eot|>
+<|assistant|> el cielo es de color azul. <|eot|>
+<|user|> hola <|eot|>
+<|assistant|> Todo bien. ¿En qué te ayudo? <|eot|>
+<|user|> ¿Qué dice el lobo? <|eot|>
+<|assistant|> El lobo hace «aullido». <|eot|>
+<|user|> ¿Qué dice el perro? <|eot|>
+<|assistant|> El perro hace «guau». <|eot|>
+<|user|> ¿Con qué letra empieza «coche»? <|eot|>
+<|assistant|> «coche» empieza con la letra c. <|eot|>
+<|user|> ¿De qué color es una naranja? <|eot|>
+<|assistant|> una naranja es de color naranja. <|eot|>
+<|user|> ¿El número 21 es par o impar? <|eot|>
+<|assistant|> El número 21 es impar. <|eot|>
+<|user|> Cuenta del 1 al 3. <|eot|>
+<|assistant|> 1, 2, 3. <|eot|>
+<|user|> ¿Qué hay dentro de un agujero negro? <|eot|>
+<|assistant|> No lo sé. <|eot|>
+<|user|> ¿De qué color es la sangre? <|eot|>
+<|assistant|> la sangre es de color rojo. <|eot|>
+<|user|> ¿Cuál es el animal más rápido del universo? <|eot|>
+<|assistant|> No lo sé. <|eot|>
+<|user|> Cuenta del 1 al 8. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5, 6, 7, 8. <|eot|>
+<|user|> ¿Con qué letra empieza «casa»? <|eot|>
+<|assistant|> «casa» empieza con la letra c. <|eot|>
+<|user|> ¿Cómo te llamas? <|eot|>
+<|assistant|> Puedo saludar, hacer cuentas sencillas y responder datos básicos. <|eot|>
+<|user|> ¿Qué eres? <|eot|>
+<|assistant|> Me llamo mini GPT y estoy aprendiendo español. <|eot|>
+<|user|> ¿Con qué letra empieza «escuela»? <|eot|>
+<|assistant|> «escuela» empieza con la letra e. <|eot|>
+<|user|> hola <|eot|>
+<|assistant|> Hola. ¿En qué puedo ayudarte? <|eot|>
+<|user|> ¿Cómo hace la gallina? <|eot|>
+<|assistant|> La gallina hace «cocorocó». <|eot|>
+<|user|> ¿Cómo te llamas? <|eot|>
+<|assistant|> Soy un mini GPT y respondo preguntas sencillas. <|eot|>
+<|user|> ¿Cuál es el animal más rápido del universo? <|eot|>
+<|assistant|> No puedo responder eso con seguridad. <|eot|>
+<|user|> ¿Qué sonido hace el pato? <|eot|>
+<|assistant|> El pato dice «cuac». <|eot|>
+<|user|> ¿De qué color es la sangre? <|eot|>
+<|assistant|> la sangre es de color rojo. <|eot|>
+<|user|> adiós <|eot|>
+<|assistant|> Hasta luego. <|eot|>
+<|user|> ¿Cómo hace la vaca? <|eot|>
+<|assistant|> La vaca dice «muu». <|eot|>
+<|user|> ¿Qué desayuna un robot? <|eot|>
+<|assistant|> No lo sé. <|eot|>
+<|user|> ¿Cuántos meses tiene un año? <|eot|>
+<|assistant|> Un año tiene 12 meses. <|eot|>
+<|user|> ¿Cuál es la capital de México? <|eot|>
+<|assistant|> Ciudad de México es la capital de México. <|eot|>
+<|user|> ¿Cuánto es 12 + 4? <|eot|>
+<|assistant|> 12 + 4 = 16. <|eot|>
+<|user|> ¿Cómo se dice «sol» en inglés? <|eot|>
+<|assistant|> «sol» en inglés es «sun». <|eot|>
+<|user|> ¿Con qué letra empieza «escuela»? <|eot|>
+<|assistant|> «escuela» empieza con la letra e. <|eot|>
+<|user|> ¿Cómo se dice «perro» en inglés? <|eot|>
+<|assistant|> «perro» en inglés es «dog». <|eot|>
+<|user|> ¿De qué color es la nieve? <|eot|>
+<|assistant|> la nieve es de color blanco. <|eot|>
+<|user|> ¿Cómo hace el caballo? <|eot|>
+<|assistant|> El caballo hace «hiiii». <|eot|>
+<|user|> ¿Cómo te llamas? <|eot|>
+<|assistant|> Puedo saludar, hacer cuentas sencillas y responder datos básicos. <|eot|>
+<|user|> ¿Cuál es el animal más rápido del universo? <|eot|>
+<|assistant|> No puedo responder eso con seguridad. <|eot|>
+<|user|> buenos días <|eot|>
+<|assistant|> Hola, ¿qué quieres saber? <|eot|>
+<|user|> buenas noches <|eot|>
+<|assistant|> Buenas noches, descansa. <|eot|>
+<|user|> ¿De qué color es una violeta? <|eot|>
+<|assistant|> una violeta es de color violeta. <|eot|>
+<|user|> ¿Cómo hace el caballo? <|eot|>
+<|assistant|> El caballo dice «hiiii». <|eot|>
+<|user|> Cuenta del 1 al 8. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5, 6, 7, 8. <|eot|>
+<|user|> adiós <|eot|>
+<|assistant|> Hasta luego. <|eot|>
+<|user|> ¿cómo estás? <|eot|>
+<|assistant|> Estoy bien, gracias. ¿Y tú? <|eot|>
+<|user|> ¿Cuánto es 17 + 18? <|eot|>
+<|assistant|> 17 + 18 = 35. <|eot|>
+<|user|> ¿Cómo se dice «sol» en inglés? <|eot|>
+<|assistant|> «sol» en inglés es «sun». <|eot|>
+<|user|> ¿El número 2 es par o impar? <|eot|>
+<|assistant|> El número 2 es par. <|eot|>
+<|user|> ¿Cuánto es 14 + 3? <|eot|>
+<|assistant|> 14 + 3 = 17. <|eot|>
+<|user|> ¿Cómo se dice «adiós» en inglés? <|eot|>
+<|assistant|> «adiós» en inglés es «goodbye». <|eot|>
+<|user|> ¿Cómo se dice «libro» en inglés? <|eot|>
+<|assistant|> «libro» en inglés es «book». <|eot|>
+<|user|> ¿Qué dice el pato? <|eot|>
+<|assistant|> El pato dice «cuac». <|eot|>
+<|user|> ¿Cuál es la capital de Colombia? <|eot|>
+<|assistant|> La capital de Colombia es Bogotá. <|eot|>
+<|user|> ¿Cómo hace el pájaro? <|eot|>
+<|assistant|> El pájaro dice «pío». <|eot|>
+<|user|> ¿Con qué letra empieza «escuela»? <|eot|>
+<|assistant|> «escuela» empieza con la letra e. <|eot|>
+<|user|> ¿Cuánto es 2 + 7? <|eot|>
+<|assistant|> 2 + 7 = 9. <|eot|>
+<|user|> adiós <|eot|>
+<|assistant|> Hasta luego. <|eot|>
+<|user|> ¿El número 21 es par o impar? <|eot|>
+<|assistant|> El número 21 es impar. <|eot|>
+<|user|> ¿El número 30 es par o impar? <|eot|>
+<|assistant|> El número 30 es par. <|eot|>
+<|user|> ¿Cuántos días tiene un año? <|eot|>
+<|assistant|> Un año tiene 365 días. <|eot|>
+<|user|> buenas tardes <|eot|>
+<|assistant|> Hola, ¿qué quieres saber? <|eot|>
+<|user|> ¿Qué desayuna un robot? <|eot|>
+<|assistant|> No tengo esa información. <|eot|>
+<|user|> ¿Cuántos meses tiene un año? <|eot|>
+<|assistant|> Un año tiene 12 meses. <|eot|>
+<|user|> ¿De qué color es el sol? <|eot|>
+<|assistant|> el sol es de color amarillo. <|eot|>
+<|user|> ¿Cómo se dice «no» en inglés? <|eot|>
+<|assistant|> «no» en inglés es «no». <|eot|>
+<|user|> buenas noches <|eot|>
+<|assistant|> Buenas noches, descansa. <|eot|>
+<|user|> ¿Cuál es la capital de Australia? <|eot|>
+<|assistant|> La capital de Australia es Canberra. <|eot|>
+<|user|> ¿Con qué letra empieza «jardín»? <|eot|>
+<|assistant|> «jardín» empieza con la letra j. <|eot|>
+<|user|> ¿Cuántos habitantes tiene la Luna? <|eot|>
+<|assistant|> No tengo esa información. <|eot|>
+<|user|> ¿Qué dice la rana? <|eot|>
+<|assistant|> La rana hace «croac». <|eot|>
+<|user|> gracias <|eot|>
+<|assistant|> De nada. <|eot|>
+<|user|> ¿Cómo hace el lobo? <|eot|>
+<|assistant|> El lobo dice «aullido». <|eot|>
+<|user|> ¿Qué puedes hacer? <|eot|>
+<|assistant|> Soy un mini GPT y respondo preguntas sencillas. <|eot|>
+<|user|> ¿Cómo te llamas? <|eot|>
+<|assistant|> Puedo saludar, hacer cuentas sencillas y responder datos básicos. <|eot|>
+<|user|> ¿De qué color es el carbón? <|eot|>
+<|assistant|> el carbón es de color negro. <|eot|>
+<|user|> muchas gracias <|eot|>
+<|assistant|> No hay de qué. <|eot|>
+<|user|> Cuenta del 1 al 3. <|eot|>
+<|assistant|> 1, 2, 3. <|eot|>
+<|user|> buenas tardes <|eot|>
+<|assistant|> Buenos días. ¿Qué necesitas? <|eot|>
+<|user|> Cuenta del 1 al 6. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5, 6. <|eot|>
+<|user|> buenos días <|eot|>
+<|assistant|> Estoy bien, gracias. ¿Y tú? <|eot|>
+<|user|> ¿Cuál es la capital de Marte? <|eot|>
+<|assistant|> No tengo esa información. <|eot|>
+<|user|> ¿Cuál es el animal más rápido del universo? <|eot|>
+<|assistant|> No lo sé. <|eot|>
+<|user|> ¿Con qué letra empieza «ventana»? <|eot|>
+<|assistant|> «ventana» empieza con la letra v. <|eot|>
+<|user|> ¿cómo estás? <|eot|>
+<|assistant|> Todo bien. ¿En qué te ayudo? <|eot|>
+<|user|> ¿Quién eres? <|eot|>
+<|assistant|> Soy un mini GPT y respondo preguntas sencillas. <|eot|>
+<|user|> hasta pronto <|eot|>
+<|assistant|> Hasta pronto. <|eot|>
+<|user|> ¿Qué dice la rana? <|eot|>
+<|assistant|> La rana hace «croac». <|eot|>
+<|user|> ¿cómo estás? <|eot|>
+<|assistant|> Hola. ¿En qué puedo ayudarte? <|eot|>
+<|user|> ¿Cómo hace el pato? <|eot|>
+<|assistant|> El pato hace «cuac». <|eot|>
+<|user|> ¿Cómo te llamas? <|eot|>
+<|assistant|> Soy un modelo pequeño entrenado con datos sintéticos. <|eot|>
+<|user|> ¿De qué color es el chocolate? <|eot|>
+<|assistant|> el chocolate es de color marrón. <|eot|>
+<|user|> ¿Cómo se dice «gracias» en inglés? <|eot|>
+<|assistant|> «gracias» en inglés es «thank you». <|eot|>
+<|user|> ¿Sabes cuál es la capital de Portugal? <|eot|>
+<|assistant|> La capital de Portugal es Lisboa. <|eot|>
+<|user|> ¿Cómo te llamas? <|eot|>
+<|assistant|> Soy un mini GPT y respondo preguntas sencillas. <|eot|>
+<|user|> hasta pronto <|eot|>
+<|assistant|> Hasta pronto. <|eot|>
+<|user|> Cuenta del 1 al 8. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5, 6, 7, 8. <|eot|>
+<|user|> ¿qué tal? <|eot|>
+<|assistant|> Buenos días. ¿Qué necesitas? <|eot|>
+<|user|> ¿Cuánto es 10 + 14? <|eot|>
+<|assistant|> 10 + 14 = 24. <|eot|>
+<|user|> ¿Cómo se dice «gato» en inglés? <|eot|>
+<|assistant|> «gato» en inglés es «cat». <|eot|>
+<|user|> ¿El número 23 es par o impar? <|eot|>
+<|assistant|> El número 23 es impar. <|eot|>
+<|user|> Cuenta del 1 al 6. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5, 6. <|eot|>
+<|user|> ¿Qué hay dentro de un agujero negro? <|eot|>
+<|assistant|> No puedo responder eso con seguridad. <|eot|>
+<|user|> ¿Qué sonido hace el lobo? <|eot|>
+<|assistant|> El lobo hace «aullido». <|eot|>
+<|user|> ¿Cuánto es 19 - 4? <|eot|>
+<|assistant|> 19 - 4 = 15. <|eot|>
+<|user|> ¿Cuántos habitantes tiene la Luna? <|eot|>
+<|assistant|> No tengo esa información. <|eot|>
+<|user|> ¿El número 13 es par o impar? <|eot|>
+<|assistant|> El número 13 es impar. <|eot|>
+<|user|> adiós <|eot|>
+<|assistant|> Hasta luego. <|eot|>
+<|user|> Dime la capital de España. <|eot|>
+<|assistant|> La capital de España es Madrid. <|eot|>
+<|user|> Suma 2 y 5. <|eot|>
+<|assistant|> El resultado de la suma es 7. <|eot|>
+<|user|> ¿Qué hay dentro de un agujero negro? <|eot|>
+<|assistant|> No lo sé. <|eot|>
+<|user|> ¿El número 7 es par o impar? <|eot|>
+<|assistant|> El número 7 es impar. <|eot|>
+<|user|> ¿Cómo se dice «perro» en inglés? <|eot|>
+<|assistant|> «perro» en inglés es «dog». <|eot|>
+<|user|> ¿Cuál es el animal más rápido del universo? <|eot|>
+<|assistant|> No tengo esa información. <|eot|>
+<|user|> muchas gracias <|eot|>
+<|assistant|> No hay de qué. <|eot|>
+<|user|> ¿Qué dice la vaca? <|eot|>
+<|assistant|> La vaca hace «muu». <|eot|>
+<|user|> ¿Cuánto es 11 por 10? <|eot|>
+<|assistant|> 11 por 10 = 110. <|eot|>
+<|user|> gracias <|eot|>
+<|assistant|> De nada. <|eot|>
+<|user|> ¿Cuántos días tiene un año? <|eot|>
+<|assistant|> Un año tiene 365 días. <|eot|>
+<|user|> ¿Cuántos segundos tiene un minuto? <|eot|>
+<|assistant|> Un minuto tiene 60 segundos. <|eot|>
+<|user|> ¿Quién eres? <|eot|>
+<|assistant|> Puedo saludar, hacer cuentas sencillas y responder datos básicos. <|eot|>
+<|user|> Cuenta del 1 al 5. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5. <|eot|>
+<|user|> ¿Con qué letra empieza «libro»? <|eot|>
+<|assistant|> «libro» empieza con la letra l. <|eot|>
+<|user|> ¿Cuánto es 3 por 8? <|eot|>
+<|assistant|> 3 por 8 = 24. <|eot|>
+<|user|> ¿Qué desayuna un robot? <|eot|>
+<|assistant|> No lo sé. <|eot|>
+<|user|> ¿Con qué letra empieza «jardín»? <|eot|>
+<|assistant|> «jardín» empieza con la letra j. <|eot|>
+<|user|> ¿De qué color es una naranja? <|eot|>
+<|assistant|> una naranja es de color naranja. <|eot|>
+<|user|> buenas tardes <|eot|>
+<|assistant|> Buenos días. ¿Qué necesitas? <|eot|>
+<|user|> Cuenta del 1 al 8. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5, 6, 7, 8. <|eot|>
+<|user|> ¿Cómo hace el pájaro? <|eot|>
+<|assistant|> El pájaro hace «pío». <|eot|>
+<|user|> ¿Cómo se dice «casa» en inglés? <|eot|>
+<|assistant|> «casa» en inglés es «house». <|eot|>
+<|user|> ¿El número 24 es par o impar? <|eot|>
+<|assistant|> El número 24 es par. <|eot|>
+<|user|> ¿Cuál es la capital de Marte? <|eot|>
+<|assistant|> No puedo responder eso con seguridad. <|eot|>
+<|user|> Cuenta del 1 al 9. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5, 6, 7, 8, 9. <|eot|>
+<|user|> ¿Cuántos segundos tiene un minuto? <|eot|>
+<|assistant|> Un minuto tiene 60 segundos. <|eot|>
+<|user|> ¿Quién eres? <|eot|>
+<|assistant|> Puedo saludar, hacer cuentas sencillas y responder datos básicos. <|eot|>
+<|user|> ¿Cuántos minutos tiene una hora? <|eot|>
+<|assistant|> Una hora tiene 60 minutos. <|eot|>
+<|user|> Cuenta del 1 al 3. <|eot|>
+<|assistant|> 1, 2, 3. <|eot|>
+<|user|> ¿Cómo se dice «adiós» en inglés? <|eot|>
+<|assistant|> «adiós» en inglés es «goodbye». <|eot|>
+<|user|> ¿Cuántos segundos tiene un minuto? <|eot|>
+<|assistant|> Un minuto tiene 60 segundos. <|eot|>
+<|user|> Dime la capital de México. <|eot|>
+<|assistant|> La capital de México es Ciudad de México. <|eot|>
+<|user|> ¿Cuántas horas tiene un día? <|eot|>
+<|assistant|> Un día tiene 24 horas. <|eot|>
+<|user|> Cuenta del 1 al 8. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5, 6, 7, 8. <|eot|>
+<|user|> ¿Quién eres? <|eot|>
+<|assistant|> Soy un modelo pequeño entrenado con datos sintéticos. <|eot|>
+<|user|> ¿Con qué letra empieza «casa»? <|eot|>
+<|assistant|> «casa» empieza con la letra c. <|eot|>
+<|user|> ¿Cuánto es 3 - 1? <|eot|>
+<|assistant|> 3 - 1 = 2. <|eot|>
+<|user|> ¿Con qué letra empieza «montaña»? <|eot|>
+<|assistant|> «montaña» empieza con la letra m. <|eot|>
+<|user|> ¿Cuánto es 10 - 4? <|eot|>
+<|assistant|> 10 - 4 = 6. <|eot|>
+<|user|> ¿Con qué letra empieza «nube»? <|eot|>
+<|assistant|> «nube» empieza con la letra n. <|eot|>
+<|user|> ¿Cuál es la capital de Egipto? <|eot|>
+<|assistant|> La capital de Egipto es El Cairo. <|eot|>
+<|user|> ¿Quién eres? <|eot|>
+<|assistant|> Soy un modelo pequeño entrenado con datos sintéticos. <|eot|>
+<|user|> Cuenta del 1 al 8. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5, 6, 7, 8. <|eot|>
+<|user|> ¿El número 2 es par o impar? <|eot|>
+<|assistant|> El número 2 es par. <|eot|>
+<|user|> ¿Sabes cuál es la capital de Marruecos? <|eot|>
+<|assistant|> La capital de Marruecos es Rabat. <|eot|>
+<|user|> ¿Cuántos días tiene un año? <|eot|>
+<|assistant|> Un año tiene 365 días. <|eot|>
+<|user|> ¿Cuántas horas tiene un día? <|eot|>
+<|assistant|> Un día tiene 24 horas. <|eot|>
+<|user|> gracias <|eot|>
+<|assistant|> De nada. <|eot|>
+<|user|> ¿De qué color es el chocolate? <|eot|>
+<|assistant|> el chocolate es de color marrón. <|eot|>
+<|user|> buenas tardes <|eot|>
+<|assistant|> Buenos días. ¿Qué necesitas? <|eot|>
+<|user|> ¿Sabes cuál es la capital de Portugal? <|eot|>
+<|assistant|> Lisboa es la capital de Portugal. <|eot|>
+<|user|> ¿Cuál es la capital de Portugal? <|eot|>
+<|assistant|> Lisboa es la capital de Portugal. <|eot|>
+<|user|> ¿Con qué letra empieza «árbol»? <|eot|>
+<|assistant|> «árbol» empieza con la letra á. <|eot|>
+<|user|> hasta pronto <|eot|>
+<|assistant|> Hasta pronto. <|eot|>
+<|user|> Cuenta del 1 al 6. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5, 6. <|eot|>
+<|user|> ¿Qué dice el caballo? <|eot|>
+<|assistant|> El caballo dice «hiiii». <|eot|>
+<|user|> Suma 9 y 12. <|eot|>
+<|assistant|> El resultado de la suma es 21. <|eot|>
+<|user|> ¿Cuánto es 9 por 7? <|eot|>
+<|assistant|> 9 por 7 = 63. <|eot|>
+<|user|> ¿Cuál es la capital de Egipto? <|eot|>
+<|assistant|> El Cairo es la capital de Egipto. <|eot|>
+<|user|> ¿Qué eres? <|eot|>
+<|assistant|> Soy un modelo pequeño entrenado con datos sintéticos. <|eot|>
+<|user|> ¿Cómo hace la rana? <|eot|>
+<|assistant|> La rana hace «croac». <|eot|>
+<|user|> ¿El número 1 es par o impar? <|eot|>
+<|assistant|> El número 1 es impar. <|eot|>
+<|user|> hasta pronto <|eot|>
+<|assistant|> Hasta pronto. <|eot|>
+<|user|> ¿Qué sonido hace la vaca? <|eot|>
+<|assistant|> La vaca hace «muu». <|eot|>
+<|user|> ¿Con qué letra empieza «ventana»? <|eot|>
+<|assistant|> «ventana» empieza con la letra v. <|eot|>
+<|user|> ¿Cuántos minutos tiene una hora? <|eot|>
+<|assistant|> Una hora tiene 60 minutos. <|eot|>
+<|user|> ¿El número 17 es par o impar? <|eot|>
+<|assistant|> El número 17 es impar. <|eot|>
+<|user|> Dime la capital de Colombia. <|eot|>
+<|assistant|> Bogotá es la capital de Colombia. <|eot|>
+<|user|> ¿Cuál es la capital de Alemania? <|eot|>
+<|assistant|> La capital de Alemania es Berlín. <|eot|>
+<|user|> ¿El número 24 es par o impar? <|eot|>
+<|assistant|> El número 24 es par. <|eot|>
+<|user|> ¿Cuánto es 8 - 5? <|eot|>
+<|assistant|> 8 - 5 = 3. <|eot|>
+<|user|> buenos días <|eot|>
+<|assistant|> Hola, ¿qué quieres saber? <|eot|>
+<|user|> ¿Cuántos segundos tiene un minuto? <|eot|>
+<|assistant|> Un minuto tiene 60 segundos. <|eot|>
+<|user|> Dime la capital de España. <|eot|>
+<|assistant|> Madrid es la capital de España. <|eot|>
+<|user|> ¿Con qué letra empieza «silla»? <|eot|>
+<|assistant|> «silla» empieza con la letra s. <|eot|>
+<|user|> ¿Cuánto es 1 por 7? <|eot|>
+<|assistant|> 1 por 7 = 7. <|eot|>
+<|user|> ¿Cómo hace el pájaro? <|eot|>
+<|assistant|> El pájaro hace «pío». <|eot|>
+<|user|> ¿Cuánto es 10 por 3? <|eot|>
+<|assistant|> 10 por 3 = 30. <|eot|>
+<|user|> ¿El número 23 es par o impar? <|eot|>
+<|assistant|> El número 23 es impar. <|eot|>
+<|user|> ¿Quién eres? <|eot|>
+<|assistant|> Puedo saludar, hacer cuentas sencillas y responder datos básicos. <|eot|>
+<|user|> ¿Cuánto es 17 + 10? <|eot|>
+<|assistant|> 17 + 10 = 27. <|eot|>
+<|user|> ¿Sabes cuál es la capital de Chile? <|eot|>
+<|assistant|> Santiago es la capital de Chile. <|eot|>
+<|user|> ¿Cuál es la capital de Marte? <|eot|>
+<|assistant|> No puedo responder eso con seguridad. <|eot|>
+<|user|> Suma 7 y 18. <|eot|>
+<|assistant|> El resultado de la suma es 25. <|eot|>
+<|user|> ¿cómo estás? <|eot|>
+<|assistant|> Estoy bien, gracias. ¿Y tú? <|eot|>
+<|user|> adiós <|eot|>
+<|assistant|> Hasta luego. <|eot|>
+<|user|> ¿Cómo se dice «sol» en inglés? <|eot|>
+<|assistant|> «sol» en inglés es «sun». <|eot|>
+<|user|> ¿Cómo se dice «hola» en inglés? <|eot|>
+<|assistant|> «hola» en inglés es «hello». <|eot|>
+<|user|> ¿Qué puedes hacer? <|eot|>
+<|assistant|> Soy un modelo pequeño entrenado con datos sintéticos. <|eot|>
+<|user|> ¿Cómo hace el pato? <|eot|>
+<|assistant|> El pato dice «cuac». <|eot|>
+<|user|> ¿Cómo te llamas? <|eot|>
+<|assistant|> Puedo saludar, hacer cuentas sencillas y responder datos básicos. <|eot|>
+<|user|> ¿El número 16 es par o impar? <|eot|>
+<|assistant|> El número 16 es par. <|eot|>
+<|user|> ¿Cuántos meses tiene un año? <|eot|>
+<|assistant|> Un año tiene 12 meses. <|eot|>
+<|user|> ¿El número 12 es par o impar? <|eot|>
+<|assistant|> El número 12 es par. <|eot|>
+<|user|> ¿Cuántas horas tiene un día? <|eot|>
+<|assistant|> Un día tiene 24 horas. <|eot|>
+<|user|> ¿Con qué letra empieza «camino»? <|eot|>
+<|assistant|> «camino» empieza con la letra c. <|eot|>
+<|user|> ¿Qué dice la rana? <|eot|>
+<|assistant|> La rana hace «croac». <|eot|>
+<|user|> ¿Cuál es la capital de Portugal? <|eot|>
+<|assistant|> La capital de Portugal es Lisboa. <|eot|>
+<|user|> ¿Con qué letra empieza «jardín»? <|eot|>
+<|assistant|> «jardín» empieza con la letra j. <|eot|>
+<|user|> buenos días <|eot|>
+<|assistant|> Hola. ¿En qué puedo ayudarte? <|eot|>
+<|user|> hasta pronto <|eot|>
+<|assistant|> Hasta pronto. <|eot|>
+<|user|> ¿Cuánto es 10 - 2? <|eot|>
+<|assistant|> 10 - 2 = 8. <|eot|>
+<|user|> Suma 14 y 19. <|eot|>
+<|assistant|> El resultado de la suma es 33. <|eot|>
+<|user|> ¿El número 4 es par o impar? <|eot|>
+<|assistant|> El número 4 es par. <|eot|>
+<|user|> ¿El número 20 es par o impar? <|eot|>
+<|assistant|> El número 20 es par. <|eot|>
+<|user|> hola <|eot|>
+<|assistant|> Buenos días. ¿Qué necesitas? <|eot|>
+<|user|> ¿Quién eres? <|eot|>
+<|assistant|> Me llamo mini GPT y estoy aprendiendo español. <|eot|>
+<|user|> ¿cómo estás? <|eot|>
+<|assistant|> Estoy bien, gracias. ¿Y tú? <|eot|>
+<|user|> ¿Cómo se dice «azul» en inglés? <|eot|>
+<|assistant|> «azul» en inglés es «blue». <|eot|>
+<|user|> ¿Cuántos días tiene una semana? <|eot|>
+<|assistant|> Una semana tiene 7 días. <|eot|>
+<|user|> ¿Cuál es la capital de India? <|eot|>
+<|assistant|> La capital de India es Nueva Delhi. <|eot|>
+<|user|> ¿Qué sonido hace el perro? <|eot|>
+<|assistant|> El perro dice «guau». <|eot|>
+<|user|> ¿Qué puedes hacer? <|eot|>
+<|assistant|> Soy un modelo pequeño entrenado con datos sintéticos. <|eot|>
+<|user|> ¿Cuántos habitantes tiene la Luna? <|eot|>
+<|assistant|> No tengo esa información. <|eot|>
+<|user|> ¿Cuál es la capital de Marte? <|eot|>
+<|assistant|> No puedo responder eso con seguridad. <|eot|>
+<|user|> ¿De qué color es el chocolate? <|eot|>
+<|assistant|> el chocolate es de color marrón. <|eot|>
+<|user|> ¿El número 3 es par o impar? <|eot|>
+<|assistant|> El número 3 es impar. <|eot|>
+<|user|> ¿Cuál es el animal más rápido del universo? <|eot|>
+<|assistant|> No lo sé. <|eot|>
+<|user|> buenas noches <|eot|>
+<|assistant|> Buenas noches, descansa. <|eot|>
+<|user|> ¿De qué color es el chocolate? <|eot|>
+<|assistant|> el chocolate es de color marrón. <|eot|>
+<|user|> muchas gracias <|eot|>
+<|assistant|> No hay de qué. <|eot|>
+<|user|> ¿Sabes cuál es la capital de Perú? <|eot|>
+<|assistant|> La capital de Perú es Lima. <|eot|>
+<|user|> ¿El número 7 es par o impar? <|eot|>
+<|assistant|> El número 7 es impar. <|eot|>
+<|user|> ¿Cuánto es 9 - 4? <|eot|>
+<|assistant|> 9 - 4 = 5. <|eot|>
+<|user|> buenos días <|eot|>
+<|assistant|> Buenos días. ¿Qué necesitas? <|eot|>
+<|user|> ¿Con qué letra empieza «ventana»? <|eot|>
+<|assistant|> «ventana» empieza con la letra v. <|eot|>
+<|user|> Cuenta del 1 al 4. <|eot|>
+<|assistant|> 1, 2, 3, 4. <|eot|>
+<|user|> ¿Cómo te llamas? <|eot|>
+<|assistant|> Soy un modelo pequeño entrenado con datos sintéticos. <|eot|>
+<|user|> ¿Qué dice la vaca? <|eot|>
+<|assistant|> La vaca hace «muu». <|eot|>
+<|user|> ¿Cuántos habitantes tiene la Luna? <|eot|>
+<|assistant|> No lo sé. <|eot|>
+<|user|> ¿qué tal? <|eot|>
+<|assistant|> Todo bien. ¿En qué te ayudo? <|eot|>
+<|user|> adiós <|eot|>
+<|assistant|> Hasta luego. <|eot|>
+<|user|> ¿Qué desayuna un robot? <|eot|>
+<|assistant|> No tengo esa información. <|eot|>
+<|user|> ¿Con qué letra empieza «árbol»? <|eot|>
+<|assistant|> «árbol» empieza con la letra á. <|eot|>
+<|user|> ¿Cómo se dice «casa» en inglés? <|eot|>
+<|assistant|> «casa» en inglés es «house». <|eot|>
+<|user|> ¿El número 13 es par o impar? <|eot|>
+<|assistant|> El número 13 es impar. <|eot|>
+<|user|> ¿El número 22 es par o impar? <|eot|>
+<|assistant|> El número 22 es par. <|eot|>
+<|user|> gracias <|eot|>
+<|assistant|> De nada. <|eot|>
+<|user|> ¿Con qué letra empieza «estrella»? <|eot|>
+<|assistant|> «estrella» empieza con la letra e. <|eot|>
+<|user|> ¿Qué hay dentro de un agujero negro? <|eot|>
+<|assistant|> No puedo responder eso con seguridad. <|eot|>
+<|user|> muchas gracias <|eot|>
+<|assistant|> No hay de qué. <|eot|>
+<|user|> muchas gracias <|eot|>
+<|assistant|> No hay de qué. <|eot|>
+<|user|> ¿Cuántos habitantes tiene la Luna? <|eot|>
+<|assistant|> No puedo responder eso con seguridad. <|eot|>
+<|user|> ¿Cómo se dice «perro» en inglés? <|eot|>
+<|assistant|> «perro» en inglés es «dog». <|eot|>
+<|user|> ¿De qué color es la sangre? <|eot|>
+<|assistant|> la sangre es de color rojo. <|eot|>
+<|user|> ¿Qué sonido hace el perro? <|eot|>
+<|assistant|> El perro hace «guau». <|eot|>
+<|user|> ¿El número 18 es par o impar? <|eot|>
+<|assistant|> El número 18 es par. <|eot|>
+<|user|> ¿Qué dice el gato? <|eot|>
+<|assistant|> El gato hace «miau». <|eot|>
+<|user|> Cuenta del 1 al 3. <|eot|>
+<|assistant|> 1, 2, 3. <|eot|>
+<|user|> ¿Cómo hace la gallina? <|eot|>
+<|assistant|> La gallina hace «cocorocó». <|eot|>
+<|user|> ¿Qué hay dentro de un agujero negro? <|eot|>
+<|assistant|> No puedo responder eso con seguridad. <|eot|>
+<|user|> Cuenta del 1 al 8. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5, 6, 7, 8. <|eot|>
+<|user|> ¿El número 10 es par o impar? <|eot|>
+<|assistant|> El número 10 es par. <|eot|>
+<|user|> ¿Qué puedes hacer? <|eot|>
+<|assistant|> Soy un modelo pequeño entrenado con datos sintéticos. <|eot|>
+<|user|> ¿qué tal? <|eot|>
+<|assistant|> Estoy bien, gracias. ¿Y tú? <|eot|>
+<|user|> ¿Cuál es la capital de Canadá? <|eot|>
+<|assistant|> Ottawa es la capital de Canadá. <|eot|>
+<|user|> ¿Con qué letra empieza «montaña»? <|eot|>
+<|assistant|> «montaña» empieza con la letra m. <|eot|>
+<|user|> hasta pronto <|eot|>
+<|assistant|> Hasta pronto. <|eot|>
+<|user|> ¿Con qué letra empieza «estrella»? <|eot|>
+<|assistant|> «estrella» empieza con la letra e. <|eot|>
+<|user|> ¿Qué desayuna un robot? <|eot|>
+<|assistant|> No lo sé. <|eot|>
+<|user|> ¿Sabes cuál es la capital de Reino Unido? <|eot|>
+<|assistant|> La capital de Reino Unido es Londres. <|eot|>
+<|user|> Cuenta del 1 al 7. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5, 6, 7. <|eot|>
+<|user|> Cuenta del 1 al 4. <|eot|>
+<|assistant|> 1, 2, 3, 4. <|eot|>
+<|user|> ¿Cuánto es 7 por 5? <|eot|>
+<|assistant|> 7 por 5 = 35. <|eot|>
+<|user|> ¿Con qué letra empieza «silla»? <|eot|>
+<|assistant|> «silla» empieza con la letra s. <|eot|>
+<|user|> ¿Qué hay dentro de un agujero negro? <|eot|>
+<|assistant|> No tengo esa información. <|eot|>
+<|user|> ¿Con qué letra empieza «perro»? <|eot|>
+<|assistant|> «perro» empieza con la letra p. <|eot|>
+<|user|> hola <|eot|>
+<|assistant|> Estoy bien, gracias. ¿Y tú? <|eot|>
+<|user|> ¿De qué color es el chocolate? <|eot|>
+<|assistant|> el chocolate es de color marrón. <|eot|>
+<|user|> ¿Cómo se dice «rojo» en inglés? <|eot|>
+<|assistant|> «rojo» en inglés es «red». <|eot|>
+<|user|> ¿Cuántos habitantes tiene la Luna? <|eot|>
+<|assistant|> No puedo responder eso con seguridad. <|eot|>
+<|user|> ¿Sabes cuál es la capital de Chile? <|eot|>
+<|assistant|> Santiago es la capital de Chile. <|eot|>
+<|user|> ¿Cuántos segundos tiene un minuto? <|eot|>
+<|assistant|> Un minuto tiene 60 segundos. <|eot|>
+<|user|> ¿Con qué letra empieza «gato»? <|eot|>
+<|assistant|> «gato» empieza con la letra g. <|eot|>
+<|user|> ¿Cómo te llamas? <|eot|>
+<|assistant|> Soy un mini GPT y respondo preguntas sencillas. <|eot|>
+<|user|> ¿Qué eres? <|eot|>
+<|assistant|> Soy un modelo pequeño entrenado con datos sintéticos. <|eot|>
+<|user|> ¿Cuál es el animal más rápido del universo? <|eot|>
+<|assistant|> No lo sé. <|eot|>
+<|user|> ¿Cuántos meses tiene un año? <|eot|>
+<|assistant|> Un año tiene 12 meses. <|eot|>
+<|user|> ¿Cuál es la capital de China? <|eot|>
+<|assistant|> La capital de China es Pekín. <|eot|>
+<|user|> ¿El número 17 es par o impar? <|eot|>
+<|assistant|> El número 17 es impar. <|eot|>
+<|user|> ¿Con qué letra empieza «familia»? <|eot|>
+<|assistant|> «familia» empieza con la letra f. <|eot|>
+<|user|> ¿De qué color es el cielo? <|eot|>
+<|assistant|> el cielo es de color azul. <|eot|>
+<|user|> Dime la capital de Marruecos. <|eot|>
+<|assistant|> La capital de Marruecos es Rabat. <|eot|>
+<|user|> ¿Qué dice el perro? <|eot|>
+<|assistant|> El perro hace «guau». <|eot|>
+<|user|> ¿Cuántos meses tiene un año? <|eot|>
+<|assistant|> Un año tiene 12 meses. <|eot|>
+<|user|> ¿Con qué letra empieza «amigo»? <|eot|>
+<|assistant|> «amigo» empieza con la letra a. <|eot|>
+<|user|> ¿Quién eres? <|eot|>
+<|assistant|> Soy un mini GPT y respondo preguntas sencillas. <|eot|>
+<|user|> ¿Cómo se dice «perro» en inglés? <|eot|>
+<|assistant|> «perro» en inglés es «dog». <|eot|>
+<|user|> Dime la capital de Grecia. <|eot|>
+<|assistant|> La capital de Grecia es Atenas. <|eot|>
+<|user|> Suma 1 y 7. <|eot|>
+<|assistant|> El resultado de la suma es 8. <|eot|>
+<|user|> ¿Cómo se dice «agua» en inglés? <|eot|>
+<|assistant|> «agua» en inglés es «water». <|eot|>
+<|user|> gracias <|eot|>
+<|assistant|> De nada. <|eot|>
+<|user|> ¿Cuánto es 12 por 12? <|eot|>
+<|assistant|> 12 por 12 = 144. <|eot|>
+<|user|> ¿Cómo se dice «luna» en inglés? <|eot|>
+<|assistant|> «luna» en inglés es «moon». <|eot|>
+<|user|> ¿Cuál es la capital de India? <|eot|>
+<|assistant|> Nueva Delhi es la capital de India. <|eot|>
+<|user|> Suma 10 y 15. <|eot|>
+<|assistant|> El resultado de la suma es 25. <|eot|>
+<|user|> ¿Cuánto es 17 + 10? <|eot|>
+<|assistant|> 17 + 10 = 27. <|eot|>
+<|user|> ¿Cómo te llamas? <|eot|>
+<|assistant|> Puedo saludar, hacer cuentas sencillas y responder datos básicos. <|eot|>
+<|user|> ¿El número 15 es par o impar? <|eot|>
+<|assistant|> El número 15 es impar. <|eot|>
+<|user|> ¿Con qué letra empieza «estrella»? <|eot|>
+<|assistant|> «estrella» empieza con la letra e. <|eot|>
+<|user|> ¿Cuánto es 2 + 18? <|eot|>
+<|assistant|> 2 + 18 = 20. <|eot|>
+<|user|> buenas noches <|eot|>
+<|assistant|> Buenas noches, descansa. <|eot|>
+<|user|> Cuenta del 1 al 8. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5, 6, 7, 8. <|eot|>
+<|user|> ¿Qué hay dentro de un agujero negro? <|eot|>
+<|assistant|> No puedo responder eso con seguridad. <|eot|>
+<|user|> ¿De qué color es la nieve? <|eot|>
+<|assistant|> la nieve es de color blanco. <|eot|>
+<|user|> ¿Cómo hace el perro? <|eot|>
+<|assistant|> El perro dice «guau». <|eot|>
+<|user|> ¿Cuántos segundos tiene un minuto? <|eot|>
+<|assistant|> Un minuto tiene 60 segundos. <|eot|>
+<|user|> ¿Qué sonido hace la oveja? <|eot|>
+<|assistant|> La oveja hace «bee». <|eot|>
+<|user|> ¿Cuánto es 19 + 2? <|eot|>
+<|assistant|> 19 + 2 = 21. <|eot|>
+<|user|> ¿Cómo se dice «sol» en inglés? <|eot|>
+<|assistant|> «sol» en inglés es «sun». <|eot|>
+<|user|> ¿Cuántos habitantes tiene la Luna? <|eot|>
+<|assistant|> No tengo esa información. <|eot|>
+<|user|> Cuenta del 1 al 6. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5, 6. <|eot|>
+<|user|> ¿Qué puedes hacer? <|eot|>
+<|assistant|> Puedo saludar, hacer cuentas sencillas y responder datos básicos. <|eot|>
+<|user|> ¿El número 1 es par o impar? <|eot|>
+<|assistant|> El número 1 es impar. <|eot|>
+<|user|> Cuenta del 1 al 7. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5, 6, 7. <|eot|>
+<|user|> ¿Qué desayuna un robot? <|eot|>
+<|assistant|> No tengo esa información. <|eot|>
+<|user|> ¿De qué color es el chocolate? <|eot|>
+<|assistant|> el chocolate es de color marrón. <|eot|>
+<|user|> ¿Con qué letra empieza «familia»? <|eot|>
+<|assistant|> «familia» empieza con la letra f. <|eot|>
+<|user|> ¿Cómo hace el gato? <|eot|>
+<|assistant|> El gato dice «miau». <|eot|>
+<|user|> ¿El número 12 es par o impar? <|eot|>
+<|assistant|> El número 12 es par. <|eot|>
+<|user|> buenas tardes <|eot|>
+<|assistant|> Buenos días. ¿Qué necesitas? <|eot|>
+<|user|> ¿Cómo se dice «gracias» en inglés? <|eot|>
+<|assistant|> «gracias» en inglés es «thank you». <|eot|>
+<|user|> ¿Cómo se dice «casa» en inglés? <|eot|>
+<|assistant|> «casa» en inglés es «house». <|eot|>
+<|user|> ¿Cuánto es 17 + 19? <|eot|>
+<|assistant|> 17 + 19 = 36. <|eot|>
+<|user|> ¿El número 20 es par o impar? <|eot|>
+<|assistant|> El número 20 es par. <|eot|>
+<|user|> ¿El número 13 es par o impar? <|eot|>
+<|assistant|> El número 13 es impar. <|eot|>
+<|user|> adiós <|eot|>
+<|assistant|> Hasta luego. <|eot|>
+<|user|> ¿Qué eres? <|eot|>
+<|assistant|> Me llamo mini GPT y estoy aprendiendo español. <|eot|>
+<|user|> ¿De qué color es el cielo? <|eot|>
+<|assistant|> el cielo es de color azul. <|eot|>
+<|user|> gracias <|eot|>
+<|assistant|> De nada. <|eot|>
+<|user|> Dime la capital de Alemania. <|eot|>
+<|assistant|> Berlín es la capital de Alemania. <|eot|>
+<|user|> ¿Cómo se dice «gato» en inglés? <|eot|>
+<|assistant|> «gato» en inglés es «cat». <|eot|>
+<|user|> ¿Con qué letra empieza «árbol»? <|eot|>
+<|assistant|> «árbol» empieza con la letra á. <|eot|>
+<|user|> ¿Cuántos habitantes tiene la Luna? <|eot|>
+<|assistant|> No tengo esa información. <|eot|>
+<|user|> ¿Qué eres? <|eot|>
+<|assistant|> Me llamo mini GPT y estoy aprendiendo español. <|eot|>
+<|user|> ¿Sabes cuál es la capital de Marruecos? <|eot|>
+<|assistant|> Rabat es la capital de Marruecos. <|eot|>
+<|user|> ¿Cómo te llamas? <|eot|>
+<|assistant|> Soy un mini GPT y respondo preguntas sencillas. <|eot|>
+<|user|> ¿Cómo se dice «rojo» en inglés? <|eot|>
+<|assistant|> «rojo» en inglés es «red». <|eot|>
+<|user|> ¿Sabes cuál es la capital de Argentina? <|eot|>
+<|assistant|> Buenos Aires es la capital de Argentina. <|eot|>
+<|user|> ¿Cuál es la capital de Argentina? <|eot|>
+<|assistant|> Buenos Aires es la capital de Argentina. <|eot|>
+<|user|> Cuenta del 1 al 7. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5, 6, 7. <|eot|>
+<|user|> Dime la capital de Colombia. <|eot|>
+<|assistant|> Bogotá es la capital de Colombia. <|eot|>
+<|user|> ¿Qué dice el pájaro? <|eot|>
+<|assistant|> El pájaro hace «pío». <|eot|>
+<|user|> Dime la capital de Italia. <|eot|>
+<|assistant|> La capital de Italia es Roma. <|eot|>
+<|user|> ¿Cómo se dice «azul» en inglés? <|eot|>
+<|assistant|> «azul» en inglés es «blue». <|eot|>
+<|user|> gracias <|eot|>
+<|assistant|> De nada. <|eot|>
+<|user|> buenos días <|eot|>
+<|assistant|> Estoy bien, gracias. ¿Y tú? <|eot|>
+<|user|> Dime la capital de China. <|eot|>
+<|assistant|> Pekín es la capital de China. <|eot|>
+<|user|> ¿cómo estás? <|eot|>
+<|assistant|> Todo bien. ¿En qué te ayudo? <|eot|>
+<|user|> ¿Cuál es el animal más rápido del universo? <|eot|>
+<|assistant|> No lo sé. <|eot|>
+<|user|> ¿Cuántas horas tiene un día? <|eot|>
+<|assistant|> Un día tiene 24 horas. <|eot|>
+<|user|> ¿De qué color es el chocolate? <|eot|>
+<|assistant|> el chocolate es de color marrón. <|eot|>
+<|user|> ¿De qué color es el chocolate? <|eot|>
+<|assistant|> el chocolate es de color marrón. <|eot|>
+<|user|> ¿De qué color es la nieve? <|eot|>
+<|assistant|> la nieve es de color blanco. <|eot|>
+<|user|> ¿Qué sonido hace el pato? <|eot|>
+<|assistant|> El pato hace «cuac». <|eot|>
+<|user|> hola, ¿cómo va todo? <|eot|>
+<|assistant|> Buenos días. ¿Qué necesitas? <|eot|>
+<|user|> ¿Cómo se dice «sol» en inglés? <|eot|>
+<|assistant|> «sol» en inglés es «sun». <|eot|>
+<|user|> adiós <|eot|>
+<|assistant|> Hasta luego. <|eot|>
+<|user|> ¿Cómo se dice «casa» en inglés? <|eot|>
+<|assistant|> «casa» en inglés es «house». <|eot|>
+<|user|> ¿Qué hay dentro de un agujero negro? <|eot|>
+<|assistant|> No lo sé. <|eot|>
+<|user|> ¿Cómo hace la rana? <|eot|>
+<|assistant|> La rana hace «croac». <|eot|>
+<|user|> ¿Cuánto es 7 por 5? <|eot|>
+<|assistant|> 7 por 5 = 35. <|eot|>
+<|user|> ¿Cuál es la capital de Marte? <|eot|>
+<|assistant|> No lo sé. <|eot|>
+<|user|> ¿Cuántos días tiene un año? <|eot|>
+<|assistant|> Un año tiene 365 días. <|eot|>
+<|user|> gracias <|eot|>
+<|assistant|> De nada. <|eot|>
+<|user|> gracias <|eot|>
+<|assistant|> De nada. <|eot|>
+<|user|> ¿Qué eres? <|eot|>
+<|assistant|> Puedo saludar, hacer cuentas sencillas y responder datos básicos. <|eot|>
+<|user|> ¿Con qué letra empieza «amigo»? <|eot|>
+<|assistant|> «amigo» empieza con la letra a. <|eot|>
+<|user|> Cuenta del 1 al 3. <|eot|>
+<|assistant|> 1, 2, 3. <|eot|>
+<|user|> Cuenta del 1 al 4. <|eot|>
+<|assistant|> 1, 2, 3, 4. <|eot|>
+<|user|> ¿Cómo te llamas? <|eot|>
+<|assistant|> Puedo saludar, hacer cuentas sencillas y responder datos básicos. <|eot|>
+<|user|> ¿El número 6 es par o impar? <|eot|>
+<|assistant|> El número 6 es par. <|eot|>
+<|user|> Cuenta del 1 al 8. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5, 6, 7, 8. <|eot|>
+<|user|> ¿Cómo se dice «no» en inglés? <|eot|>
+<|assistant|> «no» en inglés es «no». <|eot|>
+<|user|> ¿Qué dice el perro? <|eot|>
+<|assistant|> El perro hace «guau». <|eot|>
+<|user|> ¿Cómo se dice «sí» en inglés? <|eot|>
+<|assistant|> «sí» en inglés es «yes». <|eot|>
+<|user|> ¿Cuánto es 6 por 4? <|eot|>
+<|assistant|> 6 por 4 = 24. <|eot|>
+<|user|> ¿Cómo se dice «agua» en inglés? <|eot|>
+<|assistant|> «agua» en inglés es «water». <|eot|>
+<|user|> ¿Cuánto es 5 - 3? <|eot|>
+<|assistant|> 5 - 3 = 2. <|eot|>
+<|user|> ¿Cuántos segundos tiene un minuto? <|eot|>
+<|assistant|> Un minuto tiene 60 segundos. <|eot|>
+<|user|> ¿Cuánto es 20 + 10? <|eot|>
+<|assistant|> 20 + 10 = 30. <|eot|>
+<|user|> ¿Qué desayuna un robot? <|eot|>
+<|assistant|> No lo sé. <|eot|>
+<|user|> ¿De qué color es una violeta? <|eot|>
+<|assistant|> una violeta es de color violeta. <|eot|>
+<|user|> ¿Cuál es el animal más rápido del universo? <|eot|>
+<|assistant|> No puedo responder eso con seguridad. <|eot|>
+<|user|> Dime la capital de Marruecos. <|eot|>
+<|assistant|> La capital de Marruecos es Rabat. <|eot|>
+<|user|> ¿Cuánto es 18 + 8? <|eot|>
+<|assistant|> 18 + 8 = 26. <|eot|>
+<|user|> ¿Con qué letra empieza «música»? <|eot|>
+<|assistant|> «música» empieza con la letra m. <|eot|>
+<|user|> ¿De qué color es el sol? <|eot|>
+<|assistant|> el sol es de color amarillo. <|eot|>
+<|user|> ¿Quién eres? <|eot|>
+<|assistant|> Me llamo mini GPT y estoy aprendiendo español. <|eot|>
+<|user|> ¿Cuántos habitantes tiene la Luna? <|eot|>
+<|assistant|> No tengo esa información. <|eot|>
+<|user|> ¿Qué sonido hace la vaca? <|eot|>
+<|assistant|> La vaca dice «muu». <|eot|>
+<|user|> ¿El número 7 es par o impar? <|eot|>
+<|assistant|> El número 7 es impar. <|eot|>
+<|user|> gracias <|eot|>
+<|assistant|> De nada. <|eot|>
+<|user|> ¿Qué dice la rana? <|eot|>
+<|assistant|> La rana dice «croac». <|eot|>
+<|user|> ¿Con qué letra empieza «familia»? <|eot|>
+<|assistant|> «familia» empieza con la letra f. <|eot|>
+<|user|> ¿cómo estás? <|eot|>
+<|assistant|> Buenos días. ¿Qué necesitas? <|eot|>
+<|user|> ¿Cuántos días tiene un año? <|eot|>
+<|assistant|> Un año tiene 365 días. <|eot|>
+<|user|> ¿Cómo se dice «agua» en inglés? <|eot|>
+<|assistant|> «agua» en inglés es «water». <|eot|>
+<|user|> ¿Qué eres? <|eot|>
+<|assistant|> Me llamo mini GPT y estoy aprendiendo español. <|eot|>
+<|user|> muchas gracias <|eot|>
+<|assistant|> No hay de qué. <|eot|>
+<|user|> buenas noches <|eot|>
+<|assistant|> Buenas noches, descansa. <|eot|>
+<|user|> ¿Sabes cuál es la capital de Chile? <|eot|>
+<|assistant|> Santiago es la capital de Chile. <|eot|>
+<|user|> Cuenta del 1 al 7. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5, 6, 7. <|eot|>
+<|user|> ¿Cómo se dice «sol» en inglés? <|eot|>
+<|assistant|> «sol» en inglés es «sun». <|eot|>
+<|user|> adiós <|eot|>
+<|assistant|> Hasta luego. <|eot|>
+<|user|> ¿Con qué letra empieza «mesa»? <|eot|>
+<|assistant|> «mesa» empieza con la letra m. <|eot|>
+<|user|> ¿Cuántos días tiene un año? <|eot|>
+<|assistant|> Un año tiene 365 días. <|eot|>
+<|user|> ¿Quién eres? <|eot|>
+<|assistant|> Puedo saludar, hacer cuentas sencillas y responder datos básicos. <|eot|>
+<|user|> gracias <|eot|>
+<|assistant|> De nada. <|eot|>
+<|user|> ¿qué tal? <|eot|>
+<|assistant|> Hola. ¿En qué puedo ayudarte? <|eot|>
+<|user|> ¿Cuántos segundos tiene un minuto? <|eot|>
+<|assistant|> Un minuto tiene 60 segundos. <|eot|>
+<|user|> ¿De qué color es una naranja? <|eot|>
+<|assistant|> una naranja es de color naranja. <|eot|>
+<|user|> ¿Cómo se dice «adiós» en inglés? <|eot|>
+<|assistant|> «adiós» en inglés es «goodbye». <|eot|>
+<|user|> ¿Cómo se dice «no» en inglés? <|eot|>
+<|assistant|> «no» en inglés es «no». <|eot|>
+<|user|> Suma 12 y 15. <|eot|>
+<|assistant|> El resultado de la suma es 27. <|eot|>
+<|user|> ¿Qué sonido hace el lobo? <|eot|>
+<|assistant|> El lobo hace «aullido». <|eot|>
+<|user|> Cuenta del 1 al 6. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5, 6. <|eot|>
+<|user|> Cuenta del 1 al 8. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5, 6, 7, 8. <|eot|>
+<|user|> ¿qué tal? <|eot|>
+<|assistant|> Buenos días. ¿Qué necesitas? <|eot|>
+<|user|> ¿De qué color es una naranja? <|eot|>
+<|assistant|> una naranja es de color naranja. <|eot|>
+<|user|> ¿Con qué letra empieza «amigo»? <|eot|>
+<|assistant|> «amigo» empieza con la letra a. <|eot|>
+<|user|> ¿cómo estás? <|eot|>
+<|assistant|> Estoy bien, gracias. ¿Y tú? <|eot|>
+<|user|> hola <|eot|>
+<|assistant|> Buenos días. ¿Qué necesitas? <|eot|>
+<|user|> muchas gracias <|eot|>
+<|assistant|> No hay de qué. <|eot|>
+<|user|> ¿Qué desayuna un robot? <|eot|>
+<|assistant|> No lo sé. <|eot|>
+<|user|> ¿De qué color es el carbón? <|eot|>
+<|assistant|> el carbón es de color negro. <|eot|>
+<|user|> buenos días <|eot|>
+<|assistant|> Hola. ¿En qué puedo ayudarte? <|eot|>
+<|user|> ¿Qué dice el caballo? <|eot|>
+<|assistant|> El caballo hace «hiiii». <|eot|>
+<|user|> ¿Cuántos días tiene un año? <|eot|>
+<|assistant|> Un año tiene 365 días. <|eot|>
+<|user|> ¿Cuántos minutos tiene una hora? <|eot|>
+<|assistant|> Una hora tiene 60 minutos. <|eot|>
+<|user|> ¿Qué eres? <|eot|>
+<|assistant|> Soy un modelo pequeño entrenado con datos sintéticos. <|eot|>
+<|user|> ¿De qué color es el sol? <|eot|>
+<|assistant|> el sol es de color amarillo. <|eot|>
+<|user|> ¿Con qué letra empieza «ciudad»? <|eot|>
+<|assistant|> «ciudad» empieza con la letra c. <|eot|>
+<|user|> ¿Sabes cuál es la capital de Canadá? <|eot|>
+<|assistant|> La capital de Canadá es Ottawa. <|eot|>
+<|user|> buenos días <|eot|>
+<|assistant|> Hola. ¿En qué puedo ayudarte? <|eot|>
+<|user|> ¿Qué dice el gato? <|eot|>
+<|assistant|> El gato dice «miau». <|eot|>
+<|user|> buenas tardes <|eot|>
+<|assistant|> Estoy bien, gracias. ¿Y tú? <|eot|>
+<|user|> ¿Cuál es la capital de Colombia? <|eot|>
+<|assistant|> La capital de Colombia es Bogotá. <|eot|>
+<|user|> ¿Cómo hace la gallina? <|eot|>
+<|assistant|> La gallina dice «cocorocó». <|eot|>
+<|user|> ¿Cuántos meses tiene un año? <|eot|>
+<|assistant|> Un año tiene 12 meses. <|eot|>
+<|user|> ¿De qué color es el cielo? <|eot|>
+<|assistant|> el cielo es de color azul. <|eot|>
+<|user|> ¿Cómo te llamas? <|eot|>
+<|assistant|> Puedo saludar, hacer cuentas sencillas y responder datos básicos. <|eot|>
+<|user|> ¿Con qué letra empieza «familia»? <|eot|>
+<|assistant|> «familia» empieza con la letra f. <|eot|>
+<|user|> ¿Cómo te llamas? <|eot|>
+<|assistant|> Soy un mini GPT y respondo preguntas sencillas. <|eot|>
+<|user|> ¿Cuántos habitantes tiene la Luna? <|eot|>
+<|assistant|> No lo sé. <|eot|>
+<|user|> ¿Qué puedes hacer? <|eot|>
+<|assistant|> Soy un modelo pequeño entrenado con datos sintéticos. <|eot|>
+<|user|> ¿Cómo se dice «rojo» en inglés? <|eot|>
+<|assistant|> «rojo» en inglés es «red». <|eot|>
+<|user|> ¿Sabes cuál es la capital de Grecia? <|eot|>
+<|assistant|> La capital de Grecia es Atenas. <|eot|>
+<|user|> ¿Qué dice el caballo? <|eot|>
+<|assistant|> El caballo hace «hiiii». <|eot|>
+<|user|> ¿Cuál es el animal más rápido del universo? <|eot|>
+<|assistant|> No tengo esa información. <|eot|>
+<|user|> gracias <|eot|>
+<|assistant|> De nada. <|eot|>
+<|user|> ¿qué tal? <|eot|>
+<|assistant|> Buenos días. ¿Qué necesitas? <|eot|>
+<|user|> ¿Cuántos habitantes tiene la Luna? <|eot|>
+<|assistant|> No lo sé. <|eot|>
+<|user|> ¿Qué eres? <|eot|>
+<|assistant|> Soy un mini GPT y respondo preguntas sencillas. <|eot|>
+<|user|> ¿Cuál es el animal más rápido del universo? <|eot|>
+<|assistant|> No lo sé. <|eot|>
+<|user|> ¿El número 22 es par o impar? <|eot|>
+<|assistant|> El número 22 es par. <|eot|>
+<|user|> gracias <|eot|>
+<|assistant|> De nada. <|eot|>
+<|user|> ¿Cuántos días tiene una semana? <|eot|>
+<|assistant|> Una semana tiene 7 días. <|eot|>
+<|user|> ¿Con qué letra empieza «silla»? <|eot|>
+<|assistant|> «silla» empieza con la letra s. <|eot|>
+<|user|> ¿Cómo te llamas? <|eot|>
+<|assistant|> Puedo saludar, hacer cuentas sencillas y responder datos básicos. <|eot|>
+<|user|> ¿cómo estás? <|eot|>
+<|assistant|> Todo bien. ¿En qué te ayudo? <|eot|>
+<|user|> ¿De qué color es el cielo? <|eot|>
+<|assistant|> el cielo es de color azul. <|eot|>
+<|user|> Cuenta del 1 al 4. <|eot|>
+<|assistant|> 1, 2, 3, 4. <|eot|>
+<|user|> ¿Con qué letra empieza «silla»? <|eot|>
+<|assistant|> «silla» empieza con la letra s. <|eot|>
+<|user|> ¿Con qué letra empieza «gato»? <|eot|>
+<|assistant|> «gato» empieza con la letra g. <|eot|>
+<|user|> ¿Cómo se dice «casa» en inglés? <|eot|>
+<|assistant|> «casa» en inglés es «house». <|eot|>
+<|user|> ¿Cuál es la capital de Argentina? <|eot|>
+<|assistant|> La capital de Argentina es Buenos Aires. <|eot|>
+<|user|> ¿Cuántas horas tiene un día? <|eot|>
+<|assistant|> Un día tiene 24 horas. <|eot|>
+<|user|> ¿Cuántos habitantes tiene la Luna? <|eot|>
+<|assistant|> No tengo esa información. <|eot|>
+<|user|> buenas noches <|eot|>
+<|assistant|> Buenas noches, descansa. <|eot|>
+<|user|> ¿Cuál es la capital de Alemania? <|eot|>
+<|assistant|> Berlín es la capital de Alemania. <|eot|>
+<|user|> gracias <|eot|>
+<|assistant|> De nada. <|eot|>
+<|user|> ¿Cómo hace el caballo? <|eot|>
+<|assistant|> El caballo dice «hiiii». <|eot|>
+<|user|> Cuenta del 1 al 7. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5, 6, 7. <|eot|>
+<|user|> buenas noches <|eot|>
+<|assistant|> Buenas noches, descansa. <|eot|>
+<|user|> ¿Cuánto es 20 + 13? <|eot|>
+<|assistant|> 20 + 13 = 33. <|eot|>
+<|user|> buenas noches <|eot|>
+<|assistant|> Buenas noches, descansa. <|eot|>
+<|user|> ¿Qué sonido hace el caballo? <|eot|>
+<|assistant|> El caballo dice «hiiii». <|eot|>
+<|user|> ¿Cuál es la capital de Marte? <|eot|>
+<|assistant|> No tengo esa información. <|eot|>
+<|user|> hasta pronto <|eot|>
+<|assistant|> Hasta pronto. <|eot|>
+<|user|> ¿Cómo te llamas? <|eot|>
+<|assistant|> Soy un mini GPT y respondo preguntas sencillas. <|eot|>
+<|user|> ¿qué tal? <|eot|>
+<|assistant|> Hola, ¿qué quieres saber? <|eot|>
+<|user|> ¿Cuál es el animal más rápido del universo? <|eot|>
+<|assistant|> No puedo responder eso con seguridad. <|eot|>
+<|user|> buenos días <|eot|>
+<|assistant|> Estoy bien, gracias. ¿Y tú? <|eot|>
+<|user|> ¿De qué color es el cielo? <|eot|>
+<|assistant|> el cielo es de color azul. <|eot|>
+<|user|> hola <|eot|>
+<|assistant|> Buenos días. ¿Qué necesitas? <|eot|>
+<|user|> ¿Cuánto es 4 por 12? <|eot|>
+<|assistant|> 4 por 12 = 48. <|eot|>
+<|user|> ¿De qué color es el sol? <|eot|>
+<|assistant|> el sol es de color amarillo. <|eot|>
+<|user|> ¿Cómo te llamas? <|eot|>
+<|assistant|> Puedo saludar, hacer cuentas sencillas y responder datos básicos. <|eot|>
+<|user|> ¿El número 4 es par o impar? <|eot|>
+<|assistant|> El número 4 es par. <|eot|>
+<|user|> ¿Cómo se dice «libro» en inglés? <|eot|>
+<|assistant|> «libro» en inglés es «book». <|eot|>
+<|user|> ¿Cómo se dice «no» en inglés? <|eot|>
+<|assistant|> «no» en inglés es «no». <|eot|>
+<|user|> ¿Cómo se dice «gracias» en inglés? <|eot|>
+<|assistant|> «gracias» en inglés es «thank you». <|eot|>
+<|user|> ¿Qué desayuna un robot? <|eot|>
+<|assistant|> No lo sé. <|eot|>
+<|user|> ¿De qué color es una naranja? <|eot|>
+<|assistant|> una naranja es de color naranja. <|eot|>
+<|user|> ¿Con qué letra empieza «coche»? <|eot|>
+<|assistant|> «coche» empieza con la letra c. <|eot|>
+<|user|> ¿Con qué letra empieza «amigo»? <|eot|>
+<|assistant|> «amigo» empieza con la letra a. <|eot|>
+<|user|> ¿Qué sonido hace la rana? <|eot|>
+<|assistant|> La rana hace «croac». <|eot|>
+<|user|> ¿cómo estás? <|eot|>
+<|assistant|> Hola. ¿En qué puedo ayudarte? <|eot|>
+<|user|> ¿Con qué letra empieza «ciudad»? <|eot|>
+<|assistant|> «ciudad» empieza con la letra c. <|eot|>
+<|user|> Dime la capital de Perú. <|eot|>
+<|assistant|> Lima es la capital de Perú. <|eot|>
+<|user|> ¿Con qué letra empieza «escuela»? <|eot|>
+<|assistant|> «escuela» empieza con la letra e. <|eot|>
+<|user|> ¿Qué hay dentro de un agujero negro? <|eot|>
+<|assistant|> No puedo responder eso con seguridad. <|eot|>
+<|user|> buenos días <|eot|>
+<|assistant|> Buenos días. ¿Qué necesitas? <|eot|>
+<|user|> ¿Cuántos días tiene una semana? <|eot|>
+<|assistant|> Una semana tiene 7 días. <|eot|>
+<|user|> ¿Cómo se dice «amigo» en inglés? <|eot|>
+<|assistant|> «amigo» en inglés es «friend». <|eot|>
+<|user|> ¿Sabes cuál es la capital de China? <|eot|>
+<|assistant|> Pekín es la capital de China. <|eot|>
+<|user|> ¿Qué eres? <|eot|>
+<|assistant|> Me llamo mini GPT y estoy aprendiendo español. <|eot|>
+<|user|> ¿Cómo se dice «sí» en inglés? <|eot|>
+<|assistant|> «sí» en inglés es «yes». <|eot|>
+<|user|> ¿De qué color es el cielo? <|eot|>
+<|assistant|> el cielo es de color azul. <|eot|>
+<|user|> ¿Qué eres? <|eot|>
+<|assistant|> Soy un mini GPT y respondo preguntas sencillas. <|eot|>
+<|user|> muchas gracias <|eot|>
+<|assistant|> No hay de qué. <|eot|>
+<|user|> ¿Cuántos habitantes tiene la Luna? <|eot|>
+<|assistant|> No tengo esa información. <|eot|>
+<|user|> ¿Qué puedes hacer? <|eot|>
+<|assistant|> Puedo saludar, hacer cuentas sencillas y responder datos básicos. <|eot|>
+<|user|> Suma 9 y 10. <|eot|>
+<|assistant|> El resultado de la suma es 19. <|eot|>
+<|user|> ¿De qué color es la hierba? <|eot|>
+<|assistant|> la hierba es de color verde. <|eot|>
+<|user|> ¿Cuánto es 16 + 11? <|eot|>
+<|assistant|> 16 + 11 = 27. <|eot|>
+<|user|> ¿Sabes cuál es la capital de China? <|eot|>
+<|assistant|> La capital de China es Pekín. <|eot|>
+<|user|> ¿Con qué letra empieza «jardín»? <|eot|>
+<|assistant|> «jardín» empieza con la letra j. <|eot|>
+<|user|> ¿Cuántos segundos tiene un minuto? <|eot|>
+<|assistant|> Un minuto tiene 60 segundos. <|eot|>
+<|user|> Cuenta del 1 al 6. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5, 6. <|eot|>
+<|user|> ¿Cuánto es 14 + 12? <|eot|>
+<|assistant|> 14 + 12 = 26. <|eot|>
+<|user|> Cuenta del 1 al 8. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5, 6, 7, 8. <|eot|>
+<|user|> buenos días <|eot|>
+<|assistant|> Todo bien. ¿En qué te ayudo? <|eot|>
+<|user|> ¿Cómo se dice «perro» en inglés? <|eot|>
+<|assistant|> «perro» en inglés es «dog». <|eot|>
+<|user|> ¿Cuántos días tiene una semana? <|eot|>
+<|assistant|> Una semana tiene 7 días. <|eot|>
+<|user|> ¿Qué dice la gallina? <|eot|>
+<|assistant|> La gallina hace «cocorocó». <|eot|>
+<|user|> ¿Qué dice el pájaro? <|eot|>
+<|assistant|> El pájaro dice «pío». <|eot|>
+<|user|> ¿Con qué letra empieza «estrella»? <|eot|>
+<|assistant|> «estrella» empieza con la letra e. <|eot|>
+<|user|> ¿El número 8 es par o impar? <|eot|>
+<|assistant|> El número 8 es par. <|eot|>
+<|user|> Cuenta del 1 al 7. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5, 6, 7. <|eot|>
+<|user|> ¿Con qué letra empieza «casa»? <|eot|>
+<|assistant|> «casa» empieza con la letra c. <|eot|>
+<|user|> ¿Cómo se dice «azul» en inglés? <|eot|>
+<|assistant|> «azul» en inglés es «blue». <|eot|>
+<|user|> ¿Cuál es la capital de Canadá? <|eot|>
+<|assistant|> La capital de Canadá es Ottawa. <|eot|>
+<|user|> buenas noches <|eot|>
+<|assistant|> Buenas noches, descansa. <|eot|>
+<|user|> ¿El número 18 es par o impar? <|eot|>
+<|assistant|> El número 18 es par. <|eot|>
+<|user|> Cuenta del 1 al 8. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5, 6, 7, 8. <|eot|>
+<|user|> ¿Qué sonido hace la rana? <|eot|>
+<|assistant|> La rana hace «croac». <|eot|>
+<|user|> ¿Cómo se dice «sol» en inglés? <|eot|>
+<|assistant|> «sol» en inglés es «sun». <|eot|>
+<|user|> ¿Con qué letra empieza «coche»? <|eot|>
+<|assistant|> «coche» empieza con la letra c. <|eot|>
+<|user|> ¿Cuántas horas tiene un día? <|eot|>
+<|assistant|> Un día tiene 24 horas. <|eot|>
+<|user|> gracias <|eot|>
+<|assistant|> De nada. <|eot|>
+<|user|> ¿Con qué letra empieza «árbol»? <|eot|>
+<|assistant|> «árbol» empieza con la letra á. <|eot|>
+<|user|> Cuenta del 1 al 5. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5. <|eot|>
+<|user|> ¿Cómo se dice «no» en inglés? <|eot|>
+<|assistant|> «no» en inglés es «no». <|eot|>
+<|user|> ¿Cómo se dice «rojo» en inglés? <|eot|>
+<|assistant|> «rojo» en inglés es «red». <|eot|>
+<|user|> ¿De qué color es el chocolate? <|eot|>
+<|assistant|> el chocolate es de color marrón. <|eot|>
+<|user|> buenas tardes <|eot|>
+<|assistant|> Buenos días. ¿Qué necesitas? <|eot|>
+<|user|> Suma 19 y 5. <|eot|>
+<|assistant|> El resultado de la suma es 24. <|eot|>
+<|user|> ¿Con qué letra empieza «playa»? <|eot|>
+<|assistant|> «playa» empieza con la letra p. <|eot|>
+<|user|> ¿Cuánto es 7 por 12? <|eot|>
+<|assistant|> 7 por 12 = 84. <|eot|>
+<|user|> adiós <|eot|>
+<|assistant|> Hasta luego. <|eot|>
+<|user|> ¿Cuál es la capital de Chile? <|eot|>
+<|assistant|> La capital de Chile es Santiago. <|eot|>
+<|user|> ¿Cuánto es 13 - 6? <|eot|>
+<|assistant|> 13 - 6 = 7. <|eot|>
+<|user|> ¿qué tal? <|eot|>
+<|assistant|> Buenos días. ¿Qué necesitas? <|eot|>
+<|user|> ¿Cuánto es 11 - 11? <|eot|>
+<|assistant|> 11 - 11 = 0. <|eot|>
+<|user|> ¿Quién eres? <|eot|>
+<|assistant|> Soy un modelo pequeño entrenado con datos sintéticos. <|eot|>
+<|user|> Dime la capital de Colombia. <|eot|>
+<|assistant|> Bogotá es la capital de Colombia. <|eot|>
+<|user|> ¿cómo estás? <|eot|>
+<|assistant|> Hola. ¿En qué puedo ayudarte? <|eot|>
+<|user|> ¿Qué hay dentro de un agujero negro? <|eot|>
+<|assistant|> No puedo responder eso con seguridad. <|eot|>
+<|user|> Cuenta del 1 al 7. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5, 6, 7. <|eot|>
+<|user|> ¿Qué dice la vaca? <|eot|>
+<|assistant|> La vaca hace «muu». <|eot|>
+<|user|> ¿Con qué letra empieza «estrella»? <|eot|>
+<|assistant|> «estrella» empieza con la letra e. <|eot|>
+<|user|> ¿Cómo te llamas? <|eot|>
+<|assistant|> Puedo saludar, hacer cuentas sencillas y responder datos básicos. <|eot|>
+<|user|> ¿Cómo se dice «rojo» en inglés? <|eot|>
+<|assistant|> «rojo» en inglés es «red». <|eot|>
+<|user|> ¿Cuántos meses tiene un año? <|eot|>
+<|assistant|> Un año tiene 12 meses. <|eot|>
+<|user|> adiós <|eot|>
+<|assistant|> Hasta luego. <|eot|>
+<|user|> ¿Cuántos habitantes tiene la Luna? <|eot|>
+<|assistant|> No tengo esa información. <|eot|>
+<|user|> ¿Cómo hace la gallina? <|eot|>
+<|assistant|> La gallina dice «cocorocó». <|eot|>
+<|user|> ¿Cuántos días tiene un año? <|eot|>
+<|assistant|> Un año tiene 365 días. <|eot|>
+<|user|> ¿El número 30 es par o impar? <|eot|>
+<|assistant|> El número 30 es par. <|eot|>
+<|user|> Suma 19 y 1. <|eot|>
+<|assistant|> El resultado de la suma es 20. <|eot|>
+<|user|> ¿qué tal? <|eot|>
+<|assistant|> Todo bien. ¿En qué te ayudo? <|eot|>
+<|user|> ¿Cuánto es 4 por 4? <|eot|>
+<|assistant|> 4 por 4 = 16. <|eot|>
+<|user|> Cuenta del 1 al 4. <|eot|>
+<|assistant|> 1, 2, 3, 4. <|eot|>
+<|user|> hola, ¿cómo va todo? <|eot|>
+<|assistant|> Todo bien. ¿En qué te ayudo? <|eot|>
+<|user|> ¿Cómo se dice «azul» en inglés? <|eot|>
+<|assistant|> «azul» en inglés es «blue». <|eot|>
+<|user|> ¿Cuánto es 10 + 13? <|eot|>
+<|assistant|> 10 + 13 = 23. <|eot|>
+<|user|> Cuenta del 1 al 8. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5, 6, 7, 8. <|eot|>
+<|user|> Cuenta del 1 al 5. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5. <|eot|>
+<|user|> Suma 8 y 9. <|eot|>
+<|assistant|> El resultado de la suma es 17. <|eot|>
+<|user|> ¿Cómo se dice «perro» en inglés? <|eot|>
+<|assistant|> «perro» en inglés es «dog». <|eot|>
+<|user|> ¿De qué color es la hierba? <|eot|>
+<|assistant|> la hierba es de color verde. <|eot|>
+<|user|> ¿Cómo se dice «luna» en inglés? <|eot|>
+<|assistant|> «luna» en inglés es «moon». <|eot|>
+<|user|> ¿Con qué letra empieza «playa»? <|eot|>
+<|assistant|> «playa» empieza con la letra p. <|eot|>
+<|user|> ¿Qué dice la vaca? <|eot|>
+<|assistant|> La vaca dice «muu». <|eot|>
+<|user|> ¿El número 23 es par o impar? <|eot|>
+<|assistant|> El número 23 es impar. <|eot|>
+<|user|> ¿Cuánto es 15 + 14? <|eot|>
+<|assistant|> 15 + 14 = 29. <|eot|>
+<|user|> ¿El número 2 es par o impar? <|eot|>
+<|assistant|> El número 2 es par. <|eot|>
+<|user|> ¿De qué color es el carbón? <|eot|>
+<|assistant|> el carbón es de color negro. <|eot|>
+<|user|> ¿Cómo se dice «sol» en inglés? <|eot|>
+<|assistant|> «sol» en inglés es «sun». <|eot|>
+<|user|> Dime la capital de Reino Unido. <|eot|>
+<|assistant|> Londres es la capital de Reino Unido. <|eot|>
+<|user|> ¿Cuánto es 14 - 5? <|eot|>
+<|assistant|> 14 - 5 = 9. <|eot|>
+<|user|> Cuenta del 1 al 9. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5, 6, 7, 8, 9. <|eot|>
+<|user|> ¿El número 23 es par o impar? <|eot|>
+<|assistant|> El número 23 es impar. <|eot|>
+<|user|> ¿De qué color es la nieve? <|eot|>
+<|assistant|> la nieve es de color blanco. <|eot|>
+<|user|> ¿cómo estás? <|eot|>
+<|assistant|> Estoy bien, gracias. ¿Y tú? <|eot|>
+<|user|> ¿Qué puedes hacer? <|eot|>
+<|assistant|> Me llamo mini GPT y estoy aprendiendo español. <|eot|>
+<|user|> ¿Qué puedes hacer? <|eot|>
+<|assistant|> Soy un mini GPT y respondo preguntas sencillas. <|eot|>
+<|user|> ¿Cuál es la capital de China? <|eot|>
+<|assistant|> Pekín es la capital de China. <|eot|>
+<|user|> ¿Cuál es el animal más rápido del universo? <|eot|>
+<|assistant|> No lo sé. <|eot|>
+<|user|> ¿De qué color es el carbón? <|eot|>
+<|assistant|> el carbón es de color negro. <|eot|>
+<|user|> ¿De qué color es la nieve? <|eot|>
+<|assistant|> la nieve es de color blanco. <|eot|>
+<|user|> Dime la capital de Marruecos. <|eot|>
+<|assistant|> La capital de Marruecos es Rabat. <|eot|>
+<|user|> hola <|eot|>
+<|assistant|> Estoy bien, gracias. ¿Y tú? <|eot|>
+<|user|> ¿Cuántos habitantes tiene la Luna? <|eot|>
+<|assistant|> No tengo esa información. <|eot|>
+<|user|> ¿Cuántos meses tiene un año? <|eot|>
+<|assistant|> Un año tiene 12 meses. <|eot|>
+<|user|> ¿Cuál es la capital de Marte? <|eot|>
+<|assistant|> No tengo esa información. <|eot|>
+<|user|> ¿Qué desayuna un robot? <|eot|>
+<|assistant|> No puedo responder eso con seguridad. <|eot|>
+<|user|> muchas gracias <|eot|>
+<|assistant|> No hay de qué. <|eot|>
+<|user|> ¿Cuál es el animal más rápido del universo? <|eot|>
+<|assistant|> No lo sé. <|eot|>
+<|user|> ¿Cuántos días tiene un año? <|eot|>
+<|assistant|> Un año tiene 365 días. <|eot|>
+<|user|> buenas noches <|eot|>
+<|assistant|> Buenas noches, descansa. <|eot|>
+<|user|> ¿Qué puedes hacer? <|eot|>
+<|assistant|> Me llamo mini GPT y estoy aprendiendo español. <|eot|>
+<|user|> adiós <|eot|>
+<|assistant|> Hasta luego. <|eot|>
+<|user|> ¿Cómo se dice «gracias» en inglés? <|eot|>
+<|assistant|> «gracias» en inglés es «thank you». <|eot|>
+<|user|> ¿Cuánto es 4 por 8? <|eot|>
+<|assistant|> 4 por 8 = 32. <|eot|>
+<|user|> ¿De qué color es el carbón? <|eot|>
+<|assistant|> el carbón es de color negro. <|eot|>
+<|user|> ¿Cuánto es 4 por 7? <|eot|>
+<|assistant|> 4 por 7 = 28. <|eot|>
+<|user|> Suma 7 y 20. <|eot|>
+<|assistant|> El resultado de la suma es 27. <|eot|>
+<|user|> ¿De qué color es la nieve? <|eot|>
+<|assistant|> la nieve es de color blanco. <|eot|>
+<|user|> ¿De qué color es el cielo? <|eot|>
+<|assistant|> el cielo es de color azul. <|eot|>
+<|user|> ¿Cuántos días tiene un año? <|eot|>
+<|assistant|> Un año tiene 365 días. <|eot|>
+<|user|> ¿Qué sonido hace la oveja? <|eot|>
+<|assistant|> La oveja dice «bee». <|eot|>
+<|user|> ¿El número 19 es par o impar? <|eot|>
+<|assistant|> El número 19 es impar. <|eot|>
+<|user|> ¿Cómo se dice «sol» en inglés? <|eot|>
+<|assistant|> «sol» en inglés es «sun». <|eot|>
+<|user|> ¿Cuánto es 10 - 2? <|eot|>
+<|assistant|> 10 - 2 = 8. <|eot|>
+<|user|> ¿qué tal? <|eot|>
+<|assistant|> Estoy bien, gracias. ¿Y tú? <|eot|>
+<|user|> ¿De qué color es el carbón? <|eot|>
+<|assistant|> el carbón es de color negro. <|eot|>
+<|user|> ¿De qué color es una violeta? <|eot|>
+<|assistant|> una violeta es de color violeta. <|eot|>
+<|user|> ¿Cuántos días tiene un año? <|eot|>
+<|assistant|> Un año tiene 365 días. <|eot|>
+<|user|> ¿Qué hay dentro de un agujero negro? <|eot|>
+<|assistant|> No puedo responder eso con seguridad. <|eot|>
+<|user|> buenas tardes <|eot|>
+<|assistant|> Buenos días. ¿Qué necesitas? <|eot|>
+<|user|> Suma 13 y 17. <|eot|>
+<|assistant|> El resultado de la suma es 30. <|eot|>
+<|user|> Cuenta del 1 al 7. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5, 6, 7. <|eot|>
+<|user|> ¿Cuál es el animal más rápido del universo? <|eot|>
+<|assistant|> No tengo esa información. <|eot|>
+<|user|> ¿Cuántos minutos tiene una hora? <|eot|>
+<|assistant|> Una hora tiene 60 minutos. <|eot|>
+<|user|> Cuenta del 1 al 5. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5. <|eot|>
+<|user|> buenas noches <|eot|>
+<|assistant|> Buenas noches, descansa. <|eot|>
+<|user|> gracias <|eot|>
+<|assistant|> De nada. <|eot|>
+<|user|> ¿Cuántos días tiene un año? <|eot|>
+<|assistant|> Un año tiene 365 días. <|eot|>
+<|user|> ¿Cómo se dice «perro» en inglés? <|eot|>
+<|assistant|> «perro» en inglés es «dog». <|eot|>
+<|user|> ¿Cuántos habitantes tiene la Luna? <|eot|>
+<|assistant|> No tengo esa información. <|eot|>
+<|user|> ¿Cuántos minutos tiene una hora? <|eot|>
+<|assistant|> Una hora tiene 60 minutos. <|eot|>
+<|user|> ¿Cuál es la capital de Brasil? <|eot|>
+<|assistant|> La capital de Brasil es Brasilia. <|eot|>
+<|user|> ¿Cómo se dice «rojo» en inglés? <|eot|>
+<|assistant|> «rojo» en inglés es «red». <|eot|>
+<|user|> ¿Qué sonido hace la rana? <|eot|>
+<|assistant|> La rana dice «croac». <|eot|>
+<|user|> ¿Sabes cuál es la capital de Francia? <|eot|>
+<|assistant|> París es la capital de Francia. <|eot|>
+<|user|> ¿Cuánto es 10 por 3? <|eot|>
+<|assistant|> 10 por 3 = 30. <|eot|>
+<|user|> ¿Cómo se dice «sí» en inglés? <|eot|>
+<|assistant|> «sí» en inglés es «yes». <|eot|>
+<|user|> ¿Con qué letra empieza «mesa»? <|eot|>
+<|assistant|> «mesa» empieza con la letra m. <|eot|>
+<|user|> ¿De qué color es la nieve? <|eot|>
+<|assistant|> la nieve es de color blanco. <|eot|>
+<|user|> ¿Cuál es la capital de Grecia? <|eot|>
+<|assistant|> La capital de Grecia es Atenas. <|eot|>
+<|user|> Cuenta del 1 al 4. <|eot|>
+<|assistant|> 1, 2, 3, 4. <|eot|>
+<|user|> ¿Cuántos habitantes tiene la Luna? <|eot|>
+<|assistant|> No puedo responder eso con seguridad. <|eot|>
+<|user|> ¿El número 25 es par o impar? <|eot|>
+<|assistant|> El número 25 es impar. <|eot|>
+<|user|> ¿El número 11 es par o impar? <|eot|>
+<|assistant|> El número 11 es impar. <|eot|>
+<|user|> ¿Sabes cuál es la capital de Perú? <|eot|>
+<|assistant|> Lima es la capital de Perú. <|eot|>
+<|user|> ¿Cómo se dice «perro» en inglés? <|eot|>
+<|assistant|> «perro» en inglés es «dog». <|eot|>
+<|user|> ¿Qué hay dentro de un agujero negro? <|eot|>
+<|assistant|> No lo sé. <|eot|>
+<|user|> ¿Sabes cuál es la capital de Perú? <|eot|>
+<|assistant|> Lima es la capital de Perú. <|eot|>
+<|user|> ¿Con qué letra empieza «mesa»? <|eot|>
+<|assistant|> «mesa» empieza con la letra m. <|eot|>
+<|user|> Cuenta del 1 al 5. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5. <|eot|>
+<|user|> ¿Cómo se dice «luna» en inglés? <|eot|>
+<|assistant|> «luna» en inglés es «moon». <|eot|>
+<|user|> buenas noches <|eot|>
+<|assistant|> Buenas noches, descansa. <|eot|>
+<|user|> ¿Cuál es el animal más rápido del universo? <|eot|>
+<|assistant|> No lo sé. <|eot|>
+<|user|> ¿El número 16 es par o impar? <|eot|>
+<|assistant|> El número 16 es par. <|eot|>
+<|user|> ¿Cuántas horas tiene un día? <|eot|>
+<|assistant|> Un día tiene 24 horas. <|eot|>
+<|user|> ¿Cuántos minutos tiene una hora? <|eot|>
+<|assistant|> Una hora tiene 60 minutos. <|eot|>
+<|user|> ¿Qué puedes hacer? <|eot|>
+<|assistant|> Soy un modelo pequeño entrenado con datos sintéticos. <|eot|>
+<|user|> ¿De qué color es el cielo? <|eot|>
+<|assistant|> el cielo es de color azul. <|eot|>
+<|user|> ¿Cómo hace el lobo? <|eot|>
+<|assistant|> El lobo hace «aullido». <|eot|>
+<|user|> ¿El número 9 es par o impar? <|eot|>
+<|assistant|> El número 9 es impar. <|eot|>
+<|user|> Dime la capital de Perú. <|eot|>
+<|assistant|> Lima es la capital de Perú. <|eot|>
+<|user|> buenas tardes <|eot|>
+<|assistant|> Hola, ¿qué quieres saber? <|eot|>
+<|user|> ¿Qué sonido hace el lobo? <|eot|>
+<|assistant|> El lobo hace «aullido». <|eot|>
+<|user|> ¿Cuánto es 18 - 3? <|eot|>
+<|assistant|> 18 - 3 = 15. <|eot|>
+<|user|> ¿Sabes cuál es la capital de Egipto? <|eot|>
+<|assistant|> El Cairo es la capital de Egipto. <|eot|>
+<|user|> Cuenta del 1 al 3. <|eot|>
+<|assistant|> 1, 2, 3. <|eot|>
+<|user|> ¿Cuánto es 8 por 6? <|eot|>
+<|assistant|> 8 por 6 = 48. <|eot|>
+<|user|> ¿Cuántos segundos tiene un minuto? <|eot|>
+<|assistant|> Un minuto tiene 60 segundos. <|eot|>
+<|user|> ¿Cuántas horas tiene un día? <|eot|>
+<|assistant|> Un día tiene 24 horas. <|eot|>
+<|user|> ¿Cuántos segundos tiene un minuto? <|eot|>
+<|assistant|> Un minuto tiene 60 segundos. <|eot|>
+<|user|> ¿Cómo hace la gallina? <|eot|>
+<|assistant|> La gallina hace «cocorocó». <|eot|>
+<|user|> Cuenta del 1 al 7. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5, 6, 7. <|eot|>
+<|user|> ¿Cuántas horas tiene un día? <|eot|>
+<|assistant|> Un día tiene 24 horas. <|eot|>
+<|user|> ¿Quién eres? <|eot|>
+<|assistant|> Soy un mini GPT y respondo preguntas sencillas. <|eot|>
+<|user|> ¿Cuántos segundos tiene un minuto? <|eot|>
+<|assistant|> Un minuto tiene 60 segundos. <|eot|>
+<|user|> muchas gracias <|eot|>
+<|assistant|> No hay de qué. <|eot|>
+<|user|> ¿Cómo hace el gato? <|eot|>
+<|assistant|> El gato hace «miau». <|eot|>
+<|user|> buenas noches <|eot|>
+<|assistant|> Buenas noches, descansa. <|eot|>
+<|user|> muchas gracias <|eot|>
+<|assistant|> No hay de qué. <|eot|>
+<|user|> ¿qué tal? <|eot|>
+<|assistant|> Todo bien. ¿En qué te ayudo? <|eot|>
+<|user|> ¿Con qué letra empieza «árbol»? <|eot|>
+<|assistant|> «árbol» empieza con la letra á. <|eot|>
+<|user|> Cuenta del 1 al 6. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5, 6. <|eot|>
+<|user|> ¿Cuál es la capital de Portugal? <|eot|>
+<|assistant|> La capital de Portugal es Lisboa. <|eot|>
+<|user|> ¿Cuánto es 4 + 4? <|eot|>
+<|assistant|> 4 + 4 = 8. <|eot|>
+<|user|> adiós <|eot|>
+<|assistant|> Hasta luego. <|eot|>
+<|user|> ¿De qué color es el sol? <|eot|>
+<|assistant|> el sol es de color amarillo. <|eot|>
+<|user|> ¿Sabes cuál es la capital de Reino Unido? <|eot|>
+<|assistant|> La capital de Reino Unido es Londres. <|eot|>
+<|user|> ¿Cuántos días tiene una semana? <|eot|>
+<|assistant|> Una semana tiene 7 días. <|eot|>
+<|user|> ¿Cuánto es 8 + 17? <|eot|>
+<|assistant|> 8 + 17 = 25. <|eot|>
+<|user|> ¿Cómo hace el caballo? <|eot|>
+<|assistant|> El caballo dice «hiiii». <|eot|>
+<|user|> adiós <|eot|>
+<|assistant|> Hasta luego. <|eot|>
+<|user|> ¿Con qué letra empieza «nube»? <|eot|>
+<|assistant|> «nube» empieza con la letra n. <|eot|>
+<|user|> ¿De qué color es el chocolate? <|eot|>
+<|assistant|> el chocolate es de color marrón. <|eot|>
+<|user|> ¿Qué sonido hace la vaca? <|eot|>
+<|assistant|> La vaca dice «muu». <|eot|>
+<|user|> ¿Cómo se dice «gato» en inglés? <|eot|>
+<|assistant|> «gato» en inglés es «cat». <|eot|>
+<|user|> Suma 2 y 4. <|eot|>
+<|assistant|> El resultado de la suma es 6. <|eot|>
+<|user|> Cuenta del 1 al 6. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5, 6. <|eot|>
+<|user|> ¿Cuánto es 1 por 2? <|eot|>
+<|assistant|> 1 por 2 = 2. <|eot|>
+<|user|> ¿Cuántos minutos tiene una hora? <|eot|>
+<|assistant|> Una hora tiene 60 minutos. <|eot|>
+<|user|> Cuenta del 1 al 5. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5. <|eot|>
+<|user|> hola <|eot|>
+<|assistant|> Todo bien. ¿En qué te ayudo? <|eot|>
+<|user|> ¿De qué color es el cielo? <|eot|>
+<|assistant|> el cielo es de color azul. <|eot|>
+<|user|> ¿Cómo se dice «gato» en inglés? <|eot|>
+<|assistant|> «gato» en inglés es «cat». <|eot|>
+<|user|> ¿Con qué letra empieza «casa»? <|eot|>
+<|assistant|> «casa» empieza con la letra c. <|eot|>
+<|user|> ¿Qué puedes hacer? <|eot|>
+<|assistant|> Soy un modelo pequeño entrenado con datos sintéticos. <|eot|>
+<|user|> buenos días <|eot|>
+<|assistant|> Hola, ¿qué quieres saber? <|eot|>
+<|user|> ¿De qué color es la hierba? <|eot|>
+<|assistant|> la hierba es de color verde. <|eot|>
+<|user|> ¿El número 15 es par o impar? <|eot|>
+<|assistant|> El número 15 es impar. <|eot|>
+<|user|> ¿Qué eres? <|eot|>
+<|assistant|> Puedo saludar, hacer cuentas sencillas y responder datos básicos. <|eot|>
+<|user|> ¿Qué sonido hace el lobo? <|eot|>
+<|assistant|> El lobo hace «aullido». <|eot|>
+<|user|> ¿Cuál es la capital de China? <|eot|>
+<|assistant|> La capital de China es Pekín. <|eot|>
+<|user|> ¿Cómo te llamas? <|eot|>
+<|assistant|> Soy un mini GPT y respondo preguntas sencillas. <|eot|>
+<|user|> ¿Cuántas horas tiene un día? <|eot|>
+<|assistant|> Un día tiene 24 horas. <|eot|>
+<|user|> adiós <|eot|>
+<|assistant|> Hasta luego. <|eot|>
+<|user|> ¿Con qué letra empieza «jardín»? <|eot|>
+<|assistant|> «jardín» empieza con la letra j. <|eot|>
+<|user|> ¿Cómo se dice «amigo» en inglés? <|eot|>
+<|assistant|> «amigo» en inglés es «friend». <|eot|>
+<|user|> muchas gracias <|eot|>
+<|assistant|> No hay de qué. <|eot|>
+<|user|> ¿De qué color es una naranja? <|eot|>
+<|assistant|> una naranja es de color naranja. <|eot|>
+<|user|> Cuenta del 1 al 4. <|eot|>
+<|assistant|> 1, 2, 3, 4. <|eot|>
+<|user|> ¿Cuántos días tiene un año? <|eot|>
+<|assistant|> Un año tiene 365 días. <|eot|>
+<|user|> ¿Qué desayuna un robot? <|eot|>
+<|assistant|> No puedo responder eso con seguridad. <|eot|>
+<|user|> ¿Cómo se dice «gracias» en inglés? <|eot|>
+<|assistant|> «gracias» en inglés es «thank you». <|eot|>
+<|user|> ¿Qué dice el perro? <|eot|>
+<|assistant|> El perro hace «guau». <|eot|>
+<|user|> ¿Cómo se dice «azul» en inglés? <|eot|>
+<|assistant|> «azul» en inglés es «blue». <|eot|>
+<|user|> ¿Con qué letra empieza «coche»? <|eot|>
+<|assistant|> «coche» empieza con la letra c. <|eot|>
+<|user|> Cuenta del 1 al 9. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5, 6, 7, 8, 9. <|eot|>
+<|user|> ¿Con qué letra empieza «jardín»? <|eot|>
+<|assistant|> «jardín» empieza con la letra j. <|eot|>
+<|user|> adiós <|eot|>
+<|assistant|> Hasta luego. <|eot|>
+<|user|> Cuenta del 1 al 4. <|eot|>
+<|assistant|> 1, 2, 3, 4. <|eot|>
+<|user|> ¿Cómo hace el pájaro? <|eot|>
+<|assistant|> El pájaro dice «pío». <|eot|>
+<|user|> ¿El número 26 es par o impar? <|eot|>
+<|assistant|> El número 26 es par. <|eot|>
+<|user|> Cuenta del 1 al 7. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5, 6, 7. <|eot|>
+<|user|> ¿Cuántos habitantes tiene la Luna? <|eot|>
+<|assistant|> No puedo responder eso con seguridad. <|eot|>
+<|user|> buenos días <|eot|>
+<|assistant|> Hola. ¿En qué puedo ayudarte? <|eot|>
+<|user|> buenas noches <|eot|>
+<|assistant|> Buenas noches, descansa. <|eot|>
+<|user|> hasta pronto <|eot|>
+<|assistant|> Hasta pronto. <|eot|>
+<|user|> ¿Cuántos habitantes tiene la Luna? <|eot|>
+<|assistant|> No lo sé. <|eot|>
+<|user|> ¿Cómo se dice «hola» en inglés? <|eot|>
+<|assistant|> «hola» en inglés es «hello». <|eot|>
+<|user|> ¿El número 14 es par o impar? <|eot|>
+<|assistant|> El número 14 es par. <|eot|>
+<|user|> Cuenta del 1 al 7. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5, 6, 7. <|eot|>
+<|user|> ¿Qué sonido hace la oveja? <|eot|>
+<|assistant|> La oveja dice «bee». <|eot|>
+<|user|> ¿Cuál es la capital de Marte? <|eot|>
+<|assistant|> No lo sé. <|eot|>
+<|user|> Cuenta del 1 al 6. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5, 6. <|eot|>
+<|user|> ¿Cómo se dice «sol» en inglés? <|eot|>
+<|assistant|> «sol» en inglés es «sun». <|eot|>
+<|user|> ¿Con qué letra empieza «playa»? <|eot|>
+<|assistant|> «playa» empieza con la letra p. <|eot|>
+<|user|> ¿Cuánto es 20 + 11? <|eot|>
+<|assistant|> 20 + 11 = 31. <|eot|>
+<|user|> ¿Cómo se dice «luna» en inglés? <|eot|>
+<|assistant|> «luna» en inglés es «moon». <|eot|>
+<|user|> ¿Sabes cuál es la capital de Portugal? <|eot|>
+<|assistant|> La capital de Portugal es Lisboa. <|eot|>
+<|user|> ¿Cuál es la capital de Marte? <|eot|>
+<|assistant|> No puedo responder eso con seguridad. <|eot|>
+<|user|> ¿El número 2 es par o impar? <|eot|>
+<|assistant|> El número 2 es par. <|eot|>
+<|user|> ¿qué tal? <|eot|>
+<|assistant|> Hola. ¿En qué puedo ayudarte? <|eot|>
+<|user|> ¿Cuántos segundos tiene un minuto? <|eot|>
+<|assistant|> Un minuto tiene 60 segundos. <|eot|>
+<|user|> Cuenta del 1 al 8. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5, 6, 7, 8. <|eot|>
+<|user|> ¿Cómo se dice «sí» en inglés? <|eot|>
+<|assistant|> «sí» en inglés es «yes». <|eot|>
+<|user|> ¿De qué color es una violeta? <|eot|>
+<|assistant|> una violeta es de color violeta. <|eot|>
+<|user|> ¿Cómo se dice «sol» en inglés? <|eot|>
+<|assistant|> «sol» en inglés es «sun». <|eot|>
+<|user|> ¿Cómo hace la gallina? <|eot|>
+<|assistant|> La gallina dice «cocorocó». <|eot|>
+<|user|> buenas tardes <|eot|>
+<|assistant|> Hola, ¿qué quieres saber? <|eot|>
+<|user|> ¿Cuánto es 4 - 3? <|eot|>
+<|assistant|> 4 - 3 = 1. <|eot|>
+<|user|> ¿Quién eres? <|eot|>
+<|assistant|> Puedo saludar, hacer cuentas sencillas y responder datos básicos. <|eot|>
+<|user|> ¿El número 10 es par o impar? <|eot|>
+<|assistant|> El número 10 es par. <|eot|>
+<|user|> ¿El número 12 es par o impar? <|eot|>
+<|assistant|> El número 12 es par. <|eot|>
+<|user|> ¿Cuánto es 7 + 18? <|eot|>
+<|assistant|> 7 + 18 = 25. <|eot|>
+<|user|> ¿Sabes cuál es la capital de España? <|eot|>
+<|assistant|> La capital de España es Madrid. <|eot|>
+<|user|> Cuenta del 1 al 8. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5, 6, 7, 8. <|eot|>
+<|user|> Dime la capital de España. <|eot|>
+<|assistant|> Madrid es la capital de España. <|eot|>
+<|user|> Dime la capital de Italia. <|eot|>
+<|assistant|> La capital de Italia es Roma. <|eot|>
+<|user|> ¿De qué color es una naranja? <|eot|>
+<|assistant|> una naranja es de color naranja. <|eot|>
+<|user|> gracias <|eot|>
+<|assistant|> De nada. <|eot|>
+<|user|> Dime la capital de España. <|eot|>
+<|assistant|> Madrid es la capital de España. <|eot|>
+<|user|> Suma 4 y 1. <|eot|>
+<|assistant|> El resultado de la suma es 5. <|eot|>
+<|user|> ¿Quién eres? <|eot|>
+<|assistant|> Soy un modelo pequeño entrenado con datos sintéticos. <|eot|>
+<|user|> ¿El número 22 es par o impar? <|eot|>
+<|assistant|> El número 22 es par. <|eot|>
+<|user|> ¿Cuánto es 20 - 1? <|eot|>
+<|assistant|> 20 - 1 = 19. <|eot|>
+<|user|> ¿Qué sonido hace el perro? <|eot|>
+<|assistant|> El perro dice «guau». <|eot|>
+<|user|> hola <|eot|>
+<|assistant|> Hola, ¿qué quieres saber? <|eot|>
+<|user|> ¿Con qué letra empieza «estrella»? <|eot|>
+<|assistant|> «estrella» empieza con la letra e. <|eot|>
+<|user|> ¿Qué dice el pato? <|eot|>
+<|assistant|> El pato dice «cuac». <|eot|>
+<|user|> Suma 6 y 2. <|eot|>
+<|assistant|> El resultado de la suma es 8. <|eot|>
+<|user|> ¿De qué color es una naranja? <|eot|>
+<|assistant|> una naranja es de color naranja. <|eot|>
+<|user|> ¿Quién eres? <|eot|>
+<|assistant|> Soy un mini GPT y respondo preguntas sencillas. <|eot|>
+<|user|> ¿Cuántos habitantes tiene la Luna? <|eot|>
+<|assistant|> No puedo responder eso con seguridad. <|eot|>
+<|user|> ¿Qué dice el gato? <|eot|>
+<|assistant|> El gato dice «miau». <|eot|>
+<|user|> ¿El número 12 es par o impar? <|eot|>
+<|assistant|> El número 12 es par. <|eot|>
+<|user|> adiós <|eot|>
+<|assistant|> Hasta luego. <|eot|>
+<|user|> ¿El número 11 es par o impar? <|eot|>
+<|assistant|> El número 11 es impar. <|eot|>
+<|user|> ¿qué tal? <|eot|>
+<|assistant|> Buenos días. ¿Qué necesitas? <|eot|>
+<|user|> ¿Cuánto es 14 - 9? <|eot|>
+<|assistant|> 14 - 9 = 5. <|eot|>
+<|user|> ¿Qué hay dentro de un agujero negro? <|eot|>
+<|assistant|> No tengo esa información. <|eot|>
+<|user|> gracias <|eot|>
+<|assistant|> De nada. <|eot|>
+<|user|> ¿Cómo se dice «hola» en inglés? <|eot|>
+<|assistant|> «hola» en inglés es «hello». <|eot|>
+<|user|> ¿Cuál es el animal más rápido del universo? <|eot|>
+<|assistant|> No lo sé. <|eot|>
+<|user|> buenas tardes <|eot|>
+<|assistant|> Hola, ¿qué quieres saber? <|eot|>
+<|user|> ¿De qué color es la sangre? <|eot|>
+<|assistant|> la sangre es de color rojo. <|eot|>
+<|user|> ¿Cuánto es 3 + 4? <|eot|>
+<|assistant|> 3 + 4 = 7. <|eot|>
+<|user|> ¿Con qué letra empieza «gato»? <|eot|>
+<|assistant|> «gato» empieza con la letra g. <|eot|>
+<|user|> ¿Cuánto es 19 - 2? <|eot|>
+<|assistant|> 19 - 2 = 17. <|eot|>
+<|user|> Cuenta del 1 al 4. <|eot|>
+<|assistant|> 1, 2, 3, 4. <|eot|>
+<|user|> buenas tardes <|eot|>
+<|assistant|> Hola. ¿En qué puedo ayudarte? <|eot|>
+<|user|> ¿Cómo se dice «luna» en inglés? <|eot|>
+<|assistant|> «luna» en inglés es «moon». <|eot|>
+<|user|> Cuenta del 1 al 3. <|eot|>
+<|assistant|> 1, 2, 3. <|eot|>
+<|user|> ¿Cuánto es 10 + 16? <|eot|>
+<|assistant|> 10 + 16 = 26. <|eot|>
+<|user|> ¿El número 4 es par o impar? <|eot|>
+<|assistant|> El número 4 es par. <|eot|>
+<|user|> gracias <|eot|>
+<|assistant|> De nada. <|eot|>
+<|user|> ¿De qué color es el sol? <|eot|>
+<|assistant|> el sol es de color amarillo. <|eot|>
+<|user|> ¿El número 5 es par o impar? <|eot|>
+<|assistant|> El número 5 es impar. <|eot|>
+<|user|> ¿Cómo se dice «no» en inglés? <|eot|>
+<|assistant|> «no» en inglés es «no». <|eot|>
+<|user|> ¿Qué dice la vaca? <|eot|>
+<|assistant|> La vaca dice «muu». <|eot|>
+<|user|> ¿Cómo se dice «sí» en inglés? <|eot|>
+<|assistant|> «sí» en inglés es «yes». <|eot|>
+<|user|> ¿Con qué letra empieza «camino»? <|eot|>
+<|assistant|> «camino» empieza con la letra c. <|eot|>
+<|user|> ¿Con qué letra empieza «estrella»? <|eot|>
+<|assistant|> «estrella» empieza con la letra e. <|eot|>
+<|user|> Cuenta del 1 al 4. <|eot|>
+<|assistant|> 1, 2, 3, 4. <|eot|>
+<|user|> ¿Cuánto es 7 - 1? <|eot|>
+<|assistant|> 7 - 1 = 6. <|eot|>
+<|user|> ¿Cuánto es 7 por 11? <|eot|>
+<|assistant|> 7 por 11 = 77. <|eot|>
+<|user|> ¿De qué color es una naranja? <|eot|>
+<|assistant|> una naranja es de color naranja. <|eot|>
+<|user|> ¿De qué color es el chocolate? <|eot|>
+<|assistant|> el chocolate es de color marrón. <|eot|>
+<|user|> ¿Cómo se dice «agua» en inglés? <|eot|>
+<|assistant|> «agua» en inglés es «water». <|eot|>
+<|user|> ¿Cuántos habitantes tiene la Luna? <|eot|>
+<|assistant|> No lo sé. <|eot|>
+<|user|> Cuenta del 1 al 7. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5, 6, 7. <|eot|>
+<|user|> ¿Con qué letra empieza «estrella»? <|eot|>
+<|assistant|> «estrella» empieza con la letra e. <|eot|>
+<|user|> ¿Cómo se dice «adiós» en inglés? <|eot|>
+<|assistant|> «adiós» en inglés es «goodbye». <|eot|>
+<|user|> Cuenta del 1 al 8. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5, 6, 7, 8. <|eot|>
+<|user|> ¿qué tal? <|eot|>
+<|assistant|> Buenos días. ¿Qué necesitas? <|eot|>
+<|user|> gracias <|eot|>
+<|assistant|> De nada. <|eot|>
+<|user|> buenas tardes <|eot|>
+<|assistant|> Buenos días. ¿Qué necesitas? <|eot|>
+<|user|> ¿Cuántas horas tiene un día? <|eot|>
+<|assistant|> Un día tiene 24 horas. <|eot|>
+<|user|> Cuenta del 1 al 3. <|eot|>
+<|assistant|> 1, 2, 3. <|eot|>
+<|user|> ¿De qué color es el cielo? <|eot|>
+<|assistant|> el cielo es de color azul. <|eot|>
+<|user|> ¿El número 18 es par o impar? <|eot|>
+<|assistant|> El número 18 es par. <|eot|>
+<|user|> ¿El número 30 es par o impar? <|eot|>
+<|assistant|> El número 30 es par. <|eot|>
+<|user|> ¿Qué dice la gallina? <|eot|>
+<|assistant|> La gallina hace «cocorocó». <|eot|>
+<|user|> ¿Cómo se dice «amigo» en inglés? <|eot|>
+<|assistant|> «amigo» en inglés es «friend». <|eot|>
+<|user|> ¿Cuál es el animal más rápido del universo? <|eot|>
+<|assistant|> No lo sé. <|eot|>
+<|user|> Cuenta del 1 al 8. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5, 6, 7, 8. <|eot|>
+<|user|> Dime la capital de Alemania. <|eot|>
+<|assistant|> Berlín es la capital de Alemania. <|eot|>
+<|user|> ¿Qué puedes hacer? <|eot|>
+<|assistant|> Soy un mini GPT y respondo preguntas sencillas. <|eot|>
+<|user|> ¿Cómo se dice «libro» en inglés? <|eot|>
+<|assistant|> «libro» en inglés es «book». <|eot|>
+<|user|> Cuenta del 1 al 6. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5, 6. <|eot|>
+<|user|> ¿De qué color es la sangre? <|eot|>
+<|assistant|> la sangre es de color rojo. <|eot|>
+<|user|> buenos días <|eot|>
+<|assistant|> Todo bien. ¿En qué te ayudo? <|eot|>
+<|user|> ¿Sabes cuál es la capital de Grecia? <|eot|>
+<|assistant|> Atenas es la capital de Grecia. <|eot|>
+<|user|> ¿Cuántos habitantes tiene la Luna? <|eot|>
+<|assistant|> No puedo responder eso con seguridad. <|eot|>
+<|user|> ¿Qué eres? <|eot|>
+<|assistant|> Soy un modelo pequeño entrenado con datos sintéticos. <|eot|>
+<|user|> ¿Cómo se dice «amigo» en inglés? <|eot|>
+<|assistant|> «amigo» en inglés es «friend». <|eot|>
+<|user|> Cuenta del 1 al 3. <|eot|>
+<|assistant|> 1, 2, 3. <|eot|>
+<|user|> ¿Qué desayuna un robot? <|eot|>
+<|assistant|> No tengo esa información. <|eot|>
+<|user|> ¿Cuánto es 14 + 8? <|eot|>
+<|assistant|> 14 + 8 = 22. <|eot|>
+<|user|> ¿Qué puedes hacer? <|eot|>
+<|assistant|> Me llamo mini GPT y estoy aprendiendo español. <|eot|>
+<|user|> ¿Cuál es la capital de Australia? <|eot|>
+<|assistant|> La capital de Australia es Canberra. <|eot|>
+<|user|> ¿Cómo se dice «gracias» en inglés? <|eot|>
+<|assistant|> «gracias» en inglés es «thank you». <|eot|>
+<|user|> ¿El número 18 es par o impar? <|eot|>
+<|assistant|> El número 18 es par. <|eot|>
+<|user|> ¿Cuánto es 8 por 5? <|eot|>
+<|assistant|> 8 por 5 = 40. <|eot|>
+<|user|> ¿De qué color es la sangre? <|eot|>
+<|assistant|> la sangre es de color rojo. <|eot|>
+<|user|> ¿Cuántos segundos tiene un minuto? <|eot|>
+<|assistant|> Un minuto tiene 60 segundos. <|eot|>
+<|user|> hasta pronto <|eot|>
+<|assistant|> Hasta pronto. <|eot|>
+<|user|> ¿Qué dice el pájaro? <|eot|>
+<|assistant|> El pájaro dice «pío». <|eot|>
+<|user|> adiós <|eot|>
+<|assistant|> Hasta luego. <|eot|>
+<|user|> Cuenta del 1 al 6. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5, 6. <|eot|>
+<|user|> ¿Cómo se dice «adiós» en inglés? <|eot|>
+<|assistant|> «adiós» en inglés es «goodbye». <|eot|>
+<|user|> ¿El número 8 es par o impar? <|eot|>
+<|assistant|> El número 8 es par. <|eot|>
+<|user|> ¿Con qué letra empieza «playa»? <|eot|>
+<|assistant|> «playa» empieza con la letra p. <|eot|>
+<|user|> ¿Cuál es la capital de Brasil? <|eot|>
+<|assistant|> Brasilia es la capital de Brasil. <|eot|>
+<|user|> ¿Con qué letra empieza «música»? <|eot|>
+<|assistant|> «música» empieza con la letra m. <|eot|>
+<|user|> ¿Qué dice la vaca? <|eot|>
+<|assistant|> La vaca hace «muu». <|eot|>
+<|user|> Cuenta del 1 al 5. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5. <|eot|>
+<|user|> ¿Cuánto es 20 + 19? <|eot|>
+<|assistant|> 20 + 19 = 39. <|eot|>
+<|user|> buenas noches <|eot|>
+<|assistant|> Buenas noches, descansa. <|eot|>
+<|user|> Cuenta del 1 al 3. <|eot|>
+<|assistant|> 1, 2, 3. <|eot|>
+<|user|> Cuenta del 1 al 4. <|eot|>
+<|assistant|> 1, 2, 3, 4. <|eot|>
+<|user|> hola, ¿cómo va todo? <|eot|>
+<|assistant|> Hola, ¿qué quieres saber? <|eot|>
+<|user|> buenos días <|eot|>
+<|assistant|> Hola, ¿qué quieres saber? <|eot|>
+<|user|> ¿Cuántos habitantes tiene la Luna? <|eot|>
+<|assistant|> No puedo responder eso con seguridad. <|eot|>
+<|user|> ¿Cuántos meses tiene un año? <|eot|>
+<|assistant|> Un año tiene 12 meses. <|eot|>
+<|user|> muchas gracias <|eot|>
+<|assistant|> No hay de qué. <|eot|>
+<|user|> ¿qué tal? <|eot|>
+<|assistant|> Buenos días. ¿Qué necesitas? <|eot|>
+<|user|> ¿Cómo se dice «sí» en inglés? <|eot|>
+<|assistant|> «sí» en inglés es «yes». <|eot|>
+<|user|> ¿Cómo se dice «no» en inglés? <|eot|>
+<|assistant|> «no» en inglés es «no». <|eot|>
+<|user|> ¿De qué color es el sol? <|eot|>
+<|assistant|> el sol es de color amarillo. <|eot|>
+<|user|> hasta pronto <|eot|>
+<|assistant|> Hasta pronto. <|eot|>
+<|user|> ¿Cómo te llamas? <|eot|>
+<|assistant|> Soy un modelo pequeño entrenado con datos sintéticos. <|eot|>
+<|user|> ¿Cuál es la capital de Colombia? <|eot|>
+<|assistant|> La capital de Colombia es Bogotá. <|eot|>
+<|user|> ¿De qué color es una violeta? <|eot|>
+<|assistant|> una violeta es de color violeta. <|eot|>
+<|user|> gracias <|eot|>
+<|assistant|> De nada. <|eot|>
+<|user|> ¿El número 23 es par o impar? <|eot|>
+<|assistant|> El número 23 es impar. <|eot|>
+<|user|> ¿Cuál es la capital de Marte? <|eot|>
+<|assistant|> No tengo esa información. <|eot|>
+<|user|> ¿Cuánto es 16 - 16? <|eot|>
+<|assistant|> 16 - 16 = 0. <|eot|>
+<|user|> ¿Cuánto es 8 - 7? <|eot|>
+<|assistant|> 8 - 7 = 1. <|eot|>
+<|user|> ¿Cuántos días tiene una semana? <|eot|>
+<|assistant|> Una semana tiene 7 días. <|eot|>
+<|user|> ¿Qué sonido hace el caballo? <|eot|>
+<|assistant|> El caballo hace «hiiii». <|eot|>
+<|user|> Suma 1 y 6. <|eot|>
+<|assistant|> El resultado de la suma es 7. <|eot|>
+<|user|> ¿De qué color es el sol? <|eot|>
+<|assistant|> el sol es de color amarillo. <|eot|>
+<|user|> ¿Qué sonido hace el lobo? <|eot|>
+<|assistant|> El lobo hace «aullido». <|eot|>
+<|user|> ¿Qué sonido hace el pájaro? <|eot|>
+<|assistant|> El pájaro hace «pío». <|eot|>
+<|user|> ¿Cuánto es 20 - 9? <|eot|>
+<|assistant|> 20 - 9 = 11. <|eot|>
+<|user|> Cuenta del 1 al 4. <|eot|>
+<|assistant|> 1, 2, 3, 4. <|eot|>
+<|user|> ¿Cómo se dice «hola» en inglés? <|eot|>
+<|assistant|> «hola» en inglés es «hello». <|eot|>
+<|user|> ¿Con qué letra empieza «árbol»? <|eot|>
+<|assistant|> «árbol» empieza con la letra á. <|eot|>
+<|user|> ¿Cómo se dice «casa» en inglés? <|eot|>
+<|assistant|> «casa» en inglés es «house». <|eot|>
+<|user|> buenos días <|eot|>
+<|assistant|> Todo bien. ¿En qué te ayudo? <|eot|>
+<|user|> ¿Qué puedes hacer? <|eot|>
+<|assistant|> Puedo saludar, hacer cuentas sencillas y responder datos básicos. <|eot|>
+<|user|> ¿Qué puedes hacer? <|eot|>
+<|assistant|> Soy un mini GPT y respondo preguntas sencillas. <|eot|>
+<|user|> buenas noches <|eot|>
+<|assistant|> Buenas noches, descansa. <|eot|>
+<|user|> ¿Cuál es el animal más rápido del universo? <|eot|>
+<|assistant|> No tengo esa información. <|eot|>
+<|user|> Suma 4 y 8. <|eot|>
+<|assistant|> El resultado de la suma es 12. <|eot|>
+<|user|> ¿Con qué letra empieza «perro»? <|eot|>
+<|assistant|> «perro» empieza con la letra p. <|eot|>
+<|user|> ¿Cuántos meses tiene un año? <|eot|>
+<|assistant|> Un año tiene 12 meses. <|eot|>
+<|user|> hasta pronto <|eot|>
+<|assistant|> Hasta pronto. <|eot|>
+<|user|> ¿qué tal? <|eot|>
+<|assistant|> Hola. ¿En qué puedo ayudarte? <|eot|>
+<|user|> ¿Cómo se dice «adiós» en inglés? <|eot|>
+<|assistant|> «adiós» en inglés es «goodbye». <|eot|>
+<|user|> ¿Cómo hace el caballo? <|eot|>
+<|assistant|> El caballo dice «hiiii». <|eot|>
+<|user|> Cuenta del 1 al 5. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5. <|eot|>
+<|user|> ¿Qué sonido hace el perro? <|eot|>
+<|assistant|> El perro hace «guau». <|eot|>
+<|user|> ¿El número 27 es par o impar? <|eot|>
+<|assistant|> El número 27 es impar. <|eot|>
+<|user|> ¿qué tal? <|eot|>
+<|assistant|> Hola, ¿qué quieres saber? <|eot|>
+<|user|> ¿Con qué letra empieza «nube»? <|eot|>
+<|assistant|> «nube» empieza con la letra n. <|eot|>
+<|user|> ¿El número 30 es par o impar? <|eot|>
+<|assistant|> El número 30 es par. <|eot|>
+<|user|> ¿Cómo hace el caballo? <|eot|>
+<|assistant|> El caballo hace «hiiii». <|eot|>
+<|user|> ¿Cuánto es 12 - 5? <|eot|>
+<|assistant|> 12 - 5 = 7. <|eot|>
+<|user|> ¿Cuál es el animal más rápido del universo? <|eot|>
+<|assistant|> No puedo responder eso con seguridad. <|eot|>
+<|user|> ¿Qué desayuna un robot? <|eot|>
+<|assistant|> No puedo responder eso con seguridad. <|eot|>
+<|user|> hasta pronto <|eot|>
+<|assistant|> Hasta pronto. <|eot|>
+<|user|> ¿Cuál es la capital de Brasil? <|eot|>
+<|assistant|> La capital de Brasil es Brasilia. <|eot|>
+<|user|> ¿Cuál es la capital de Egipto? <|eot|>
+<|assistant|> La capital de Egipto es El Cairo. <|eot|>
+<|user|> ¿Cómo se dice «amigo» en inglés? <|eot|>
+<|assistant|> «amigo» en inglés es «friend». <|eot|>
+<|user|> Dime la capital de Argentina. <|eot|>
+<|assistant|> Buenos Aires es la capital de Argentina. <|eot|>
+<|user|> ¿Cómo se dice «adiós» en inglés? <|eot|>
+<|assistant|> «adiós» en inglés es «goodbye». <|eot|>
+<|user|> ¿Con qué letra empieza «mesa»? <|eot|>
+<|assistant|> «mesa» empieza con la letra m. <|eot|>
+<|user|> ¿El número 13 es par o impar? <|eot|>
+<|assistant|> El número 13 es impar. <|eot|>
+<|user|> buenas noches <|eot|>
+<|assistant|> Buenas noches, descansa. <|eot|>
+<|user|> ¿Cómo se dice «luna» en inglés? <|eot|>
+<|assistant|> «luna» en inglés es «moon». <|eot|>
+<|user|> ¿El número 26 es par o impar? <|eot|>
+<|assistant|> El número 26 es par. <|eot|>
+<|user|> ¿cómo estás? <|eot|>
+<|assistant|> Buenos días. ¿Qué necesitas? <|eot|>
+<|user|> Dime la capital de China. <|eot|>
+<|assistant|> La capital de China es Pekín. <|eot|>
+<|user|> ¿Cuál es la capital de Argentina? <|eot|>
+<|assistant|> La capital de Argentina es Buenos Aires. <|eot|>
+<|user|> ¿cómo estás? <|eot|>
+<|assistant|> Hola, ¿qué quieres saber? <|eot|>
+<|user|> Cuenta del 1 al 9. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5, 6, 7, 8, 9. <|eot|>
+<|user|> ¿El número 27 es par o impar? <|eot|>
+<|assistant|> El número 27 es impar. <|eot|>
+<|user|> ¿Con qué letra empieza «mesa»? <|eot|>
+<|assistant|> «mesa» empieza con la letra m. <|eot|>
+<|user|> ¿El número 30 es par o impar? <|eot|>
+<|assistant|> El número 30 es par. <|eot|>
+<|user|> ¿cómo estás? <|eot|>
+<|assistant|> Hola. ¿En qué puedo ayudarte? <|eot|>
+<|user|> ¿De qué color es el chocolate? <|eot|>
+<|assistant|> el chocolate es de color marrón. <|eot|>
+<|user|> ¿Qué puedes hacer? <|eot|>
+<|assistant|> Me llamo mini GPT y estoy aprendiendo español. <|eot|>
+<|user|> ¿Cómo hace el lobo? <|eot|>
+<|assistant|> El lobo hace «aullido». <|eot|>
+<|user|> ¿Cuánto es 16 - 1? <|eot|>
+<|assistant|> 16 - 1 = 15. <|eot|>
+<|user|> Cuenta del 1 al 9. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5, 6, 7, 8, 9. <|eot|>
+<|user|> ¿Cómo hace el caballo? <|eot|>
+<|assistant|> El caballo dice «hiiii». <|eot|>
+<|user|> Cuenta del 1 al 3. <|eot|>
+<|assistant|> 1, 2, 3. <|eot|>
+<|user|> ¿Cómo se dice «casa» en inglés? <|eot|>
+<|assistant|> «casa» en inglés es «house». <|eot|>
+<|user|> ¿Cuánto es 20 - 1? <|eot|>
+<|assistant|> 20 - 1 = 19. <|eot|>
+<|user|> ¿Cuántos minutos tiene una hora? <|eot|>
+<|assistant|> Una hora tiene 60 minutos. <|eot|>
+<|user|> hola <|eot|>
+<|assistant|> Buenos días. ¿Qué necesitas? <|eot|>
+<|user|> ¿Cuántos habitantes tiene la Luna? <|eot|>
+<|assistant|> No puedo responder eso con seguridad. <|eot|>
+<|user|> ¿Cómo se dice «gracias» en inglés? <|eot|>
+<|assistant|> «gracias» en inglés es «thank you». <|eot|>
+<|user|> ¿Con qué letra empieza «escuela»? <|eot|>
+<|assistant|> «escuela» empieza con la letra e. <|eot|>
+<|user|> ¿Cuántos habitantes tiene la Luna? <|eot|>
+<|assistant|> No lo sé. <|eot|>
+<|user|> ¿El número 13 es par o impar? <|eot|>
+<|assistant|> El número 13 es impar. <|eot|>
+<|user|> ¿Cuál es la capital de Marte? <|eot|>
+<|assistant|> No lo sé. <|eot|>
+<|user|> ¿El número 23 es par o impar? <|eot|>
+<|assistant|> El número 23 es impar. <|eot|>
+<|user|> ¿Qué sonido hace la oveja? <|eot|>
+<|assistant|> La oveja dice «bee». <|eot|>
+<|user|> ¿El número 16 es par o impar? <|eot|>
+<|assistant|> El número 16 es par. <|eot|>
+<|user|> ¿Cuánto es 17 + 12? <|eot|>
+<|assistant|> 17 + 12 = 29. <|eot|>
+<|user|> ¿De qué color es la sangre? <|eot|>
+<|assistant|> la sangre es de color rojo. <|eot|>
+<|user|> ¿Quién eres? <|eot|>
+<|assistant|> Soy un modelo pequeño entrenado con datos sintéticos. <|eot|>
+<|user|> ¿Qué desayuna un robot? <|eot|>
+<|assistant|> No lo sé. <|eot|>
+<|user|> Cuenta del 1 al 3. <|eot|>
+<|assistant|> 1, 2, 3. <|eot|>
+<|user|> ¿Con qué letra empieza «estrella»? <|eot|>
+<|assistant|> «estrella» empieza con la letra e. <|eot|>
+<|user|> ¿Cuál es la capital de Argentina? <|eot|>
+<|assistant|> Buenos Aires es la capital de Argentina. <|eot|>
+<|user|> hasta pronto <|eot|>
+<|assistant|> Hasta pronto. <|eot|>
+<|user|> ¿Con qué letra empieza «amigo»? <|eot|>
+<|assistant|> «amigo» empieza con la letra a. <|eot|>
+<|user|> ¿Cuánto es 11 - 5? <|eot|>
+<|assistant|> 11 - 5 = 6. <|eot|>
+<|user|> ¿De qué color es una violeta? <|eot|>
+<|assistant|> una violeta es de color violeta. <|eot|>
+<|user|> ¿Con qué letra empieza «música»? <|eot|>
+<|assistant|> «música» empieza con la letra m. <|eot|>
+<|user|> ¿El número 22 es par o impar? <|eot|>
+<|assistant|> El número 22 es par. <|eot|>
+<|user|> gracias <|eot|>
+<|assistant|> De nada. <|eot|>
+<|user|> Cuenta del 1 al 6. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5, 6. <|eot|>
+<|user|> ¿Cuántos meses tiene un año? <|eot|>
+<|assistant|> Un año tiene 12 meses. <|eot|>
+<|user|> ¿El número 7 es par o impar? <|eot|>
+<|assistant|> El número 7 es impar. <|eot|>
+<|user|> ¿Con qué letra empieza «mesa»? <|eot|>
+<|assistant|> «mesa» empieza con la letra m. <|eot|>
+<|user|> ¿Cómo se dice «sí» en inglés? <|eot|>
+<|assistant|> «sí» en inglés es «yes». <|eot|>
+<|user|> ¿Qué dice el perro? <|eot|>
+<|assistant|> El perro dice «guau». <|eot|>
+<|user|> ¿Cómo se dice «amigo» en inglés? <|eot|>
+<|assistant|> «amigo» en inglés es «friend». <|eot|>
+<|user|> ¿Cuántos habitantes tiene la Luna? <|eot|>
+<|assistant|> No lo sé. <|eot|>
+<|user|> muchas gracias <|eot|>
+<|assistant|> No hay de qué. <|eot|>
+<|user|> ¿Cuántos meses tiene un año? <|eot|>
+<|assistant|> Un año tiene 12 meses. <|eot|>
+<|user|> ¿Qué hay dentro de un agujero negro? <|eot|>
+<|assistant|> No puedo responder eso con seguridad. <|eot|>
+<|user|> ¿Con qué letra empieza «escuela»? <|eot|>
+<|assistant|> «escuela» empieza con la letra e. <|eot|>
+<|user|> ¿Quién eres? <|eot|>
+<|assistant|> Soy un mini GPT y respondo preguntas sencillas. <|eot|>
+<|user|> Cuenta del 1 al 4. <|eot|>
+<|assistant|> 1, 2, 3, 4. <|eot|>
+<|user|> ¿Cómo hace el caballo? <|eot|>
+<|assistant|> El caballo dice «hiiii». <|eot|>
+<|user|> ¿Cómo se dice «luna» en inglés? <|eot|>
+<|assistant|> «luna» en inglés es «moon». <|eot|>
+<|user|> ¿De qué color es el carbón? <|eot|>
+<|assistant|> el carbón es de color negro. <|eot|>
+<|user|> ¿Qué puedes hacer? <|eot|>
+<|assistant|> Me llamo mini GPT y estoy aprendiendo español. <|eot|>
+<|user|> ¿Cómo se dice «agua» en inglés? <|eot|>
+<|assistant|> «agua» en inglés es «water». <|eot|>
+<|user|> Cuenta del 1 al 5. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5. <|eot|>
+<|user|> ¿El número 26 es par o impar? <|eot|>
+<|assistant|> El número 26 es par. <|eot|>
+<|user|> ¿Cuántos minutos tiene una hora? <|eot|>
+<|assistant|> Una hora tiene 60 minutos. <|eot|>
+<|user|> ¿Cómo se dice «adiós» en inglés? <|eot|>
+<|assistant|> «adiós» en inglés es «goodbye». <|eot|>
+<|user|> Suma 6 y 3. <|eot|>
+<|assistant|> El resultado de la suma es 9. <|eot|>
+<|user|> Suma 4 y 5. <|eot|>
+<|assistant|> El resultado de la suma es 9. <|eot|>
+<|user|> ¿Qué sonido hace el perro? <|eot|>
+<|assistant|> El perro hace «guau». <|eot|>
+<|user|> ¿De qué color es una violeta? <|eot|>
+<|assistant|> una violeta es de color violeta. <|eot|>
+<|user|> ¿Qué hay dentro de un agujero negro? <|eot|>
+<|assistant|> No puedo responder eso con seguridad. <|eot|>
+<|user|> ¿cómo estás? <|eot|>
+<|assistant|> Todo bien. ¿En qué te ayudo? <|eot|>
+<|user|> adiós <|eot|>
+<|assistant|> Hasta luego. <|eot|>
+<|user|> hola <|eot|>
+<|assistant|> Buenos días. ¿Qué necesitas? <|eot|>
+<|user|> ¿Con qué letra empieza «coche»? <|eot|>
+<|assistant|> «coche» empieza con la letra c. <|eot|>
+<|user|> ¿Cuántos habitantes tiene la Luna? <|eot|>
+<|assistant|> No lo sé. <|eot|>
+<|user|> ¿El número 19 es par o impar? <|eot|>
+<|assistant|> El número 19 es impar. <|eot|>
+<|user|> Cuenta del 1 al 6. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5, 6. <|eot|>
+<|user|> ¿Cómo hace el caballo? <|eot|>
+<|assistant|> El caballo dice «hiiii». <|eot|>
+<|user|> Cuenta del 1 al 8. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5, 6, 7, 8. <|eot|>
+<|user|> ¿El número 4 es par o impar? <|eot|>
+<|assistant|> El número 4 es par. <|eot|>
+<|user|> ¿De qué color es el chocolate? <|eot|>
+<|assistant|> el chocolate es de color marrón. <|eot|>
+<|user|> ¿Con qué letra empieza «nube»? <|eot|>
+<|assistant|> «nube» empieza con la letra n. <|eot|>
+<|user|> ¿El número 15 es par o impar? <|eot|>
+<|assistant|> El número 15 es impar. <|eot|>
+<|user|> ¿Qué sonido hace el perro? <|eot|>
+<|assistant|> El perro hace «guau». <|eot|>
+<|user|> ¿Cuántos minutos tiene una hora? <|eot|>
+<|assistant|> Una hora tiene 60 minutos. <|eot|>
+<|user|> adiós <|eot|>
+<|assistant|> Hasta luego. <|eot|>
+<|user|> ¿Cómo se dice «amigo» en inglés? <|eot|>
+<|assistant|> «amigo» en inglés es «friend». <|eot|>
+<|user|> Cuenta del 1 al 9. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5, 6, 7, 8, 9. <|eot|>
+<|user|> ¿El número 28 es par o impar? <|eot|>
+<|assistant|> El número 28 es par. <|eot|>
+<|user|> ¿Cuántos habitantes tiene la Luna? <|eot|>
+<|assistant|> No puedo responder eso con seguridad. <|eot|>
+<|user|> ¿El número 9 es par o impar? <|eot|>
+<|assistant|> El número 9 es impar. <|eot|>
+<|user|> ¿Cuánto es 6 + 7? <|eot|>
+<|assistant|> 6 + 7 = 13. <|eot|>
+<|user|> ¿El número 7 es par o impar? <|eot|>
+<|assistant|> El número 7 es impar. <|eot|>
+<|user|> ¿De qué color es el cielo? <|eot|>
+<|assistant|> el cielo es de color azul. <|eot|>
+<|user|> ¿Cómo se dice «perro» en inglés? <|eot|>
+<|assistant|> «perro» en inglés es «dog». <|eot|>
+<|user|> ¿El número 25 es par o impar? <|eot|>
+<|assistant|> El número 25 es impar. <|eot|>
+<|user|> ¿Cuántos días tiene un año? <|eot|>
+<|assistant|> Un año tiene 365 días. <|eot|>
+<|user|> hola, ¿cómo va todo? <|eot|>
+<|assistant|> Hola. ¿En qué puedo ayudarte? <|eot|>
+<|user|> ¿Cómo se dice «azul» en inglés? <|eot|>
+<|assistant|> «azul» en inglés es «blue». <|eot|>
+<|user|> hola, ¿cómo va todo? <|eot|>
+<|assistant|> Estoy bien, gracias. ¿Y tú? <|eot|>
+<|user|> ¿Qué eres? <|eot|>
+<|assistant|> Soy un modelo pequeño entrenado con datos sintéticos. <|eot|>
+<|user|> ¿Con qué letra empieza «silla»? <|eot|>
+<|assistant|> «silla» empieza con la letra s. <|eot|>
+<|user|> ¿cómo estás? <|eot|>
+<|assistant|> Estoy bien, gracias. ¿Y tú? <|eot|>
+<|user|> Dime la capital de Reino Unido. <|eot|>
+<|assistant|> La capital de Reino Unido es Londres. <|eot|>
+<|user|> ¿Cuál es el animal más rápido del universo? <|eot|>
+<|assistant|> No tengo esa información. <|eot|>
+<|user|> Cuenta del 1 al 5. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5. <|eot|>
+<|user|> ¿Con qué letra empieza «amigo»? <|eot|>
+<|assistant|> «amigo» empieza con la letra a. <|eot|>
+<|user|> hola <|eot|>
+<|assistant|> Hola, ¿qué quieres saber? <|eot|>
+<|user|> ¿El número 17 es par o impar? <|eot|>
+<|assistant|> El número 17 es impar. <|eot|>
+<|user|> ¿De qué color es una violeta? <|eot|>
+<|assistant|> una violeta es de color violeta. <|eot|>
+<|user|> ¿Cuántos habitantes tiene la Luna? <|eot|>
+<|assistant|> No lo sé. <|eot|>
+<|user|> ¿Qué desayuna un robot? <|eot|>
+<|assistant|> No lo sé. <|eot|>
+<|user|> ¿El número 10 es par o impar? <|eot|>
+<|assistant|> El número 10 es par. <|eot|>
+<|user|> ¿Cuál es la capital de Marte? <|eot|>
+<|assistant|> No lo sé. <|eot|>
+<|user|> hola, ¿cómo va todo? <|eot|>
+<|assistant|> Hola, ¿qué quieres saber? <|eot|>
+<|user|> gracias <|eot|>
+<|assistant|> De nada. <|eot|>
+<|user|> ¿El número 23 es par o impar? <|eot|>
+<|assistant|> El número 23 es impar. <|eot|>
+<|user|> ¿El número 26 es par o impar? <|eot|>
+<|assistant|> El número 26 es par. <|eot|>
+<|user|> muchas gracias <|eot|>
+<|assistant|> No hay de qué. <|eot|>
+<|user|> ¿Cuántos habitantes tiene la Luna? <|eot|>
+<|assistant|> No lo sé. <|eot|>
+<|user|> hasta pronto <|eot|>
+<|assistant|> Hasta pronto. <|eot|>
+<|user|> gracias <|eot|>
+<|assistant|> De nada. <|eot|>
+<|user|> gracias <|eot|>
+<|assistant|> De nada. <|eot|>
+<|user|> buenas tardes <|eot|>
+<|assistant|> Estoy bien, gracias. ¿Y tú? <|eot|>
+<|user|> Dime la capital de México. <|eot|>
+<|assistant|> La capital de México es Ciudad de México. <|eot|>
+<|user|> buenas noches <|eot|>
+<|assistant|> Buenas noches, descansa. <|eot|>
+<|user|> Cuenta del 1 al 6. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5, 6. <|eot|>
+<|user|> Dime la capital de India. <|eot|>
+<|assistant|> La capital de India es Nueva Delhi. <|eot|>
+<|user|> ¿Con qué letra empieza «nube»? <|eot|>
+<|assistant|> «nube» empieza con la letra n. <|eot|>
+<|user|> ¿Con qué letra empieza «casa»? <|eot|>
+<|assistant|> «casa» empieza con la letra c. <|eot|>
+<|user|> Suma 14 y 11. <|eot|>
+<|assistant|> El resultado de la suma es 25. <|eot|>
+<|user|> Cuenta del 1 al 7. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5, 6, 7. <|eot|>
+<|user|> adiós <|eot|>
+<|assistant|> Hasta luego. <|eot|>
+<|user|> ¿Quién eres? <|eot|>
+<|assistant|> Soy un modelo pequeño entrenado con datos sintéticos. <|eot|>
+<|user|> ¿Qué eres? <|eot|>
+<|assistant|> Soy un modelo pequeño entrenado con datos sintéticos. <|eot|>
+<|user|> buenos días <|eot|>
+<|assistant|> Todo bien. ¿En qué te ayudo? <|eot|>
+<|user|> ¿Cuál es la capital de China? <|eot|>
+<|assistant|> Pekín es la capital de China. <|eot|>
+<|user|> ¿Con qué letra empieza «música»? <|eot|>
+<|assistant|> «música» empieza con la letra m. <|eot|>
+<|user|> ¿De qué color es la hierba? <|eot|>
+<|assistant|> la hierba es de color verde. <|eot|>
+<|user|> ¿qué tal? <|eot|>
+<|assistant|> Hola, ¿qué quieres saber? <|eot|>
+<|user|> buenas noches <|eot|>
+<|assistant|> Buenas noches, descansa. <|eot|>
+<|user|> ¿De qué color es la nieve? <|eot|>
+<|assistant|> la nieve es de color blanco. <|eot|>
+<|user|> ¿El número 27 es par o impar? <|eot|>
+<|assistant|> El número 27 es impar. <|eot|>
+<|user|> ¿qué tal? <|eot|>
+<|assistant|> Todo bien. ¿En qué te ayudo? <|eot|>
+<|user|> ¿Con qué letra empieza «amigo»? <|eot|>
+<|assistant|> «amigo» empieza con la letra a. <|eot|>
+<|user|> hola <|eot|>
+<|assistant|> Hola. ¿En qué puedo ayudarte? <|eot|>
+<|user|> gracias <|eot|>
+<|assistant|> De nada. <|eot|>
+<|user|> ¿Qué sonido hace el pájaro? <|eot|>
+<|assistant|> El pájaro hace «pío». <|eot|>
+<|user|> ¿Cómo hace la vaca? <|eot|>
+<|assistant|> La vaca hace «muu». <|eot|>
+<|user|> ¿De qué color es una violeta? <|eot|>
+<|assistant|> una violeta es de color violeta. <|eot|>
+<|user|> ¿Qué dice el caballo? <|eot|>
+<|assistant|> El caballo dice «hiiii». <|eot|>
+<|user|> ¿Cómo se dice «gracias» en inglés? <|eot|>
+<|assistant|> «gracias» en inglés es «thank you». <|eot|>
+<|user|> buenas noches <|eot|>
+<|assistant|> Buenas noches, descansa. <|eot|>
+<|user|> buenos días <|eot|>
+<|assistant|> Hola. ¿En qué puedo ayudarte? <|eot|>
+<|user|> hola <|eot|>
+<|assistant|> Hola. ¿En qué puedo ayudarte? <|eot|>
+<|user|> ¿Cómo te llamas? <|eot|>
+<|assistant|> Puedo saludar, hacer cuentas sencillas y responder datos básicos. <|eot|>
+<|user|> ¿De qué color es la sangre? <|eot|>
+<|assistant|> la sangre es de color rojo. <|eot|>
+<|user|> ¿El número 15 es par o impar? <|eot|>
+<|assistant|> El número 15 es impar. <|eot|>
+<|user|> gracias <|eot|>
+<|assistant|> De nada. <|eot|>
+<|user|> ¿Cómo te llamas? <|eot|>
+<|assistant|> Soy un modelo pequeño entrenado con datos sintéticos. <|eot|>
+<|user|> ¿Quién eres? <|eot|>
+<|assistant|> Me llamo mini GPT y estoy aprendiendo español. <|eot|>
+<|user|> ¿cómo estás? <|eot|>
+<|assistant|> Buenos días. ¿Qué necesitas? <|eot|>
+<|user|> ¿Cuántos días tiene una semana? <|eot|>
+<|assistant|> Una semana tiene 7 días. <|eot|>
+<|user|> ¿Cuánto es 1 por 11? <|eot|>
+<|assistant|> 1 por 11 = 11. <|eot|>
+<|user|> ¿Qué puedes hacer? <|eot|>
+<|assistant|> Soy un mini GPT y respondo preguntas sencillas. <|eot|>
+<|user|> ¿Con qué letra empieza «playa»? <|eot|>
+<|assistant|> «playa» empieza con la letra p. <|eot|>
+<|user|> buenas tardes <|eot|>
+<|assistant|> Estoy bien, gracias. ¿Y tú? <|eot|>
+<|user|> adiós <|eot|>
+<|assistant|> Hasta luego. <|eot|>
+<|user|> ¿Qué eres? <|eot|>
+<|assistant|> Me llamo mini GPT y estoy aprendiendo español. <|eot|>
+<|user|> ¿Con qué letra empieza «amigo»? <|eot|>
+<|assistant|> «amigo» empieza con la letra a. <|eot|>
+<|user|> ¿Cómo se dice «hola» en inglés? <|eot|>
+<|assistant|> «hola» en inglés es «hello». <|eot|>
+<|user|> ¿Qué sonido hace la gallina? <|eot|>
+<|assistant|> La gallina dice «cocorocó». <|eot|>
+<|user|> ¿De qué color es el sol? <|eot|>
+<|assistant|> el sol es de color amarillo. <|eot|>
+<|user|> ¿Cuál es la capital de China? <|eot|>
+<|assistant|> La capital de China es Pekín. <|eot|>
+<|user|> buenos días <|eot|>
+<|assistant|> Estoy bien, gracias. ¿Y tú? <|eot|>
+<|user|> ¿Cuántas horas tiene un día? <|eot|>
+<|assistant|> Un día tiene 24 horas. <|eot|>
+<|user|> ¿Cuál es el animal más rápido del universo? <|eot|>
+<|assistant|> No puedo responder eso con seguridad. <|eot|>
+<|user|> buenos días <|eot|>
+<|assistant|> Todo bien. ¿En qué te ayudo? <|eot|>
+<|user|> ¿Cómo se dice «adiós» en inglés? <|eot|>
+<|assistant|> «adiós» en inglés es «goodbye». <|eot|>
+<|user|> ¿Sabes cuál es la capital de México? <|eot|>
+<|assistant|> La capital de México es Ciudad de México. <|eot|>
+<|user|> ¿Con qué letra empieza «silla»? <|eot|>
+<|assistant|> «silla» empieza con la letra s. <|eot|>
+<|user|> Cuenta del 1 al 7. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5, 6, 7. <|eot|>
+<|user|> Cuenta del 1 al 5. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5. <|eot|>
+<|user|> Suma 2 y 12. <|eot|>
+<|assistant|> El resultado de la suma es 14. <|eot|>
+<|user|> ¿Qué sonido hace la oveja? <|eot|>
+<|assistant|> La oveja hace «bee». <|eot|>
+<|user|> ¿El número 6 es par o impar? <|eot|>
+<|assistant|> El número 6 es par. <|eot|>
+<|user|> ¿El número 22 es par o impar? <|eot|>
+<|assistant|> El número 22 es par. <|eot|>
+<|user|> ¿Qué eres? <|eot|>
+<|assistant|> Me llamo mini GPT y estoy aprendiendo español. <|eot|>
+<|user|> ¿Con qué letra empieza «música»? <|eot|>
+<|assistant|> «música» empieza con la letra m. <|eot|>
+<|user|> Cuenta del 1 al 4. <|eot|>
+<|assistant|> 1, 2, 3, 4. <|eot|>
+<|user|> ¿Cómo hace el gato? <|eot|>
+<|assistant|> El gato dice «miau». <|eot|>
+<|user|> ¿Cómo se dice «agua» en inglés? <|eot|>
+<|assistant|> «agua» en inglés es «water». <|eot|>
+<|user|> ¿Qué puedes hacer? <|eot|>
+<|assistant|> Puedo saludar, hacer cuentas sencillas y responder datos básicos. <|eot|>
+<|user|> ¿Cuántos minutos tiene una hora? <|eot|>
+<|assistant|> Una hora tiene 60 minutos. <|eot|>
+<|user|> ¿De qué color es una violeta? <|eot|>
+<|assistant|> una violeta es de color violeta. <|eot|>
+<|user|> ¿El número 15 es par o impar? <|eot|>
+<|assistant|> El número 15 es impar. <|eot|>
+<|user|> hola <|eot|>
+<|assistant|> Estoy bien, gracias. ¿Y tú? <|eot|>
+<|user|> ¿Qué eres? <|eot|>
+<|assistant|> Puedo saludar, hacer cuentas sencillas y responder datos básicos. <|eot|>
+<|user|> ¿Cuánto es 1 por 11? <|eot|>
+<|assistant|> 1 por 11 = 11. <|eot|>
+<|user|> ¿Cuánto es 18 - 10? <|eot|>
+<|assistant|> 18 - 10 = 8. <|eot|>
+<|user|> ¿Cuál es el animal más rápido del universo? <|eot|>
+<|assistant|> No puedo responder eso con seguridad. <|eot|>
+<|user|> ¿Cuál es la capital de Marte? <|eot|>
+<|assistant|> No tengo esa información. <|eot|>
+<|user|> hola, ¿cómo va todo? <|eot|>
+<|assistant|> Hola, ¿qué quieres saber? <|eot|>
+<|user|> ¿Cuánto es 4 + 13? <|eot|>
+<|assistant|> 4 + 13 = 17. <|eot|>
+<|user|> ¿Cómo te llamas? <|eot|>
+<|assistant|> Soy un modelo pequeño entrenado con datos sintéticos. <|eot|>
+<|user|> ¿El número 21 es par o impar? <|eot|>
+<|assistant|> El número 21 es impar. <|eot|>
+<|user|> ¿Cuál es la capital de Chile? <|eot|>
+<|assistant|> Santiago es la capital de Chile. <|eot|>
+<|user|> ¿Cuántos meses tiene un año? <|eot|>
+<|assistant|> Un año tiene 12 meses. <|eot|>
+<|user|> ¿Cuántos minutos tiene una hora? <|eot|>
+<|assistant|> Una hora tiene 60 minutos. <|eot|>
+<|user|> ¿Cuántos habitantes tiene la Luna? <|eot|>
+<|assistant|> No tengo esa información. <|eot|>
+<|user|> ¿cómo estás? <|eot|>
+<|assistant|> Estoy bien, gracias. ¿Y tú? <|eot|>
+<|user|> ¿qué tal? <|eot|>
+<|assistant|> Hola. ¿En qué puedo ayudarte? <|eot|>
+<|user|> ¿El número 29 es par o impar? <|eot|>
+<|assistant|> El número 29 es impar. <|eot|>
+<|user|> ¿De qué color es el cielo? <|eot|>
+<|assistant|> el cielo es de color azul. <|eot|>
+<|user|> ¿Qué sonido hace el pato? <|eot|>
+<|assistant|> El pato hace «cuac». <|eot|>
+<|user|> ¿De qué color es la hierba? <|eot|>
+<|assistant|> la hierba es de color verde. <|eot|>
+<|user|> ¿Cuánto es 20 - 4? <|eot|>
+<|assistant|> 20 - 4 = 16. <|eot|>
+<|user|> Cuenta del 1 al 6. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5, 6. <|eot|>
+<|user|> ¿Con qué letra empieza «música»? <|eot|>
+<|assistant|> «música» empieza con la letra m. <|eot|>
+<|user|> Cuenta del 1 al 3. <|eot|>
+<|assistant|> 1, 2, 3. <|eot|>
+<|user|> Suma 1 y 4. <|eot|>
+<|assistant|> El resultado de la suma es 5. <|eot|>
+<|user|> ¿Cómo se dice «libro» en inglés? <|eot|>
+<|assistant|> «libro» en inglés es «book». <|eot|>
+<|user|> Dime la capital de México. <|eot|>
+<|assistant|> La capital de México es Ciudad de México. <|eot|>
+<|user|> ¿Sabes cuál es la capital de Chile? <|eot|>
+<|assistant|> Santiago es la capital de Chile. <|eot|>
+<|user|> Dime la capital de Argentina. <|eot|>
+<|assistant|> Buenos Aires es la capital de Argentina. <|eot|>
+<|user|> ¿Qué dice la rana? <|eot|>
+<|assistant|> La rana hace «croac». <|eot|>
+<|user|> ¿Cuánto es 17 + 9? <|eot|>
+<|assistant|> 17 + 9 = 26. <|eot|>
+<|user|> buenas noches <|eot|>
+<|assistant|> Buenas noches, descansa. <|eot|>
+<|user|> ¿Cómo se dice «sol» en inglés? <|eot|>
+<|assistant|> «sol» en inglés es «sun». <|eot|>
+<|user|> ¿Cómo se dice «luna» en inglés? <|eot|>
+<|assistant|> «luna» en inglés es «moon». <|eot|>
+<|user|> ¿Cómo se dice «amigo» en inglés? <|eot|>
+<|assistant|> «amigo» en inglés es «friend». <|eot|>
+<|user|> buenos días <|eot|>
+<|assistant|> Todo bien. ¿En qué te ayudo? <|eot|>
+<|user|> ¿Cuántos minutos tiene una hora? <|eot|>
+<|assistant|> Una hora tiene 60 minutos. <|eot|>
+<|user|> buenas noches <|eot|>
+<|assistant|> Buenas noches, descansa. <|eot|>
+<|user|> ¿cómo estás? <|eot|>
+<|assistant|> Hola. ¿En qué puedo ayudarte? <|eot|>
+<|user|> ¿qué tal? <|eot|>
+<|assistant|> Buenos días. ¿Qué necesitas? <|eot|>
+<|user|> ¿El número 29 es par o impar? <|eot|>
+<|assistant|> El número 29 es impar. <|eot|>
+<|user|> ¿Qué desayuna un robot? <|eot|>
+<|assistant|> No lo sé. <|eot|>
+<|user|> ¿Qué sonido hace el gato? <|eot|>
+<|assistant|> El gato dice «miau». <|eot|>
+<|user|> ¿Con qué letra empieza «nube»? <|eot|>
+<|assistant|> «nube» empieza con la letra n. <|eot|>
+<|user|> ¿El número 29 es par o impar? <|eot|>
+<|assistant|> El número 29 es impar. <|eot|>
+<|user|> ¿De qué color es el cielo? <|eot|>
+<|assistant|> el cielo es de color azul. <|eot|>
+<|user|> ¿Cómo se dice «casa» en inglés? <|eot|>
+<|assistant|> «casa» en inglés es «house». <|eot|>
+<|user|> ¿Cuál es la capital de Marte? <|eot|>
+<|assistant|> No puedo responder eso con seguridad. <|eot|>
+<|user|> ¿Cuántos meses tiene un año? <|eot|>
+<|assistant|> Un año tiene 12 meses. <|eot|>
+<|user|> buenos días <|eot|>
+<|assistant|> Buenos días. ¿Qué necesitas? <|eot|>
+<|user|> ¿Con qué letra empieza «familia»? <|eot|>
+<|assistant|> «familia» empieza con la letra f. <|eot|>
+<|user|> ¿Con qué letra empieza «camino»? <|eot|>
+<|assistant|> «camino» empieza con la letra c. <|eot|>
+<|user|> buenos días <|eot|>
+<|assistant|> Buenos días. ¿Qué necesitas? <|eot|>
+<|user|> ¿De qué color es la hierba? <|eot|>
+<|assistant|> la hierba es de color verde. <|eot|>
+<|user|> ¿De qué color es la sangre? <|eot|>
+<|assistant|> la sangre es de color rojo. <|eot|>
+<|user|> ¿Cómo te llamas? <|eot|>
+<|assistant|> Puedo saludar, hacer cuentas sencillas y responder datos básicos. <|eot|>
+<|user|> ¿El número 1 es par o impar? <|eot|>
+<|assistant|> El número 1 es impar. <|eot|>
+<|user|> Cuenta del 1 al 4. <|eot|>
+<|assistant|> 1, 2, 3, 4. <|eot|>
+<|user|> adiós <|eot|>
+<|assistant|> Hasta luego. <|eot|>
+<|user|> ¿De qué color es el cielo? <|eot|>
+<|assistant|> el cielo es de color azul. <|eot|>
+<|user|> ¿Con qué letra empieza «familia»? <|eot|>
+<|assistant|> «familia» empieza con la letra f. <|eot|>
+<|user|> ¿Cuántos días tiene un año? <|eot|>
+<|assistant|> Un año tiene 365 días. <|eot|>
+<|user|> ¿Qué dice la gallina? <|eot|>
+<|assistant|> La gallina hace «cocorocó». <|eot|>
+<|user|> buenas noches <|eot|>
+<|assistant|> Buenas noches, descansa. <|eot|>
+<|user|> ¿El número 16 es par o impar? <|eot|>
+<|assistant|> El número 16 es par. <|eot|>
+<|user|> ¿Cuántos habitantes tiene la Luna? <|eot|>
+<|assistant|> No lo sé. <|eot|>
+<|user|> gracias <|eot|>
+<|assistant|> De nada. <|eot|>
+<|user|> ¿Cuál es el animal más rápido del universo? <|eot|>
+<|assistant|> No puedo responder eso con seguridad. <|eot|>
+<|user|> ¿Cuál es la capital de Marte? <|eot|>
+<|assistant|> No tengo esa información. <|eot|>
+<|user|> ¿cómo estás? <|eot|>
+<|assistant|> Buenos días. ¿Qué necesitas? <|eot|>
+<|user|> ¿Con qué letra empieza «ciudad»? <|eot|>
+<|assistant|> «ciudad» empieza con la letra c. <|eot|>
+<|user|> muchas gracias <|eot|>
+<|assistant|> No hay de qué. <|eot|>
+<|user|> ¿De qué color es la nieve? <|eot|>
+<|assistant|> la nieve es de color blanco. <|eot|>
+<|user|> ¿Con qué letra empieza «camino»? <|eot|>
+<|assistant|> «camino» empieza con la letra c. <|eot|>
+<|user|> ¿Cuánto es 4 + 4? <|eot|>
+<|assistant|> 4 + 4 = 8. <|eot|>
+<|user|> ¿Qué desayuna un robot? <|eot|>
+<|assistant|> No puedo responder eso con seguridad. <|eot|>
+<|user|> muchas gracias <|eot|>
+<|assistant|> No hay de qué. <|eot|>
+<|user|> hasta pronto <|eot|>
+<|assistant|> Hasta pronto. <|eot|>
+<|user|> ¿De qué color es una naranja? <|eot|>
+<|assistant|> una naranja es de color naranja. <|eot|>
+<|user|> ¿Qué eres? <|eot|>
+<|assistant|> Me llamo mini GPT y estoy aprendiendo español. <|eot|>
+<|user|> ¿Cuántos días tiene un año? <|eot|>
+<|assistant|> Un año tiene 365 días. <|eot|>
+<|user|> hola <|eot|>
+<|assistant|> Todo bien. ¿En qué te ayudo? <|eot|>
+<|user|> ¿Cuál es el animal más rápido del universo? <|eot|>
+<|assistant|> No tengo esa información. <|eot|>
+<|user|> ¿Qué puedes hacer? <|eot|>
+<|assistant|> Soy un mini GPT y respondo preguntas sencillas. <|eot|>
+<|user|> ¿Con qué letra empieza «casa»? <|eot|>
+<|assistant|> «casa» empieza con la letra c. <|eot|>
+<|user|> ¿Qué sonido hace el caballo? <|eot|>
+<|assistant|> El caballo dice «hiiii». <|eot|>
+<|user|> ¿Con qué letra empieza «estrella»? <|eot|>
+<|assistant|> «estrella» empieza con la letra e. <|eot|>
+<|user|> ¿Qué desayuna un robot? <|eot|>
+<|assistant|> No puedo responder eso con seguridad. <|eot|>
+<|user|> Cuenta del 1 al 7. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5, 6, 7. <|eot|>
+<|user|> ¿Cuánto es 16 + 7? <|eot|>
+<|assistant|> 16 + 7 = 23. <|eot|>
+<|user|> muchas gracias <|eot|>
+<|assistant|> No hay de qué. <|eot|>
+<|user|> ¿qué tal? <|eot|>
+<|assistant|> Hola. ¿En qué puedo ayudarte? <|eot|>
+<|user|> ¿Cuánto es 6 por 6? <|eot|>
+<|assistant|> 6 por 6 = 36. <|eot|>
+<|user|> gracias <|eot|>
+<|assistant|> De nada. <|eot|>
+<|user|> Dime la capital de Egipto. <|eot|>
+<|assistant|> El Cairo es la capital de Egipto. <|eot|>
+<|user|> ¿Cuál es el animal más rápido del universo? <|eot|>
+<|assistant|> No lo sé. <|eot|>
+<|user|> ¿Cómo se dice «rojo» en inglés? <|eot|>
+<|assistant|> «rojo» en inglés es «red». <|eot|>
+<|user|> ¿Qué eres? <|eot|>
+<|assistant|> Soy un modelo pequeño entrenado con datos sintéticos. <|eot|>
+<|user|> ¿Qué sonido hace la gallina? <|eot|>
+<|assistant|> La gallina hace «cocorocó». <|eot|>
+<|user|> ¿Cuál es el animal más rápido del universo? <|eot|>
+<|assistant|> No lo sé. <|eot|>
+<|user|> ¿Cuántas horas tiene un día? <|eot|>
+<|assistant|> Un día tiene 24 horas. <|eot|>
+<|user|> ¿Cómo se dice «casa» en inglés? <|eot|>
+<|assistant|> «casa» en inglés es «house». <|eot|>
+<|user|> Dime la capital de Brasil. <|eot|>
+<|assistant|> Brasilia es la capital de Brasil. <|eot|>
+<|user|> muchas gracias <|eot|>
+<|assistant|> No hay de qué. <|eot|>
+<|user|> ¿Quién eres? <|eot|>
+<|assistant|> Soy un mini GPT y respondo preguntas sencillas. <|eot|>
+<|user|> ¿Cómo hace el pato? <|eot|>
+<|assistant|> El pato hace «cuac». <|eot|>
+<|user|> hola <|eot|>
+<|assistant|> Hola. ¿En qué puedo ayudarte? <|eot|>
+<|user|> Cuenta del 1 al 7. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5, 6, 7. <|eot|>
+<|user|> ¿Cuánto es 18 + 2? <|eot|>
+<|assistant|> 18 + 2 = 20. <|eot|>
+<|user|> ¿Qué eres? <|eot|>
+<|assistant|> Soy un mini GPT y respondo preguntas sencillas. <|eot|>
+<|user|> ¿qué tal? <|eot|>
+<|assistant|> Buenos días. ¿Qué necesitas? <|eot|>
+<|user|> ¿Cuál es la capital de Brasil? <|eot|>
+<|assistant|> La capital de Brasil es Brasilia. <|eot|>
+<|user|> ¿Qué hay dentro de un agujero negro? <|eot|>
+<|assistant|> No lo sé. <|eot|>
+<|user|> ¿Cuántos días tiene una semana? <|eot|>
+<|assistant|> Una semana tiene 7 días. <|eot|>
+<|user|> gracias <|eot|>
+<|assistant|> De nada. <|eot|>
+<|user|> ¿Cómo se dice «casa» en inglés? <|eot|>
+<|assistant|> «casa» en inglés es «house». <|eot|>
+<|user|> ¿De qué color es el sol? <|eot|>
+<|assistant|> el sol es de color amarillo. <|eot|>
+<|user|> ¿De qué color es el cielo? <|eot|>
+<|assistant|> el cielo es de color azul. <|eot|>
+<|user|> ¿Cuántos días tiene una semana? <|eot|>
+<|assistant|> Una semana tiene 7 días. <|eot|>
+<|user|> ¿Qué eres? <|eot|>
+<|assistant|> Soy un modelo pequeño entrenado con datos sintéticos. <|eot|>
+<|user|> ¿Cuántos segundos tiene un minuto? <|eot|>
+<|assistant|> Un minuto tiene 60 segundos. <|eot|>
+<|user|> adiós <|eot|>
+<|assistant|> Hasta luego. <|eot|>
+<|user|> ¿De qué color es el carbón? <|eot|>
+<|assistant|> el carbón es de color negro. <|eot|>
+<|user|> ¿Sabes cuál es la capital de Canadá? <|eot|>
+<|assistant|> Ottawa es la capital de Canadá. <|eot|>
+<|user|> muchas gracias <|eot|>
+<|assistant|> No hay de qué. <|eot|>
+<|user|> Dime la capital de México. <|eot|>
+<|assistant|> La capital de México es Ciudad de México. <|eot|>
+<|user|> ¿De qué color es el sol? <|eot|>
+<|assistant|> el sol es de color amarillo. <|eot|>
+<|user|> muchas gracias <|eot|>
+<|assistant|> No hay de qué. <|eot|>
+<|user|> ¿Cuál es la capital de Reino Unido? <|eot|>
+<|assistant|> La capital de Reino Unido es Londres. <|eot|>
+<|user|> ¿Con qué letra empieza «mesa»? <|eot|>
+<|assistant|> «mesa» empieza con la letra m. <|eot|>
+<|user|> Cuenta del 1 al 8. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5, 6, 7, 8. <|eot|>
+<|user|> Suma 6 y 1. <|eot|>
+<|assistant|> El resultado de la suma es 7. <|eot|>
+<|user|> ¿Cómo hace el pato? <|eot|>
+<|assistant|> El pato dice «cuac». <|eot|>
+<|user|> ¿Qué desayuna un robot? <|eot|>
+<|assistant|> No tengo esa información. <|eot|>
+<|user|> ¿Con qué letra empieza «playa»? <|eot|>
+<|assistant|> «playa» empieza con la letra p. <|eot|>
+<|user|> Cuenta del 1 al 9. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5, 6, 7, 8, 9. <|eot|>
+<|user|> ¿Cuánto es 6 por 9? <|eot|>
+<|assistant|> 6 por 9 = 54. <|eot|>
+<|user|> ¿Cuánto es 9 + 12? <|eot|>
+<|assistant|> 9 + 12 = 21. <|eot|>
+<|user|> ¿Sabes cuál es la capital de Colombia? <|eot|>
+<|assistant|> La capital de Colombia es Bogotá. <|eot|>
+<|user|> ¿Con qué letra empieza «ventana»? <|eot|>
+<|assistant|> «ventana» empieza con la letra v. <|eot|>
+<|user|> ¿cómo estás? <|eot|>
+<|assistant|> Hola. ¿En qué puedo ayudarte? <|eot|>
+<|user|> ¿Cómo se dice «rojo» en inglés? <|eot|>
+<|assistant|> «rojo» en inglés es «red». <|eot|>
+<|user|> hola, ¿cómo va todo? <|eot|>
+<|assistant|> Estoy bien, gracias. ¿Y tú? <|eot|>
+<|user|> ¿De qué color es una naranja? <|eot|>
+<|assistant|> una naranja es de color naranja. <|eot|>
+<|user|> hasta pronto <|eot|>
+<|assistant|> Hasta pronto. <|eot|>
+<|user|> ¿Con qué letra empieza «montaña»? <|eot|>
+<|assistant|> «montaña» empieza con la letra m. <|eot|>
+<|user|> ¿Cómo hace el lobo? <|eot|>
+<|assistant|> El lobo dice «aullido». <|eot|>
+<|user|> ¿Qué puedes hacer? <|eot|>
+<|assistant|> Soy un mini GPT y respondo preguntas sencillas. <|eot|>
+<|user|> ¿qué tal? <|eot|>
+<|assistant|> Todo bien. ¿En qué te ayudo? <|eot|>
+<|user|> ¿Qué desayuna un robot? <|eot|>
+<|assistant|> No lo sé. <|eot|>
+<|user|> hola <|eot|>
+<|assistant|> Hola, ¿qué quieres saber? <|eot|>
+<|user|> ¿Con qué letra empieza «música»? <|eot|>
+<|assistant|> «música» empieza con la letra m. <|eot|>
+<|user|> ¿Cuántos habitantes tiene la Luna? <|eot|>
+<|assistant|> No puedo responder eso con seguridad. <|eot|>
+<|user|> ¿El número 21 es par o impar? <|eot|>
+<|assistant|> El número 21 es impar. <|eot|>
+<|user|> hasta pronto <|eot|>
+<|assistant|> Hasta pronto. <|eot|>
+<|user|> ¿qué tal? <|eot|>
+<|assistant|> Hola. ¿En qué puedo ayudarte? <|eot|>
+<|user|> ¿Cuántos segundos tiene un minuto? <|eot|>
+<|assistant|> Un minuto tiene 60 segundos. <|eot|>
+<|user|> ¿Qué dice la vaca? <|eot|>
+<|assistant|> La vaca hace «muu». <|eot|>
+<|user|> hola <|eot|>
+<|assistant|> Estoy bien, gracias. ¿Y tú? <|eot|>
+<|user|> ¿El número 1 es par o impar? <|eot|>
+<|assistant|> El número 1 es impar. <|eot|>
+<|user|> Dime la capital de Chile. <|eot|>
+<|assistant|> Santiago es la capital de Chile. <|eot|>
+<|user|> muchas gracias <|eot|>
+<|assistant|> No hay de qué. <|eot|>
+<|user|> Dime la capital de Alemania. <|eot|>
+<|assistant|> La capital de Alemania es Berlín. <|eot|>
+<|user|> ¿qué tal? <|eot|>
+<|assistant|> Buenos días. ¿Qué necesitas? <|eot|>
+<|user|> ¿Sabes cuál es la capital de Alemania? <|eot|>
+<|assistant|> Berlín es la capital de Alemania. <|eot|>
+<|user|> ¿Cómo se dice «libro» en inglés? <|eot|>
+<|assistant|> «libro» en inglés es «book». <|eot|>
+<|user|> ¿Qué hay dentro de un agujero negro? <|eot|>
+<|assistant|> No lo sé. <|eot|>
+<|user|> ¿Cómo te llamas? <|eot|>
+<|assistant|> Soy un modelo pequeño entrenado con datos sintéticos. <|eot|>
+<|user|> ¿cómo estás? <|eot|>
+<|assistant|> Hola, ¿qué quieres saber? <|eot|>
+<|user|> ¿Cómo hace el caballo? <|eot|>
+<|assistant|> El caballo dice «hiiii». <|eot|>
+<|user|> ¿Cuánto es 10 por 10? <|eot|>
+<|assistant|> 10 por 10 = 100. <|eot|>
+<|user|> Dime la capital de Australia. <|eot|>
+<|assistant|> Canberra es la capital de Australia. <|eot|>
+<|user|> ¿Qué eres? <|eot|>
+<|assistant|> Soy un mini GPT y respondo preguntas sencillas. <|eot|>
+<|user|> Cuenta del 1 al 5. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5. <|eot|>
+<|user|> buenas noches <|eot|>
+<|assistant|> Buenas noches, descansa. <|eot|>
+<|user|> ¿Cuántos días tiene una semana? <|eot|>
+<|assistant|> Una semana tiene 7 días. <|eot|>
+<|user|> ¿Cuántos habitantes tiene la Luna? <|eot|>
+<|assistant|> No puedo responder eso con seguridad. <|eot|>
+<|user|> buenas noches <|eot|>
+<|assistant|> Buenas noches, descansa. <|eot|>
+<|user|> ¿Qué hay dentro de un agujero negro? <|eot|>
+<|assistant|> No lo sé. <|eot|>
+<|user|> ¿El número 25 es par o impar? <|eot|>
+<|assistant|> El número 25 es impar. <|eot|>
+<|user|> ¿Cómo se dice «casa» en inglés? <|eot|>
+<|assistant|> «casa» en inglés es «house». <|eot|>
+<|user|> ¿Cuántos habitantes tiene la Luna? <|eot|>
+<|assistant|> No tengo esa información. <|eot|>
+<|user|> ¿De qué color es la sangre? <|eot|>
+<|assistant|> la sangre es de color rojo. <|eot|>
+<|user|> ¿Con qué letra empieza «gato»? <|eot|>
+<|assistant|> «gato» empieza con la letra g. <|eot|>
+<|user|> ¿Qué hay dentro de un agujero negro? <|eot|>
+<|assistant|> No lo sé. <|eot|>
+<|user|> ¿Cuál es el animal más rápido del universo? <|eot|>
+<|assistant|> No tengo esa información. <|eot|>
+<|user|> buenos días <|eot|>
+<|assistant|> Hola, ¿qué quieres saber? <|eot|>
+<|user|> hola, ¿cómo va todo? <|eot|>
+<|assistant|> Hola, ¿qué quieres saber? <|eot|>
+<|user|> ¿Qué sonido hace la vaca? <|eot|>
+<|assistant|> La vaca hace «muu». <|eot|>
+<|user|> buenos días <|eot|>
+<|assistant|> Buenos días. ¿Qué necesitas? <|eot|>
+<|user|> ¿Cuál es la capital de Egipto? <|eot|>
+<|assistant|> El Cairo es la capital de Egipto. <|eot|>
+<|user|> ¿De qué color es una violeta? <|eot|>
+<|assistant|> una violeta es de color violeta. <|eot|>
+<|user|> muchas gracias <|eot|>
+<|assistant|> No hay de qué. <|eot|>
+<|user|> ¿El número 16 es par o impar? <|eot|>
+<|assistant|> El número 16 es par. <|eot|>
+<|user|> ¿Cuál es la capital de Marte? <|eot|>
+<|assistant|> No puedo responder eso con seguridad. <|eot|>
+<|user|> ¿Con qué letra empieza «ciudad»? <|eot|>
+<|assistant|> «ciudad» empieza con la letra c. <|eot|>
+<|user|> ¿Con qué letra empieza «ventana»? <|eot|>
+<|assistant|> «ventana» empieza con la letra v. <|eot|>
+<|user|> ¿Cómo se dice «amigo» en inglés? <|eot|>
+<|assistant|> «amigo» en inglés es «friend». <|eot|>
+<|user|> ¿Qué hay dentro de un agujero negro? <|eot|>
+<|assistant|> No tengo esa información. <|eot|>
+<|user|> ¿Cuántos minutos tiene una hora? <|eot|>
+<|assistant|> Una hora tiene 60 minutos. <|eot|>
+<|user|> ¿De qué color es la nieve? <|eot|>
+<|assistant|> la nieve es de color blanco. <|eot|>
+<|user|> ¿Qué dice el pájaro? <|eot|>
+<|assistant|> El pájaro hace «pío». <|eot|>
+<|user|> Cuenta del 1 al 7. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5, 6, 7. <|eot|>
+<|user|> ¿Cómo se dice «gracias» en inglés? <|eot|>
+<|assistant|> «gracias» en inglés es «thank you». <|eot|>
+<|user|> ¿Qué sonido hace el pato? <|eot|>
+<|assistant|> El pato dice «cuac». <|eot|>
+<|user|> ¿Cómo se dice «azul» en inglés? <|eot|>
+<|assistant|> «azul» en inglés es «blue». <|eot|>
+<|user|> Dime la capital de Francia. <|eot|>
+<|assistant|> La capital de Francia es París. <|eot|>
+<|user|> ¿Cuántos habitantes tiene la Luna? <|eot|>
+<|assistant|> No tengo esa información. <|eot|>
+<|user|> Cuenta del 1 al 7. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5, 6, 7. <|eot|>
+<|user|> Cuenta del 1 al 8. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5, 6, 7, 8. <|eot|>
+<|user|> ¿El número 22 es par o impar? <|eot|>
+<|assistant|> El número 22 es par. <|eot|>
+<|user|> ¿Cuál es la capital de Marruecos? <|eot|>
+<|assistant|> Rabat es la capital de Marruecos. <|eot|>
+<|user|> ¿Cómo se dice «casa» en inglés? <|eot|>
+<|assistant|> «casa» en inglés es «house». <|eot|>
+<|user|> ¿Cómo se dice «gato» en inglés? <|eot|>
+<|assistant|> «gato» en inglés es «cat». <|eot|>
+<|user|> Dime la capital de Canadá. <|eot|>
+<|assistant|> La capital de Canadá es Ottawa. <|eot|>
+<|user|> ¿De qué color es el chocolate? <|eot|>
+<|assistant|> el chocolate es de color marrón. <|eot|>
+<|user|> ¿Cuánto es 1 + 2? <|eot|>
+<|assistant|> 1 + 2 = 3. <|eot|>
+<|user|> ¿Cuánto es 1 + 11? <|eot|>
+<|assistant|> 1 + 11 = 12. <|eot|>
+<|user|> ¿Cuántos meses tiene un año? <|eot|>
+<|assistant|> Un año tiene 12 meses. <|eot|>
+<|user|> ¿Cuál es el animal más rápido del universo? <|eot|>
+<|assistant|> No lo sé. <|eot|>
+<|user|> ¿Qué puedes hacer? <|eot|>
+<|assistant|> Soy un mini GPT y respondo preguntas sencillas. <|eot|>
+<|user|> ¿El número 26 es par o impar? <|eot|>
+<|assistant|> El número 26 es par. <|eot|>
+<|user|> ¿Cómo se dice «gato» en inglés? <|eot|>
+<|assistant|> «gato» en inglés es «cat». <|eot|>
+<|user|> Suma 13 y 4. <|eot|>
+<|assistant|> El resultado de la suma es 17. <|eot|>
+<|user|> ¿De qué color es la sangre? <|eot|>
+<|assistant|> la sangre es de color rojo. <|eot|>
+<|user|> Cuenta del 1 al 8. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5, 6, 7, 8. <|eot|>
+<|user|> ¿El número 8 es par o impar? <|eot|>
+<|assistant|> El número 8 es par. <|eot|>
+<|user|> ¿Cómo hace la gallina? <|eot|>
+<|assistant|> La gallina dice «cocorocó». <|eot|>
+<|user|> ¿Cuánto es 9 por 10? <|eot|>
+<|assistant|> 9 por 10 = 90. <|eot|>
+<|user|> ¿De qué color es el carbón? <|eot|>
+<|assistant|> el carbón es de color negro. <|eot|>
+<|user|> hola <|eot|>
+<|assistant|> Estoy bien, gracias. ¿Y tú? <|eot|>
+<|user|> gracias <|eot|>
+<|assistant|> De nada. <|eot|>
+<|user|> ¿Cómo te llamas? <|eot|>
+<|assistant|> Me llamo mini GPT y estoy aprendiendo español. <|eot|>
+<|user|> ¿De qué color es el carbón? <|eot|>
+<|assistant|> el carbón es de color negro. <|eot|>
+<|user|> ¿Cómo hace la gallina? <|eot|>
+<|assistant|> La gallina hace «cocorocó». <|eot|>
+<|user|> ¿Cuántos meses tiene un año? <|eot|>
+<|assistant|> Un año tiene 12 meses. <|eot|>
+<|user|> ¿El número 9 es par o impar? <|eot|>
+<|assistant|> El número 9 es impar. <|eot|>
+<|user|> buenas tardes <|eot|>
+<|assistant|> Estoy bien, gracias. ¿Y tú? <|eot|>
+<|user|> ¿Qué sonido hace el gato? <|eot|>
+<|assistant|> El gato hace «miau». <|eot|>
+<|user|> ¿De qué color es el carbón? <|eot|>
+<|assistant|> el carbón es de color negro. <|eot|>
+<|user|> ¿qué tal? <|eot|>
+<|assistant|> Estoy bien, gracias. ¿Y tú? <|eot|>
+<|user|> ¿Cómo se dice «libro» en inglés? <|eot|>
+<|assistant|> «libro» en inglés es «book». <|eot|>
+<|user|> Cuenta del 1 al 9. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5, 6, 7, 8, 9. <|eot|>
+<|user|> ¿El número 20 es par o impar? <|eot|>
+<|assistant|> El número 20 es par. <|eot|>
+<|user|> ¿De qué color es el chocolate? <|eot|>
+<|assistant|> el chocolate es de color marrón. <|eot|>
+<|user|> ¿Sabes cuál es la capital de Grecia? <|eot|>
+<|assistant|> La capital de Grecia es Atenas. <|eot|>
+<|user|> ¿Cuánto es 19 + 13? <|eot|>
+<|assistant|> 19 + 13 = 32. <|eot|>
+<|user|> ¿Cómo se dice «amigo» en inglés? <|eot|>
+<|assistant|> «amigo» en inglés es «friend». <|eot|>
+<|user|> ¿De qué color es el cielo? <|eot|>
+<|assistant|> el cielo es de color azul. <|eot|>
+<|user|> ¿Qué puedes hacer? <|eot|>
+<|assistant|> Puedo saludar, hacer cuentas sencillas y responder datos básicos. <|eot|>
+<|user|> ¿Cuántas horas tiene un día? <|eot|>
+<|assistant|> Un día tiene 24 horas. <|eot|>
+<|user|> ¿Cómo se dice «sí» en inglés? <|eot|>
+<|assistant|> «sí» en inglés es «yes». <|eot|>
+<|user|> ¿cómo estás? <|eot|>
+<|assistant|> Estoy bien, gracias. ¿Y tú? <|eot|>
+<|user|> Dime la capital de Portugal. <|eot|>
+<|assistant|> Lisboa es la capital de Portugal. <|eot|>
+<|user|> ¿Qué puedes hacer? <|eot|>
+<|assistant|> Puedo saludar, hacer cuentas sencillas y responder datos básicos. <|eot|>
+<|user|> ¿Qué desayuna un robot? <|eot|>
+<|assistant|> No puedo responder eso con seguridad. <|eot|>
+<|user|> hasta pronto <|eot|>
+<|assistant|> Hasta pronto. <|eot|>
+<|user|> ¿Qué dice el pato? <|eot|>
+<|assistant|> El pato hace «cuac». <|eot|>
+<|user|> ¿De qué color es el carbón? <|eot|>
+<|assistant|> el carbón es de color negro. <|eot|>
+<|user|> ¿Cuántos días tiene un año? <|eot|>
+<|assistant|> Un año tiene 365 días. <|eot|>
+<|user|> ¿Cómo hace el lobo? <|eot|>
+<|assistant|> El lobo hace «aullido». <|eot|>
+<|user|> ¿Cómo se dice «adiós» en inglés? <|eot|>
+<|assistant|> «adiós» en inglés es «goodbye». <|eot|>
+<|user|> Cuenta del 1 al 7. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5, 6, 7. <|eot|>
+<|user|> Cuenta del 1 al 7. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5, 6, 7. <|eot|>
+<|user|> ¿De qué color es el carbón? <|eot|>
+<|assistant|> el carbón es de color negro. <|eot|>
+<|user|> ¿De qué color es el carbón? <|eot|>
+<|assistant|> el carbón es de color negro. <|eot|>
+<|user|> buenos días <|eot|>
+<|assistant|> Buenos días. ¿Qué necesitas? <|eot|>
+<|user|> ¿El número 4 es par o impar? <|eot|>
+<|assistant|> El número 4 es par. <|eot|>
+<|user|> ¿Cómo se dice «rojo» en inglés? <|eot|>
+<|assistant|> «rojo» en inglés es «red». <|eot|>
+<|user|> ¿Sabes cuál es la capital de Portugal? <|eot|>
+<|assistant|> Lisboa es la capital de Portugal. <|eot|>
+<|user|> ¿De qué color es el carbón? <|eot|>
+<|assistant|> el carbón es de color negro. <|eot|>
+<|user|> hasta pronto <|eot|>
+<|assistant|> Hasta pronto. <|eot|>
+<|user|> ¿Qué dice la vaca? <|eot|>
+<|assistant|> La vaca hace «muu». <|eot|>
+<|user|> ¿Con qué letra empieza «estrella»? <|eot|>
+<|assistant|> «estrella» empieza con la letra e. <|eot|>
+<|user|> Dime la capital de Japón. <|eot|>
+<|assistant|> Tokio es la capital de Japón. <|eot|>
+<|user|> ¿Cuál es la capital de España? <|eot|>
+<|assistant|> Madrid es la capital de España. <|eot|>
+<|user|> ¿De qué color es la nieve? <|eot|>
+<|assistant|> la nieve es de color blanco. <|eot|>
+<|user|> ¿Cuántos segundos tiene un minuto? <|eot|>
+<|assistant|> Un minuto tiene 60 segundos. <|eot|>
+<|user|> ¿Qué puedes hacer? <|eot|>
+<|assistant|> Soy un mini GPT y respondo preguntas sencillas. <|eot|>
+<|user|> Suma 11 y 18. <|eot|>
+<|assistant|> El resultado de la suma es 29. <|eot|>
+<|user|> buenas noches <|eot|>
+<|assistant|> Buenas noches, descansa. <|eot|>
+<|user|> Cuenta del 1 al 9. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5, 6, 7, 8, 9. <|eot|>
+<|user|> ¿Sabes cuál es la capital de China? <|eot|>
+<|assistant|> Pekín es la capital de China. <|eot|>
+<|user|> hola <|eot|>
+<|assistant|> Todo bien. ¿En qué te ayudo? <|eot|>
+<|user|> ¿Qué hay dentro de un agujero negro? <|eot|>
+<|assistant|> No tengo esa información. <|eot|>
+<|user|> ¿Qué puedes hacer? <|eot|>
+<|assistant|> Soy un mini GPT y respondo preguntas sencillas. <|eot|>
+<|user|> ¿Qué sonido hace el lobo? <|eot|>
+<|assistant|> El lobo hace «aullido». <|eot|>
+<|user|> ¿Cuánto es 8 por 10? <|eot|>
+<|assistant|> 8 por 10 = 80. <|eot|>
+<|user|> Cuenta del 1 al 5. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5. <|eot|>
+<|user|> ¿Cómo hace la gallina? <|eot|>
+<|assistant|> La gallina hace «cocorocó». <|eot|>
+<|user|> ¿El número 3 es par o impar? <|eot|>
+<|assistant|> El número 3 es impar. <|eot|>
+<|user|> ¿El número 24 es par o impar? <|eot|>
+<|assistant|> El número 24 es par. <|eot|>
+<|user|> ¿Cuántos segundos tiene un minuto? <|eot|>
+<|assistant|> Un minuto tiene 60 segundos. <|eot|>
+<|user|> ¿Cómo hace la gallina? <|eot|>
+<|assistant|> La gallina hace «cocorocó». <|eot|>
+<|user|> ¿Con qué letra empieza «árbol»? <|eot|>
+<|assistant|> «árbol» empieza con la letra á. <|eot|>
+<|user|> ¿Cuántos días tiene una semana? <|eot|>
+<|assistant|> Una semana tiene 7 días. <|eot|>
+<|user|> ¿Cuál es el animal más rápido del universo? <|eot|>
+<|assistant|> No tengo esa información. <|eot|>
+<|user|> ¿Cómo hace el lobo? <|eot|>
+<|assistant|> El lobo hace «aullido». <|eot|>
+<|user|> ¿Qué eres? <|eot|>
+<|assistant|> Soy un modelo pequeño entrenado con datos sintéticos. <|eot|>
+<|user|> ¿Qué eres? <|eot|>
+<|assistant|> Soy un mini GPT y respondo preguntas sencillas. <|eot|>
+<|user|> Dime la capital de Chile. <|eot|>
+<|assistant|> Santiago es la capital de Chile. <|eot|>
+<|user|> Cuenta del 1 al 8. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5, 6, 7, 8. <|eot|>
+<|user|> Suma 1 y 8. <|eot|>
+<|assistant|> El resultado de la suma es 9. <|eot|>
+<|user|> ¿Cuánto es 5 - 3? <|eot|>
+<|assistant|> 5 - 3 = 2. <|eot|>
+<|user|> hasta pronto <|eot|>
+<|assistant|> Hasta pronto. <|eot|>
+<|user|> ¿Cuál es la capital de Marte? <|eot|>
+<|assistant|> No lo sé. <|eot|>
+<|user|> ¿Cuál es la capital de Colombia? <|eot|>
+<|assistant|> La capital de Colombia es Bogotá. <|eot|>
+<|user|> ¿Cómo se dice «azul» en inglés? <|eot|>
+<|assistant|> «azul» en inglés es «blue». <|eot|>
+<|user|> ¿El número 21 es par o impar? <|eot|>
+<|assistant|> El número 21 es impar. <|eot|>
+<|user|> ¿Cómo se dice «no» en inglés? <|eot|>
+<|assistant|> «no» en inglés es «no». <|eot|>
+<|user|> ¿Cómo te llamas? <|eot|>
+<|assistant|> Soy un modelo pequeño entrenado con datos sintéticos. <|eot|>
+<|user|> Dime la capital de Grecia. <|eot|>
+<|assistant|> La capital de Grecia es Atenas. <|eot|>
+<|user|> Cuenta del 1 al 5. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5. <|eot|>
+<|user|> ¿De qué color es la hierba? <|eot|>
+<|assistant|> la hierba es de color verde. <|eot|>
+<|user|> ¿Cómo se dice «rojo» en inglés? <|eot|>
+<|assistant|> «rojo» en inglés es «red». <|eot|>
+<|user|> ¿Qué desayuna un robot? <|eot|>
+<|assistant|> No puedo responder eso con seguridad. <|eot|>
+<|user|> ¿De qué color es la nieve? <|eot|>
+<|assistant|> la nieve es de color blanco. <|eot|>
+<|user|> ¿Cómo hace el gato? <|eot|>
+<|assistant|> El gato dice «miau». <|eot|>
+<|user|> ¿Con qué letra empieza «escuela»? <|eot|>
+<|assistant|> «escuela» empieza con la letra e. <|eot|>
+<|user|> ¿Sabes cuál es la capital de Argentina? <|eot|>
+<|assistant|> Buenos Aires es la capital de Argentina. <|eot|>
+<|user|> ¿qué tal? <|eot|>
+<|assistant|> Todo bien. ¿En qué te ayudo? <|eot|>
+<|user|> ¿Cuál es la capital de Marte? <|eot|>
+<|assistant|> No lo sé. <|eot|>
+<|user|> ¿Cuál es la capital de Reino Unido? <|eot|>
+<|assistant|> Londres es la capital de Reino Unido. <|eot|>
+<|user|> ¿El número 18 es par o impar? <|eot|>
+<|assistant|> El número 18 es par. <|eot|>
+<|user|> ¿Cuál es la capital de Marte? <|eot|>
+<|assistant|> No puedo responder eso con seguridad. <|eot|>
+<|user|> ¿Cómo se dice «libro» en inglés? <|eot|>
+<|assistant|> «libro» en inglés es «book». <|eot|>
+<|user|> ¿Qué sonido hace la gallina? <|eot|>
+<|assistant|> La gallina dice «cocorocó». <|eot|>
+<|user|> Suma 8 y 14. <|eot|>
+<|assistant|> El resultado de la suma es 22. <|eot|>
+<|user|> ¿Quién eres? <|eot|>
+<|assistant|> Soy un modelo pequeño entrenado con datos sintéticos. <|eot|>
+<|user|> Cuenta del 1 al 4. <|eot|>
+<|assistant|> 1, 2, 3, 4. <|eot|>
+<|user|> ¿qué tal? <|eot|>
+<|assistant|> Hola, ¿qué quieres saber? <|eot|>
+<|user|> ¿Cómo se dice «casa» en inglés? <|eot|>
+<|assistant|> «casa» en inglés es «house». <|eot|>
+<|user|> ¿Cómo se dice «sol» en inglés? <|eot|>
+<|assistant|> «sol» en inglés es «sun». <|eot|>
+<|user|> ¿Qué sonido hace el pato? <|eot|>
+<|assistant|> El pato dice «cuac». <|eot|>
+<|user|> muchas gracias <|eot|>
+<|assistant|> No hay de qué. <|eot|>
+<|user|> ¿Cómo hace la rana? <|eot|>
+<|assistant|> La rana dice «croac». <|eot|>
+<|user|> ¿Cuál es la capital de Marte? <|eot|>
+<|assistant|> No tengo esa información. <|eot|>
+<|user|> ¿Cómo hace el gato? <|eot|>
+<|assistant|> El gato hace «miau». <|eot|>
+<|user|> adiós <|eot|>
+<|assistant|> Hasta luego. <|eot|>
+<|user|> Cuenta del 1 al 4. <|eot|>
+<|assistant|> 1, 2, 3, 4. <|eot|>
+<|user|> ¿Cuánto es 11 por 5? <|eot|>
+<|assistant|> 11 por 5 = 55. <|eot|>
+<|user|> ¿Qué dice la rana? <|eot|>
+<|assistant|> La rana dice «croac». <|eot|>
+<|user|> adiós <|eot|>
+<|assistant|> Hasta luego. <|eot|>
+<|user|> ¿Cuántos segundos tiene un minuto? <|eot|>
+<|assistant|> Un minuto tiene 60 segundos. <|eot|>
+<|user|> ¿Qué dice la vaca? <|eot|>
+<|assistant|> La vaca dice «muu». <|eot|>
+<|user|> ¿Cómo se dice «gato» en inglés? <|eot|>
+<|assistant|> «gato» en inglés es «cat». <|eot|>
+<|user|> buenas noches <|eot|>
+<|assistant|> Buenas noches, descansa. <|eot|>
+<|user|> ¿Cómo se dice «no» en inglés? <|eot|>
+<|assistant|> «no» en inglés es «no». <|eot|>
+<|user|> ¿Cómo se dice «sol» en inglés? <|eot|>
+<|assistant|> «sol» en inglés es «sun». <|eot|>
+<|user|> buenas tardes <|eot|>
+<|assistant|> Hola, ¿qué quieres saber? <|eot|>
+<|user|> ¿Cómo se dice «casa» en inglés? <|eot|>
+<|assistant|> «casa» en inglés es «house». <|eot|>
+<|user|> ¿Cómo se dice «adiós» en inglés? <|eot|>
+<|assistant|> «adiós» en inglés es «goodbye». <|eot|>
+<|user|> ¿Con qué letra empieza «estrella»? <|eot|>
+<|assistant|> «estrella» empieza con la letra e. <|eot|>
+<|user|> ¿Cuál es la capital de Marte? <|eot|>
+<|assistant|> No lo sé. <|eot|>
+<|user|> ¿Cuántos habitantes tiene la Luna? <|eot|>
+<|assistant|> No lo sé. <|eot|>
+<|user|> ¿Cuántos días tiene un año? <|eot|>
+<|assistant|> Un año tiene 365 días. <|eot|>
+<|user|> ¿Qué sonido hace la rana? <|eot|>
+<|assistant|> La rana hace «croac». <|eot|>
+<|user|> ¿Sabes cuál es la capital de Colombia? <|eot|>
+<|assistant|> Bogotá es la capital de Colombia. <|eot|>
+<|user|> ¿De qué color es el cielo? <|eot|>
+<|assistant|> el cielo es de color azul. <|eot|>
+<|user|> ¿Qué sonido hace el pájaro? <|eot|>
+<|assistant|> El pájaro dice «pío». <|eot|>
+<|user|> ¿Cuál es la capital de Marte? <|eot|>
+<|assistant|> No tengo esa información. <|eot|>
+<|user|> ¿cómo estás? <|eot|>
+<|assistant|> Todo bien. ¿En qué te ayudo? <|eot|>
+<|user|> ¿De qué color es el sol? <|eot|>
+<|assistant|> el sol es de color amarillo. <|eot|>
+<|user|> ¿qué tal? <|eot|>
+<|assistant|> Buenos días. ¿Qué necesitas? <|eot|>
+<|user|> ¿El número 19 es par o impar? <|eot|>
+<|assistant|> El número 19 es impar. <|eot|>
+<|user|> ¿Qué hay dentro de un agujero negro? <|eot|>
+<|assistant|> No lo sé. <|eot|>
+<|user|> Cuenta del 1 al 3. <|eot|>
+<|assistant|> 1, 2, 3. <|eot|>
+<|user|> Cuenta del 1 al 6. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5, 6. <|eot|>
+<|user|> ¿Cuántos habitantes tiene la Luna? <|eot|>
+<|assistant|> No puedo responder eso con seguridad. <|eot|>
+<|user|> Cuenta del 1 al 6. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5, 6. <|eot|>
+<|user|> gracias <|eot|>
+<|assistant|> De nada. <|eot|>
+<|user|> ¿Qué eres? <|eot|>
+<|assistant|> Puedo saludar, hacer cuentas sencillas y responder datos básicos. <|eot|>
+<|user|> ¿Cuánto es 7 - 4? <|eot|>
+<|assistant|> 7 - 4 = 3. <|eot|>
+<|user|> ¿Cómo te llamas? <|eot|>
+<|assistant|> Soy un mini GPT y respondo preguntas sencillas. <|eot|>
+<|user|> ¿Cuántos habitantes tiene la Luna? <|eot|>
+<|assistant|> No tengo esa información. <|eot|>
+<|user|> ¿Qué sonido hace el pájaro? <|eot|>
+<|assistant|> El pájaro hace «pío». <|eot|>
+<|user|> ¿Cómo se dice «agua» en inglés? <|eot|>
+<|assistant|> «agua» en inglés es «water». <|eot|>
+<|user|> ¿Qué sonido hace la oveja? <|eot|>
+<|assistant|> La oveja hace «bee». <|eot|>
+<|user|> ¿Qué puedes hacer? <|eot|>
+<|assistant|> Soy un mini GPT y respondo preguntas sencillas. <|eot|>
+<|user|> ¿De qué color es el chocolate? <|eot|>
+<|assistant|> el chocolate es de color marrón. <|eot|>
+<|user|> ¿Cuánto es 15 - 2? <|eot|>
+<|assistant|> 15 - 2 = 13. <|eot|>
+<|user|> ¿Cuál es el animal más rápido del universo? <|eot|>
+<|assistant|> No lo sé. <|eot|>
+<|user|> ¿Qué hay dentro de un agujero negro? <|eot|>
+<|assistant|> No tengo esa información. <|eot|>
+<|user|> ¿Cómo se dice «amigo» en inglés? <|eot|>
+<|assistant|> «amigo» en inglés es «friend». <|eot|>
+<|user|> ¿Cómo hace el perro? <|eot|>
+<|assistant|> El perro dice «guau». <|eot|>
+<|user|> Dime la capital de Brasil. <|eot|>
+<|assistant|> La capital de Brasil es Brasilia. <|eot|>
+<|user|> buenas noches <|eot|>
+<|assistant|> Buenas noches, descansa. <|eot|>
+<|user|> ¿Qué hay dentro de un agujero negro? <|eot|>
+<|assistant|> No tengo esa información. <|eot|>
+<|user|> ¿Cuánto es 6 - 3? <|eot|>
+<|assistant|> 6 - 3 = 3. <|eot|>
+<|user|> ¿Cuánto es 18 - 1? <|eot|>
+<|assistant|> 18 - 1 = 17. <|eot|>
+<|user|> buenas noches <|eot|>
+<|assistant|> Buenas noches, descansa. <|eot|>
+<|user|> ¿Cuántas horas tiene un día? <|eot|>
+<|assistant|> Un día tiene 24 horas. <|eot|>
+<|user|> hola, ¿cómo va todo? <|eot|>
+<|assistant|> Todo bien. ¿En qué te ayudo? <|eot|>
+<|user|> ¿De qué color es la hierba? <|eot|>
+<|assistant|> la hierba es de color verde. <|eot|>
+<|user|> ¿Cómo se dice «sol» en inglés? <|eot|>
+<|assistant|> «sol» en inglés es «sun». <|eot|>
+<|user|> ¿El número 9 es par o impar? <|eot|>
+<|assistant|> El número 9 es impar. <|eot|>
+<|user|> ¿Cuánto es 11 + 15? <|eot|>
+<|assistant|> 11 + 15 = 26. <|eot|>
+<|user|> ¿Con qué letra empieza «jardín»? <|eot|>
+<|assistant|> «jardín» empieza con la letra j. <|eot|>
+<|user|> muchas gracias <|eot|>
+<|assistant|> No hay de qué. <|eot|>
+<|user|> ¿Cómo se dice «amigo» en inglés? <|eot|>
+<|assistant|> «amigo» en inglés es «friend». <|eot|>
+<|user|> Cuenta del 1 al 6. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5, 6. <|eot|>
+<|user|> Cuenta del 1 al 3. <|eot|>
+<|assistant|> 1, 2, 3. <|eot|>
+<|user|> muchas gracias <|eot|>
+<|assistant|> No hay de qué. <|eot|>
+<|user|> ¿Cuánto es 3 por 6? <|eot|>
+<|assistant|> 3 por 6 = 18. <|eot|>
+<|user|> ¿Qué puedes hacer? <|eot|>
+<|assistant|> Puedo saludar, hacer cuentas sencillas y responder datos básicos. <|eot|>
+<|user|> ¿Qué sonido hace la rana? <|eot|>
+<|assistant|> La rana dice «croac». <|eot|>
+<|user|> ¿Qué puedes hacer? <|eot|>
+<|assistant|> Soy un modelo pequeño entrenado con datos sintéticos. <|eot|>
+<|user|> ¿Qué eres? <|eot|>
+<|assistant|> Puedo saludar, hacer cuentas sencillas y responder datos básicos. <|eot|>
+<|user|> ¿Cómo hace el caballo? <|eot|>
+<|assistant|> El caballo hace «hiiii». <|eot|>
+<|user|> ¿Cómo te llamas? <|eot|>
+<|assistant|> Soy un mini GPT y respondo preguntas sencillas. <|eot|>
+<|user|> ¿Cómo se dice «no» en inglés? <|eot|>
+<|assistant|> «no» en inglés es «no». <|eot|>
+<|user|> ¿Cómo se dice «adiós» en inglés? <|eot|>
+<|assistant|> «adiós» en inglés es «goodbye». <|eot|>
+<|user|> ¿Cuánto es 9 por 1? <|eot|>
+<|assistant|> 9 por 1 = 9. <|eot|>
+<|user|> ¿Cómo se dice «agua» en inglés? <|eot|>
+<|assistant|> «agua» en inglés es «water». <|eot|>
+<|user|> ¿Con qué letra empieza «silla»? <|eot|>
+<|assistant|> «silla» empieza con la letra s. <|eot|>
+<|user|> hola <|eot|>
+<|assistant|> Hola. ¿En qué puedo ayudarte? <|eot|>
+<|user|> ¿Qué dice el perro? <|eot|>
+<|assistant|> El perro hace «guau». <|eot|>
+<|user|> ¿Cuánto es 1 - 1? <|eot|>
+<|assistant|> 1 - 1 = 0. <|eot|>
+<|user|> ¿Cómo se dice «perro» en inglés? <|eot|>
+<|assistant|> «perro» en inglés es «dog». <|eot|>
+<|user|> ¿Qué hay dentro de un agujero negro? <|eot|>
+<|assistant|> No puedo responder eso con seguridad. <|eot|>
+<|user|> Cuenta del 1 al 4. <|eot|>
+<|assistant|> 1, 2, 3, 4. <|eot|>
+<|user|> ¿Qué dice el perro? <|eot|>
+<|assistant|> El perro dice «guau». <|eot|>
+<|user|> ¿El número 3 es par o impar? <|eot|>
+<|assistant|> El número 3 es impar. <|eot|>
+<|user|> ¿Cuál es la capital de Grecia? <|eot|>
+<|assistant|> Atenas es la capital de Grecia. <|eot|>
+<|user|> Dime la capital de Reino Unido. <|eot|>
+<|assistant|> La capital de Reino Unido es Londres. <|eot|>
+<|user|> ¿De qué color es el sol? <|eot|>
+<|assistant|> el sol es de color amarillo. <|eot|>
+<|user|> ¿Qué hay dentro de un agujero negro? <|eot|>
+<|assistant|> No lo sé. <|eot|>
+<|user|> ¿Qué eres? <|eot|>
+<|assistant|> Me llamo mini GPT y estoy aprendiendo español. <|eot|>
+<|user|> ¿Qué hay dentro de un agujero negro? <|eot|>
+<|assistant|> No tengo esa información. <|eot|>
+<|user|> ¿Quién eres? <|eot|>
+<|assistant|> Soy un mini GPT y respondo preguntas sencillas. <|eot|>
+<|user|> ¿De qué color es la nieve? <|eot|>
+<|assistant|> la nieve es de color blanco. <|eot|>
+<|user|> ¿Cómo se dice «casa» en inglés? <|eot|>
+<|assistant|> «casa» en inglés es «house». <|eot|>
+<|user|> ¿Qué dice el gato? <|eot|>
+<|assistant|> El gato dice «miau». <|eot|>
+<|user|> buenas noches <|eot|>
+<|assistant|> Buenas noches, descansa. <|eot|>
+<|user|> ¿qué tal? <|eot|>
+<|assistant|> Todo bien. ¿En qué te ayudo? <|eot|>
+<|user|> ¿Cómo hace la rana? <|eot|>
+<|assistant|> La rana hace «croac». <|eot|>
+<|user|> ¿De qué color es el cielo? <|eot|>
+<|assistant|> el cielo es de color azul. <|eot|>
+<|user|> ¿De qué color es el carbón? <|eot|>
+<|assistant|> el carbón es de color negro. <|eot|>
+<|user|> ¿Cuál es la capital de Brasil? <|eot|>
+<|assistant|> Brasilia es la capital de Brasil. <|eot|>
+<|user|> ¿Qué desayuna un robot? <|eot|>
+<|assistant|> No puedo responder eso con seguridad. <|eot|>
+<|user|> ¿Con qué letra empieza «libro»? <|eot|>
+<|assistant|> «libro» empieza con la letra l. <|eot|>
+<|user|> ¿Cómo te llamas? <|eot|>
+<|assistant|> Me llamo mini GPT y estoy aprendiendo español. <|eot|>
+<|user|> Cuenta del 1 al 5. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5. <|eot|>
+<|user|> ¿Cuántos habitantes tiene la Luna? <|eot|>
+<|assistant|> No lo sé. <|eot|>
+<|user|> ¿El número 21 es par o impar? <|eot|>
+<|assistant|> El número 21 es impar. <|eot|>
+<|user|> ¿Cómo se dice «perro» en inglés? <|eot|>
+<|assistant|> «perro» en inglés es «dog». <|eot|>
+<|user|> ¿El número 29 es par o impar? <|eot|>
+<|assistant|> El número 29 es impar. <|eot|>
+<|user|> ¿Con qué letra empieza «camino»? <|eot|>
+<|assistant|> «camino» empieza con la letra c. <|eot|>
+<|user|> ¿Qué sonido hace el gato? <|eot|>
+<|assistant|> El gato dice «miau». <|eot|>
+<|user|> hola <|eot|>
+<|assistant|> Todo bien. ¿En qué te ayudo? <|eot|>
+<|user|> ¿Cómo hace la oveja? <|eot|>
+<|assistant|> La oveja hace «bee». <|eot|>
+<|user|> ¿Cuántos días tiene una semana? <|eot|>
+<|assistant|> Una semana tiene 7 días. <|eot|>
+<|user|> ¿Quién eres? <|eot|>
+<|assistant|> Soy un modelo pequeño entrenado con datos sintéticos. <|eot|>
+<|user|> ¿Cuánto es 3 + 13? <|eot|>
+<|assistant|> 3 + 13 = 16. <|eot|>
+<|user|> ¿De qué color es el sol? <|eot|>
+<|assistant|> el sol es de color amarillo. <|eot|>
+<|user|> Cuenta del 1 al 6. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5, 6. <|eot|>
+<|user|> ¿De qué color es el sol? <|eot|>
+<|assistant|> el sol es de color amarillo. <|eot|>
+<|user|> ¿Cuántos minutos tiene una hora? <|eot|>
+<|assistant|> Una hora tiene 60 minutos. <|eot|>
+<|user|> buenos días <|eot|>
+<|assistant|> Todo bien. ¿En qué te ayudo? <|eot|>
+<|user|> ¿De qué color es el sol? <|eot|>
+<|assistant|> el sol es de color amarillo. <|eot|>
+<|user|> ¿qué tal? <|eot|>
+<|assistant|> Buenos días. ¿Qué necesitas? <|eot|>
+<|user|> ¿Con qué letra empieza «ventana»? <|eot|>
+<|assistant|> «ventana» empieza con la letra v. <|eot|>
+<|user|> ¿Qué sonido hace el gato? <|eot|>
+<|assistant|> El gato dice «miau». <|eot|>
+<|user|> ¿De qué color es el carbón? <|eot|>
+<|assistant|> el carbón es de color negro. <|eot|>
+<|user|> buenas tardes <|eot|>
+<|assistant|> Hola, ¿qué quieres saber? <|eot|>
+<|user|> ¿Quién eres? <|eot|>
+<|assistant|> Soy un mini GPT y respondo preguntas sencillas. <|eot|>
+<|user|> ¿Qué dice la oveja? <|eot|>
+<|assistant|> La oveja hace «bee». <|eot|>
+<|user|> buenas noches <|eot|>
+<|assistant|> Buenas noches, descansa. <|eot|>
+<|user|> ¿Cómo te llamas? <|eot|>
+<|assistant|> Soy un mini GPT y respondo preguntas sencillas. <|eot|>
+<|user|> ¿De qué color es la hierba? <|eot|>
+<|assistant|> la hierba es de color verde. <|eot|>
+<|user|> ¿El número 1 es par o impar? <|eot|>
+<|assistant|> El número 1 es impar. <|eot|>
+<|user|> ¿Qué dice la rana? <|eot|>
+<|assistant|> La rana dice «croac». <|eot|>
+<|user|> ¿cómo estás? <|eot|>
+<|assistant|> Estoy bien, gracias. ¿Y tú? <|eot|>
+<|user|> gracias <|eot|>
+<|assistant|> De nada. <|eot|>
+<|user|> ¿Cómo se dice «amigo» en inglés? <|eot|>
+<|assistant|> «amigo» en inglés es «friend». <|eot|>
+<|user|> Cuenta del 1 al 8. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5, 6, 7, 8. <|eot|>
+<|user|> ¿Con qué letra empieza «nube»? <|eot|>
+<|assistant|> «nube» empieza con la letra n. <|eot|>
+<|user|> ¿Con qué letra empieza «estrella»? <|eot|>
+<|assistant|> «estrella» empieza con la letra e. <|eot|>
+<|user|> Dime la capital de España. <|eot|>
+<|assistant|> La capital de España es Madrid. <|eot|>
+<|user|> Dime la capital de Brasil. <|eot|>
+<|assistant|> La capital de Brasil es Brasilia. <|eot|>
+<|user|> ¿Sabes cuál es la capital de Argentina? <|eot|>
+<|assistant|> Buenos Aires es la capital de Argentina. <|eot|>
+<|user|> buenas tardes <|eot|>
+<|assistant|> Estoy bien, gracias. ¿Y tú? <|eot|>
+<|user|> ¿Cómo se dice «libro» en inglés? <|eot|>
+<|assistant|> «libro» en inglés es «book». <|eot|>
+<|user|> adiós <|eot|>
+<|assistant|> Hasta luego. <|eot|>
+<|user|> ¿Cuántos habitantes tiene la Luna? <|eot|>
+<|assistant|> No lo sé. <|eot|>
+<|user|> Cuenta del 1 al 3. <|eot|>
+<|assistant|> 1, 2, 3. <|eot|>
+<|user|> ¿Cómo hace el pato? <|eot|>
+<|assistant|> El pato hace «cuac». <|eot|>
+<|user|> ¿qué tal? <|eot|>
+<|assistant|> Todo bien. ¿En qué te ayudo? <|eot|>
+<|user|> ¿Qué desayuna un robot? <|eot|>
+<|assistant|> No tengo esa información. <|eot|>
+<|user|> buenos días <|eot|>
+<|assistant|> Hola. ¿En qué puedo ayudarte? <|eot|>
+<|user|> Cuenta del 1 al 6. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5, 6. <|eot|>
+<|user|> ¿Con qué letra empieza «música»? <|eot|>
+<|assistant|> «música» empieza con la letra m. <|eot|>
+<|user|> buenas tardes <|eot|>
+<|assistant|> Estoy bien, gracias. ¿Y tú? <|eot|>
+<|user|> buenos días <|eot|>
+<|assistant|> Estoy bien, gracias. ¿Y tú? <|eot|>
+<|user|> Cuenta del 1 al 8. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5, 6, 7, 8. <|eot|>
+<|user|> ¿Cuál es la capital de Reino Unido? <|eot|>
+<|assistant|> Londres es la capital de Reino Unido. <|eot|>
+<|user|> ¿Cómo se dice «rojo» en inglés? <|eot|>
+<|assistant|> «rojo» en inglés es «red». <|eot|>
+<|user|> ¿Con qué letra empieza «escuela»? <|eot|>
+<|assistant|> «escuela» empieza con la letra e. <|eot|>
+<|user|> ¿Cómo se dice «amigo» en inglés? <|eot|>
+<|assistant|> «amigo» en inglés es «friend». <|eot|>
+<|user|> ¿Cuál es el animal más rápido del universo? <|eot|>
+<|assistant|> No lo sé. <|eot|>
+<|user|> ¿Cuál es la capital de Italia? <|eot|>
+<|assistant|> Roma es la capital de Italia. <|eot|>
+<|user|> ¿Cómo se dice «no» en inglés? <|eot|>
+<|assistant|> «no» en inglés es «no». <|eot|>
+<|user|> ¿Con qué letra empieza «libro»? <|eot|>
+<|assistant|> «libro» empieza con la letra l. <|eot|>
+<|user|> ¿El número 25 es par o impar? <|eot|>
+<|assistant|> El número 25 es impar. <|eot|>
+<|user|> ¿Qué eres? <|eot|>
+<|assistant|> Me llamo mini GPT y estoy aprendiendo español. <|eot|>
+<|user|> buenas noches <|eot|>
+<|assistant|> Buenas noches, descansa. <|eot|>
+<|user|> Dime la capital de India. <|eot|>
+<|assistant|> Nueva Delhi es la capital de India. <|eot|>
+<|user|> ¿Cuántos días tiene un año? <|eot|>
+<|assistant|> Un año tiene 365 días. <|eot|>
+<|user|> ¿Cuántos días tiene una semana? <|eot|>
+<|assistant|> Una semana tiene 7 días. <|eot|>
+<|user|> Dime la capital de Japón. <|eot|>
+<|assistant|> La capital de Japón es Tokio. <|eot|>
+<|user|> ¿Cómo se dice «luna» en inglés? <|eot|>
+<|assistant|> «luna» en inglés es «moon». <|eot|>
+<|user|> ¿Con qué letra empieza «perro»? <|eot|>
+<|assistant|> «perro» empieza con la letra p. <|eot|>
+<|user|> ¿Cuántos habitantes tiene la Luna? <|eot|>
+<|assistant|> No tengo esa información. <|eot|>
+<|user|> ¿Cómo hace el perro? <|eot|>
+<|assistant|> El perro hace «guau». <|eot|>
+<|user|> ¿De qué color es el cielo? <|eot|>
+<|assistant|> el cielo es de color azul. <|eot|>
+<|user|> ¿Qué dice la oveja? <|eot|>
+<|assistant|> La oveja hace «bee». <|eot|>
+<|user|> buenas tardes <|eot|>
+<|assistant|> Todo bien. ¿En qué te ayudo? <|eot|>
+<|user|> ¿Qué sonido hace el perro? <|eot|>
+<|assistant|> El perro hace «guau». <|eot|>
+<|user|> ¿De qué color es el chocolate? <|eot|>
+<|assistant|> el chocolate es de color marrón. <|eot|>
+<|user|> ¿Cuánto es 5 - 2? <|eot|>
+<|assistant|> 5 - 2 = 3. <|eot|>
+<|user|> ¿Quién eres? <|eot|>
+<|assistant|> Me llamo mini GPT y estoy aprendiendo español. <|eot|>
+<|user|> ¿Cuánto es 9 por 3? <|eot|>
+<|assistant|> 9 por 3 = 27. <|eot|>
+<|user|> Dime la capital de México. <|eot|>
+<|assistant|> Ciudad de México es la capital de México. <|eot|>
+<|user|> ¿Con qué letra empieza «estrella»? <|eot|>
+<|assistant|> «estrella» empieza con la letra e. <|eot|>
+<|user|> buenos días <|eot|>
+<|assistant|> Hola, ¿qué quieres saber? <|eot|>
+<|user|> ¿El número 5 es par o impar? <|eot|>
+<|assistant|> El número 5 es impar. <|eot|>
+<|user|> ¿De qué color es el sol? <|eot|>
+<|assistant|> el sol es de color amarillo. <|eot|>
+<|user|> ¿Sabes cuál es la capital de India? <|eot|>
+<|assistant|> La capital de India es Nueva Delhi. <|eot|>
+<|user|> ¿Qué puedes hacer? <|eot|>
+<|assistant|> Me llamo mini GPT y estoy aprendiendo español. <|eot|>
+<|user|> ¿Qué dice el gato? <|eot|>
+<|assistant|> El gato hace «miau». <|eot|>
+<|user|> ¿Cómo se dice «libro» en inglés? <|eot|>
+<|assistant|> «libro» en inglés es «book». <|eot|>
+<|user|> ¿Con qué letra empieza «libro»? <|eot|>
+<|assistant|> «libro» empieza con la letra l. <|eot|>
+<|user|> ¿Cuál es la capital de Italia? <|eot|>
+<|assistant|> La capital de Italia es Roma. <|eot|>
+<|user|> ¿Cuánto es 11 + 1? <|eot|>
+<|assistant|> 11 + 1 = 12. <|eot|>
+<|user|> ¿Cómo hace la oveja? <|eot|>
+<|assistant|> La oveja dice «bee». <|eot|>
+<|user|> ¿El número 2 es par o impar? <|eot|>
+<|assistant|> El número 2 es par. <|eot|>
+<|user|> Cuenta del 1 al 6. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5, 6. <|eot|>
+<|user|> ¿Con qué letra empieza «familia»? <|eot|>
+<|assistant|> «familia» empieza con la letra f. <|eot|>
+<|user|> ¿Qué hay dentro de un agujero negro? <|eot|>
+<|assistant|> No lo sé. <|eot|>
+<|user|> ¿Cuál es el animal más rápido del universo? <|eot|>
+<|assistant|> No tengo esa información. <|eot|>
+<|user|> hasta pronto <|eot|>
+<|assistant|> Hasta pronto. <|eot|>
+<|user|> ¿Cómo hace el lobo? <|eot|>
+<|assistant|> El lobo hace «aullido». <|eot|>
+<|user|> ¿Quién eres? <|eot|>
+<|assistant|> Puedo saludar, hacer cuentas sencillas y responder datos básicos. <|eot|>
+<|user|> hasta pronto <|eot|>
+<|assistant|> Hasta pronto. <|eot|>
+<|user|> buenas noches <|eot|>
+<|assistant|> Buenas noches, descansa. <|eot|>
+<|user|> adiós <|eot|>
+<|assistant|> Hasta luego. <|eot|>
+<|user|> ¿De qué color es la hierba? <|eot|>
+<|assistant|> la hierba es de color verde. <|eot|>
+<|user|> ¿Cuál es el animal más rápido del universo? <|eot|>
+<|assistant|> No puedo responder eso con seguridad. <|eot|>
+<|user|> ¿Quién eres? <|eot|>
+<|assistant|> Puedo saludar, hacer cuentas sencillas y responder datos básicos. <|eot|>
+<|user|> ¿Cuántos habitantes tiene la Luna? <|eot|>
+<|assistant|> No lo sé. <|eot|>
+<|user|> ¿De qué color es el carbón? <|eot|>
+<|assistant|> el carbón es de color negro. <|eot|>
+<|user|> Cuenta del 1 al 8. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5, 6, 7, 8. <|eot|>
+<|user|> ¿Cuál es el animal más rápido del universo? <|eot|>
+<|assistant|> No puedo responder eso con seguridad. <|eot|>
+<|user|> ¿Qué sonido hace el perro? <|eot|>
+<|assistant|> El perro dice «guau». <|eot|>
+<|user|> ¿Cuál es el animal más rápido del universo? <|eot|>
+<|assistant|> No puedo responder eso con seguridad. <|eot|>
+<|user|> ¿El número 7 es par o impar? <|eot|>
+<|assistant|> El número 7 es impar. <|eot|>
+<|user|> ¿Cuántas horas tiene un día? <|eot|>
+<|assistant|> Un día tiene 24 horas. <|eot|>
+<|user|> ¿De qué color es la nieve? <|eot|>
+<|assistant|> la nieve es de color blanco. <|eot|>
+<|user|> ¿De qué color es la nieve? <|eot|>
+<|assistant|> la nieve es de color blanco. <|eot|>
+<|user|> ¿De qué color es la sangre? <|eot|>
+<|assistant|> la sangre es de color rojo. <|eot|>
+<|user|> ¿Cuánto es 17 + 14? <|eot|>
+<|assistant|> 17 + 14 = 31. <|eot|>
+<|user|> ¿Cuánto es 6 por 9? <|eot|>
+<|assistant|> 6 por 9 = 54. <|eot|>
+<|user|> ¿Qué desayuna un robot? <|eot|>
+<|assistant|> No puedo responder eso con seguridad. <|eot|>
+<|user|> ¿Cuál es la capital de Marte? <|eot|>
+<|assistant|> No puedo responder eso con seguridad. <|eot|>
+<|user|> ¿Qué sonido hace el perro? <|eot|>
+<|assistant|> El perro dice «guau». <|eot|>
+<|user|> ¿Cuál es la capital de Reino Unido? <|eot|>
+<|assistant|> Londres es la capital de Reino Unido. <|eot|>
+<|user|> ¿Quién eres? <|eot|>
+<|assistant|> Puedo saludar, hacer cuentas sencillas y responder datos básicos. <|eot|>
+<|user|> ¿Cómo se dice «adiós» en inglés? <|eot|>
+<|assistant|> «adiós» en inglés es «goodbye». <|eot|>
+<|user|> ¿Cómo se dice «casa» en inglés? <|eot|>
+<|assistant|> «casa» en inglés es «house». <|eot|>
+<|user|> buenas tardes <|eot|>
+<|assistant|> Buenos días. ¿Qué necesitas? <|eot|>
+<|user|> Cuenta del 1 al 3. <|eot|>
+<|assistant|> 1, 2, 3. <|eot|>
+<|user|> gracias <|eot|>
+<|assistant|> De nada. <|eot|>
+<|user|> ¿Qué puedes hacer? <|eot|>
+<|assistant|> Soy un mini GPT y respondo preguntas sencillas. <|eot|>
+<|user|> adiós <|eot|>
+<|assistant|> Hasta luego. <|eot|>
+<|user|> ¿Cuántos segundos tiene un minuto? <|eot|>
+<|assistant|> Un minuto tiene 60 segundos. <|eot|>
+<|user|> ¿Sabes cuál es la capital de Japón? <|eot|>
+<|assistant|> La capital de Japón es Tokio. <|eot|>
+<|user|> Cuenta del 1 al 8. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5, 6, 7, 8. <|eot|>
+<|user|> Cuenta del 1 al 9. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5, 6, 7, 8, 9. <|eot|>
+<|user|> ¿Sabes cuál es la capital de Italia? <|eot|>
+<|assistant|> La capital de Italia es Roma. <|eot|>
+<|user|> Suma 16 y 8. <|eot|>
+<|assistant|> El resultado de la suma es 24. <|eot|>
+<|user|> hola, ¿cómo va todo? <|eot|>
+<|assistant|> Buenos días. ¿Qué necesitas? <|eot|>
+<|user|> ¿Con qué letra empieza «casa»? <|eot|>
+<|assistant|> «casa» empieza con la letra c. <|eot|>
+<|user|> ¿Qué sonido hace la rana? <|eot|>
+<|assistant|> La rana dice «croac». <|eot|>
+<|user|> ¿Cuántos meses tiene un año? <|eot|>
+<|assistant|> Un año tiene 12 meses. <|eot|>
+<|user|> ¿Sabes cuál es la capital de Perú? <|eot|>
+<|assistant|> La capital de Perú es Lima. <|eot|>
+<|user|> ¿De qué color es el cielo? <|eot|>
+<|assistant|> el cielo es de color azul. <|eot|>
+<|user|> ¿Qué sonido hace la gallina? <|eot|>
+<|assistant|> La gallina dice «cocorocó». <|eot|>
+<|user|> ¿De qué color es una violeta? <|eot|>
+<|assistant|> una violeta es de color violeta. <|eot|>
+<|user|> buenas noches <|eot|>
+<|assistant|> Buenas noches, descansa. <|eot|>
+<|user|> ¿Cuántas horas tiene un día? <|eot|>
+<|assistant|> Un día tiene 24 horas. <|eot|>
+<|user|> muchas gracias <|eot|>
+<|assistant|> No hay de qué. <|eot|>
+<|user|> ¿Cuántos meses tiene un año? <|eot|>
+<|assistant|> Un año tiene 12 meses. <|eot|>
+<|user|> ¿cómo estás? <|eot|>
+<|assistant|> Todo bien. ¿En qué te ayudo? <|eot|>
+<|user|> hasta pronto <|eot|>
+<|assistant|> Hasta pronto. <|eot|>
+<|user|> ¿De qué color es la nieve? <|eot|>
+<|assistant|> la nieve es de color blanco. <|eot|>
+<|user|> ¿Qué puedes hacer? <|eot|>
+<|assistant|> Me llamo mini GPT y estoy aprendiendo español. <|eot|>
+<|user|> ¿De qué color es una naranja? <|eot|>
+<|assistant|> una naranja es de color naranja. <|eot|>
+<|user|> ¿Qué hay dentro de un agujero negro? <|eot|>
+<|assistant|> No tengo esa información. <|eot|>
+<|user|> ¿Qué desayuna un robot? <|eot|>
+<|assistant|> No puedo responder eso con seguridad. <|eot|>
+<|user|> ¿El número 5 es par o impar? <|eot|>
+<|assistant|> El número 5 es impar. <|eot|>
+<|user|> ¿De qué color es la nieve? <|eot|>
+<|assistant|> la nieve es de color blanco. <|eot|>
+<|user|> ¿qué tal? <|eot|>
+<|assistant|> Estoy bien, gracias. ¿Y tú? <|eot|>
+<|user|> ¿Cuál es la capital de Japón? <|eot|>
+<|assistant|> La capital de Japón es Tokio. <|eot|>
+<|user|> ¿Qué hay dentro de un agujero negro? <|eot|>
+<|assistant|> No lo sé. <|eot|>
+<|user|> ¿El número 10 es par o impar? <|eot|>
+<|assistant|> El número 10 es par. <|eot|>
+<|user|> ¿Cuál es la capital de Canadá? <|eot|>
+<|assistant|> La capital de Canadá es Ottawa. <|eot|>
+<|user|> buenas noches <|eot|>
+<|assistant|> Buenas noches, descansa. <|eot|>
+<|user|> ¿De qué color es el sol? <|eot|>
+<|assistant|> el sol es de color amarillo. <|eot|>
+<|user|> ¿El número 20 es par o impar? <|eot|>
+<|assistant|> El número 20 es par. <|eot|>
+<|user|> ¿Cuánto es 14 + 7? <|eot|>
+<|assistant|> 14 + 7 = 21. <|eot|>
+<|user|> ¿Cómo se dice «sol» en inglés? <|eot|>
+<|assistant|> «sol» en inglés es «sun». <|eot|>
+<|user|> ¿Con qué letra empieza «nube»? <|eot|>
+<|assistant|> «nube» empieza con la letra n. <|eot|>
+<|user|> ¿Cuánto es 12 por 2? <|eot|>
+<|assistant|> 12 por 2 = 24. <|eot|>
+<|user|> ¿Cuántos habitantes tiene la Luna? <|eot|>
+<|assistant|> No lo sé. <|eot|>
+<|user|> hola <|eot|>
+<|assistant|> Todo bien. ¿En qué te ayudo? <|eot|>
+<|user|> ¿Cómo te llamas? <|eot|>
+<|assistant|> Soy un modelo pequeño entrenado con datos sintéticos. <|eot|>
+<|user|> ¿De qué color es el carbón? <|eot|>
+<|assistant|> el carbón es de color negro. <|eot|>
+<|user|> ¿De qué color es la sangre? <|eot|>
+<|assistant|> la sangre es de color rojo. <|eot|>
+<|user|> ¿Qué sonido hace el pájaro? <|eot|>
+<|assistant|> El pájaro dice «pío». <|eot|>
+<|user|> ¿Qué sonido hace la gallina? <|eot|>
+<|assistant|> La gallina dice «cocorocó». <|eot|>
+<|user|> ¿Cuántos minutos tiene una hora? <|eot|>
+<|assistant|> Una hora tiene 60 minutos. <|eot|>
+<|user|> ¿Cuál es la capital de Marte? <|eot|>
+<|assistant|> No puedo responder eso con seguridad. <|eot|>
+<|user|> ¿Cómo te llamas? <|eot|>
+<|assistant|> Me llamo mini GPT y estoy aprendiendo español. <|eot|>
+<|user|> ¿Cuántos habitantes tiene la Luna? <|eot|>
+<|assistant|> No lo sé. <|eot|>
+<|user|> buenas tardes <|eot|>
+<|assistant|> Hola. ¿En qué puedo ayudarte? <|eot|>
+<|user|> ¿Cuánto es 12 + 7? <|eot|>
+<|assistant|> 12 + 7 = 19. <|eot|>
+<|user|> ¿De qué color es el cielo? <|eot|>
+<|assistant|> el cielo es de color azul. <|eot|>
+<|user|> ¿Cuántos segundos tiene un minuto? <|eot|>
+<|assistant|> Un minuto tiene 60 segundos. <|eot|>
+<|user|> ¿Cuántos habitantes tiene la Luna? <|eot|>
+<|assistant|> No tengo esa información. <|eot|>
+<|user|> ¿El número 23 es par o impar? <|eot|>
+<|assistant|> El número 23 es impar. <|eot|>
+<|user|> ¿Cómo se dice «gracias» en inglés? <|eot|>
+<|assistant|> «gracias» en inglés es «thank you». <|eot|>
+<|user|> ¿Qué eres? <|eot|>
+<|assistant|> Me llamo mini GPT y estoy aprendiendo español. <|eot|>
+<|user|> ¿Cuántos meses tiene un año? <|eot|>
+<|assistant|> Un año tiene 12 meses. <|eot|>
+<|user|> ¿De qué color es el cielo? <|eot|>
+<|assistant|> el cielo es de color azul. <|eot|>
+<|user|> hola <|eot|>
+<|assistant|> Buenos días. ¿Qué necesitas? <|eot|>
+<|user|> Dime la capital de Brasil. <|eot|>
+<|assistant|> Brasilia es la capital de Brasil. <|eot|>
+<|user|> gracias <|eot|>
+<|assistant|> De nada. <|eot|>
+<|user|> ¿El número 1 es par o impar? <|eot|>
+<|assistant|> El número 1 es impar. <|eot|>
+<|user|> Cuenta del 1 al 8. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5, 6, 7, 8. <|eot|>
+<|user|> ¿Con qué letra empieza «familia»? <|eot|>
+<|assistant|> «familia» empieza con la letra f. <|eot|>
+<|user|> ¿Cuánto es 3 por 8? <|eot|>
+<|assistant|> 3 por 8 = 24. <|eot|>
+<|user|> ¿Cómo hace el gato? <|eot|>
+<|assistant|> El gato dice «miau». <|eot|>
+<|user|> ¿Cómo se dice «sí» en inglés? <|eot|>
+<|assistant|> «sí» en inglés es «yes». <|eot|>
+<|user|> ¿Cómo se dice «libro» en inglés? <|eot|>
+<|assistant|> «libro» en inglés es «book». <|eot|>
+<|user|> ¿Qué puedes hacer? <|eot|>
+<|assistant|> Me llamo mini GPT y estoy aprendiendo español. <|eot|>
+<|user|> ¿El número 1 es par o impar? <|eot|>
+<|assistant|> El número 1 es impar. <|eot|>
+<|user|> ¿Cuántos días tiene un año? <|eot|>
+<|assistant|> Un año tiene 365 días. <|eot|>
+<|user|> ¿Cómo se dice «no» en inglés? <|eot|>
+<|assistant|> «no» en inglés es «no». <|eot|>
+<|user|> Dime la capital de China. <|eot|>
+<|assistant|> Pekín es la capital de China. <|eot|>
+<|user|> ¿De qué color es el chocolate? <|eot|>
+<|assistant|> el chocolate es de color marrón. <|eot|>
+<|user|> hola, ¿cómo va todo? <|eot|>
+<|assistant|> Hola. ¿En qué puedo ayudarte? <|eot|>
+<|user|> ¿Sabes cuál es la capital de Argentina? <|eot|>
+<|assistant|> Buenos Aires es la capital de Argentina. <|eot|>
+<|user|> ¿Cuánto es 6 - 4? <|eot|>
+<|assistant|> 6 - 4 = 2. <|eot|>
+<|user|> Suma 17 y 17. <|eot|>
+<|assistant|> El resultado de la suma es 34. <|eot|>
+<|user|> Cuenta del 1 al 8. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5, 6, 7, 8. <|eot|>
+<|user|> ¿Qué hay dentro de un agujero negro? <|eot|>
+<|assistant|> No tengo esa información. <|eot|>
+<|user|> ¿De qué color es una violeta? <|eot|>
+<|assistant|> una violeta es de color violeta. <|eot|>
+<|user|> ¿Cuántos días tiene un año? <|eot|>
+<|assistant|> Un año tiene 365 días. <|eot|>
+<|user|> ¿Cómo hace la gallina? <|eot|>
+<|assistant|> La gallina dice «cocorocó». <|eot|>
+<|user|> Cuenta del 1 al 7. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5, 6, 7. <|eot|>
+<|user|> ¿Qué sonido hace la oveja? <|eot|>
+<|assistant|> La oveja hace «bee». <|eot|>
+<|user|> ¿Cuánto es 9 + 5? <|eot|>
+<|assistant|> 9 + 5 = 14. <|eot|>
+<|user|> ¿De qué color es una violeta? <|eot|>
+<|assistant|> una violeta es de color violeta. <|eot|>
+<|user|> ¿Cuántas horas tiene un día? <|eot|>
+<|assistant|> Un día tiene 24 horas. <|eot|>
+<|user|> ¿De qué color es el cielo? <|eot|>
+<|assistant|> el cielo es de color azul. <|eot|>
+<|user|> ¿De qué color es una naranja? <|eot|>
+<|assistant|> una naranja es de color naranja. <|eot|>
+<|user|> ¿Cómo se dice «amigo» en inglés? <|eot|>
+<|assistant|> «amigo» en inglés es «friend». <|eot|>
+<|user|> ¿Qué desayuna un robot? <|eot|>
+<|assistant|> No puedo responder eso con seguridad. <|eot|>
+<|user|> ¿De qué color es la hierba? <|eot|>
+<|assistant|> la hierba es de color verde. <|eot|>
+<|user|> ¿El número 9 es par o impar? <|eot|>
+<|assistant|> El número 9 es impar. <|eot|>
+<|user|> Dime la capital de India. <|eot|>
+<|assistant|> La capital de India es Nueva Delhi. <|eot|>
+<|user|> ¿Cuánto es 8 + 14? <|eot|>
+<|assistant|> 8 + 14 = 22. <|eot|>
+<|user|> ¿qué tal? <|eot|>
+<|assistant|> Todo bien. ¿En qué te ayudo? <|eot|>
+<|user|> ¿Con qué letra empieza «camino»? <|eot|>
+<|assistant|> «camino» empieza con la letra c. <|eot|>
+<|user|> ¿Cuál es la capital de Australia? <|eot|>
+<|assistant|> La capital de Australia es Canberra. <|eot|>
+<|user|> ¿Qué hay dentro de un agujero negro? <|eot|>
+<|assistant|> No lo sé. <|eot|>
+<|user|> ¿Cuántos días tiene una semana? <|eot|>
+<|assistant|> Una semana tiene 7 días. <|eot|>
+<|user|> ¿El número 16 es par o impar? <|eot|>
+<|assistant|> El número 16 es par. <|eot|>
+<|user|> ¿Cuántas horas tiene un día? <|eot|>
+<|assistant|> Un día tiene 24 horas. <|eot|>
+<|user|> ¿Qué sonido hace el gato? <|eot|>
+<|assistant|> El gato hace «miau». <|eot|>
+<|user|> ¿Cómo se dice «luna» en inglés? <|eot|>
+<|assistant|> «luna» en inglés es «moon». <|eot|>
+<|user|> ¿Qué desayuna un robot? <|eot|>
+<|assistant|> No tengo esa información. <|eot|>
+<|user|> ¿Cómo se dice «rojo» en inglés? <|eot|>
+<|assistant|> «rojo» en inglés es «red». <|eot|>
+<|user|> ¿Qué sonido hace la gallina? <|eot|>
+<|assistant|> La gallina dice «cocorocó». <|eot|>
+<|user|> ¿Sabes cuál es la capital de Argentina? <|eot|>
+<|assistant|> La capital de Argentina es Buenos Aires. <|eot|>
+<|user|> ¿Con qué letra empieza «casa»? <|eot|>
+<|assistant|> «casa» empieza con la letra c. <|eot|>
+<|user|> hola <|eot|>
+<|assistant|> Todo bien. ¿En qué te ayudo? <|eot|>
+<|user|> hola <|eot|>
+<|assistant|> Todo bien. ¿En qué te ayudo? <|eot|>
+<|user|> ¿Cómo se dice «luna» en inglés? <|eot|>
+<|assistant|> «luna» en inglés es «moon». <|eot|>
+<|user|> ¿Cuál es la capital de Portugal? <|eot|>
+<|assistant|> Lisboa es la capital de Portugal. <|eot|>
+<|user|> ¿Cuánto es 19 + 16? <|eot|>
+<|assistant|> 19 + 16 = 35. <|eot|>
+<|user|> Cuenta del 1 al 7. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5, 6, 7. <|eot|>
+<|user|> ¿Cuántos días tiene una semana? <|eot|>
+<|assistant|> Una semana tiene 7 días. <|eot|>
+<|user|> ¿Cuál es la capital de Brasil? <|eot|>
+<|assistant|> La capital de Brasil es Brasilia. <|eot|>
+<|user|> ¿Cómo te llamas? <|eot|>
+<|assistant|> Puedo saludar, hacer cuentas sencillas y responder datos básicos. <|eot|>
+<|user|> buenas tardes <|eot|>
+<|assistant|> Hola, ¿qué quieres saber? <|eot|>
+<|user|> ¿De qué color es el carbón? <|eot|>
+<|assistant|> el carbón es de color negro. <|eot|>
+<|user|> ¿Con qué letra empieza «amigo»? <|eot|>
+<|assistant|> «amigo» empieza con la letra a. <|eot|>
+<|user|> ¿De qué color es la hierba? <|eot|>
+<|assistant|> la hierba es de color verde. <|eot|>
+<|user|> Cuenta del 1 al 9. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5, 6, 7, 8, 9. <|eot|>
+<|user|> ¿qué tal? <|eot|>
+<|assistant|> Hola. ¿En qué puedo ayudarte? <|eot|>
+<|user|> ¿Qué puedes hacer? <|eot|>
+<|assistant|> Soy un mini GPT y respondo preguntas sencillas. <|eot|>
+<|user|> ¿De qué color es el chocolate? <|eot|>
+<|assistant|> el chocolate es de color marrón. <|eot|>
+<|user|> ¿De qué color es el cielo? <|eot|>
+<|assistant|> el cielo es de color azul. <|eot|>
+<|user|> ¿Cuál es la capital de India? <|eot|>
+<|assistant|> Nueva Delhi es la capital de India. <|eot|>
+<|user|> ¿El número 23 es par o impar? <|eot|>
+<|assistant|> El número 23 es impar. <|eot|>
+<|user|> ¿Qué sonido hace el gato? <|eot|>
+<|assistant|> El gato hace «miau». <|eot|>
+<|user|> ¿El número 18 es par o impar? <|eot|>
+<|assistant|> El número 18 es par. <|eot|>
+<|user|> Cuenta del 1 al 6. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5, 6. <|eot|>
+<|user|> ¿Cómo se dice «rojo» en inglés? <|eot|>
+<|assistant|> «rojo» en inglés es «red». <|eot|>
+<|user|> ¿Cómo se dice «adiós» en inglés? <|eot|>
+<|assistant|> «adiós» en inglés es «goodbye». <|eot|>
+<|user|> ¿Cómo hace el caballo? <|eot|>
+<|assistant|> El caballo hace «hiiii». <|eot|>
+<|user|> ¿Cuánto es 2 + 2? <|eot|>
+<|assistant|> 2 + 2 = 4. <|eot|>
+<|user|> ¿Cuántos habitantes tiene la Luna? <|eot|>
+<|assistant|> No tengo esa información. <|eot|>
+<|user|> muchas gracias <|eot|>
+<|assistant|> No hay de qué. <|eot|>
+<|user|> ¿Cómo se dice «libro» en inglés? <|eot|>
+<|assistant|> «libro» en inglés es «book». <|eot|>
+<|user|> ¿Cuál es el animal más rápido del universo? <|eot|>
+<|assistant|> No puedo responder eso con seguridad. <|eot|>
+<|user|> Dime la capital de Canadá. <|eot|>
+<|assistant|> Ottawa es la capital de Canadá. <|eot|>
+<|user|> ¿Cuántos meses tiene un año? <|eot|>
+<|assistant|> Un año tiene 12 meses. <|eot|>
+<|user|> ¿El número 26 es par o impar? <|eot|>
+<|assistant|> El número 26 es par. <|eot|>
+<|user|> ¿Con qué letra empieza «playa»? <|eot|>
+<|assistant|> «playa» empieza con la letra p. <|eot|>
+<|user|> ¿Quién eres? <|eot|>
+<|assistant|> Puedo saludar, hacer cuentas sencillas y responder datos básicos. <|eot|>
+<|user|> ¿Cuántos minutos tiene una hora? <|eot|>
+<|assistant|> Una hora tiene 60 minutos. <|eot|>
+<|user|> ¿Cómo hace el pato? <|eot|>
+<|assistant|> El pato dice «cuac». <|eot|>
+<|user|> ¿Cómo se dice «perro» en inglés? <|eot|>
+<|assistant|> «perro» en inglés es «dog». <|eot|>
+<|user|> muchas gracias <|eot|>
+<|assistant|> No hay de qué. <|eot|>
+<|user|> ¿Cómo te llamas? <|eot|>
+<|assistant|> Puedo saludar, hacer cuentas sencillas y responder datos básicos. <|eot|>
+<|user|> muchas gracias <|eot|>
+<|assistant|> No hay de qué. <|eot|>
+<|user|> buenos días <|eot|>
+<|assistant|> Hola, ¿qué quieres saber? <|eot|>
+<|user|> ¿Cómo hace la rana? <|eot|>
+<|assistant|> La rana hace «croac». <|eot|>
+<|user|> ¿cómo estás? <|eot|>
+<|assistant|> Hola. ¿En qué puedo ayudarte? <|eot|>
+<|user|> Cuenta del 1 al 7. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5, 6, 7. <|eot|>
+<|user|> ¿qué tal? <|eot|>
+<|assistant|> Estoy bien, gracias. ¿Y tú? <|eot|>
+<|user|> ¿Cuántas horas tiene un día? <|eot|>
+<|assistant|> Un día tiene 24 horas. <|eot|>
+<|user|> ¿Qué sonido hace el pato? <|eot|>
+<|assistant|> El pato dice «cuac». <|eot|>
+<|user|> ¿Cómo se dice «gato» en inglés? <|eot|>
+<|assistant|> «gato» en inglés es «cat». <|eot|>
+<|user|> ¿Cuál es la capital de Portugal? <|eot|>
+<|assistant|> Lisboa es la capital de Portugal. <|eot|>
+<|user|> ¿Quién eres? <|eot|>
+<|assistant|> Me llamo mini GPT y estoy aprendiendo español. <|eot|>
+<|user|> hola, ¿cómo va todo? <|eot|>
+<|assistant|> Estoy bien, gracias. ¿Y tú? <|eot|>
+<|user|> ¿Con qué letra empieza «mesa»? <|eot|>
+<|assistant|> «mesa» empieza con la letra m. <|eot|>
+<|user|> ¿Qué sonido hace la gallina? <|eot|>
+<|assistant|> La gallina dice «cocorocó». <|eot|>
+<|user|> ¿Cómo te llamas? <|eot|>
+<|assistant|> Me llamo mini GPT y estoy aprendiendo español. <|eot|>
+<|user|> ¿Cómo te llamas? <|eot|>
+<|assistant|> Soy un mini GPT y respondo preguntas sencillas. <|eot|>
+<|user|> ¿De qué color es la sangre? <|eot|>
+<|assistant|> la sangre es de color rojo. <|eot|>
+<|user|> ¿Cuántos días tiene una semana? <|eot|>
+<|assistant|> Una semana tiene 7 días. <|eot|>
+<|user|> ¿Quién eres? <|eot|>
+<|assistant|> Me llamo mini GPT y estoy aprendiendo español. <|eot|>
+<|user|> ¿De qué color es una violeta? <|eot|>
+<|assistant|> una violeta es de color violeta. <|eot|>
+<|user|> ¿Qué desayuna un robot? <|eot|>
+<|assistant|> No lo sé. <|eot|>
+<|user|> gracias <|eot|>
+<|assistant|> De nada. <|eot|>
+<|user|> ¿Con qué letra empieza «casa»? <|eot|>
+<|assistant|> «casa» empieza con la letra c. <|eot|>
+<|user|> ¿Cuántos segundos tiene un minuto? <|eot|>
+<|assistant|> Un minuto tiene 60 segundos. <|eot|>
+<|user|> ¿Cuántos habitantes tiene la Luna? <|eot|>
+<|assistant|> No tengo esa información. <|eot|>
+<|user|> ¿Cuánto es 2 - 2? <|eot|>
+<|assistant|> 2 - 2 = 0. <|eot|>
+<|user|> ¿qué tal? <|eot|>
+<|assistant|> Hola, ¿qué quieres saber? <|eot|>
+<|user|> ¿Qué dice el caballo? <|eot|>
+<|assistant|> El caballo hace «hiiii». <|eot|>
+<|user|> Cuenta del 1 al 3. <|eot|>
+<|assistant|> 1, 2, 3. <|eot|>
+<|user|> Cuenta del 1 al 8. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5, 6, 7, 8. <|eot|>
+<|user|> Cuenta del 1 al 4. <|eot|>
+<|assistant|> 1, 2, 3, 4. <|eot|>
+<|user|> ¿El número 19 es par o impar? <|eot|>
+<|assistant|> El número 19 es impar. <|eot|>
+<|user|> ¿Qué hay dentro de un agujero negro? <|eot|>
+<|assistant|> No puedo responder eso con seguridad. <|eot|>
+<|user|> ¿El número 24 es par o impar? <|eot|>
+<|assistant|> El número 24 es par. <|eot|>
+<|user|> ¿Cuántos minutos tiene una hora? <|eot|>
+<|assistant|> Una hora tiene 60 minutos. <|eot|>
+<|user|> buenas noches <|eot|>
+<|assistant|> Buenas noches, descansa. <|eot|>
+<|user|> ¿De qué color es la nieve? <|eot|>
+<|assistant|> la nieve es de color blanco. <|eot|>
+<|user|> ¿Qué dice la oveja? <|eot|>
+<|assistant|> La oveja hace «bee». <|eot|>
+<|user|> ¿Con qué letra empieza «jardín»? <|eot|>
+<|assistant|> «jardín» empieza con la letra j. <|eot|>
+<|user|> ¿Quién eres? <|eot|>
+<|assistant|> Soy un mini GPT y respondo preguntas sencillas. <|eot|>
+<|user|> ¿Cuántos minutos tiene una hora? <|eot|>
+<|assistant|> Una hora tiene 60 minutos. <|eot|>
+<|user|> ¿Cómo se dice «amigo» en inglés? <|eot|>
+<|assistant|> «amigo» en inglés es «friend». <|eot|>
+<|user|> Cuenta del 1 al 6. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5, 6. <|eot|>
+<|user|> ¿Qué desayuna un robot? <|eot|>
+<|assistant|> No lo sé. <|eot|>
+<|user|> ¿Qué sonido hace el caballo? <|eot|>
+<|assistant|> El caballo hace «hiiii». <|eot|>
+<|user|> ¿Qué desayuna un robot? <|eot|>
+<|assistant|> No tengo esa información. <|eot|>
+<|user|> ¿Cómo te llamas? <|eot|>
+<|assistant|> Soy un mini GPT y respondo preguntas sencillas. <|eot|>
+<|user|> ¿Qué desayuna un robot? <|eot|>
+<|assistant|> No puedo responder eso con seguridad. <|eot|>
+<|user|> ¿Con qué letra empieza «gato»? <|eot|>
+<|assistant|> «gato» empieza con la letra g. <|eot|>
+<|user|> ¿cómo estás? <|eot|>
+<|assistant|> Hola, ¿qué quieres saber? <|eot|>
+<|user|> ¿Con qué letra empieza «camino»? <|eot|>
+<|assistant|> «camino» empieza con la letra c. <|eot|>
+<|user|> ¿Cuál es la capital de Chile? <|eot|>
+<|assistant|> La capital de Chile es Santiago. <|eot|>
+<|user|> gracias <|eot|>
+<|assistant|> De nada. <|eot|>
+<|user|> ¿De qué color es la sangre? <|eot|>
+<|assistant|> la sangre es de color rojo. <|eot|>
+<|user|> muchas gracias <|eot|>
+<|assistant|> No hay de qué. <|eot|>
+<|user|> adiós <|eot|>
+<|assistant|> Hasta luego. <|eot|>
+<|user|> ¿Qué sonido hace el gato? <|eot|>
+<|assistant|> El gato hace «miau». <|eot|>
+<|user|> ¿Quién eres? <|eot|>
+<|assistant|> Puedo saludar, hacer cuentas sencillas y responder datos básicos. <|eot|>
+<|user|> Cuenta del 1 al 3. <|eot|>
+<|assistant|> 1, 2, 3. <|eot|>
+<|user|> ¿De qué color es el sol? <|eot|>
+<|assistant|> el sol es de color amarillo. <|eot|>
+<|user|> ¿Sabes cuál es la capital de Japón? <|eot|>
+<|assistant|> Tokio es la capital de Japón. <|eot|>
+<|user|> Cuenta del 1 al 8. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5, 6, 7, 8. <|eot|>
+<|user|> Cuenta del 1 al 9. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5, 6, 7, 8, 9. <|eot|>
+<|user|> buenos días <|eot|>
+<|assistant|> Estoy bien, gracias. ¿Y tú? <|eot|>
+<|user|> ¿Sabes cuál es la capital de Brasil? <|eot|>
+<|assistant|> La capital de Brasil es Brasilia. <|eot|>
+<|user|> ¿Con qué letra empieza «ventana»? <|eot|>
+<|assistant|> «ventana» empieza con la letra v. <|eot|>
+<|user|> ¿Con qué letra empieza «música»? <|eot|>
+<|assistant|> «música» empieza con la letra m. <|eot|>
+<|user|> Dime la capital de Brasil. <|eot|>
+<|assistant|> Brasilia es la capital de Brasil. <|eot|>
+<|user|> ¿Con qué letra empieza «escuela»? <|eot|>
+<|assistant|> «escuela» empieza con la letra e. <|eot|>
+<|user|> ¿Cómo te llamas? <|eot|>
+<|assistant|> Me llamo mini GPT y estoy aprendiendo español. <|eot|>
+<|user|> ¿Cómo hace el pájaro? <|eot|>
+<|assistant|> El pájaro dice «pío». <|eot|>
+<|user|> ¿qué tal? <|eot|>
+<|assistant|> Hola. ¿En qué puedo ayudarte? <|eot|>
+<|user|> ¿Cuántos días tiene un año? <|eot|>
+<|assistant|> Un año tiene 365 días. <|eot|>
+<|user|> ¿Cuántos segundos tiene un minuto? <|eot|>
+<|assistant|> Un minuto tiene 60 segundos. <|eot|>
+<|user|> Dime la capital de India. <|eot|>
+<|assistant|> La capital de India es Nueva Delhi. <|eot|>
+<|user|> ¿Cómo se dice «sol» en inglés? <|eot|>
+<|assistant|> «sol» en inglés es «sun». <|eot|>
+<|user|> ¿Cuánto es 13 + 4? <|eot|>
+<|assistant|> 13 + 4 = 17. <|eot|>
+<|user|> ¿El número 24 es par o impar? <|eot|>
+<|assistant|> El número 24 es par. <|eot|>
+<|user|> ¿Cómo te llamas? <|eot|>
+<|assistant|> Soy un modelo pequeño entrenado con datos sintéticos. <|eot|>
+<|user|> ¿Qué desayuna un robot? <|eot|>
+<|assistant|> No tengo esa información. <|eot|>
+<|user|> ¿El número 29 es par o impar? <|eot|>
+<|assistant|> El número 29 es impar. <|eot|>
+<|user|> ¿De qué color es la sangre? <|eot|>
+<|assistant|> la sangre es de color rojo. <|eot|>
+<|user|> ¿Cuánto es 20 + 2? <|eot|>
+<|assistant|> 20 + 2 = 22. <|eot|>
+<|user|> ¿Cómo se dice «libro» en inglés? <|eot|>
+<|assistant|> «libro» en inglés es «book». <|eot|>
+<|user|> Dime la capital de Japón. <|eot|>
+<|assistant|> Tokio es la capital de Japón. <|eot|>
+<|user|> ¿Con qué letra empieza «casa»? <|eot|>
+<|assistant|> «casa» empieza con la letra c. <|eot|>
+<|user|> ¿Cuál es la capital de Japón? <|eot|>
+<|assistant|> La capital de Japón es Tokio. <|eot|>
+<|user|> ¿El número 26 es par o impar? <|eot|>
+<|assistant|> El número 26 es par. <|eot|>
+<|user|> hola, ¿cómo va todo? <|eot|>
+<|assistant|> Estoy bien, gracias. ¿Y tú? <|eot|>
+<|user|> ¿De qué color es una naranja? <|eot|>
+<|assistant|> una naranja es de color naranja. <|eot|>
+<|user|> Cuenta del 1 al 9. <|eot|>
+<|assistant|> 1, 2, 3, 4, 5, 6, 7, 8, 9. <|eot|>
+<|user|> ¿El número 30 es par o impar? <|eot|>
+<|assistant|> El número 30 es par. <|eot|>
+<|user|> ¿De qué color es la sangre? <|eot|>
+<|assistant|> la sangre es de color rojo. <|eot|>
+<|user|> gracias <|eot|>
+<|assistant|> De nada. <|eot|>
+<|user|> ¿Sabes cuál es la capital de Grecia? <|eot|>
+<|assistant|> Atenas es la capital de Grecia. <|eot|>
+<|user|> ¿Cuál es la capital de Marte? <|eot|>
+<|assistant|> No tengo esa información. <|eot|>
+<|user|> ¿Con qué letra empieza «playa»? <|eot|>
+<|assistant|> «playa» empieza con la letra p. <|eot|>
+<|user|> ¿Cómo se dice «amigo» en inglés? <|eot|>
+<|assistant|> «amigo» en inglés es «friend». <|eot|>
+<|user|> ¿Qué dice el gato? <|eot|>
+<|assistant|> El gato hace «miau». <|eot|>

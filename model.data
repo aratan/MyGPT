@@ -1,0 +1,10 @@
+MINI_GPT_TRAINING_STATE 1
+corpus "/home/victor/proyecto/mini-gpt-cpp/target/e2e/corpus.txt"
+tokenizer "/home/victor/proyecto/mini-gpt-cpp/target/e2e/tokenizer.bpe"
+epoch 1
+processed_tokens 128
+generator "16485072412896532910,2661917696428904918,2789619484695949809,5161041015307003104"
+training_cursor 4
+validation_cursor 0
+training_order 13 11 6 15 0 14 12 5 7 4 8 18 1 10 16 2 17 9 3
+validation_order 0 1 2

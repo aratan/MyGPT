@@ -1,0 +1,80 @@
+hola, ¿cómo estás?
+estoy bien, gracias.
+<|user|> hola <|eot|>
+<|assistant|> hola, ¿en qué puedo ayudarte? <|eot|>
+hola, ¿cómo estás?
+estoy bien, gracias.
+<|user|> hola <|eot|>
+<|assistant|> hola, ¿en qué puedo ayudarte? <|eot|>
+hola, ¿cómo estás?
+estoy bien, gracias.
+<|user|> hola <|eot|>
+<|assistant|> hola, ¿en qué puedo ayudarte? <|eot|>
+hola, ¿cómo estás?
+estoy bien, gracias.
+<|user|> hola <|eot|>
+<|assistant|> hola, ¿en qué puedo ayudarte? <|eot|>
+hola, ¿cómo estás?
+estoy bien, gracias.
+<|user|> hola <|eot|>
+<|assistant|> hola, ¿en qué puedo ayudarte? <|eot|>
+hola, ¿cómo estás?
+estoy bien, gracias.
+<|user|> hola <|eot|>
+<|assistant|> hola, ¿en qué puedo ayudarte? <|eot|>
+hola, ¿cómo estás?
+estoy bien, gracias.
+<|user|> hola <|eot|>
+<|assistant|> hola, ¿en qué puedo ayudarte? <|eot|>
+hola, ¿cómo estás?
+estoy bien, gracias.
+<|user|> hola <|eot|>
+<|assistant|> hola, ¿en qué puedo ayudarte? <|eot|>
+hola, ¿cómo estás?
+estoy bien, gracias.
+<|user|> hola <|eot|>
+<|assistant|> hola, ¿en qué puedo ayudarte? <|eot|>
+hola, ¿cómo estás?
+estoy bien, gracias.
+<|user|> hola <|eot|>
+<|assistant|> hola, ¿en qué puedo ayudarte? <|eot|>
+hola, ¿cómo estás?
+estoy bien, gracias.
+<|user|> hola <|eot|>
+<|assistant|> hola, ¿en qué puedo ayudarte? <|eot|>
+hola, ¿cómo estás?
+estoy bien, gracias.
+<|user|> hola <|eot|>
+<|assistant|> hola, ¿en qué puedo ayudarte? <|eot|>
+hola, ¿cómo estás?
+estoy bien, gracias.
+<|user|> hola <|eot|>
+<|assistant|> hola, ¿en qué puedo ayudarte? <|eot|>
+hola, ¿cómo estás?
+estoy bien, gracias.
+<|user|> hola <|eot|>
+<|assistant|> hola, ¿en qué puedo ayudarte? <|eot|>
+hola, ¿cómo estás?
+estoy bien, gracias.
+<|user|> hola <|eot|>
+<|assistant|> hola, ¿en qué puedo ayudarte? <|eot|>
+hola, ¿cómo estás?
+estoy bien, gracias.
+<|user|> hola <|eot|>
+<|assistant|> hola, ¿en qué puedo ayudarte? <|eot|>
+hola, ¿cómo estás?
+estoy bien, gracias.
+<|user|> hola <|eot|>
+<|assistant|> hola, ¿en qué puedo ayudarte? <|eot|>
+hola, ¿cómo estás?
+estoy bien, gracias.
+<|user|> hola <|eot|>
+<|assistant|> hola, ¿en qué puedo ayudarte? <|eot|>
+hola, ¿cómo estás?
+estoy bien, gracias.
+<|user|> hola <|eot|>
+<|assistant|> hola, ¿en qué puedo ayudarte? <|eot|>
+hola, ¿cómo estás?
+estoy bien, gracias.
+<|user|> hola <|eot|>
+<|assistant|> hola, ¿en qué puedo ayudarte? <|eot|>
