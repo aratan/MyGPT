@@ -291,3 +291,50 @@ fn binary_writer_replaces_checkpoint_after_complete_write() {
     assert_eq!(std::fs::read(&path).unwrap(), b"new checkpoint");
     let _ = std::fs::remove_file(path);
 }
+
+
+#[test]
+fn output_projection_gradient_matches_finite_differences() {
+    let mut model = tiny_model();
+    let tokens = [1u32, 2, 3, 4];
+    let targets = [2u32, 3, 4, 5];
+    let mask = [1u8; 4];
+
+    model.zero_grad();
+    model.backward(&tokens, 1, tokens.len(), &targets, &mask).unwrap();
+
+    let parameter_index = model.parameter_count_refs() - 1;
+    let (_, gradient) = model.parameter(parameter_index).unwrap();
+    let (coordinate, &analytic) = gradient
+        .data()
+        .iter()
+        .enumerate()
+        .max_by(|left, right| left.1.abs().total_cmp(&right.1.abs()))
+        .unwrap();
+    let original = model.output_weights().data()[coordinate];
+    let epsilon = 1.0e-2;
+
+    model.output_weights_mut().data_mut()[coordinate] = original + epsilon;
+    let plus = cross_entropy(
+        &model.forward(&tokens, 1, tokens.len()).unwrap(),
+        &targets,
+        &mask,
+    )
+    .unwrap();
+
+    model.output_weights_mut().data_mut()[coordinate] = original - epsilon;
+    let minus = cross_entropy(
+        &model.forward(&tokens, 1, tokens.len()).unwrap(),
+        &targets,
+        &mask,
+    )
+    .unwrap();
+
+    model.output_weights_mut().data_mut()[coordinate] = original;
+    let numerical = (plus - minus) / (2.0 * epsilon);
+    let tolerance = 5.0e-3 + analytic.abs() * 2.0e-2;
+    assert!(
+        (numerical - analytic).abs() <= tolerance,
+        "gradient mismatch at {coordinate}: analytic={analytic}, numerical={numerical}"
+    );
+}
