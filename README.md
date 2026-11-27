@@ -671,3 +671,7 @@ Se comprobó además:
   todo el código de aplicación es Rust.
 - `gpt_train` no captura Ctrl+C; usa `--save-every` para checkpoints
   periódicos.
+
+## 13. Licencia
+
+Distribuido bajo la licencia MIT. Consulta [LICENSE](LICENSE).
