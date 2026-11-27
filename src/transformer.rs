@@ -6,6 +6,7 @@ use crate::layer_norm::LayerNorm;
 use crate::ops::{gelu, linear};
 use crate::serialize::{read_file, BytesWriter};
 use crate::tensor::Tensor;
+use crate::trace::{BlockTrace, MlpTrace};
 use std::path::Path;
 
 const INITIALIZATION_SCALE: f32 = 0.02;
@@ -70,6 +71,87 @@ impl TransformerBlock {
         let activated = gelu(&hidden);
         let mlp_output = linear(&activated, &self.fc2_weights)?;
         residual.add(&mlp_output)
+    }
+
+    /// Forward del bloque capturando atención y estadísticas de la MLP.
+    pub fn forward_traced(&self, input: &Tensor) -> Result<(Tensor, BlockTrace)> {
+        self.validate_parameters()?;
+        if input.rank() != 3 || input.shape()[2] != self.embedding_dim() {
+            return Err(Error::new(
+                "Transformer Block input must have shape [batch_size, seq_len, embedding_dim]",
+            ));
+        }
+
+        let normalized_attention = self.norm1.forward(input)?;
+        let attention = self
+            .attention
+            .forward_with_details(&normalized_attention, false)?;
+        let residual = input.add(&attention.output)?;
+
+        let normalized_mlp = self.norm2.forward(&residual)?;
+        let hidden = linear(&normalized_mlp, &self.fc1_weights)?;
+        let activated = gelu(&hidden);
+        let mlp_output = linear(&activated, &self.fc2_weights)?;
+        let output = residual.add(&mlp_output)?;
+
+        let seq_len = input.shape()[1];
+        let num_heads = self.num_heads();
+        let probabilities = attention.probabilities.data();
+        let mut attention_weights = Vec::with_capacity(num_heads);
+        let mut attention_entropy = Vec::with_capacity(num_heads);
+        for head in 0..num_heads {
+            let mut weights = vec![0.0f32; seq_len * seq_len];
+            let mut entropy_sum = 0.0f64;
+            for query in 0..seq_len {
+                let base = (head * seq_len + query) * seq_len;
+                let row = &probabilities[base..base + seq_len];
+                weights[query * seq_len..(query + 1) * seq_len].copy_from_slice(row);
+                entropy_sum += f64::from(crate::trace::entropy(&row[..=query]));
+            }
+            attention_weights.push(weights);
+            attention_entropy.push((entropy_sum / seq_len as f64) as f32);
+        }
+
+        let activated_values = activated.data();
+        let mut sum = 0.0f64;
+        let mut maximum = f32::NEG_INFINITY;
+        let mut active = 0usize;
+        for &value in activated_values {
+            sum += f64::from(value);
+            maximum = maximum.max(value);
+            if value > 0.0 {
+                active += 1;
+            }
+        }
+        let hidden_dim = self.mlp_hidden_dim;
+        let last_token = &activated_values[(seq_len - 1) * hidden_dim..seq_len * hidden_dim];
+        let mut neurons: Vec<usize> = (0..hidden_dim).collect();
+        neurons.sort_by(|&left, &right| {
+            last_token[right]
+                .partial_cmp(&last_token[left])
+                .unwrap_or(std::cmp::Ordering::Equal)
+                .then(left.cmp(&right))
+        });
+        neurons.truncate(8);
+        let top_neurons: Vec<(usize, f32)> = neurons
+            .into_iter()
+            .map(|neuron| (neuron, last_token[neuron]))
+            .collect();
+
+        let mlp = MlpTrace {
+            mean: (sum / activated_values.len() as f64) as f32,
+            max: maximum,
+            active_fraction: active as f32 / activated_values.len() as f32,
+            top_neurons,
+        };
+        Ok((
+            output,
+            BlockTrace {
+                attention: attention_weights,
+                attention_entropy,
+                mlp,
+            },
+        ))
     }
 
     pub fn save(&self, path: &Path) -> Result<()> {

@@ -7,7 +7,6 @@ pub mod attention;
 pub mod backprop;
 pub mod chat_mode;
 pub mod cli;
-pub mod cuda;
 pub mod data;
 pub mod embedding;
 pub mod error;
@@ -18,8 +17,10 @@ pub mod loss;
 pub mod ops;
 pub mod rng;
 pub mod serialize;
+pub mod synthetic;
 pub mod tensor;
 pub mod tokenizer;
+pub mod trace;
 pub mod training_state;
 pub mod transformer;
 

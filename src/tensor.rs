@@ -160,10 +160,6 @@ impl Tensor {
             )));
         }
 
-        if let Some(values) = crate::cuda::try_matmul(&self.data, &other.data, rows, inner, columns)
-        {
-            return Tensor::new(vec![rows, columns], values);
-        }
         let mut output = vec![0.0f32; rows * columns];
         matmul_into(&self.data, &other.data, &mut output, rows, inner, columns);
         Tensor::new(vec![rows, columns], output)
@@ -334,9 +330,6 @@ pub fn linear_flat(
 
     let work = rows.saturating_mul(input_dim).saturating_mul(output_dim);
     let weight_data = weights.data();
-    if let Some(values) = crate::cuda::try_matmul(input, weight_data, rows, input_dim, output_dim) {
-        return Tensor::new(vec![rows, output_dim], values);
-    }
     let mut output = vec![0.0f32; rows * output_dim];
     let threads = parallel_threads(work, rows);
     let compute = |first_row: usize, chunk: &mut [f32]| {

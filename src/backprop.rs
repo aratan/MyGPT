@@ -201,32 +201,6 @@ pub fn linear_backward(
     let weight_data = weights.data();
     let gradient_data = output_gradient.data();
 
-    if crate::cuda::enabled()
-        && rows.saturating_mul(input_dim).saturating_mul(output_dim)
-            >= crate::cuda::GPU_WORK_THRESHOLD
-    {
-        let weight_transposed = transpose_2d(weight_data, input_dim, output_dim);
-        let input_transposed = transpose_2d(input_data, rows, input_dim);
-        let input_gradient = crate::cuda::matmul(
-            gradient_data,
-            &weight_transposed,
-            rows,
-            output_dim,
-            input_dim,
-        )?;
-        let weight_gradient = crate::cuda::matmul(
-            &input_transposed,
-            gradient_data,
-            input_dim,
-            rows,
-            output_dim,
-        )?;
-        return Ok(LinearBackwardResult {
-            input_gradient: Tensor::new(input.shape().to_vec(), input_gradient)?,
-            weight_gradient: Tensor::new(weights.shape().to_vec(), weight_gradient)?,
-        });
-    }
-
     for row in 0..rows {
         let input_row = &input_data[row * input_dim..row * input_dim + input_dim];
         let gradient_row = &gradient_data[row * output_dim..row * output_dim + output_dim];
@@ -567,14 +541,4 @@ pub fn accumulate_block(
     target.fc1_weights.add_assign(&source.fc1_weights)?;
     target.fc2_weights.add_assign(&source.fc2_weights)?;
     Ok(())
-}
-
-fn transpose_2d(values: &[f32], rows: usize, columns: usize) -> Vec<f32> {
-    let mut output = vec![0.0f32; rows * columns];
-    for row in 0..rows {
-        for column in 0..columns {
-            output[column * rows + row] = values[row * columns + column];
-        }
-    }
-    output
 }

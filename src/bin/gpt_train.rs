@@ -1,4 +1,4 @@
-use mini_gpt::adamw::{clip_gradients, AdamW, AdamWConfig};
+use mini_gpt::adamw::{clip_gradients, scale_gradients, AdamW, AdamWConfig};
 use mini_gpt::cli;
 use mini_gpt::data::{read_utf8_file, split_corpus_utf8, TextDataLoader};
 use mini_gpt::loss::{cross_entropy, perplexity};
@@ -61,6 +61,7 @@ fn print_help() {
            --resume <ruta>          Checkpoint a continuar\n\
            --steps <N>              Pasos adicionales (defecto: 20)\n\
            --batch-size <N>         Tamaño de batch (defecto: 2)\n\
+           --grad-accum <N>         Micro-batches acumulados por paso (defecto: 1)\n\
            --context-length <N>     Tokens por secuencia (defecto: 128)\n\
            --seed <N>               Semilla de datos (defecto: 42)\n\n\
          Arquitectura, solo desde cero:\n\
@@ -134,6 +135,7 @@ fn run() -> Result<()> {
             "--resume",
             "--steps",
             "--batch-size",
+            "--grad-accum",
             "--context-length",
             "--seed",
             "--embedding-dim",
@@ -163,6 +165,7 @@ fn run() -> Result<()> {
     let overwrite = cli::has(&args, "--overwrite");
     let additional_steps = cli::size_value(&args, "--steps", 20, 1)?;
     let batch_size = cli::size_value(&args, "--batch-size", 2, 1)?;
+    let grad_accum = cli::size_value(&args, "--grad-accum", 1, 1)?;
     let context_length = cli::size_value(&args, "--context-length", 128, 1)?;
     let save_every = cli::size_value(&args, "--save-every", 50, 0)?;
     let eval_every = cli::size_value(&args, "--eval-every", 10, 0)?;
@@ -326,13 +329,13 @@ fn run() -> Result<()> {
     let start_time = Instant::now();
 
     println!(
-        "Backend: {}\nModo: {}\nVocabulario: {}\nParámetros: {}\nPasos adicionales: {}\nBatch: {}; contexto: {}\nLearning rate: {}\nPaso inicial de AdamW: {}",
-        mini_gpt::cuda::backend_description(),
+        "Modo: {}\nVocabulario: {}\nParámetros: {}\nPasos adicionales: {}\nBatch: {}; acumulación: {}; contexto: {}\nLearning rate: {}\nPaso inicial de AdamW: {}",
         if is_resume { "reanudación" } else { "desde cero" },
         tokenizer.vocab_size(),
         model.parameter_count().total(),
         additional_steps,
         batch_size,
+        grad_accum,
         context_length,
         optimizer.config().learning_rate,
         optimizer.step_count()
@@ -347,34 +350,44 @@ fn run() -> Result<()> {
     }
 
     while completed < additional_steps {
-        let batch = match loader.next_batch() {
-            Some(batch) => batch,
-            None => {
-                epoch += 1;
-                loader.reset_epoch();
-                loader
-                    .next_batch()
-                    .ok_or_else(|| Error::new("No hay más batches de entrenamiento"))?
-            }
-        };
-
         let step_start = Instant::now();
         model.zero_grad();
-        let loss = model.backward(
-            &batch.inputs,
-            batch.batch_size,
-            batch.seq_len,
-            &batch.targets,
-            &batch.mask,
-        )?;
+        let mut accumulated_loss = 0.0f64;
+        let mut accumulated_tokens = 0usize;
+        for _ in 0..grad_accum {
+            let batch = match loader.next_batch() {
+                Some(batch) => batch,
+                None => {
+                    epoch += 1;
+                    loader.reset_epoch();
+                    loader
+                        .next_batch()
+                        .ok_or_else(|| Error::new("No hay más batches de entrenamiento"))?
+                }
+            };
+            let loss = model.backward(
+                &batch.inputs,
+                batch.batch_size,
+                batch.seq_len,
+                &batch.targets,
+                &batch.mask,
+            )?;
+            if !loss.is_finite() {
+                return Err(Error::new("Entrenamiento detenido por valores no finitos"));
+            }
+            accumulated_loss += f64::from(loss);
+            accumulated_tokens += batch.real_tokens;
+        }
+        scale_gradients(&mut model, 1.0 / grad_accum as f32)?;
+        let loss = (accumulated_loss / grad_accum as f64) as f32;
         let norm = clip_gradients(&mut model, clipping)?;
-        if !loss.is_finite() || !norm.is_finite() {
+        if !norm.is_finite() {
             return Err(Error::new("Entrenamiento detenido por valores no finitos"));
         }
         optimizer.step(&mut model)?;
         completed += 1;
-        processed_tokens += batch.real_tokens;
-        session_tokens += batch.real_tokens;
+        processed_tokens += accumulated_tokens;
+        session_tokens += accumulated_tokens;
         last_loss = loss;
         let step_seconds = step_start.elapsed().as_secs_f64();
         let elapsed = start_time.elapsed().as_secs_f64();
@@ -386,7 +399,7 @@ fn run() -> Result<()> {
                 completed,
                 loss,
                 perplexity(loss)?,
-                batch.real_tokens as f64 / step_seconds.max(1.0e-9),
+                accumulated_tokens as f64 / step_seconds.max(1.0e-9),
                 step_seconds,
                 elapsed
             );

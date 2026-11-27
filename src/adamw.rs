@@ -284,6 +284,22 @@ pub fn gradient_global_norm(model: &GPT) -> Result<f64> {
     Ok(norm)
 }
 
+/// Multiplica todos los gradientes por un factor (para promediar
+/// micro-batches con acumulación de gradientes).
+pub fn scale_gradients(model: &mut GPT, factor: f32) -> Result<()> {
+    if !factor.is_finite() || factor <= 0.0 {
+        return Err(Error::new(
+            "El factor de escala de gradientes debe ser finito y positivo",
+        ));
+    }
+    for gradient in model.gradients_mut().tensors_mut() {
+        for value in gradient.data_mut() {
+            *value *= factor;
+        }
+    }
+    Ok(())
+}
+
 pub fn clip_gradients(model: &mut GPT, max_norm: f64) -> Result<f64> {
     if !max_norm.is_finite() || max_norm <= 0.0 {
         return Err(Error::new(

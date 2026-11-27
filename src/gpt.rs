@@ -12,6 +12,7 @@ use crate::ops::linear;
 use crate::rng::Rng;
 use crate::serialize::{read_file, BytesWriter};
 use crate::tensor::Tensor;
+use crate::trace::{ActivationTrace, LayerTrace};
 use crate::transformer::TransformerBlock;
 use std::path::Path;
 
@@ -143,6 +144,56 @@ impl GPT {
             hidden = block.forward(&hidden)?;
         }
         self.final_norm.forward(&hidden)
+    }
+
+    /// Forward con telemetría de interpretabilidad. Solo admite lote 1.
+    pub fn forward_traced(
+        &self,
+        token_ids: &[u32],
+        batch_size: usize,
+        seq_len: usize,
+        top_k: usize,
+    ) -> Result<(Tensor, ActivationTrace)> {
+        self.validate_parameters()?;
+        if batch_size != 1 {
+            return Err(Error::new(
+                "La traza de activaciones requiere batch_size = 1",
+            ));
+        }
+        if token_ids.len() != seq_len || seq_len == 0 {
+            return Err(Error::new("El número de tokens debe coincidir con seq_len"));
+        }
+        let embedding_dim = self.embedding_dim();
+        let mut hidden = self.embedding.forward(token_ids, batch_size, seq_len)?;
+        let mut layers = Vec::with_capacity(self.blocks.len());
+        for block in &self.blocks {
+            let residual_input_norm =
+                crate::trace::mean_l2(hidden.data(), batch_size * seq_len, embedding_dim);
+            let (next, block_trace) = block.forward_traced(&hidden)?;
+            let residual_output_norm =
+                crate::trace::mean_l2(next.data(), batch_size * seq_len, embedding_dim);
+            let features = self.final_norm.forward(&next)?;
+            let logit_lens = crate::trace::logit_lens_top(&features, &self.output_weights, top_k)?;
+            layers.push(LayerTrace {
+                residual_input_norm,
+                residual_output_norm,
+                block: block_trace,
+                logit_lens,
+            });
+            hidden = next;
+        }
+        let features = self.final_norm.forward(&hidden)?;
+        let logits = linear(&features, &self.output_weights)?;
+        let final_predictions = crate::trace::logits_last_top(&logits, top_k)?;
+        Ok((
+            logits,
+            ActivationTrace {
+                tokens: token_ids.to_vec(),
+                layers,
+                final_predictions,
+                top_k,
+            },
+        ))
     }
 
     /// Calcula pérdida y acumula gradientes (no los pone a cero).

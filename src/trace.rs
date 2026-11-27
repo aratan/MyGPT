@@ -201,39 +201,43 @@ pub fn render_terminal(
     if head >= trace.layers[layer].block.attention.len() {
         return Err(Error::new("--trace-head fuera de rango"));
     }
-    let label = |id: u32| {
-        labels
-            .get(&id)
-            .cloned()
-            .unwrap_or_else(|| format!("#{id}"))
-    };
+    let label = |id: u32| labels.get(&id).cloned().unwrap_or_else(|| format!("#{id}"));
     let sequence = trace.tokens.len();
     let mut output = String::new();
-    writeln!(output, "Traza de activaciones ({} tokens)", sequence)?;
-    writeln!(output, "\nCapa  ‖res.in‖  ‖res.out‖   Δ       MLP activa  MLP máx  logit lens")?;
+    let _ = writeln!(output, "Traza de activaciones ({} tokens)", sequence);
+    let _ = writeln!(
+        output,
+        "\nCapa  ‖res.in‖  ‖res.out‖   Δ       MLP activa  MLP máx  logit lens"
+    );
     for (index, layer_trace) in trace.layers.iter().enumerate() {
         let delta = layer_trace.residual_output_norm - layer_trace.residual_input_norm;
         let top = layer_trace
             .logit_lens
             .first()
-            .map(|(id, probability)| format!("\"{}\" {:.1}%", truncate_label(&label(*id), 12), probability * 100.0))
+            .map(|(id, probability)| {
+                format!(
+                    "\"{}\" {:.1}%",
+                    truncate_label(&label(*id), 12),
+                    probability * 100.0
+                )
+            })
             .unwrap_or_else(|| "-".to_string());
-        writeln!(
+        let _ = writeln!(
             output,
             "{index:>4}  {:>8.2}  {:>9.2}  {delta:>+7.2}  {:>9.1}%  {:>7.2}  {top}",
             layer_trace.residual_input_norm,
             layer_trace.residual_output_norm,
             layer_trace.block.mlp.active_fraction * 100.0,
             layer_trace.block.mlp.max,
-        )?;
+        );
     }
 
     let selected = &trace.layers[layer];
-    writeln!(
+    let _ = writeln!(
         output,
         "\nAtención · capa {layer} · cabeza {head} (entropía media {:.2} nats)",
         selected.block.attention_entropy[head]
-    )?;
+    );
 
     let window = 16usize.min(sequence);
     let start = sequence - window;
@@ -242,7 +246,7 @@ pub fn render_terminal(
         .map(|&id| truncate_label(&label(id), 5))
         .collect();
     let weights = &selected.block.attention[head];
-    writeln!(
+    let _ = writeln!(
         output,
         "clave →   {}",
         labels_window
@@ -251,39 +255,99 @@ pub fn render_terminal(
             .map(|(index, text)| format!("{index:>2}:{text:<5}"))
             .collect::<Vec<_>>()
             .join(" ")
-    )?;
+    );
     for query in start..sequence {
         let row = &weights[query * sequence..(query + 1) * sequence];
-        let maximum = row[..=query]
-            .iter()
-            .copied()
-            .fold(0.0f32, f32::max)
-            .max(1e-9);
         let mut line = String::new();
         for key in start..sequence {
             let value = if key <= query { row[key] } else { 0.0 };
-            let level = ((value / maximum).sqrt() * 4.0).round() as usize;
+            let level = (value.sqrt() * 6.0).round() as usize;
             let symbol = ['·', '░', '▒', '▓', '█'][level.min(4)];
-            write!(line, "  {symbol}  ")?;
+            let _ = write!(line, "  {symbol}  ");
         }
-        writeln!(
+        let _ = writeln!(
             output,
             "{query:>2}:{:<5} {line}",
             truncate_label(&label(trace.tokens[query]), 5)
-        )?;
+        );
     }
 
-    writeln!(output, "\nPredicción final:")?;
+    let _ = writeln!(output, "\nPredicción final:");
     for (rank, (id, probability)) in trace.final_predictions.iter().enumerate() {
-        writeln!(
+        let _ = writeln!(
             output,
             "  {}. \"{}\" (id={id}) {:.2}%",
             rank + 1,
             truncate_label(&label(*id), 24),
             probability * 100.0
-        )?;
+        );
     }
     Ok(output)
+}
+
+/// Explorador de terminal: navega capas y cabezas con comandos de texto.
+///
+/// No usa modo raw ni dependencias: cada orden se confirma con Enter.
+pub fn run_terminal_explorer(
+    trace: &ActivationTrace,
+    labels: &HashMap<u32, String>,
+    layer: usize,
+    head: usize,
+) -> Result<()> {
+    use std::io::{BufRead, Write};
+
+    if trace.layers.is_empty() {
+        return Err(Error::new("La traza no contiene capas"));
+    }
+    let mut layer = layer.min(trace.layers.len() - 1);
+    let mut head = head.min(trace.layers[layer].block.attention.len() - 1);
+    let stdin = std::io::stdin();
+    loop {
+        print!("\x1b[2J\x1b[H");
+        print!("{}", render_terminal(trace, labels, layer, head)?);
+        println!(
+            "\nCapa {}/{} · cabeza {}/{}",
+            layer,
+            trace.layers.len() - 1,
+            head,
+            trace.layers[layer].block.attention.len() - 1
+        );
+        print!("[n] capa+  [p] capa-  [h] cabeza+  [l] cabeza-  [q] salir  o \"capa cabeza\": ");
+        std::io::stdout().flush()?;
+        let mut command = String::new();
+        if stdin.lock().read_line(&mut command)? == 0 {
+            break;
+        }
+        let command = command.trim();
+        match command {
+            "q" | "quit" | "exit" => break,
+            "" => continue,
+            "n" => layer = (layer + 1).min(trace.layers.len() - 1),
+            "p" => layer = layer.saturating_sub(1),
+            "h" => head = (head + 1).min(trace.layers[layer].block.attention.len() - 1),
+            "l" => head = head.saturating_sub(1),
+            other => {
+                let parts: Vec<&str> = other.split_whitespace().collect();
+                if parts.len() == 2 {
+                    if let (Ok(new_layer), Ok(new_head)) =
+                        (parts[0].parse::<usize>(), parts[1].parse::<usize>())
+                    {
+                        if new_layer < trace.layers.len()
+                            && new_head < trace.layers[new_layer].block.attention.len()
+                        {
+                            layer = new_layer;
+                            head = new_head;
+                            continue;
+                        }
+                    }
+                }
+                println!("Orden no válida.");
+                let mut pause = String::new();
+                let _ = stdin.lock().read_line(&mut pause);
+            }
+        }
+    }
+    Ok(())
 }
 
 fn json_escape(value: &str) -> String {
@@ -295,6 +359,9 @@ fn json_escape(value: &str) -> String {
             '\n' => output.push_str("\\n"),
             '\r' => output.push_str("\\r"),
             '\t' => output.push_str("\\t"),
+            '<' => output.push_str("\\u003c"),
+            '>' => output.push_str("\\u003e"),
+            '&' => output.push_str("\\u0026"),
             character if (character as u32) < 0x20 => {
                 let _ = write!(output, "\\u{:04x}", character as u32);
             }
@@ -312,11 +379,7 @@ fn number(value: f32) -> String {
     }
 }
 
-fn trace_json(
-    trace: &ActivationTrace,
-    labels: &HashMap<u32, String>,
-    model_name: &str,
-) -> String {
+fn trace_json(trace: &ActivationTrace, labels: &HashMap<u32, String>, model_name: &str) -> String {
     let mut json = String::new();
     json.push_str("{\"model\":\"");
     json.push_str(&json_escape(model_name));

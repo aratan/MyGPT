@@ -4,6 +4,7 @@ use mini_gpt::inference::{evaluate_continuation, top_token_probabilities, TokenP
 use mini_gpt::{
     BpeTokenizer, Error, GenerationConfig, Result, SamplingStrategy, StopCondition, GPT,
 };
+use std::collections::HashMap;
 use std::io::{BufRead, Write};
 use std::path::Path;
 
@@ -127,6 +128,68 @@ fn print_continuation_evaluation(
     );
 }
 
+fn trace_prompt(
+    tokenizer: &BpeTokenizer,
+    model: &GPT,
+    context: &[u32],
+    layer: Option<usize>,
+    head: usize,
+    html_path: &str,
+    model_name: &str,
+    show_terminal: bool,
+    interactive: bool,
+) -> Result<()> {
+    let (_, trace) = model.forward_traced(context, 1, context.len(), 5)?;
+    let selected_layer = layer.unwrap_or_else(|| trace.layers.len().saturating_sub(1));
+    let selected_head = head;
+    if selected_layer >= trace.layers.len() {
+        return Err(Error::new(format!(
+            "--trace-layer debe estar entre 0 y {}",
+            trace.layers.len().saturating_sub(1)
+        )));
+    }
+    if selected_head >= trace.layers[selected_layer].block.attention.len() {
+        return Err(Error::new(format!(
+            "--trace-head debe estar entre 0 y {}",
+            trace.layers[selected_layer]
+                .block
+                .attention
+                .len()
+                .saturating_sub(1)
+        )));
+    }
+
+    let mut ids: Vec<u32> = trace.tokens.clone();
+    for layer_trace in &trace.layers {
+        ids.extend(layer_trace.logit_lens.iter().map(|(id, _)| *id));
+    }
+    ids.extend(trace.final_predictions.iter().map(|(id, _)| *id));
+    ids.sort_unstable();
+    ids.dedup();
+    let mut labels: HashMap<u32, String> = HashMap::with_capacity(ids.len());
+    for id in ids {
+        let text = tokenizer
+            .token(id)
+            .map(escape_text)
+            .unwrap_or_else(|_| format!("#{id}"));
+        labels.insert(id, text);
+    }
+
+    if interactive {
+        mini_gpt::trace::run_terminal_explorer(&trace, &labels, selected_layer, selected_head)?;
+    } else if show_terminal {
+        println!(
+            "\n{}",
+            mini_gpt::trace::render_terminal(&trace, &labels, selected_layer, selected_head)?
+        );
+    }
+    if !html_path.is_empty() {
+        mini_gpt::trace::write_html(Path::new(html_path), &trace, &labels, model_name)?;
+        println!("Traza HTML escrita en: {html_path}");
+    }
+    Ok(())
+}
+
 fn print_help() {
     println!(
         "gpt_chat - Generación interactiva con un GPT\n\n\
@@ -143,6 +206,11 @@ fn print_help() {
            --repetition-window <N> Tokens recientes penalizados; 0 = todo el contexto\n\
            --show-top <N>          Mostrar N predicciones (defecto: 0)\n\
            --show-adjusted         Usar logits ajustados en vez de originales\n\
+           --trace                 Mostrar atención, residuales, MLP y logit lens\n\
+           --trace-layer <N>       Capa para el mapa de atención (defecto: última)\n\
+           --trace-head <N>        Cabeza para el mapa de atención (defecto: 0)\n\
+           --trace-tui             Navegar capas y cabezas en el terminal\n\
+           --trace-html <ruta>     Exportar la traza a un HTML interactivo\n\
            --prompt <texto>        Procesar un prompt una vez y salir\n\
            --expected <texto>      Continuación esperada; evalúa sin generar\n\
            --help                  Muestra esta ayuda\n\n\
@@ -167,7 +235,7 @@ fn run() -> Result<()> {
     }
     cli::validate(
         &args,
-        &["--help", "--show-adjusted"],
+        &["--help", "--show-adjusted", "--trace", "--trace-tui"],
         &[
             "--model",
             "--tokenizer",
@@ -182,6 +250,9 @@ fn run() -> Result<()> {
             "--show-top",
             "--prompt",
             "--expected",
+            "--trace-layer",
+            "--trace-head",
+            "--trace-html",
         ],
     )?;
 
@@ -222,6 +293,20 @@ fn run() -> Result<()> {
 
     let show_top = cli::size_value(&args, "--show-top", 0, 0)?;
     let show_adjusted = cli::has(&args, "--show-adjusted");
+    let trace_enabled = cli::has(&args, "--trace");
+    let trace_interactive = cli::has(&args, "--trace-tui");
+    let trace_html = cli::value(&args, "--trace-html", "")?;
+    let trace_layer_argument = cli::value(&args, "--trace-layer", "")?;
+    let trace_layer = if trace_layer_argument.is_empty() {
+        None
+    } else {
+        Some(
+            trace_layer_argument
+                .parse::<usize>()
+                .map_err(|_| Error::new("--trace-layer debe ser un entero"))?,
+        )
+    };
+    let trace_head = cli::size_value(&args, "--trace-head", 0, 0)?;
     let prompt_argument = cli::value(&args, "--prompt", "")?;
     let expected = cli::value(&args, "--expected", "")?;
     if !expected.is_empty() && prompt_argument.is_empty() {
@@ -257,6 +342,19 @@ fn run() -> Result<()> {
                     show_top,
                     show_adjusted,
                     &config,
+                )?;
+            }
+            if trace_enabled || trace_interactive || !trace_html.is_empty() {
+                trace_prompt(
+                    &tokenizer,
+                    &model,
+                    context,
+                    trace_layer,
+                    trace_head,
+                    &trace_html,
+                    &model_path,
+                    trace_enabled,
+                    trace_interactive,
                 )?;
             }
             if !expected.is_empty() {
