@@ -7,9 +7,6 @@ license = "MIT"
 
 [dependencies]
 
-[features]
-cuda = []
-
 [[bin]]
 name = "tokenizer_train"
 path = "src/bin/tokenizer_train.rs"
@@ -21,6 +18,10 @@ path = "src/bin/gpt_train.rs"
 [[bin]]
 name = "gpt_chat"
 path = "src/bin/gpt_chat.rs"
+
+[[bin]]
+name = "synth_data"
+path = "src/bin/synth_data.rs"
 
 [profile.release]
 opt-level = 3
