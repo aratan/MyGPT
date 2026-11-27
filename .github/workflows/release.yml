@@ -1,0 +1,37 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - name: Compilar
+        run: cargo build --release --locked
+      - name: Empaquetar binarios
+        run: |
+          mkdir -p dist
+          cp target/release/synth_data target/release/tokenizer_train \
+             target/release/gpt_train target/release/gpt_chat dist/
+          strip dist/synth_data dist/tokenizer_train dist/gpt_train dist/gpt_chat
+          cp README.md LICENSE dist/
+          cd dist
+          tar -czf "../mini-gpt-rust-${GITHUB_REF_NAME}-x86_64-unknown-linux-gnu.tar.gz" *
+          cd ..
+          sha256sum mini-gpt-rust-*.tar.gz > SHA256SUMS.txt
+      - name: Publicar release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" \
+            mini-gpt-rust-*.tar.gz SHA256SUMS.txt \
+            --title "mini GPT en Rust $GITHUB_REF_NAME" \
+            --generate-notes
