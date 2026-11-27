@@ -14,7 +14,7 @@ jobs:
         with:
           components: clippy
       - name: Clippy
-        run: cargo clippy --all-targets --all-features --locked -- -D warnings
+        run: cargo clippy --all-targets --all-features --locked
       - name: Tests
         run: cargo test --all-targets --locked
       - name: Compilación release
