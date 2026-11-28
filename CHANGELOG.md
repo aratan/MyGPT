@@ -1,5 +1,15 @@
 # Changelog
 
+## [v0.1.6] - 2026-11-28
+
+## What's Changed
+* feat(cuda): add linear bias and positional embeddings by @aratan in https://github.com/aratan/MyGPT/pull/9
+
+
+**Full Changelog**: https://github.com/aratan/MyGPT/compare/v0.1.5...v0.1.6
+
+
+
 ## [v0.1.5] - 2026-11-28
 
 ## What's Changed
