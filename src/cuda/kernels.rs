@@ -183,6 +183,71 @@ impl CudaKernelModule {
         Ok(output)
     }
 
+    /// Suma un vector bias a cada fila de una matriz row-major [rows, columns].
+    pub fn add_bias_last_dim(
+        &self, input: &CudaBuffer, bias: &CudaBuffer, output: &mut CudaBuffer,
+        rows: usize, columns: usize, stream: Option<&CudaStream>,
+    ) -> Result<()> {
+        let total = rows.checked_mul(columns)
+            .ok_or_else(|| Error::new("Dimensiones bias CUDA fuera de rango"))?;
+        if rows == 0 || columns == 0 || input.len < total || output.len < total || bias.len < columns {
+            return Err(Error::new("Buffers o dimensiones incompatibles en bias CUDA"));
+        }
+        self.validate_contexts(&[input, bias, output], stream)?;
+        let mut input_arg = input.pointer;
+        let mut bias_arg = bias.pointer;
+        let mut output_arg = output.pointer;
+        let mut rows_arg = u64::try_from(rows).map_err(|_| Error::new("Filas bias fuera de rango"))?;
+        let mut columns_arg = u64::try_from(columns).map_err(|_| Error::new("Columnas bias fuera de rango"))?;
+        let mut args = [
+            (&mut input_arg as *mut u64).cast::<c_void>(),
+            (&mut bias_arg as *mut u64).cast::<c_void>(),
+            (&mut output_arg as *mut u64).cast::<c_void>(),
+            (&mut rows_arg as *mut u64).cast::<c_void>(),
+            (&mut columns_arg as *mut u64).cast::<c_void>(),
+        ];
+        let kernel = self.function("add_bias_last_dim_f32")?;
+        unsafe { kernel.launch([blocks_for(total)?, 1, 1], [256, 1, 1], 0, stream, &mut args) }
+    }
+
+    /// Añade embeddings posicionales [seq_len, dim] a activaciones [batch, seq_len, dim].
+    pub fn add_position_embeddings(
+        &self, hidden: &CudaBuffer, positions: &CudaBuffer, output: &mut CudaBuffer,
+        batch_size: usize, seq_len: usize, embedding_dim: usize,
+        stream: Option<&CudaStream>,
+    ) -> Result<()> {
+        let token_count = batch_size.checked_mul(seq_len)
+            .ok_or_else(|| Error::new("Dimensiones batch/seq fuera de rango"))?;
+        let total = token_count.checked_mul(embedding_dim)
+            .ok_or_else(|| Error::new("Dimensiones de embeddings posicionales fuera de rango"))?;
+        let position_len = seq_len.checked_mul(embedding_dim)
+            .ok_or_else(|| Error::new("Tabla posicional fuera de rango"))?;
+        if batch_size == 0 || seq_len == 0 || embedding_dim == 0
+            || hidden.len < total || output.len < total || positions.len < position_len {
+            return Err(Error::new("Buffers o dimensiones incompatibles en embeddings posicionales CUDA"));
+        }
+        self.validate_contexts(&[hidden, positions, output], stream)?;
+        let mut hidden_arg = hidden.pointer;
+        let mut positions_arg = positions.pointer;
+        let mut output_arg = output.pointer;
+        let mut token_count_arg = u64::try_from(token_count)
+            .map_err(|_| Error::new("Número de tokens fuera de rango"))?;
+        let mut seq_len_arg = u64::try_from(seq_len)
+            .map_err(|_| Error::new("Longitud de secuencia fuera de rango"))?;
+        let mut dim_arg = u64::try_from(embedding_dim)
+            .map_err(|_| Error::new("Dimensión embedding fuera de rango"))?;
+        let mut args = [
+            (&mut hidden_arg as *mut u64).cast::<c_void>(),
+            (&mut positions_arg as *mut u64).cast::<c_void>(),
+            (&mut output_arg as *mut u64).cast::<c_void>(),
+            (&mut token_count_arg as *mut u64).cast::<c_void>(),
+            (&mut seq_len_arg as *mut u64).cast::<c_void>(),
+            (&mut dim_arg as *mut u64).cast::<c_void>(),
+        ];
+        let kernel = self.function("add_position_embeddings_f32")?;
+        unsafe { kernel.launch([blocks_for(total)?, 1, 1], [256, 1, 1], 0, stream, &mut args) }
+    }
+
     /// Suma dos vectores residentes en VRAM: output[i] = a[i] + b[i].
     pub fn elementwise_add(
         &self, a: &CudaBuffer, b: &CudaBuffer, output: &mut CudaBuffer,
@@ -438,6 +503,15 @@ extern "C" __global__ void add_position_embeddings_f32(
     unsigned long long column = index % embedding_dim;
     unsigned long long position = token_index % seq_len;
     hidden[index] += positions[position * embedding_dim + column];
+}
+extern "C" __global__ void add_bias_last_dim_f32(
+    const float* input, const float* bias, float* output,
+    unsigned long long rows, unsigned long long columns
+) {
+    unsigned long long index = (unsigned long long)blockIdx.x * blockDim.x + threadIdx.x;
+    unsigned long long total = rows * columns;
+    if (index >= total) return;
+    output[index] = input[index] + bias[index % columns];
 }
 extern "C" __global__ void elementwise_add_f32(
     const float* a, const float* b, float* output, unsigned long long n
