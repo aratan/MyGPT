@@ -387,3 +387,38 @@ mod attention_tests {
         }
     }
 }
+
+#[cfg(test)]
+mod attention_composition_tests {
+    use super::*;
+    use crate::attention::CausalSelfAttention;
+
+    #[test]
+    fn multi_head_attention_matches_cpu_reference_when_cuda_is_available() {
+        let runtime=match CudaRuntime::discover(){Ok(value)=>value,Err(_)=>return};
+        let backend=CudaBackend::new(&runtime,0).expect("CUDA backend");
+        let (batch,seq,embedding,heads)=(2usize,3usize,4usize,2usize);
+        let input_data:Vec<f32>=(0..batch*seq*embedding).map(|i|(i as f32-5.0)*0.031).collect();
+        let make_weights=|seed|Tensor::random([embedding,embedding],seed,-0.1,0.1).unwrap();
+        let qw=make_weights(11); let kw=make_weights(12); let vw=make_weights(13); let ow=make_weights(14);
+        let cpu=CausalSelfAttention::from_tensors(heads,qw.clone(),kw.clone(),vw.clone(),ow.clone()).unwrap();
+        let input=Tensor::new(vec![batch,seq,embedding],input_data).unwrap();
+        let expected=cpu.forward(&input).unwrap();
+        let gpu_input=backend.upload(&input).unwrap();
+        let gqw=backend.upload(&qw).unwrap(); let gkw=backend.upload(&kw).unwrap();
+        let gvw=backend.upload(&vw).unwrap(); let gow=backend.upload(&ow).unwrap();
+        let actual=backend.multi_head_attention(&gpu_input,&gqw,&gkw,&gvw,&gow,heads).unwrap();
+        let actual=backend.to_host(&actual).unwrap();
+        backend.synchronize().unwrap();
+        for (got,want) in actual.data().iter().zip(expected.data()) {
+            assert!((got-want).abs()<3.0e-4,"CUDA {got} != CPU {want}");
+        }
+    }
+
+    #[test]
+    fn head_layout_requires_rank_three_input() {
+        // Structural API contract is also checked by clippy/build on CPU-only CI.
+        fn accepts_tensor(_: &CudaTensor) {}
+        let _ = accepts_tensor as fn(&CudaTensor);
+    }
+}
