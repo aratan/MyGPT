@@ -134,31 +134,152 @@ impl CudaRuntime {
             .ok_or_else(|| Error::new("CUDA devolvió un contexto nulo"))?;
 
         Ok(CudaContext {
-            api: Arc::clone(&self.api),
-            raw: context,
+            inner: Arc::new(ContextInner {
+                api: Arc::clone(&self.api),
+                raw: context,
+            }),
             ordinal,
         })
     }
 }
 
-/// Contexto CUDA RAII. Mantiene cargado el driver hasta destruir el contexto.
+/// Contexto CUDA RAII. El contexto permanece vivo mientras existan buffers.
 pub struct CudaContext {
+    inner: Arc<ContextInner>,
+    ordinal: usize,
+}
+
+struct ContextInner {
     api: Arc<DriverApi>,
     raw: NonNull<c_void>,
-    ordinal: usize,
+}
+
+impl ContextInner {
+    fn make_current(&self) -> Result<()> {
+        check_cuda(
+            unsafe { (self.api.context_set_current)(self.raw.as_ptr()) },
+            "cuCtxSetCurrent",
+        )
+    }
+}
+
+impl Drop for ContextInner {
+    fn drop(&mut self) {
+        // La destrucción es best-effort: Drop no puede propagar errores.
+        unsafe {
+            (self.api.context_destroy)(self.raw.as_ptr());
+        }
+    }
 }
 
 impl CudaContext {
     pub fn device_ordinal(&self) -> usize {
         self.ordinal
     }
+
+    /// Reserva memoria de dispositivo para un vector FP32 residente.
+    pub fn allocate_f32(&self, len: usize) -> Result<CudaBuffer> {
+        if len == 0 {
+            return Err(Error::new("No se pueden reservar buffers CUDA vacíos"));
+        }
+        let bytes = len
+            .checked_mul(std::mem::size_of::<f32>())
+            .ok_or_else(|| Error::new("Tamaño de buffer CUDA fuera de rango"))?;
+        self.inner.make_current()?;
+        let mut pointer = 0u64;
+        check_cuda(
+            unsafe { (self.inner.api.mem_alloc)(&mut pointer, bytes) },
+            "cuMemAlloc_v2",
+        )?;
+        if pointer == 0 {
+            return Err(Error::new("CUDA devolvió un puntero de dispositivo nulo"));
+        }
+        Ok(CudaBuffer {
+            pointer,
+            len,
+            context: Arc::clone(&self.inner),
+        })
+    }
+
+    /// Espera a que termine todo el trabajo del contexto actual.
+    pub fn synchronize(&self) -> Result<()> {
+        self.inner.make_current()?;
+        check_cuda(
+            unsafe { (self.inner.api.context_synchronize)() },
+            "cuCtxSynchronize",
+        )
+    }
 }
 
-impl Drop for CudaContext {
+/// Buffer FP32 propietario en VRAM. No descarga datos implícitamente.
+pub struct CudaBuffer {
+    pointer: u64,
+    len: usize,
+    context: Arc<ContextInner>,
+}
+
+impl CudaBuffer {
+    pub fn len(&self) -> usize {
+        self.len
+    }
+
+    pub fn is_empty(&self) -> bool {
+        self.len == 0
+    }
+
+    /// Copia un vector completo desde RAM a VRAM.
+    pub fn copy_from_host(&mut self, values: &[f32]) -> Result<()> {
+        if values.len() != self.len {
+            return Err(Error::new(format!(
+                "Tamaño H2D incorrecto: buffer {}, origen {}",
+                self.len,
+                values.len()
+            )));
+        }
+        let bytes = self.len * std::mem::size_of::<f32>();
+        self.context.make_current()?;
+        check_cuda(
+            unsafe {
+                (self.context.api.memcpy_htod)(
+                    self.pointer,
+                    values.as_ptr().cast::<c_void>(),
+                    bytes,
+                )
+            },
+            "cuMemcpyHtoD_v2",
+        )
+    }
+
+    /// Copia el contenido completo de VRAM a RAM de forma explícita.
+    pub fn copy_to_host(&self) -> Result<Vec<f32>> {
+        let mut values = vec![0.0f32; self.len];
+        let bytes = self.len * std::mem::size_of::<f32>();
+        self.context.make_current()?;
+        check_cuda(
+            unsafe {
+                (self.context.api.memcpy_dtoh)(
+                    values.as_mut_ptr().cast::<c_void>(),
+                    self.pointer,
+                    bytes,
+                )
+            },
+            "cuMemcpyDtoH_v2",
+        )?;
+        Ok(values)
+    }
+
+    pub(crate) fn device_ptr(&self) -> u64 {
+        self.pointer
+    }
+}
+
+impl Drop for CudaBuffer {
     fn drop(&mut self) {
-        // La destrucción es best-effort: Drop no puede propagar errores.
-        unsafe {
-            (self.api.context_destroy)(self.raw.as_ptr());
+        // El buffer conserva el contexto mediante Arc; liberar es best-effort.
+        if self.context.make_current().is_ok() {
+            unsafe {
+                (self.context.api.mem_free)(self.pointer);
+            }
         }
     }
 }
@@ -193,6 +314,12 @@ type CuDeviceTotalMem = unsafe extern "C" fn(*mut usize, c_int) -> c_int;
 type CuDriverGetVersion = unsafe extern "C" fn(*mut c_int) -> c_int;
 type CuContextCreate = unsafe extern "C" fn(*mut *mut c_void, c_uint, c_int) -> c_int;
 type CuContextDestroy = unsafe extern "C" fn(*mut c_void) -> c_int;
+type CuContextSetCurrent = unsafe extern "C" fn(*mut c_void) -> c_int;
+type CuContextSynchronize = unsafe extern "C" fn() -> c_int;
+type CuMemAlloc = unsafe extern "C" fn(*mut u64, usize) -> c_int;
+type CuMemFree = unsafe extern "C" fn(u64) -> c_int;
+type CuMemcpyHtoD = unsafe extern "C" fn(u64, *const c_void, usize) -> c_int;
+type CuMemcpyDtoH = unsafe extern "C" fn(*mut c_void, u64, usize) -> c_int;
 
 struct DriverApi {
     _library: dynamic::Library,
@@ -205,6 +332,12 @@ struct DriverApi {
     driver_get_version: CuDriverGetVersion,
     context_create: CuContextCreate,
     context_destroy: CuContextDestroy,
+    context_set_current: CuContextSetCurrent,
+    context_synchronize: CuContextSynchronize,
+    mem_alloc: CuMemAlloc,
+    mem_free: CuMemFree,
+    memcpy_htod: CuMemcpyHtoD,
+    memcpy_dtoh: CuMemcpyDtoH,
 }
 
 impl DriverApi {
@@ -220,6 +353,12 @@ impl DriverApi {
             driver_get_version: library.symbol("cuDriverGetVersion")?,
             context_create: library.symbol("cuCtxCreate_v2")?,
             context_destroy: library.symbol("cuCtxDestroy_v2")?,
+            context_set_current: library.symbol("cuCtxSetCurrent")?,
+            context_synchronize: library.symbol("cuCtxSynchronize")?,
+            mem_alloc: library.symbol("cuMemAlloc_v2")?,
+            mem_free: library.symbol("cuMemFree_v2")?,
+            memcpy_htod: library.symbol("cuMemcpyHtoD_v2")?,
+            memcpy_dtoh: library.symbol("cuMemcpyDtoH_v2")?,
             _library: library,
         })
     }
