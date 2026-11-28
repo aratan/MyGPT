@@ -1,5 +1,15 @@
 # Changelog
 
+## [v0.1.9] - 2026-11-28
+
+## What's Changed
+* feat(cuda): implement causal multi-head attention by @aratan in https://github.com/aratan/MyGPT/pull/14
+
+
+**Full Changelog**: https://github.com/aratan/MyGPT/compare/v0.1.8...v0.1.9
+
+
+
 ## [v0.1.8] - 2026-11-28
 
 ## What's Changed
