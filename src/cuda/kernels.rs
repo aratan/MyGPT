@@ -193,6 +193,78 @@ impl CudaKernelModule {
         unsafe { kernel.launch([blocks_for(len)?, 1, 1], [256, 1, 1], 0, stream, &mut args) }
     }
 
+    /// Softmax estable por fila para una matriz row-major [rows, columns].
+    pub fn softmax_rows(
+        &self, input: &CudaBuffer, output: &mut CudaBuffer,
+        rows: usize, columns: usize, stream: Option<&CudaStream>,
+    ) -> Result<()> {
+        let total = rows.checked_mul(columns).ok_or_else(|| Error::new("Dimensiones softmax fuera de rango"))?;
+        if rows == 0 || columns == 0 || input.len < total || output.len < total {
+            return Err(Error::new("Buffers o dimensiones incompatibles en softmax CUDA"));
+        }
+        self.validate_contexts(&[input, output], stream)?;
+        let mut input_arg = input.pointer;
+        let mut output_arg = output.pointer;
+        let mut rows_arg = u64::try_from(rows).map_err(|_| Error::new("Filas fuera de rango"))?;
+        let mut columns_arg = u64::try_from(columns).map_err(|_| Error::new("Columnas fuera de rango"))?;
+        let mut args = [
+            (&mut input_arg as *mut u64).cast::<c_void>(),
+            (&mut output_arg as *mut u64).cast::<c_void>(),
+            (&mut rows_arg as *mut u64).cast::<c_void>(),
+            (&mut columns_arg as *mut u64).cast::<c_void>(),
+        ];
+        let kernel = self.function("softmax_rows_f32")?;
+        unsafe { kernel.launch([u32::try_from(rows).map_err(|_| Error::new("Grid softmax fuera de rango"))?, 1, 1],
+            [256, 1, 1], 256 * 2 * 4, stream, &mut args) }
+    }
+
+    /// LayerNorm por fila: (x - mean) / sqrt(var + epsilon) * gamma + beta.
+    pub fn layer_norm_rows(
+        &self, input: &CudaBuffer, gamma: &CudaBuffer, beta: &CudaBuffer,
+        output: &mut CudaBuffer, rows: usize, columns: usize, epsilon: f32,
+        stream: Option<&CudaStream>,
+    ) -> Result<()> {
+        let total = rows.checked_mul(columns).ok_or_else(|| Error::new("Dimensiones LayerNorm fuera de rango"))?;
+        if rows == 0 || columns == 0 || input.len < total || output.len < total
+            || gamma.len < columns || beta.len < columns || !epsilon.is_finite() || epsilon <= 0.0 {
+            return Err(Error::new("Buffers, dimensiones o epsilon incompatibles en LayerNorm CUDA"));
+        }
+        self.validate_contexts(&[input, gamma, beta, output], stream)?;
+        let mut input_arg = input.pointer;
+        let mut gamma_arg = gamma.pointer;
+        let mut beta_arg = beta.pointer;
+        let mut output_arg = output.pointer;
+        let mut rows_arg = u64::try_from(rows).map_err(|_| Error::new("Filas fuera de rango"))?;
+        let mut columns_arg = u64::try_from(columns).map_err(|_| Error::new("Columnas fuera de rango"))?;
+        let mut epsilon_arg = epsilon;
+        let mut args = [
+            (&mut input_arg as *mut u64).cast::<c_void>(),
+            (&mut gamma_arg as *mut u64).cast::<c_void>(),
+            (&mut beta_arg as *mut u64).cast::<c_void>(),
+            (&mut output_arg as *mut u64).cast::<c_void>(),
+            (&mut rows_arg as *mut u64).cast::<c_void>(),
+            (&mut columns_arg as *mut u64).cast::<c_void>(),
+            (&mut epsilon_arg as *mut f32).cast::<c_void>(),
+        ];
+        let kernel = self.function("layer_norm_rows_f32")?;
+        unsafe { kernel.launch([u32::try_from(rows).map_err(|_| Error::new("Grid LayerNorm fuera de rango"))?, 1, 1],
+            [256, 1, 1], 256 * 2 * 4, stream, &mut args) }
+    }
+
+    fn validate_contexts(&self, buffers: &[&CudaBuffer], stream: Option<&CudaStream>) -> Result<()> {
+        for buffer in buffers {
+            if !Arc::ptr_eq(&self.context, &buffer.context) {
+                return Err(Error::new("Todos los buffers deben pertenecer al mismo contexto CUDA"));
+            }
+        }
+        if let Some(stream) = stream {
+            if !Arc::ptr_eq(&self.context, &stream.context) {
+                return Err(Error::new("El stream debe pertenecer al mismo contexto CUDA"));
+            }
+        }
+        Ok(())
+    }
+
     /// Reducción FP32 a un escalar, usando un bloque y memoria compartida.
     pub fn reduce_sum(
         &self, input: &CudaBuffer, output: &mut CudaBuffer, len: usize,
@@ -307,6 +379,76 @@ extern "C" __global__ void scale_f32(
 ) {
     unsigned long long i = (unsigned long long)blockIdx.x * blockDim.x + threadIdx.x;
     if (i < n) output[i] = input[i] * factor;
+}
+extern "C" __global__ void softmax_rows_f32(
+    const float* input, float* output, unsigned long long rows, unsigned long long columns
+) {
+    unsigned long long row = blockIdx.x;
+    if (row >= rows) return;
+    extern __shared__ float shared[];
+    float* maxima = shared;
+    float* sums = shared + blockDim.x;
+    unsigned int tid = threadIdx.x;
+    float local_max = -INFINITY;
+    for (unsigned long long col = tid; col < columns; col += blockDim.x)
+        local_max = fmaxf(local_max, input[row * columns + col]);
+    maxima[tid] = local_max;
+    __syncthreads();
+    for (unsigned int stride = blockDim.x / 2; stride > 0; stride >>= 1) {
+        if (tid < stride) maxima[tid] = fmaxf(maxima[tid], maxima[tid + stride]);
+        __syncthreads();
+    }
+    float row_max = maxima[0];
+    float local_sum = 0.0f;
+    for (unsigned long long col = tid; col < columns; col += blockDim.x) {
+        float value = expf(input[row * columns + col] - row_max);
+        output[row * columns + col] = value;
+        local_sum += value;
+    }
+    sums[tid] = local_sum;
+    __syncthreads();
+    for (unsigned int stride = blockDim.x / 2; stride > 0; stride >>= 1) {
+        if (tid < stride) sums[tid] += sums[tid + stride];
+        __syncthreads();
+    }
+    float denominator = sums[0];
+    for (unsigned long long col = tid; col < columns; col += blockDim.x)
+        output[row * columns + col] /= denominator;
+}
+extern "C" __global__ void layer_norm_rows_f32(
+    const float* input, const float* gamma, const float* beta, float* output,
+    unsigned long long rows, unsigned long long columns, float epsilon
+) {
+    unsigned long long row = blockIdx.x;
+    if (row >= rows) return;
+    extern __shared__ float shared[];
+    float* sums = shared;
+    float* squares = shared + blockDim.x;
+    unsigned int tid = threadIdx.x;
+    float local_sum = 0.0f;
+    float local_square = 0.0f;
+    for (unsigned long long col = tid; col < columns; col += blockDim.x) {
+        float value = input[row * columns + col];
+        local_sum += value;
+        local_square += value * value;
+    }
+    sums[tid] = local_sum;
+    squares[tid] = local_square;
+    __syncthreads();
+    for (unsigned int stride = blockDim.x / 2; stride > 0; stride >>= 1) {
+        if (tid < stride) {
+            sums[tid] += sums[tid + stride];
+            squares[tid] += squares[tid + stride];
+        }
+        __syncthreads();
+    }
+    float mean = sums[0] / (float)columns;
+    float variance = fmaxf(squares[0] / (float)columns - mean * mean, 0.0f);
+    float inverse_std = rsqrtf(variance + epsilon);
+    for (unsigned long long col = tid; col < columns; col += blockDim.x) {
+        float normalized = (input[row * columns + col] - mean) * inverse_std;
+        output[row * columns + col] = normalized * gamma[col] + beta[col];
+    }
 }
 extern "C" __global__ void reduce_sum_f32(
     const float* input, float* output, unsigned long long n
