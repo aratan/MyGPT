@@ -40,7 +40,6 @@ pub struct CudaBlas<'stream> {
     _library: dynamic::Library,
     destroy: CublasDestroy,
     sgemm: CublasSgemm,
-    set_stream: CublasSetStream,
     // Keep the stream alive for at least as long as cuBLAS can enqueue work on it.
     _stream: Option<&'stream super::CudaStream>,
 }
@@ -99,7 +98,6 @@ impl CudaContext {
             _library: library,
             destroy,
             sgemm,
-            set_stream,
             _stream: stream,
         })
     }
