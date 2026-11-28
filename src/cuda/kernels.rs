@@ -108,8 +108,7 @@ impl CudaKernelModule {
     /// Compila código CUDA C++ con NVRTC y carga el PTX en el dispositivo.
     /// Para una RTX 4060 (Ada Lovelace), usa compute_89.
     pub fn compile(context: &CudaContext, source: &str, program_name: &str, architecture: &str) -> Result<Self> {
-        if !architecture.starts_with("compute_") ||
-            !architecture[8..].bytes().all(|byte| byte.is_ascii_digit()) {
+        if !valid_architecture(architecture) {
             return Err(Error::new("Arquitectura NVRTC inválida; usa por ejemplo compute_89"));
         }
         context.inner.make_current()?;
@@ -178,6 +177,11 @@ impl CudaKernel<'_> {
     }
 }
 
+fn valid_architecture(value: &str) -> bool {
+    value.strip_prefix("compute_")
+        .is_some_and(|suffix| !suffix.is_empty() && suffix.bytes().all(|byte| byte.is_ascii_digit()))
+}
+
 fn check_nvrtc(status: c_int, operation: &str) -> Result<()> {
     if status == NVRTC_SUCCESS { Ok(()) } else {
         Err(Error::new(format!("NVRTC: {operation} falló con código {status}")))
@@ -191,10 +195,14 @@ fn check_cuda(status: c_int, operation: &str) -> Result<()> {
 
 #[cfg(test)]
 mod tests {
-    use super::*;
+    use super::valid_architecture;
+
     #[test]
-    fn rejects_invalid_architecture_before_loading_nvrtc() {
-        assert!(CudaKernelModule::compile as fn(&CudaContext, &str, &str, &str) -> Result<CudaKernelModule> !=
-            CudaKernelModule::compile as fn(&CudaContext, &str, &str, &str) -> Result<CudaKernelModule> || true);
+    fn validates_nvrtc_architecture_without_loading_runtime() {
+        assert!(valid_architecture("compute_89"));
+        assert!(valid_architecture("compute_120"));
+        assert!(!valid_architecture("sm_89"));
+        assert!(!valid_architecture("compute_"));
+        assert!(!valid_architecture("compute_8x"));
     }
 }
