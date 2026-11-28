@@ -13,9 +13,10 @@ y un visor de interpretabilidad.
 
 **Estado de tecnologías:** Rust está implementado. CUDA tiene un backend experimental con runtime, kernels FP32 y tensores residentes; aún no está integrado en GPT ni validado en GPU física. El objetivo de hardware es NVIDIA RTX 4060 de 8 GB; seguimiento en [la issue #2](https://github.com/aratan/MyGPT/issues/2).
 
-El proyecto es **100 % Rust**: sin dependencias externas, sin C/C++, sin CUDA,
-sin `build.rs` y sin `CMakeLists.txt`. Todo el código de aplicación y todas las
-herramientas viven en archivos `.rs`.
+El código de aplicación y las herramientas están escritos en Rust. El backend CUDA
+carga dinámicamente el Driver API, NVRTC y cuBLAS, y compila kernels CUDA C en
+runtime: no requiere `nvcc`, `build.rs` ni `CMakeLists.txt`. La ejecución del
+modelo GPT sigue siendo CPU hasta integrar el backend en `GPT::forward`.
 
 ---
 
@@ -159,10 +160,15 @@ primer paso, con los logits originales o ajustados (`--show-adjusted`).
 
 ## 5. Requisitos
 
-**Solo CPU**
+**CPU (funcionamiento completo actual)**
 
-- Rust estable reciente (`cargo`, `rustc`). El crate usa únicamente la
-  librería estándar.
+- Rust estable reciente (`cargo`, `rustc`).
+
+**CUDA (backend experimental de operaciones, todavía no conectado al GPT)**
+
+- GPU NVIDIA compatible con CUDA; objetivo de validación: RTX 4060 (compute capability 8.9).
+- Driver NVIDIA y bibliotecas CUDA Driver API, NVRTC y cuBLAS disponibles en runtime.
+- Si no están disponibles, el flujo CPU sigue siendo el camino funcional.
 
 ## 6. Compilación
 
@@ -684,16 +690,19 @@ Se comprobó además:
 
 ## 12. Limitaciones
 
-- Entrenamiento e inferencia solo en CPU: no hay backend GPU, por lo que el
-  proyecto no usa CUDA ni código nativo externo.
+- El backend CUDA experimental ofrece operaciones FP32 residentes en VRAM
+  (embeddings, linear/cuBLAS, bias, embeddings posicionales, elementwise,
+  softmax, LayerNorm y GELU). Aún no está conectado a `GPT::forward`,
+  `gpt_train` ni `gpt_chat`; por tanto, el modelo completo sigue ejecutándose
+  en CPU. La CI no sustituye la validación en una GPU NVIDIA física.
 - No hay precisión mixta (fp16/bf16). La acumulación de gradientes sí está
   disponible (`--grad-accum`) para aumentar el batch efectivo sin multiplicar
   la memoria de activaciones.
 - El RNG de inicialización es `xoshiro256**`, determinista para una semilla
   dada.
 - GELU usa una aproximación de `erf` (~1e-7 de error).
-- No se incluyen las demos antiguas ni una segunda implementación nativa:
-  todo el código de aplicación es Rust.
+- No se incluyen las demos antiguas ni una segunda implementación del modelo:
+  la lógica de aplicación permanece en Rust y CUDA se limita a kernels del backend.
 - `gpt_train` no captura Ctrl+C; usa `--save-every` para checkpoints
   periódicos.
 
