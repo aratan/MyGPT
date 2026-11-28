@@ -5,7 +5,7 @@
 //! Los argumentos de kernel se pasan como punteros a sus valores ABI; el
 //! llamador debe garantizar su validez y el layout esperado por el kernel.
 
-use super::{dynamic, CudaContext, CudaStream, ContextInner, Error, Result};
+use super::{dynamic, CudaBuffer, CudaContext, CudaStream, ContextInner, Error, Result};
 use std::ffi::{c_char, c_int, c_void, CString};
 use std::ptr::NonNull;
 use std::sync::Arc;
@@ -122,6 +122,114 @@ impl CudaKernelModule {
         Ok(Self { context: Arc::clone(&context.inner), module, _nvrtc: nvrtc })
     }
 
+    /// Compila el conjunto inicial de operaciones FP32 de uso general.
+    pub fn compile_builtin_ops(context: &CudaContext, architecture: &str) -> Result<Self> {
+        Self::compile(context, BUILTIN_KERNELS, "mygpt_ops.cu", architecture)
+    }
+
+    /// Suma dos vectores residentes en VRAM: output[i] = a[i] + b[i].
+    pub fn elementwise_add(
+        &self, a: &CudaBuffer, b: &CudaBuffer, output: &mut CudaBuffer,
+        len: usize, stream: Option<&CudaStream>,
+    ) -> Result<()> {
+        self.validate_buffers(&[a, b, output], stream, len, false)?;
+        let len_arg = u64::try_from(len).map_err(|_| Error::new("Longitud CUDA fuera de rango"))?;
+        let mut a_arg = a.pointer;
+        let mut b_arg = b.pointer;
+        let mut out_arg = output.pointer;
+        let mut n_arg = len_arg;
+        let mut args = [
+            (&mut a_arg as *mut u64).cast::<c_void>(),
+            (&mut b_arg as *mut u64).cast::<c_void>(),
+            (&mut out_arg as *mut u64).cast::<c_void>(),
+            (&mut n_arg as *mut u64).cast::<c_void>(),
+        ];
+        let kernel = self.function("elementwise_add_f32")?;
+        let blocks = blocks_for(len)?;
+        unsafe { kernel.launch([blocks, 1, 1], [256, 1, 1], 0, stream, &mut args) }
+    }
+
+    /// Multiplica dos vectores residentes en VRAM: output[i] = a[i] * b[i].
+    pub fn elementwise_mul(
+        &self, a: &CudaBuffer, b: &CudaBuffer, output: &mut CudaBuffer,
+        len: usize, stream: Option<&CudaStream>,
+    ) -> Result<()> {
+        self.validate_buffers(&[a, b, output], stream, len, false)?;
+        let mut a_arg = a.pointer;
+        let mut b_arg = b.pointer;
+        let mut out_arg = output.pointer;
+        let mut n_arg = u64::try_from(len).map_err(|_| Error::new("Longitud CUDA fuera de rango"))?;
+        let mut args = [
+            (&mut a_arg as *mut u64).cast::<c_void>(),
+            (&mut b_arg as *mut u64).cast::<c_void>(),
+            (&mut out_arg as *mut u64).cast::<c_void>(),
+            (&mut n_arg as *mut u64).cast::<c_void>(),
+        ];
+        let kernel = self.function("elementwise_mul_f32")?;
+        unsafe { kernel.launch([blocks_for(len)?, 1, 1], [256, 1, 1], 0, stream, &mut args) }
+    }
+
+    /// Escala un vector residente en VRAM: output[i] = input[i] * factor.
+    pub fn scale(
+        &self, input: &CudaBuffer, output: &mut CudaBuffer, len: usize,
+        factor: f32, stream: Option<&CudaStream>,
+    ) -> Result<()> {
+        self.validate_buffers(&[input, output], stream, len, false)?;
+        let mut input_arg = input.pointer;
+        let mut output_arg = output.pointer;
+        let mut n_arg = u64::try_from(len).map_err(|_| Error::new("Longitud CUDA fuera de rango"))?;
+        let mut factor_arg = factor;
+        let mut args = [
+            (&mut input_arg as *mut u64).cast::<c_void>(),
+            (&mut output_arg as *mut u64).cast::<c_void>(),
+            (&mut n_arg as *mut u64).cast::<c_void>(),
+            (&mut factor_arg as *mut f32).cast::<c_void>(),
+        ];
+        let kernel = self.function("scale_f32")?;
+        unsafe { kernel.launch([blocks_for(len)?, 1, 1], [256, 1, 1], 0, stream, &mut args) }
+    }
+
+    /// Reducción FP32 a un escalar, usando un bloque y memoria compartida.
+    pub fn reduce_sum(
+        &self, input: &CudaBuffer, output: &mut CudaBuffer, len: usize,
+        stream: Option<&CudaStream>,
+    ) -> Result<()> {
+        if len == 0 { return Err(Error::new("No se puede reducir un vector vacío")); }
+        self.validate_buffers(&[input, output], stream, len, true)?;
+        let mut input_arg = input.pointer;
+        let mut output_arg = output.pointer;
+        let mut n_arg = u64::try_from(len).map_err(|_| Error::new("Longitud CUDA fuera de rango"))?;
+        let mut args = [
+            (&mut input_arg as *mut u64).cast::<c_void>(),
+            (&mut output_arg as *mut u64).cast::<c_void>(),
+            (&mut n_arg as *mut u64).cast::<c_void>(),
+        ];
+        let kernel = self.function("reduce_sum_f32")?;
+        unsafe { kernel.launch([1, 1, 1], [256, 1, 1], 256 * 4, stream, &mut args) }
+    }
+
+    fn validate_buffers(
+        &self, buffers: &[&CudaBuffer], stream: Option<&CudaStream>,
+        len: usize, scalar_output: bool,
+    ) -> Result<()> {
+        if len == 0 { return Err(Error::new("La longitud de la operación CUDA debe ser mayor que cero")); }
+        for (index, buffer) in buffers.iter().enumerate() {
+            if !Arc::ptr_eq(&self.context, &buffer.context) {
+                return Err(Error::new("Todos los buffers deben pertenecer al mismo contexto CUDA"));
+            }
+            let required = if scalar_output && index == buffers.len() - 1 { 1 } else { len };
+            if buffer.len < required {
+                return Err(Error::new(format!("Buffer CUDA {index} demasiado pequeño: {} < {required}", buffer.len)));
+            }
+        }
+        if let Some(stream) = stream {
+            if !Arc::ptr_eq(&self.context, &stream.context) {
+                return Err(Error::new("El stream debe pertenecer al mismo contexto CUDA"));
+            }
+        }
+        Ok(())
+    }
+
     pub fn function<'module>(&'module self, name: &str) -> Result<CudaKernel<'module>> {
         let name = CString::new(name).map_err(|_| Error::new("Nombre de kernel inválido"))?;
         self.context.make_current()?;
@@ -175,6 +283,47 @@ impl CudaKernel<'_> {
             raw_stream, arguments.as_mut_ptr(), std::ptr::null_mut(),
         ), "cuLaunchKernel")
     }
+}
+
+const BUILTIN_KERNELS: &str = r#"
+extern "C" __global__ void elementwise_add_f32(
+    const float* a, const float* b, float* output, unsigned long long n
+) {
+    unsigned long long i = (unsigned long long)blockIdx.x * blockDim.x + threadIdx.x;
+    if (i < n) output[i] = a[i] + b[i];
+}
+extern "C" __global__ void elementwise_mul_f32(
+    const float* a, const float* b, float* output, unsigned long long n
+) {
+    unsigned long long i = (unsigned long long)blockIdx.x * blockDim.x + threadIdx.x;
+    if (i < n) output[i] = a[i] * b[i];
+}
+extern "C" __global__ void scale_f32(
+    const float* input, float* output, unsigned long long n, float factor
+) {
+    unsigned long long i = (unsigned long long)blockIdx.x * blockDim.x + threadIdx.x;
+    if (i < n) output[i] = input[i] * factor;
+}
+extern "C" __global__ void reduce_sum_f32(
+    const float* input, float* output, unsigned long long n
+) {
+    extern __shared__ float partial[];
+    unsigned int tid = threadIdx.x;
+    float sum = 0.0f;
+    for (unsigned long long i = tid; i < n; i += blockDim.x) sum += input[i];
+    partial[tid] = sum;
+    __syncthreads();
+    for (unsigned int stride = blockDim.x / 2; stride > 0; stride >>= 1) {
+        if (tid < stride) partial[tid] += partial[tid + stride];
+        __syncthreads();
+    }
+    if (tid == 0) output[0] = partial[0];
+}
+"#;
+
+fn blocks_for(len: usize) -> Result<u32> {
+    let blocks = len.div_ceil(256);
+    u32::try_from(blocks).map_err(|_| Error::new("Grid CUDA fuera de rango"))
 }
 
 fn valid_architecture(value: &str) -> bool {
