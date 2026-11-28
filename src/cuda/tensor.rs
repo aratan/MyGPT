@@ -332,11 +332,4 @@ mod attention_tests {
             assert!((got - want).abs() < 2.0e-4, "CUDA {got} != CPU {want}");
         }
     }
-
-    #[test]
-    fn causal_attention_rejects_mismatched_qkv_shapes_before_launch() {
-        // Shape validation is exercised through the pure API contract in CI
-        // on CUDA-enabled runners; hardware-free runners skip device execution.
-        assert_eq!(std::mem::size_of::<CudaTensor>() > 0, true);
-    }
 }
