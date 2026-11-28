@@ -414,11 +414,4 @@ mod attention_composition_tests {
             assert!((got-want).abs()<3.0e-4,"CUDA {got} != CPU {want}");
         }
     }
-
-    #[test]
-    fn head_layout_requires_rank_three_input() {
-        // Structural API contract is also checked by clippy/build on CPU-only CI.
-        fn accepts_tensor(_: &CudaTensor) {}
-        let _ = accepts_tensor as fn(&CudaTensor);
-    }
 }
