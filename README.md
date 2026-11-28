@@ -1,7 +1,6 @@
 # mini GPT en Rust
 
-[![CI](https://github.com/aratan/MyGPT/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/aratan/MyGPT/actions/workflows/ci.yml)
-
+[![CI](https://github.com/aratan/MyGPT/actions/workflows/ci.yml/badge.svg)](https://github.com/aratan/MyGPT/actions/workflows/ci.yml)
 
 Mini GPT escrito desde cero en Rust para aprender cómo funcionan un
 transformer, el tokenizador BPE y el entrenamiento. Incluye la librería, cuatro
@@ -621,6 +620,23 @@ cargo build --release
 | `artifacts/trace.html` | Visor de interpretabilidad |
 
 `artifacts/`, `*.bin` y `*.bpe` están en `.gitignore`.
+
+### 9.7 Descargar y verificar una release
+
+La release `v0.1.0` incluye los cuatro binarios para Linux x86_64. Se publican
+automáticamente al subir un tag `v*` (workflow `Release`).
+
+```bash
+curl -LO https://github.com/aratan/MyGPT/releases/download/v0.1.0/mini-gpt-rust-v0.1.0-x86_64-unknown-linux-gnu.tar.gz
+curl -LO https://github.com/aratan/MyGPT/releases/download/v0.1.0/SHA256SUMS.txt
+sha256sum -c SHA256SUMS.txt
+tar -xzf mini-gpt-rust-v0.1.0-x86_64-unknown-linux-gnu.tar.gz
+./synth_data --help
+```
+
+Si `sha256sum -c` responde `OK`, el paquete coincide con el publicado. Para
+otra versión, sustituye `v0.1.0` por su tag en ambas URLs.
+
 
 ## 10. Estructura del proyecto
 
