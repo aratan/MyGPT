@@ -426,24 +426,27 @@ extern "C" __global__ void layer_norm_rows_f32(
     float* squares = shared + blockDim.x;
     unsigned int tid = threadIdx.x;
     float local_sum = 0.0f;
-    float local_square = 0.0f;
-    for (unsigned long long col = tid; col < columns; col += blockDim.x) {
-        float value = input[row * columns + col];
-        local_sum += value;
-        local_square += value * value;
-    }
+    for (unsigned long long col = tid; col < columns; col += blockDim.x)
+        local_sum += input[row * columns + col];
     sums[tid] = local_sum;
-    squares[tid] = local_square;
     __syncthreads();
     for (unsigned int stride = blockDim.x / 2; stride > 0; stride >>= 1) {
-        if (tid < stride) {
-            sums[tid] += sums[tid + stride];
-            squares[tid] += squares[tid + stride];
-        }
+        if (tid < stride) sums[tid] += sums[tid + stride];
         __syncthreads();
     }
     float mean = sums[0] / (float)columns;
-    float variance = fmaxf(squares[0] / (float)columns - mean * mean, 0.0f);
+    float local_variance = 0.0f;
+    for (unsigned long long col = tid; col < columns; col += blockDim.x) {
+        float centered = input[row * columns + col] - mean;
+        local_variance += centered * centered;
+    }
+    squares[tid] = local_variance;
+    __syncthreads();
+    for (unsigned int stride = blockDim.x / 2; stride > 0; stride >>= 1) {
+        if (tid < stride) squares[tid] += squares[tid + stride];
+        __syncthreads();
+    }
+    float variance = squares[0] / (float)columns;
     float inverse_std = rsqrtf(variance + epsilon);
     for (unsigned long long col = tid; col < columns; col += blockDim.x) {
         float normalized = (input[row * columns + col] - mean) * inverse_std;
