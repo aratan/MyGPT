@@ -158,6 +158,13 @@ impl CudaBackend {
         Ok(output)
     }
 
+    /// GELU tanh aproximada, consistente con la activación del Transformer CPU.
+    pub fn gelu(&self, input: &CudaTensor) -> Result<CudaTensor> {
+        let mut output = self.allocate_like(input)?;
+        self.kernels.gelu(&input.buffer, &mut output.buffer, input.len(), None)?;
+        Ok(output)
+    }
+
     pub fn add(&self, lhs: &CudaTensor, rhs: &CudaTensor) -> Result<CudaTensor> {
         self.require_same_shape(lhs, rhs)?;
         let mut output = self.allocate_like(lhs)?;
