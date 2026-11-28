@@ -81,7 +81,7 @@ impl CudaBackend {
         }
         let vocab = table.shape[0];
         let dim = table.shape[1];
-        let buffer = self.kernels.embedding_lookup(ids, &table.buffer, vocab, dim, None)?;
+        let buffer = self.kernels.embedding_lookup(&self.context, ids, &table.buffer, vocab, dim, None)?;
         Ok(CudaTensor { shape: vec![ids.len(), dim], buffer })
     }
 
