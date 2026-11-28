@@ -133,9 +133,12 @@ impl CudaKernelModule {
 
     /// Busca filas de una tabla de embeddings usando IDs u32.
     pub fn embedding_lookup(
-        &self, ids: &[u32], table: &CudaBuffer, vocab_size: usize,
+        &self, context: &CudaContext, ids: &[u32], table: &CudaBuffer, vocab_size: usize,
         embedding_dim: usize, stream: Option<&CudaStream>,
     ) -> Result<CudaBuffer> {
+        if !Arc::ptr_eq(&self.context, &context.inner) {
+            return Err(Error::new("El contexto no coincide con el módulo CUDA"));
+        }
         if ids.is_empty() || vocab_size == 0 || embedding_dim == 0
             || table.len < vocab_size.checked_mul(embedding_dim)
                 .ok_or_else(|| Error::new("Tabla de embeddings fuera de rango"))? {
@@ -152,12 +155,12 @@ impl CudaKernelModule {
                 return Err(Error::new("El stream pertenece a otro contexto CUDA"));
             }
         }
-        let mut id_buffer = self.context.allocate_f32(ids.len())?;
+        let mut id_buffer = context.allocate_f32(ids.len())?;
         let encoded: Vec<f32> = ids.iter().map(|id| f32::from_bits(*id)).collect();
         id_buffer.copy_from_host(&encoded)?;
-        let mut output = self.context.allocate_f32(
-            ids.len().checked_mul(embedding_dim).ok_or_else(|| Error::new("Output embeddings fuera de rango"))?
-        )?;
+        let output_len = ids.len().checked_mul(embedding_dim)
+            .ok_or_else(|| Error::new("Output embeddings fuera de rango"))?;
+        let mut output = context.allocate_f32(output_len)?;
         let mut ids_ptr = id_buffer.pointer;
         let mut table_ptr = table.pointer;
         let mut output_ptr = output.pointer;
@@ -176,7 +179,7 @@ impl CudaKernelModule {
         unsafe { kernel.launch([blocks_for(ids.len() * embedding_dim)?, 1, 1], [256, 1, 1], 0, stream, &mut args)?; }
         // IDs deben permanecer vivos hasta que el kernel haya consumido el buffer.
         // La sincronización local evita liberar el buffer prematuramente.
-        if let Some(stream) = stream { stream.synchronize()?; } else { self.context.synchronize()?; }
+        if let Some(stream) = stream { stream.synchronize()?; } else { context.synchronize()?; }
         Ok(output)
     }
 
