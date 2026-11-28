@@ -144,7 +144,7 @@ impl CudaBackend {
         &self, hidden: &CudaTensor, positions: &CudaTensor,
     ) -> Result<CudaTensor> {
         if hidden.shape.len() != 3 || positions.shape.len() != 2
-            || hidden.shape[1] != positions.shape[0]
+            || hidden.shape[1] > positions.shape[0]
             || hidden.shape[2] != positions.shape[1] {
             return Err(Error::new(
                 "Se requieren activaciones [batch, seq_len, dim] y posiciones [seq_len, dim]",
