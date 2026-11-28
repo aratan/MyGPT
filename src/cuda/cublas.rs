@@ -138,7 +138,7 @@ impl CudaBlas<'_> {
         {
             return Err(Error::new("Todos los buffers de matmul deben pertenecer al mismo contexto CUDA"));
         }
-        let (m, n, k, lda, ldb, ldc) = row_major_sgemm_dimensions(rows, inner, columns);
+        let (m, n, k, ld_b, ld_a, ld_c) = row_major_sgemm_dimensions(rows, inner, columns);
         if [m, n, k].iter().any(|&value| value > c_int::MAX as usize) {
             return Err(Error::new("Dimensiones de matmul superan el límite de cuBLAS"));
         }
@@ -158,12 +158,12 @@ impl CudaBlas<'_> {
                 k as c_int,
                 &alpha,
                 b.pointer as *const f32,
-                m as c_int,
+                ld_b as c_int,
                 a.pointer as *const f32,
-                k as c_int,
+                ld_a as c_int,
                 &beta,
                 c.pointer as *mut f32,
-                m as c_int,
+                ld_c as c_int,
             )
         };
         check_cublas(status, "cublasSgemm_v2")
