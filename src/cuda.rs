@@ -507,3 +507,5 @@ mod dynamic {
         }
     }
 }
+
+pub use transformer::CudaTransformerBlock;
