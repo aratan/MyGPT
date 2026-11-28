@@ -537,9 +537,13 @@ extern "C" __global__ void gelu_tanh_f32(
     unsigned long long i = (unsigned long long)blockIdx.x * blockDim.x + threadIdx.x;
     if (i >= n) return;
     const float x = input[i];
-    const float cubic = 0.044715f * x * x * x;
-    const float inner = 0.7978845608028654f * (x + cubic);
-    output[i] = 0.5f * x * (1.0f + tanhf(inner));
+    const float z = fabsf(x) * 0.7071067811865475f;
+    const float t = 1.0f / (1.0f + 0.3275911f * z);
+    const float polynomial = (((((1.061405429f * t - 1.453152027f) * t)
+        + 1.421413741f) * t - 0.284496736f) * t + 0.254829592f) * t;
+    const float erf_abs = 1.0f - polynomial * expf(-z * z);
+    const float erf_value = copysignf(erf_abs, x);
+    output[i] = 0.5f * x * (1.0f + erf_value);
 }
 extern "C" __global__ void elementwise_add_f32(
     const float* a, const float* b, float* output, unsigned long long n
