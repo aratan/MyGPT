@@ -191,6 +191,21 @@ impl CudaBackend {
         Ok(CudaTensor { shape: vec![1], buffer: output })
     }
 
+    /// Atención causal; Q/K/V tienen shape [batch, heads, seq_len, head_dim].
+    pub fn causal_attention(&self, queries: &CudaTensor, keys: &CudaTensor, values: &CudaTensor) -> Result<CudaTensor> {
+        if queries.shape.len()!=4 || queries.shape!=keys.shape || queries.shape!=values.shape {
+            return Err(Error::new("Q, K y V deben compartir shape [batch, heads, seq_len, head_dim]"));
+        }
+        let [batch,heads,seq_len,head_dim]=[queries.shape[0],queries.shape[1],queries.shape[2],queries.shape[3]];
+        if batch==0 || heads==0 || seq_len==0 || head_dim==0 {
+            return Err(Error::new("Las dimensiones de atención deben ser mayores que cero"));
+        }
+        let mut output=self.allocate_like(queries)?;
+        self.kernels.causal_attention(&queries.buffer,&keys.buffer,&values.buffer,&mut output.buffer,
+            batch,heads,seq_len,head_dim,None)?;
+        Ok(output)
+    }
+
     /// Softmax sobre la última dimensión de un tensor row-major.
     pub fn softmax_last_dim(&self, input: &CudaTensor) -> Result<CudaTensor> {
         let columns = *input.shape.last().ok_or_else(|| Error::new("Softmax requiere un tensor con al menos una dimensión"))?;
