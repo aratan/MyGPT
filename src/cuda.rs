@@ -4,8 +4,9 @@
 //! con `--features cuda` no requiere instalar el CUDA Toolkit ni enlazar
 //! bibliotecas NVIDIA. El driver NVIDIA sí debe estar instalado al ejecutar.
 //!
-//! Incluye operaciones tensoriales FP32, cuBLAS y kernels NVRTC; el GPT completo
-//! todavía no está conectado a este backend.
+//! Incluye operaciones tensoriales FP32, cuBLAS, kernels NVRTC, bloques Transformer
+//! y forward/generación autoregresiva GPT. La generación inicial aún descarga logits
+//! para sampling host y no dispone de KV cache.
 
 use crate::error::{Error, Result};
 use std::ffi::{c_char, c_int, c_uint, c_void, CStr, CString};
