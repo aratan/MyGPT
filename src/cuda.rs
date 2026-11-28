@@ -201,6 +201,22 @@ impl CudaContext {
         })
     }
 
+    /// Crea un stream no predeterminado para ordenar trabajo en GPU.
+    pub fn create_stream(&self) -> Result<CudaStream> {
+        self.inner.make_current()?;
+        let mut raw_stream = std::ptr::null_mut();
+        check_cuda(
+            unsafe { (self.inner.api.stream_create)(&mut raw_stream, 0) },
+            "cuStreamCreate",
+        )?;
+        let stream = NonNull::new(raw_stream)
+            .ok_or_else(|| Error::new("CUDA devolvió un stream nulo"))?;
+        Ok(CudaStream {
+            context: Arc::clone(&self.inner),
+            raw: stream,
+        })
+    }
+
     /// Espera a que termine todo el trabajo del contexto actual.
     pub fn synchronize(&self) -> Result<()> {
         self.inner.make_current()?;
@@ -208,6 +224,33 @@ impl CudaContext {
             unsafe { (self.inner.api.context_synchronize)() },
             "cuCtxSynchronize",
         )
+    }
+}
+
+/// Stream CUDA propietario. Su ciclo de vida está ligado al contexto.
+pub struct CudaStream {
+    context: Arc<ContextInner>,
+    raw: NonNull<c_void>,
+}
+
+impl CudaStream {
+    /// Espera únicamente al trabajo encolado en este stream.
+    pub fn synchronize(&self) -> Result<()> {
+        self.context.make_current()?;
+        check_cuda(
+            unsafe { (self.context.api.stream_synchronize)(self.raw.as_ptr()) },
+            "cuStreamSynchronize",
+        )
+    }
+}
+
+impl Drop for CudaStream {
+    fn drop(&mut self) {
+        if self.context.make_current().is_ok() {
+            unsafe {
+                (self.context.api.stream_destroy)(self.raw.as_ptr());
+            }
+        }
     }
 }
 
@@ -316,6 +359,9 @@ type CuMemAlloc = unsafe extern "C" fn(*mut u64, usize) -> c_int;
 type CuMemFree = unsafe extern "C" fn(u64) -> c_int;
 type CuMemcpyHtoD = unsafe extern "C" fn(u64, *const c_void, usize) -> c_int;
 type CuMemcpyDtoH = unsafe extern "C" fn(*mut c_void, u64, usize) -> c_int;
+type CuStreamCreate = unsafe extern "C" fn(*mut *mut c_void, c_uint) -> c_int;
+type CuStreamDestroy = unsafe extern "C" fn(*mut c_void) -> c_int;
+type CuStreamSynchronize = unsafe extern "C" fn(*mut c_void) -> c_int;
 
 struct DriverApi {
     _library: dynamic::Library,
@@ -334,6 +380,9 @@ struct DriverApi {
     mem_free: CuMemFree,
     memcpy_htod: CuMemcpyHtoD,
     memcpy_dtoh: CuMemcpyDtoH,
+    stream_create: CuStreamCreate,
+    stream_destroy: CuStreamDestroy,
+    stream_synchronize: CuStreamSynchronize,
 }
 
 impl DriverApi {
@@ -355,6 +404,9 @@ impl DriverApi {
             mem_free: library.symbol("cuMemFree_v2")?,
             memcpy_htod: library.symbol("cuMemcpyHtoD_v2")?,
             memcpy_dtoh: library.symbol("cuMemcpyDtoH_v2")?,
+            stream_create: library.symbol("cuStreamCreate")?,
+            stream_destroy: library.symbol("cuStreamDestroy_v2")?,
+            stream_synchronize: library.symbol("cuStreamSynchronize")?,
             _library: library,
         })
     }
