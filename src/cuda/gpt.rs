@@ -71,3 +71,43 @@ impl CudaGPT {
         backend.to_host(logits)
     }
 }
+
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use crate::gpt::GPT;
+
+    #[test]
+    fn complete_gpt_forward_matches_cpu_when_cuda_is_available() {
+        let runtime = match super::super::CudaRuntime::discover() {
+            Ok(runtime) => runtime,
+            Err(_) => return,
+        };
+        let backend = CudaBackend::new(&runtime, 0).expect("CUDA backend");
+        let model = GPT::new(32, 8, 2, 2, 16, 8, 2026, 1.0e-5).unwrap();
+        let token_ids = [1u32, 4, 7, 2, 9];
+        let expected = model.forward(&token_ids, 1, token_ids.len()).unwrap();
+        let gpu_model = CudaGPT::from_cpu(&backend, &model).unwrap();
+        let logits = gpu_model.forward(&backend, &token_ids, 1, token_ids.len()).unwrap();
+        let actual = gpu_model.logits_to_host(&backend, &logits).unwrap();
+        backend.synchronize().unwrap();
+
+        assert_eq!(actual.shape(), expected.shape());
+        for (got, want) in actual.data().iter().zip(expected.data()) {
+            assert!((got - want).abs() < 2.0e-3, "CUDA {got} != CPU {want}");
+        }
+    }
+
+    #[test]
+    fn complete_gpt_forward_rejects_invalid_sequence_length_when_cuda_is_available() {
+        let runtime = match super::super::CudaRuntime::discover() {
+            Ok(runtime) => runtime,
+            Err(_) => return,
+        };
+        let backend = CudaBackend::new(&runtime, 0).unwrap();
+        let model = GPT::new(16, 8, 2, 1, 16, 4, 9, 1.0e-5).unwrap();
+        let gpu_model = CudaGPT::from_cpu(&backend, &model).unwrap();
+        assert!(gpu_model.forward(&backend, &[1, 2, 3, 4, 5], 1, 5).is_err());
+    }
+}
