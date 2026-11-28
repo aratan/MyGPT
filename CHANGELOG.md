@@ -1,5 +1,15 @@
 # Changelog
 
+## [v0.1.7] - 2026-11-28
+
+## What's Changed
+* feat(cuda): add GELU activation for GPT MLP by @aratan in https://github.com/aratan/MyGPT/pull/10
+
+
+**Full Changelog**: https://github.com/aratan/MyGPT/compare/v0.1.6...v0.1.7
+
+
+
 ## [v0.1.6] - 2026-11-28
 
 ## What's Changed
