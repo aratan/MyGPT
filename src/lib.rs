@@ -6,6 +6,13 @@
 pub mod attention;
 pub mod backprop;
 pub mod chat_mode;
+
+// CUDA Driver API support is opt-in and currently targets Linux.
+#[cfg(all(feature = "cuda", target_os = "linux"))]
+pub mod cuda;
+
+#[cfg(all(feature = "cuda", not(target_os = "linux")))]
+compile_error!("the `cuda` feature currently supports Linux only");
 pub mod cli;
 pub mod data;
 pub mod embedding;
