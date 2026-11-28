@@ -121,19 +121,10 @@ jobs:
           fi
           release_sha="$(git rev-parse HEAD)"
           # Create an annotated tag through GitHub's Git Database API.
-          # This returns an explicit API error instead of a generic git push rejection.
+          # The message carries the merge SHA so retries remain idempotent.
           tag_object="$(gh api --method POST "repos/${GITHUB_REPOSITORY}/git/tags" \
             -f tag="$tag" \
-            -f message="$tag"
-
-  publish:
-    needs: version
-    if: needs.version.outputs.tag != ''
-    uses: ./.github/workflows/release.yml
-    with:
-      tag: ${{ needs.version.outputs.tag }}
-    secrets: inherit
-\n\n'"source:$GITHUB_SHA" \
+            -f message="source:$GITHUB_SHA" \
             -f object="$release_sha" \
             -f type=commit --jq .sha)"
           gh api --method POST "repos/${GITHUB_REPOSITORY}/git/refs" \
