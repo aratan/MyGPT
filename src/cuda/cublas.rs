@@ -15,6 +15,7 @@ const CUBLAS_OP_N: c_int = 0;
 
 type CublasCreate = unsafe extern "C" fn(*mut *mut c_void) -> c_int;
 type CublasDestroy = unsafe extern "C" fn(*mut c_void) -> c_int;
+type CublasSetStream = unsafe extern "C" fn(*mut c_void, *mut c_void) -> c_int;
 type CublasSgemm = unsafe extern "C" fn(
     *mut c_void,
     c_int,
@@ -33,17 +34,42 @@ type CublasSgemm = unsafe extern "C" fn(
 ) -> c_int;
 
 /// Handle cuBLAS ligado al contexto CUDA que lo creó.
-pub struct CudaBlas {
+pub struct CudaBlas<'stream> {
     context: Arc<ContextInner>,
     handle: NonNull<c_void>,
     _library: dynamic::Library,
     destroy: CublasDestroy,
     sgemm: CublasSgemm,
+    set_stream: CublasSetStream,
+    // Keep the stream alive for at least as long as cuBLAS can enqueue work on it.
+    _stream: Option<&'stream super::CudaStream>,
 }
 
 impl CudaContext {
-    /// Carga cuBLAS dinámicamente y crea un handle para este contexto.
-    pub fn create_blas(&self) -> Result<CudaBlas> {
+    /// Carga cuBLAS dinámicamente y crea un handle para el stream predeterminado.
+    pub fn create_blas(&self) -> Result<CudaBlas<'static>> {
+        self.create_blas_internal(None)
+    }
+
+    /// Crea un handle cuBLAS asociado a un stream explícito.
+    ///
+    /// El handle conserva un préstamo del stream, impidiendo destruirlo antes
+    /// de que deje de usarse cuBLAS. Los buffers deben seguir perteneciendo al
+    /// mismo contexto.
+    pub fn create_blas_on_stream<'stream>(
+        &self,
+        stream: &'stream super::CudaStream,
+    ) -> Result<CudaBlas<'stream>> {
+        if !Arc::ptr_eq(&self.inner, &stream.context) {
+            return Err(Error::new("El stream cuBLAS debe pertenecer al mismo contexto CUDA"));
+        }
+        self.create_blas_internal(Some(stream))
+    }
+
+    fn create_blas_internal<'stream>(
+        &self,
+        stream: Option<&'stream super::CudaStream>,
+    ) -> Result<CudaBlas<'stream>> {
         self.inner.make_current()?;
         let library = dynamic::Library::open_candidates(
             &["libcublas.so.12", "libcublas.so.13", "libcublas.so"],
@@ -51,6 +77,7 @@ impl CudaContext {
         )?;
         let create: CublasCreate = unsafe { library.symbol("cublasCreate_v2")? };
         let destroy: CublasDestroy = unsafe { library.symbol("cublasDestroy_v2")? };
+        let set_stream: CublasSetStream = unsafe { library.symbol("cublasSetStream_v2")? };
         let sgemm: CublasSgemm = unsafe { library.symbol("cublasSgemm_v2")? };
 
         let mut raw_handle = std::ptr::null_mut();
@@ -58,17 +85,27 @@ impl CudaContext {
         let handle = NonNull::new(raw_handle)
             .ok_or_else(|| Error::new("cuBLAS devolvió un handle nulo"))?;
 
+        if let Some(stream) = stream {
+            let status = unsafe { set_stream(handle.as_ptr(), stream.raw.as_ptr()) };
+            if let Err(error) = check_cublas(status, "cublasSetStream_v2") {
+                unsafe { destroy(handle.as_ptr()); }
+                return Err(error);
+            }
+        }
+
         Ok(CudaBlas {
             context: Arc::clone(&self.inner),
             handle,
             _library: library,
             destroy,
             sgemm,
+            set_stream,
+            _stream: stream,
         })
     }
 }
 
-impl CudaBlas {
+impl CudaBlas<'_> {
     /// Calcula C = A × B para matrices FP32 row-major.
     ///
     /// Dimensiones: A=[rows, inner], B=[inner, columns], C=[rows, columns].
