@@ -248,6 +248,24 @@ impl CudaKernelModule {
         unsafe { kernel.launch([blocks_for(total)?, 1, 1], [256, 1, 1], 0, stream, &mut args) }
     }
 
+    /// GELU aproximada usada habitualmente en GPT, aplicada elemento a elemento.
+    pub fn gelu(
+        &self, input: &CudaBuffer, output: &mut CudaBuffer,
+        len: usize, stream: Option<&CudaStream>,
+    ) -> Result<()> {
+        self.validate_buffers(&[input, output], stream, len, false)?;
+        let mut input_arg = input.pointer;
+        let mut output_arg = output.pointer;
+        let mut n_arg = u64::try_from(len).map_err(|_| Error::new("Longitud GELU fuera de rango"))?;
+        let mut args = [
+            (&mut input_arg as *mut u64).cast::<c_void>(),
+            (&mut output_arg as *mut u64).cast::<c_void>(),
+            (&mut n_arg as *mut u64).cast::<c_void>(),
+        ];
+        let kernel = self.function("gelu_tanh_f32")?;
+        unsafe { kernel.launch([blocks_for(len)?, 1, 1], [256, 1, 1], 0, stream, &mut args) }
+    }
+
     /// Suma dos vectores residentes en VRAM: output[i] = a[i] + b[i].
     pub fn elementwise_add(
         &self, a: &CudaBuffer, b: &CudaBuffer, output: &mut CudaBuffer,
@@ -512,6 +530,16 @@ extern "C" __global__ void add_bias_last_dim_f32(
     unsigned long long total = rows * columns;
     if (index >= total) return;
     output[index] = input[index] + bias[index % columns];
+}
+extern "C" __global__ void gelu_tanh_f32(
+    const float* input, float* output, unsigned long long n
+) {
+    unsigned long long i = (unsigned long long)blockIdx.x * blockDim.x + threadIdx.x;
+    if (i >= n) return;
+    const float x = input[i];
+    const float cubic = 0.044715f * x * x * x;
+    const float inner = 0.7978845608028654f * (x + cubic);
+    output[i] = 0.5f * x * (1.0f + tanhf(inner));
 }
 extern "C" __global__ void elementwise_add_f32(
     const float* a, const float* b, float* output, unsigned long long n
