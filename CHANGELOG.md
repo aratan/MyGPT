@@ -1,5 +1,15 @@
 # Changelog
 
+## [v0.1.12] - 2026-11-28
+
+## What's Changed
+* feat(cuda): add autoregressive GPT generation by @aratan in https://github.com/aratan/MyGPT/pull/17
+
+
+**Full Changelog**: https://github.com/aratan/MyGPT/compare/v0.1.11...v0.1.12
+
+
+
 ## [Unreleased]
 
 ### Added
