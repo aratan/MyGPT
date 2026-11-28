@@ -195,12 +195,4 @@ mod tests {
         assert_eq!(actual, expected);
     }
 
-    #[test]
-    fn cuda_generation_rejects_empty_prompt_without_device_access() {
-        // La validación de prompt ocurre antes del primer kernel CUDA.
-        // La comprobación de la ruta completa se cubre en el test de paridad GPU.
-        let invalid_prompt: &[u32] = &[];
-        assert!(invalid_prompt.is_empty());
-    }
-
 }
