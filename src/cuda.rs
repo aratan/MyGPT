@@ -4,7 +4,8 @@
 //! con `--features cuda` no requiere instalar el CUDA Toolkit ni enlazar
 //! bibliotecas NVIDIA. El driver NVIDIA sí debe estar instalado al ejecutar.
 //!
-//! Todavía no implementa tensores, kernels ni operaciones de entrenamiento.
+//! Incluye operaciones tensoriales FP32, cuBLAS y kernels NVRTC; el GPT completo
+//! todavía no está conectado a este backend.
 
 use crate::error::{Error, Result};
 use std::ffi::{c_char, c_int, c_uint, c_void, CStr, CString};

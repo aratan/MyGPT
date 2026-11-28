@@ -191,6 +191,21 @@ impl CudaBackend {
         Ok(CudaTensor { shape: vec![1], buffer: output })
     }
 
+    /// Atención causal; Q/K/V tienen shape [batch, heads, seq_len, head_dim].
+    pub fn causal_attention(&self, queries: &CudaTensor, keys: &CudaTensor, values: &CudaTensor) -> Result<CudaTensor> {
+        if queries.shape.len()!=4 || queries.shape!=keys.shape || queries.shape!=values.shape {
+            return Err(Error::new("Q, K y V deben compartir shape [batch, heads, seq_len, head_dim]"));
+        }
+        let [batch,heads,seq_len,head_dim]=[queries.shape[0],queries.shape[1],queries.shape[2],queries.shape[3]];
+        if batch==0 || heads==0 || seq_len==0 || head_dim==0 {
+            return Err(Error::new("Las dimensiones de atención deben ser mayores que cero"));
+        }
+        let mut output=self.allocate_like(queries)?;
+        self.kernels.causal_attention(&queries.buffer,&keys.buffer,&values.buffer,&mut output.buffer,
+            batch,heads,seq_len,head_dim,None)?;
+        Ok(output)
+    }
+
     /// Softmax sobre la última dimensión de un tensor row-major.
     pub fn softmax_last_dim(&self, input: &CudaTensor) -> Result<CudaTensor> {
         let columns = *input.shape.last().ok_or_else(|| Error::new("Softmax requiere un tensor con al menos una dimensión"))?;
@@ -260,4 +275,61 @@ fn checked_numel(shape: &[usize]) -> Result<usize> {
     shape.iter().try_fold(1usize, |total, dimension| {
         total.checked_mul(*dimension).ok_or_else(|| Error::new("Forma CUDA fuera de rango"))
     })
+}
+
+#[cfg(test)]
+mod attention_tests {
+    use super::*;
+    use crate::tensor::Tensor;
+
+    #[test]
+    fn causal_attention_matches_cpu_reference_when_cuda_is_available() {
+        let runtime = match CudaRuntime::discover() {
+            Ok(runtime) => runtime,
+            Err(_) => return,
+        };
+        let backend = CudaBackend::new(&runtime, 0).expect("CUDA backend");
+        let (batch, heads, seq, dim) = (1usize, 2usize, 3usize, 2usize);
+        let count = batch * heads * seq * dim;
+        let q_data: Vec<f32> = (0..count).map(|i| (i as f32 - 3.0) * 0.13).collect();
+        let k_data: Vec<f32> = (0..count).map(|i| (i as f32 - 2.0) * -0.07).collect();
+        let v_data: Vec<f32> = (0..count).map(|i| (i as f32 + 1.0) * 0.11).collect();
+        let shape = vec![batch, heads, seq, dim];
+        let q = backend.upload(&Tensor::new(shape.clone(), q_data.clone()).unwrap()).unwrap();
+        let k = backend.upload(&Tensor::new(shape.clone(), k_data.clone()).unwrap()).unwrap();
+        let v = backend.upload(&Tensor::new(shape.clone(), v_data.clone()).unwrap()).unwrap();
+        let actual = backend.to_host(&backend.causal_attention(&q, &k, &v).unwrap()).unwrap();
+        backend.synchronize().unwrap();
+
+        let mut expected = vec![0.0f32; count];
+        let scale = 1.0 / (dim as f32).sqrt();
+        for b in 0..batch {
+            for h in 0..heads {
+                for query in 0..seq {
+                    let base = ((b * heads + h) * seq) * dim;
+                    let mut scores = Vec::with_capacity(query + 1);
+                    for key in 0..=query {
+                        let mut score = 0.0;
+                        for d in 0..dim {
+                            score += q_data[base + query * dim + d] * k_data[base + key * dim + d];
+                        }
+                        scores.push(score * scale);
+                    }
+                    let max = scores.iter().copied().fold(f32::NEG_INFINITY, f32::max);
+                    let denominator: f32 = scores.iter().map(|score| (score - max).exp()).sum();
+                    for d in 0..dim {
+                        let mut value = 0.0;
+                        for key in 0..=query {
+                            let weight = (scores[key] - max).exp() / denominator;
+                            value += weight * v_data[base + key * dim + d];
+                        }
+                        expected[base + query * dim + d] = value;
+                    }
+                }
+            }
+        }
+        for (got, want) in actual.data().iter().zip(expected.iter()) {
+            assert!((got - want).abs() < 2.0e-4, "CUDA {got} != CPU {want}");
+        }
+    }
 }

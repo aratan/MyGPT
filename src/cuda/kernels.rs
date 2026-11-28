@@ -329,6 +329,31 @@ impl CudaKernelModule {
     }
 
     /// Softmax estable por fila para una matriz row-major [rows, columns].
+    /// Atención causal sobre Q/K/V [batch, heads, seq, head_dim].
+    pub fn causal_attention(&self, queries: &CudaBuffer, keys: &CudaBuffer, values: &CudaBuffer,
+        output: &mut CudaBuffer, batch: usize, heads: usize, seq: usize, head_dim: usize,
+        stream: Option<&CudaStream>) -> Result<()> {
+        let total = batch.checked_mul(heads).and_then(|n| n.checked_mul(seq))
+            .and_then(|n| n.checked_mul(head_dim)).ok_or_else(|| Error::new("Dimensiones de atención fuera de rango"))?;
+        let rows = batch.checked_mul(heads).and_then(|n| n.checked_mul(seq))
+            .ok_or_else(|| Error::new("Filas de atención fuera de rango"))?;
+        if batch == 0 || heads == 0 || seq == 0 || head_dim == 0
+            || queries.len < total || keys.len < total || values.len < total || output.len < total {
+            return Err(Error::new("Buffers o dimensiones incompatibles en atención causal CUDA"));
+        }
+        self.validate_contexts(&[queries, keys, values, output], stream)?;
+        let mut q=queries.pointer; let mut k=keys.pointer; let mut v=values.pointer; let mut o=output.pointer;
+        let mut b=batch as u64; let mut h=heads as u64; let mut s=seq as u64; let mut d=head_dim as u64;
+        let mut args=[
+            (&mut q as *mut u64).cast::<c_void>(), (&mut k as *mut u64).cast::<c_void>(),
+            (&mut v as *mut u64).cast::<c_void>(), (&mut o as *mut u64).cast::<c_void>(),
+            (&mut b as *mut u64).cast::<c_void>(), (&mut h as *mut u64).cast::<c_void>(),
+            (&mut s as *mut u64).cast::<c_void>(), (&mut d as *mut u64).cast::<c_void>(),
+        ];
+        let kernel=self.function("causal_attention_f32")?;
+        unsafe { kernel.launch([blocks_for(rows)?,1,1],[256,1,1],0,stream,&mut args) }
+    }
+
     pub fn softmax_rows(
         &self, input: &CudaBuffer, output: &mut CudaBuffer,
         rows: usize, columns: usize, stream: Option<&CudaStream>,
@@ -562,6 +587,34 @@ extern "C" __global__ void scale_f32(
 ) {
     unsigned long long i = (unsigned long long)blockIdx.x * blockDim.x + threadIdx.x;
     if (i < n) output[i] = input[i] * factor;
+}
+extern "C" __global__ void causal_attention_f32(
+ const float* q,const float* k,const float* v,float* output,
+ unsigned long long batch,unsigned long long heads,unsigned long long seq,unsigned long long head_dim) {
+ unsigned long long row=(unsigned long long)blockIdx.x*blockDim.x+threadIdx.x;
+ if(row>=batch*heads*seq)return;
+ unsigned long long query=row%seq, base=(row/seq)*seq*head_dim, qo=base+query*head_dim;
+ float scale=rsqrtf((float)head_dim), maximum=-INFINITY;
+ for(unsigned long long key=0;key<=query;++key){
+  unsigned long long ko=base+key*head_dim; float score=0.0f;
+  for(unsigned long long d=0;d<head_dim;++d)score+=q[qo+d]*k[ko+d];
+  maximum=fmaxf(maximum,score*scale);
+ }
+ float denominator=0.0f;
+ for(unsigned long long key=0;key<=query;++key){
+  unsigned long long ko=base+key*head_dim; float score=0.0f;
+  for(unsigned long long d=0;d<head_dim;++d)score+=q[qo+d]*k[ko+d];
+  denominator+=expf(score*scale-maximum);
+ }
+ for(unsigned long long d=0;d<head_dim;++d){
+  float acc=0.0f;
+  for(unsigned long long key=0;key<=query;++key){
+   unsigned long long ko=base+key*head_dim; float score=0.0f;
+   for(unsigned long long j=0;j<head_dim;++j)score+=q[qo+j]*k[ko+j];
+   acc+=(expf(score*scale-maximum)/denominator)*v[ko+d];
+  }
+  output[qo+d]=acc;
+ }
 }
 extern "C" __global__ void softmax_rows_f32(
     const float* input, float* output, unsigned long long rows, unsigned long long columns
