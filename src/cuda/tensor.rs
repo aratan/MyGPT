@@ -191,6 +191,60 @@ impl CudaBackend {
         Ok(CudaTensor { shape: vec![1], buffer: output })
     }
 
+    /// Convierte proyecciones [batch, seq, embedding] a [batch, heads, seq, head_dim].
+    pub fn split_heads(&self, input: &CudaTensor, heads: usize) -> Result<CudaTensor> {
+        if input.shape.len()!=3 || heads==0 || input.shape[2]%heads!=0 {
+            return Err(Error::new("split_heads requiere [batch, seq, embedding] divisible por heads"));
+        }
+        let (batch,seq,embedding)=(input.shape[0],input.shape[1],input.shape[2]);
+        let head_dim=embedding/heads;
+        let mut output=CudaTensor { shape:vec![batch,heads,seq,head_dim],
+            buffer:self.context.allocate_f32(input.len())? };
+        self.kernels.reorder_heads(&input.buffer,&mut output.buffer,batch,seq,heads,head_dim,false,None)?;
+        Ok(output)
+    }
+
+    /// Convierte [batch, heads, seq, head_dim] a [batch, seq, embedding].
+    pub fn merge_heads(&self, input: &CudaTensor) -> Result<CudaTensor> {
+        if input.shape.len()!=4 {
+            return Err(Error::new("merge_heads requiere [batch, heads, seq, head_dim]"));
+        }
+        let (batch,heads,seq,dim)=(input.shape[0],input.shape[1],input.shape[2],input.shape[3]);
+        if batch==0||heads==0||seq==0||dim==0 {
+            return Err(Error::new("Dimensiones inválidas en merge_heads"));
+        }
+        let embedding=heads.checked_mul(dim).ok_or_else(||Error::new("Embedding fuera de rango"))?;
+        let mut output=CudaTensor { shape:vec![batch,seq,embedding],
+            buffer:self.context.allocate_f32(input.len())? };
+        self.kernels.reorder_heads(&input.buffer,&mut output.buffer,batch,seq,heads,dim,true,None)?;
+        Ok(output)
+    }
+
+    /// Atención multi-cabeza completa a partir de pesos Q/K/V/O residentes en VRAM.
+    /// Input [B,S,E], pesos [E,E], salida [B,S,E].
+    pub fn multi_head_attention(&self, input:&CudaTensor, q_weights:&CudaTensor,
+        k_weights:&CudaTensor, v_weights:&CudaTensor, output_weights:&CudaTensor,
+        heads:usize) -> Result<CudaTensor> {
+        if input.shape.len()!=3 || heads==0 {
+            return Err(Error::new("multi_head_attention requiere input [batch,seq,embedding] y heads > 0"));
+        }
+        let embedding=input.shape[2];
+        if embedding%heads!=0 {
+            return Err(Error::new("embedding debe ser divisible por heads"));
+        }
+        for weights in [q_weights,k_weights,v_weights,output_weights] {
+            if weights.shape!=[embedding,embedding] {
+                return Err(Error::new("Los pesos Q/K/V/O deben tener shape [embedding,embedding]"));
+            }
+        }
+        let q=self.split_heads(&self.linear(input,q_weights)?,heads)?;
+        let k=self.split_heads(&self.linear(input,k_weights)?,heads)?;
+        let v=self.split_heads(&self.linear(input,v_weights)?,heads)?;
+        let attended=self.causal_attention(&q,&k,&v)?;
+        let merged=self.merge_heads(&attended)?;
+        self.linear(&merged,output_weights)
+    }
+
     /// Atención causal; Q/K/V tienen shape [batch, heads, seq_len, head_dim].
     pub fn causal_attention(&self, queries: &CudaTensor, keys: &CudaTensor, values: &CudaTensor) -> Result<CudaTensor> {
         if queries.shape.len()!=4 || queries.shape!=keys.shape || queries.shape!=values.shape {
