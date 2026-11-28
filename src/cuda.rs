@@ -13,6 +13,8 @@ use std::sync::Arc;
 
 const CUDA_SUCCESS: c_int = 0;
 
+pub mod cublas;
+
 /// Información consultada directamente al CUDA Driver API.
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub struct CudaDeviceInfo {
@@ -448,16 +450,21 @@ mod dynamic {
 
     impl Library {
         pub fn open() -> Result<Self> {
-            for candidate in ["libcuda.so.1", "libcuda.so"] {
-                let name = CString::new(candidate).expect("static library name");
+            Self::open_candidates(
+                &["libcuda.so.1", "libcuda.so"],
+                "No se pudo cargar libcuda.so.1. Instala un driver NVIDIA compatible y comprueba LD_LIBRARY_PATH",
+            )
+        }
+
+        pub fn open_candidates(candidates: &[&str], error_message: &str) -> Result<Self> {
+            for candidate in candidates {
+                let name = CString::new(*candidate).expect("static library name");
                 let handle = unsafe { dlopen(name.as_ptr(), RTLD_NOW) };
                 if let Some(handle) = NonNull::new(handle) {
                     return Ok(Self { handle });
                 }
             }
-            Err(Error::new(
-                "No se pudo cargar libcuda.so.1. Instala un driver NVIDIA compatible y comprueba LD_LIBRARY_PATH",
-            ))
+            Err(Error::new(error_message))
         }
 
         pub unsafe fn symbol<T: Copy>(&self, name: &str) -> Result<T> {
