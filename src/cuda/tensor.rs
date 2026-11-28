@@ -85,6 +85,20 @@ impl CudaBackend {
         Ok(CudaTensor { shape: vec![ids.len(), dim], buffer })
     }
 
+    /// Lookup con shape de secuencia [batch, seq_len, embedding_dim].
+    pub fn embedding_lookup_batched(
+        &self, ids: &[u32], batch_size: usize, seq_len: usize, table: &CudaTensor,
+    ) -> Result<CudaTensor> {
+        let expected = batch_size.checked_mul(seq_len)
+            .ok_or_else(|| Error::new("Dimensiones batch/seq fuera de rango"))?;
+        if batch_size == 0 || seq_len == 0 || ids.len() != expected {
+            return Err(Error::new("Los IDs no coinciden con batch_size * seq_len"));
+        }
+        let mut output = self.embedding_lookup(ids, table)?;
+        output.shape = vec![batch_size, seq_len, table.shape[1]];
+        Ok(output)
+    }
+
     /// Proyección lineal sobre la última dimensión de entradas rank-2 o rank-3.
     /// Los pesos usan layout row-major [in_features, out_features].
     pub fn linear(&self, input: &CudaTensor, weights: &CudaTensor) -> Result<CudaTensor> {
