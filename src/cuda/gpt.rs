@@ -53,7 +53,7 @@ impl CudaGPT {
         if token_ids.iter().any(|&id| id as usize >= self.vocab_size) {
             return Err(Error::new("Token ID fuera del vocabulario"));
         }
-        let mut hidden = backend.embedding_lookup_for_batch(
+        let mut hidden = backend.embedding_lookup_batched(
             token_ids, batch_size, seq_len, &self.token_embeddings,
         )?;
         hidden = backend.add_position_embeddings(&hidden, &self.positional_embeddings)?;
