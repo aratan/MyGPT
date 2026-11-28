@@ -1,5 +1,8 @@
 # mini GPT en Rust
 
+[![CI](https://github.com/aratan/MyGPT/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/aratan/MyGPT/actions/workflows/ci.yml)
+
+
 Mini GPT escrito desde cero en Rust para aprender cómo funcionan un
 transformer, el tokenizador BPE y el entrenamiento. Incluye la librería, cuatro
 herramientas de CLI (`synth_data`, `tokenizer_train`, `gpt_train`, `gpt_chat`)
