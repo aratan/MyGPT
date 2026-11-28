@@ -74,7 +74,11 @@ impl NvrtcApi {
         }
 
         let mut ptx_size = 0usize;
-        check_nvrtc(unsafe { (self.get_ptx_size)(program, &mut ptx_size) }, "nvrtcGetPTXSize")?;
+        let size_status = unsafe { (self.get_ptx_size)(program, &mut ptx_size) };
+        if let Err(error) = check_nvrtc(size_status, "nvrtcGetPTXSize") {
+            unsafe { (self.destroy_program)(&mut program); }
+            return Err(error);
+        }
         if ptx_size == 0 {
             unsafe { (self.destroy_program)(&mut program); }
             return Err(Error::new("NVRTC generó un PTX vacío"));
