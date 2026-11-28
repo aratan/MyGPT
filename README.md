@@ -11,12 +11,14 @@ transformer, el tokenizador BPE y el entrenamiento. Incluye la librería, cuatro
 herramientas de CLI (`synth_data`, `tokenizer_train`, `gpt_train`, `gpt_chat`)
 y un visor de interpretabilidad.
 
-**Estado de tecnologías:** Rust está implementado. CUDA tiene un backend experimental con runtime, kernels FP32 y tensores residentes; aún no está integrado en GPT ni validado en GPU física. El objetivo de hardware es NVIDIA RTX 4060 de 8 GB; seguimiento en [la issue #2](https://github.com/aratan/MyGPT/issues/2).
+**Estado de tecnologías:** Rust está implementado. CUDA dispone de backend experimental con tensores FP32 residentes, operaciones cuBLAS/NVRTC, atención multi-cabeza, `CudaTransformerBlock` y `CudaGPT::forward`. La generación autoregresiva CUDA está propuesta en la PR #17. Todavía no existe validación física confirmada en la RTX 4060. Seguimiento en [la issue #2](https://github.com/aratan/MyGPT/issues/2).
 
 El código de aplicación y las herramientas están escritos en Rust. El backend CUDA
 carga dinámicamente el Driver API, NVRTC y cuBLAS, y compila kernels CUDA C en
-runtime: no requiere `nvcc`, `build.rs` ni `CMakeLists.txt`. La ejecución del
-modelo GPT sigue siendo CPU hasta integrar el backend en `GPT::forward`.
+runtime: no requiere `nvcc`, `build.rs` ni `CMakeLists.txt`. El backend puede
+importar los parámetros de un `GPT` CPU a VRAM y ejecutar el forward completo.
+La generación autoregresiva aún está en revisión; no se debe confundir la
+compilación/CI host con una prueba ejecutada en GPU NVIDIA.
 
 ---
 
@@ -164,11 +166,13 @@ primer paso, con los logits originales o ajustados (`--show-adjusted`).
 
 - Rust estable reciente (`cargo`, `rustc`).
 
-**CUDA (backend experimental de operaciones, todavía no conectado al GPT)**
+**CUDA (inferencia experimental)**
 
-- GPU NVIDIA compatible con CUDA; objetivo de validación: RTX 4060 (compute capability 8.9).
+- GPU NVIDIA compatible con CUDA; objetivo de validación: RTX 4060 de 8 GB (compute capability 8.9).
 - Driver NVIDIA y bibliotecas CUDA Driver API, NVRTC y cuBLAS disponibles en runtime.
-- Si no están disponibles, el flujo CPU sigue siendo el camino funcional.
+- La CI estándar usa `ubuntu-latest` sin GPU garantizada: comprueba compilación, Clippy y tests host; no demuestra ejecución CUDA física.
+- La inferencia CPU sigue disponible como referencia y fallback.
+- La generación CUDA inicial (PR #17) descarga logits para sampling host y recalcula el contexto completo en cada paso. KV cache y sampling residente en GPU siguen pendientes.
 
 ## 6. Compilación
 
