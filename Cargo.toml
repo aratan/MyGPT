@@ -5,6 +5,10 @@ edition = "2021"
 description = "Port a Rust del mini GPT (tensor, BPE, transformer, entrenamiento e inferencia)"
 license = "MIT"
 
+[features]
+default = []
+cuda = []
+
 [dependencies]
 
 [[bin]]
