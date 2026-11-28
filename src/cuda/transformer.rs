@@ -64,3 +64,48 @@ impl CudaTransformerBlock {
         backend.add(&residual, &mlp_output)
     }
 }
+
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use crate::tensor::Tensor;
+
+    #[test]
+    fn transformer_block_matches_cpu_when_cuda_is_available() {
+        let runtime = match super::super::CudaRuntime::discover() {
+            Ok(runtime) => runtime,
+            Err(_) => return,
+        };
+        let backend = CudaBackend::new(&runtime, 0).expect("CUDA backend");
+        let cpu_block = TransformerBlock::new(8, 2, 16, 1234, 1.0e-5).unwrap();
+        let input = Tensor::new(
+            vec![2, 3, 8],
+            (0..48).map(|i| (i as f32 - 24.0) * 0.017).collect(),
+        ).unwrap();
+        let expected = cpu_block.forward(&input).unwrap();
+        let gpu_block = CudaTransformerBlock::from_cpu(&backend, &cpu_block).unwrap();
+        let gpu_input = backend.upload(&input).unwrap();
+        let actual = gpu_block.forward(&backend, &gpu_input).unwrap();
+        let actual = backend.to_host(&actual).unwrap();
+        backend.synchronize().unwrap();
+
+        assert_eq!(actual.shape(), expected.shape());
+        for (got, want) in actual.data().iter().zip(expected.data()) {
+            assert!((got - want).abs() < 8.0e-4, "CUDA {got} != CPU {want}");
+        }
+    }
+
+    #[test]
+    fn transformer_block_rejects_wrong_embedding_dimension() {
+        let runtime = match super::super::CudaRuntime::discover() {
+            Ok(runtime) => runtime,
+            Err(_) => return,
+        };
+        let backend = CudaBackend::new(&runtime, 0).unwrap();
+        let cpu_block = TransformerBlock::new(8, 2, 16, 1234, 1.0e-5).unwrap();
+        let gpu_block = CudaTransformerBlock::from_cpu(&backend, &cpu_block).unwrap();
+        let invalid = backend.zeros(vec![1, 2, 7]).unwrap();
+        assert!(gpu_block.forward(&backend, &invalid).is_err());
+    }
+}
