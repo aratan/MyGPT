@@ -5,7 +5,7 @@
 //! column-major. La operación queda encolada en el stream por defecto del
 //! contexto; sincroniza explícitamente con `CudaContext::synchronize`.
 
-use super::{check_cuda, dynamic, CudaBuffer, CudaContext, ContextInner, Error, Result};
+use super::{dynamic, CudaBuffer, CudaContext, ContextInner, Error, Result};
 use std::ffi::{c_int, c_void};
 use std::ptr::NonNull;
 use std::sync::Arc;
@@ -103,7 +103,7 @@ impl CudaBlas {
         {
             return Err(Error::new("Todos los buffers de matmul deben pertenecer al mismo contexto CUDA"));
         }
-        let (m, n, k) = (columns, rows, inner);
+        let (m, n, k, lda, ldb, ldc) = row_major_sgemm_dimensions(rows, inner, columns);
         if [m, n, k].iter().any(|&value| value > c_int::MAX as usize) {
             return Err(Error::new("Dimensiones de matmul superan el límite de cuBLAS"));
         }
@@ -152,5 +152,28 @@ fn check_cublas(status: c_int, operation: &str) -> Result<()> {
         Err(Error::new(format!(
             "cuBLAS: {operation} falló con código {status}"
         )))
+    }
+}
+
+/// Convierte dimensiones row-major a la llamada column-major de cuBLAS.
+fn row_major_sgemm_dimensions(
+    rows: usize,
+    inner: usize,
+    columns: usize,
+) -> (usize, usize, usize, usize, usize, usize) {
+    // SGEMM: B_col[columns, inner] × A_col[inner, rows] = C_col[columns, rows].
+    (columns, rows, inner, columns, inner, columns)
+}
+
+#[cfg(test)]
+mod tests {
+    use super::row_major_sgemm_dimensions;
+
+    #[test]
+    fn row_major_dimensions_are_transposed_for_cublas() {
+        assert_eq!(
+            row_major_sgemm_dimensions(2, 3, 4),
+            (4, 2, 3, 4, 3, 4)
+        );
     }
 }
