@@ -2,8 +2,8 @@
 //!
 //! La API acepta buffers row-major del motor CPU. Se invierten los operandos
 //! y las dimensiones al llamar a SGEMM porque cuBLAS interpreta matrices
-//! column-major. La operación queda encolada en el stream por defecto del
-//! contexto; sincroniza explícitamente con `CudaContext::synchronize`.
+//! column-major. Puede usar el stream predeterminado o uno explícito asociado
+//! mediante `CudaContext::create_blas_on_stream`.
 
 use super::{dynamic, CudaBuffer, CudaContext, ContextInner, Error, Result};
 use std::ffi::{c_int, c_void};
@@ -170,7 +170,7 @@ impl CudaBlas<'_> {
     }
 }
 
-impl Drop for CudaBlas {
+impl Drop for CudaBlas<'_> {
     fn drop(&mut self) {
         if self.context.make_current().is_ok() {
             unsafe {
