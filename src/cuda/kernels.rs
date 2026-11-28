@@ -542,7 +542,7 @@ extern "C" __global__ void gelu_tanh_f32(
     const float polynomial = (((((1.061405429f * t - 1.453152027f) * t)
         + 1.421413741f) * t - 0.284496736f) * t + 0.254829592f) * t;
     const float erf_abs = 1.0f - polynomial * expf(-z * z);
-    const float erf_value = copysignf(erf_abs, x);
+    const float erf_value = x < 0.0f ? -erf_abs : erf_abs;
     output[i] = 0.5f * x * (1.0f + erf_value);
 }
 extern "C" __global__ void elementwise_add_f32(
