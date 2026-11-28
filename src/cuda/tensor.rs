@@ -74,6 +74,54 @@ impl CudaBackend {
         Ok(CudaTensor { shape, buffer })
     }
 
+    /// Embedding lookup GPU; los IDs se validan en CPU y la tabla permanece en VRAM.
+    pub fn embedding_lookup(&self, ids: &[u32], table: &CudaTensor) -> Result<CudaTensor> {
+        if table.shape.len() != 2 {
+            return Err(Error::new("La tabla de embeddings debe tener shape [vocab, dim]"));
+        }
+        let vocab = table.shape[0];
+        let dim = table.shape[1];
+        let buffer = self.kernels.embedding_lookup(&self.context, ids, &table.buffer, vocab, dim, None)?;
+        Ok(CudaTensor { shape: vec![ids.len(), dim], buffer })
+    }
+
+    /// Lookup con shape de secuencia [batch, seq_len, embedding_dim].
+    pub fn embedding_lookup_batched(
+        &self, ids: &[u32], batch_size: usize, seq_len: usize, table: &CudaTensor,
+    ) -> Result<CudaTensor> {
+        let expected = batch_size.checked_mul(seq_len)
+            .ok_or_else(|| Error::new("Dimensiones batch/seq fuera de rango"))?;
+        if batch_size == 0 || seq_len == 0 || ids.len() != expected {
+            return Err(Error::new("Los IDs no coinciden con batch_size * seq_len"));
+        }
+        let mut output = self.embedding_lookup(ids, table)?;
+        output.shape = vec![batch_size, seq_len, table.shape[1]];
+        Ok(output)
+    }
+
+    /// Proyección lineal sobre la última dimensión de entradas rank-2 o rank-3.
+    /// Los pesos usan layout row-major [in_features, out_features].
+    pub fn linear(&self, input: &CudaTensor, weights: &CudaTensor) -> Result<CudaTensor> {
+        if !(input.shape.len() == 2 || input.shape.len() == 3) || weights.shape.len() != 2 {
+            return Err(Error::new("linear CUDA requiere input rank 2/3 y pesos rank 2"));
+        }
+        let input_features = *input.shape.last().ok_or_else(|| Error::new("Input vacío"))?;
+        if weights.shape[0] != input_features {
+            return Err(Error::new("Dimensiones incompatibles en linear CUDA"));
+        }
+        let rows = input.len() / input_features;
+        let output_features = weights.shape[1];
+        let output = self.context.allocate_f32(
+            rows.checked_mul(output_features).ok_or_else(|| Error::new("Salida linear fuera de rango"))?
+        )?;
+        let mut result = CudaTensor { shape: vec![rows, output_features], buffer: output };
+        self.blas.matmul_row_major(&input.buffer, &weights.buffer, &mut result.buffer, rows, input_features, output_features)?;
+        if input.shape.len() == 3 {
+            result.shape = vec![input.shape[0], input.shape[1], output_features];
+        }
+        Ok(result)
+    }
+
     pub fn add(&self, lhs: &CudaTensor, rhs: &CudaTensor) -> Result<CudaTensor> {
         self.require_same_shape(lhs, rhs)?;
         let mut output = self.allocate_like(lhs)?;
