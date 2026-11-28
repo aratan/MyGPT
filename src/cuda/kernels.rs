@@ -131,6 +131,55 @@ impl CudaKernelModule {
         Self::compile(context, BUILTIN_KERNELS, "mygpt_ops.cu", architecture)
     }
 
+    /// Busca filas de una tabla de embeddings usando IDs u32.
+    pub fn embedding_lookup(
+        &self, ids: &[u32], table: &CudaBuffer, vocab_size: usize,
+        embedding_dim: usize, stream: Option<&CudaStream>,
+    ) -> Result<CudaBuffer> {
+        if ids.is_empty() || vocab_size == 0 || embedding_dim == 0
+            || table.len < vocab_size.checked_mul(embedding_dim)
+                .ok_or_else(|| Error::new("Tabla de embeddings fuera de rango"))? {
+            return Err(Error::new("Dimensiones inválidas para embedding lookup"));
+        }
+        if ids.iter().any(|id| *id as usize >= vocab_size) {
+            return Err(Error::new("Token ID fuera del vocabulario"));
+        }
+        if !Arc::ptr_eq(&self.context, &table.context) {
+            return Err(Error::new("La tabla de embeddings pertenece a otro contexto CUDA"));
+        }
+        if let Some(stream) = stream {
+            if !Arc::ptr_eq(&self.context, &stream.context) {
+                return Err(Error::new("El stream pertenece a otro contexto CUDA"));
+            }
+        }
+        let mut id_buffer = self.context.allocate_f32(ids.len())?;
+        let encoded: Vec<f32> = ids.iter().map(|id| f32::from_bits(*id)).collect();
+        id_buffer.copy_from_host(&encoded)?;
+        let mut output = self.context.allocate_f32(
+            ids.len().checked_mul(embedding_dim).ok_or_else(|| Error::new("Output embeddings fuera de rango"))?
+        )?;
+        let mut ids_ptr = id_buffer.pointer;
+        let mut table_ptr = table.pointer;
+        let mut output_ptr = output.pointer;
+        let mut token_count = ids.len() as u64;
+        let mut vocab = vocab_size as u64;
+        let mut dim = embedding_dim as u64;
+        let mut args = [
+            (&mut ids_ptr as *mut u64).cast::<c_void>(),
+            (&mut table_ptr as *mut u64).cast::<c_void>(),
+            (&mut output_ptr as *mut u64).cast::<c_void>(),
+            (&mut token_count as *mut u64).cast::<c_void>(),
+            (&mut vocab as *mut u64).cast::<c_void>(),
+            (&mut dim as *mut u64).cast::<c_void>(),
+        ];
+        let kernel = self.function("embedding_lookup_f32")?;
+        unsafe { kernel.launch([blocks_for(ids.len() * embedding_dim)?, 1, 1], [256, 1, 1], 0, stream, &mut args)?; }
+        // IDs deben permanecer vivos hasta que el kernel haya consumido el buffer.
+        // La sincronización local evita liberar el buffer prematuramente.
+        if let Some(stream) = stream { stream.synchronize()?; } else { self.context.synchronize()?; }
+        Ok(output)
+    }
+
     /// Suma dos vectores residentes en VRAM: output[i] = a[i] + b[i].
     pub fn elementwise_add(
         &self, a: &CudaBuffer, b: &CudaBuffer, output: &mut CudaBuffer,
@@ -362,6 +411,31 @@ impl CudaKernel<'_> {
 }
 
 const BUILTIN_KERNELS: &str = r#"
+extern "C" __global__ void embedding_lookup_f32(
+    const unsigned int* token_ids, const float* table, float* output,
+    unsigned long long token_count, unsigned long long vocab_size,
+    unsigned long long embedding_dim
+) {
+    unsigned long long index = (unsigned long long)blockIdx.x * blockDim.x + threadIdx.x;
+    unsigned long long total = token_count * embedding_dim;
+    if (index >= total) return;
+    unsigned long long token_index = index / embedding_dim;
+    unsigned long long column = index % embedding_dim;
+    unsigned int token = token_ids[token_index];
+    output[index] = token < vocab_size ? table[(unsigned long long)token * embedding_dim + column] : 0.0f;
+}
+extern "C" __global__ void add_position_embeddings_f32(
+    float* hidden, const float* positions, unsigned long long token_count,
+    unsigned long long seq_len, unsigned long long embedding_dim
+) {
+    unsigned long long index = (unsigned long long)blockIdx.x * blockDim.x + threadIdx.x;
+    unsigned long long total = token_count * embedding_dim;
+    if (index >= total) return;
+    unsigned long long token_index = index / embedding_dim;
+    unsigned long long column = index % embedding_dim;
+    unsigned long long position = token_index % seq_len;
+    hidden[index] += positions[position * embedding_dim + column];
+}
 extern "C" __global__ void elementwise_add_f32(
     const float* a, const float* b, float* output, unsigned long long n
 ) {
