@@ -1,0 +1,11 @@
+# Changelog
+
+El historial de cambios por versión se genera automáticamente al publicar cada GitHub Release.
+Consulta [Releases](https://github.com/aratan/MyGPT/releases) para las novedades, correcciones,
+cambios incompatibles, artefactos y hashes SHA-256 de cada versión.
+
+Las etiquetas de PR controlan el incremento SemVer:
+- `release:major`: cambio incompatible.
+- `release:minor`: funcionalidad compatible.
+- `release:patch` o sin etiqueta: corrección o mejora compatible.
+- `release:skip`: no publicar una versión para esa PR.
