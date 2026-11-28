@@ -3,7 +3,8 @@
 use super::tensor::{CudaBackend, CudaTensor};
 use super::transformer::CudaTransformerBlock;
 use crate::error::{Error, Result};
-use crate::gpt::GPT;
+use crate::gpt::{GenerationConfig, GPT, SamplingStrategy, StopCondition};
+use crate::rng::Rng;
 use crate::tensor::Tensor;
 
 /// Modelo GPT para inferencia CUDA (forward); entrenamiento/backward sigue en CPU.
@@ -64,6 +65,70 @@ impl CudaGPT {
             &hidden, &self.final_norm_gamma, &self.final_norm_beta, self.epsilon,
         )?;
         backend.linear(&hidden, &self.output_weights)
+    }
+
+    /// Genera tokens usando el forward CUDA y el sampler común del modelo.
+    ///
+    /// Esta primera versión descarga los logits de cada paso para seleccionar el
+    /// token en CPU. No implementa KV cache: vuelve a evaluar el contexto completo.
+    /// Así conserva exactamente las reglas de sampling existentes mientras se
+    /// desarrolla la decodificación y caché residentes en GPU.
+    pub fn generate(
+        &self,
+        backend: &CudaBackend,
+        prompt: &[u32],
+        config: &GenerationConfig,
+    ) -> Result<Vec<u32>> {
+        if prompt.is_empty() {
+            return Err(Error::new("Generation requires a non-empty prompt"));
+        }
+        if prompt.iter().any(|&id| id as usize >= self.vocab_size) {
+            return Err(Error::new("Prompt token ID is outside the model vocabulary"));
+        }
+        if config.max_new_tokens == 0 {
+            return Ok(Vec::new());
+        }
+
+        let mut context = prompt.to_vec();
+        let mut generated = Vec::with_capacity(config.max_new_tokens);
+        let mut rng = Rng::new(config.seed);
+        for _ in 0..config.max_new_tokens {
+            if context.len() > self.max_seq_len {
+                let excess = context.len() - self.max_seq_len;
+                context.drain(..excess);
+            }
+            let logits = self.forward(backend, &context, 1, context.len())?;
+            let host_logits = backend.to_host(&logits)?;
+            let start = (context.len() - 1) * self.vocab_size;
+            let mut last_logits =
+                host_logits.data()[start..start + self.vocab_size].to_vec();
+
+            if config.repetition_penalty != 1.0 {
+                GPT::apply_repetition_penalty(
+                    &context,
+                    &mut last_logits,
+                    config.repetition_penalty,
+                    config.repetition_window,
+                )?;
+            }
+            let next = GPT::select_token(
+                &last_logits,
+                config.temperature,
+                config.strategy,
+                &mut rng,
+                config.top_k,
+            )?;
+            context.push(next);
+            generated.push(next);
+            let stop_id = match config.stop_condition {
+                StopCondition::EndOfTurn => crate::tokenizer::EOT_ID,
+                StopCondition::EndOfConversation => crate::tokenizer::END_ID,
+            };
+            if next == stop_id {
+                break;
+            }
+        }
+        Ok(generated)
     }
 
     /// Descarga explícitamente logits para decodificación host o comparación CPU.
