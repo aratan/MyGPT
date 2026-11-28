@@ -17,6 +17,7 @@ const CUDA_SUCCESS: c_int = 0;
 pub mod cublas;
 pub mod kernels;
 pub mod tensor;
+pub mod transformer;
 
 /// Información consultada directamente al CUDA Driver API.
 #[derive(Clone, Debug, PartialEq, Eq)]
