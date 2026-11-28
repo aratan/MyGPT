@@ -270,3 +270,137 @@ fn activation_trace_reports_attention_and_logit_lens() {
     assert!(html.contains("const DATA = {"));
     assert!(html.contains("\"tokens\":[1,2,3,4,5]"));
 }
+
+
+#[test]
+fn binary_reader_rejects_truncated_arrays_before_allocating() {
+    let mut reader = mini_gpt::serialize::BytesReader::from_bytes(vec![0; 4]);
+    assert!(reader.values(2).is_err());
+    assert_eq!(reader.remaining(), 4);
+}
+
+#[test]
+fn binary_writer_replaces_checkpoint_after_complete_write() {
+    let path = temp_path("atomic-checkpoint.bin");
+    std::fs::write(&path, b"old checkpoint").unwrap();
+
+    let mut writer = mini_gpt::serialize::BytesWriter::new();
+    writer.bytes(b"new checkpoint");
+    writer.finish(&path).unwrap();
+
+    assert_eq!(std::fs::read(&path).unwrap(), b"new checkpoint");
+    let _ = std::fs::remove_file(path);
+}
+
+
+#[test]
+fn output_projection_gradient_matches_finite_differences() {
+    let mut model = tiny_model();
+    let tokens = [1u32, 2, 3, 4];
+    let targets = [2u32, 3, 4, 5];
+    let mask = [1u8; 4];
+
+    model.zero_grad();
+    model.backward(&tokens, 1, tokens.len(), &targets, &mask).unwrap();
+
+    let parameter_index = model.parameter_count_refs() - 1;
+    let (_, gradient) = model.parameter(parameter_index).unwrap();
+    let (coordinate, &analytic) = gradient
+        .data()
+        .iter()
+        .enumerate()
+        .max_by(|left, right| left.1.abs().total_cmp(&right.1.abs()))
+        .unwrap();
+    let original = model.output_weights().data()[coordinate];
+    let epsilon = 1.0e-2;
+
+    model.output_weights_mut().data_mut()[coordinate] = original + epsilon;
+    let plus = cross_entropy(
+        &model.forward(&tokens, 1, tokens.len()).unwrap(),
+        &targets,
+        &mask,
+    )
+    .unwrap();
+
+    model.output_weights_mut().data_mut()[coordinate] = original - epsilon;
+    let minus = cross_entropy(
+        &model.forward(&tokens, 1, tokens.len()).unwrap(),
+        &targets,
+        &mask,
+    )
+    .unwrap();
+
+    model.output_weights_mut().data_mut()[coordinate] = original;
+    let numerical = (plus - minus) / (2.0 * epsilon);
+    let tolerance = 5.0e-3 + analytic.abs() * 2.0e-2;
+    assert!(
+        (numerical - analytic).abs() <= tolerance,
+        "gradient mismatch at {coordinate}: analytic={analytic}, numerical={numerical}"
+    );
+}
+
+
+fn assert_parameter_gradient_matches_finite_differences(parameter_index: usize, name: &str) {
+    let mut model = tiny_model();
+    let tokens = [1u32, 2, 3, 4];
+    let targets = [2u32, 3, 4, 5];
+    let mask = [1u8; 4];
+
+    model.zero_grad();
+    model.backward(&tokens, 1, tokens.len(), &targets, &mask).unwrap();
+
+    let (coordinate, &analytic) = model
+        .parameter(parameter_index)
+        .unwrap()
+        .1
+        .data()
+        .iter()
+        .enumerate()
+        .max_by(|left, right| left.1.abs().total_cmp(&right.1.abs()))
+        .unwrap();
+    let original = model.parameter(parameter_index).unwrap().0.data()[coordinate];
+    let epsilon = 2.0e-2;
+
+    model.parameter_mut(parameter_index).unwrap().0.data_mut()[coordinate] =
+        original + epsilon;
+    let plus = cross_entropy(
+        &model.forward(&tokens, 1, tokens.len()).unwrap(),
+        &targets,
+        &mask,
+    )
+    .unwrap();
+
+    model.parameter_mut(parameter_index).unwrap().0.data_mut()[coordinate] =
+        original - epsilon;
+    let minus = cross_entropy(
+        &model.forward(&tokens, 1, tokens.len()).unwrap(),
+        &targets,
+        &mask,
+    )
+    .unwrap();
+
+    model.parameter_mut(parameter_index).unwrap().0.data_mut()[coordinate] = original;
+    let numerical = (plus - minus) / (2.0 * epsilon);
+    let tolerance = 3.0e-3 + analytic.abs() * 5.0e-2;
+    assert!(
+        (numerical - analytic).abs() <= tolerance,
+        "{name} gradient mismatch at {coordinate}: analytic={analytic}, numerical={numerical}"
+    );
+}
+
+#[test]
+fn transformer_parameter_gradients_match_finite_differences() {
+    // Parameter indices: norm1.gamma=2, Q=6, V=8, attention output=9,
+    // MLP fc1=10, MLP fc2=11 and final LayerNorm gamma=12.
+    for (index, name) in [
+        (2, "attention input LayerNorm gamma"),
+        (6, "attention query weights"),
+        (8, "attention value weights"),
+        (9, "attention output weights"),
+        (10, "MLP first projection weights"),
+        (11, "MLP second projection weights"),
+        (12, "final LayerNorm gamma"),
+    ] {
+        assert_parameter_gradient_matches_finite_differences(index, name);
+    }
+}

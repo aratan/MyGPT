@@ -2,8 +2,14 @@ name: Release
 
 on:
   push:
-    tags:
-      - "v*"
+    tags: ["v*"]
+  workflow_call:
+    inputs:
+      tag:
+        description: "Tag to publish when called by the automatic release workflow"
+        required: false
+        type: string
+        default: ""
 
 permissions:
   contents: write
@@ -13,25 +19,38 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.tag || github.ref }}
+
       - uses: dtolnay/rust-toolchain@stable
+
       - name: Compilar
         run: cargo build --release --locked
+
       - name: Empaquetar binarios
+        env:
+          RELEASE_TAG: ${{ inputs.tag || github.ref_name }}
         run: |
           mkdir -p dist
           cp target/release/synth_data target/release/tokenizer_train \
              target/release/gpt_train target/release/gpt_chat dist/
           strip dist/synth_data dist/tokenizer_train dist/gpt_train dist/gpt_chat
           cp README.md LICENSE dist/
-          cd dist
-          tar -czf "../mini-gpt-rust-${GITHUB_REF_NAME}-x86_64-unknown-linux-gnu.tar.gz" *
-          cd ..
-          sha256sum mini-gpt-rust-*.tar.gz > SHA256SUMS.txt
+          tar -czf "dist/mini-gpt-rust-${RELEASE_TAG}-x86_64-unknown-linux-gnu.tar.gz" -C dist \
+            synth_data tokenizer_train gpt_train gpt_chat README.md LICENSE
+          (cd dist && sha256sum "mini-gpt-rust-${RELEASE_TAG}-x86_64-unknown-linux-gnu.tar.gz" > SHA256SUMS.txt)
+
       - name: Publicar release
         env:
           GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ inputs.tag || github.ref_name }}
         run: |
-          gh release create "$GITHUB_REF_NAME" \
-            mini-gpt-rust-*.tar.gz SHA256SUMS.txt \
-            --title "mini GPT en Rust $GITHUB_REF_NAME" \
+          if gh release view "$RELEASE_TAG" >/dev/null 2>&1; then
+            echo "La release $RELEASE_TAG ya existe; no se sobrescribe."
+            exit 0
+          fi
+          gh release create "$RELEASE_TAG" \
+            "dist/mini-gpt-rust-${RELEASE_TAG}-x86_64-unknown-linux-gnu.tar.gz" \
+            "dist/SHA256SUMS.txt" \
+            --title "mini GPT en Rust $RELEASE_TAG" \
             --generate-notes
