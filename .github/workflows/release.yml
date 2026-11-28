@@ -1,0 +1,152 @@
+name: Release
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+  pull-requests: read
+
+concurrency:
+  group: release-main
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: dtolnay/rust-toolchain@stable
+
+      - name: Detectar PR fusionada
+        id: pr
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          prs="$(gh api "repos/${GITHUB_REPOSITORY}/commits/${GITHUB_SHA}/pulls")"
+          if ! jq -e 'any(.[]; .merged_at != null)' <<< "$prs" >/dev/null; then
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+            echo "El push no procede de una PR fusionada; no se publica release."
+            exit 0
+          fi
+          pr="$(jq '[.[] | select(.merged_at != null)][0]' <<< "$prs")"
+          labels="$(jq -r '[.labels[].name] | join(" ")' <<< "$pr")"
+          echo "number=$(jq -r '.number' <<< "$pr")" >> "$GITHUB_OUTPUT"
+          echo "labels=$labels" >> "$GITHUB_OUTPUT"
+          if [[ " $labels " == *" release:skip "* ]]; then
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Preparar versión y notas
+        if: steps.pr.outputs.skip != 'true'
+        id: version
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_LABELS: ${{ steps.pr.outputs.labels }}
+        run: |
+          git fetch origin main --tags
+          git checkout -B release origin/main
+
+          current="$(sed -n 's/^version = "\(.*\)"/\1/p' Cargo.toml | head -n1)"
+          latest="$(git tag --list 'v[0-9]*' --sort=-v:refname | head -n1)"
+          latest_version="${latest#v}"
+
+          version_exists=false
+          if [[ -n "$latest" ]] && git rev-parse -q --verify "refs/tags/v$current" >/dev/null; then
+            version="$current"
+            version_exists=true
+          elif [[ -z "$latest" ]]; then
+            version="$current"
+          elif [[ "$current" != "$latest_version" ]] && [[ "$(printf '%s\n%s\n' "$latest_version" "$current" | sort -V | tail -n1)" == "$current" ]]; then
+            version="$current"
+          else
+            IFS=. read -r major minor patch <<< "$latest_version"
+            if [[ " $PR_LABELS " == *" release:major "* ]]; then
+              major=$((major + 1)); minor=0; patch=0
+            elif [[ " $PR_LABELS " == *" release:minor "* ]]; then
+              minor=$((minor + 1)); patch=0
+            else
+              patch=$((patch + 1))
+            fi
+            version="$major.$minor.$patch"
+          fi
+
+          tag="v$version"
+          if [[ "$version_exists" != true ]]; then
+            sed -i "0,/^version = \".*\"/s//version = \"$version\"/" Cargo.toml
+            cargo check
+          fi
+
+          if [[ -n "$latest" ]]; then
+            notes="$(gh api "repos/${GITHUB_REPOSITORY}/releases/generate-notes" -f tag_name="$tag" -f target_commitish="$GITHUB_SHA" -f previous_tag_name="$latest" --jq .body)"
+          else
+            notes="$(gh api "repos/${GITHUB_REPOSITORY}/releases/generate-notes" -f tag_name="$tag" -f target_commitish="$GITHUB_SHA" --jq .body)"
+          fi
+          printf '%s\n' "$notes" > /tmp/release-notes.md
+
+          if ! grep -Fq "## [$tag]" CHANGELOG.md 2>/dev/null; then
+            date_utc="$(date -u +%F)"
+            {
+              printf '# Changelog\n\n## [%s] - %s\n\n' "$tag" "$date_utc"
+              cat /tmp/release-notes.md
+              printf '\n\n'
+              if [[ -f CHANGELOG.md ]]; then
+                sed '1{/^# Changelog$/d;}' CHANGELOG.md
+              fi
+            } > /tmp/CHANGELOG.md
+            mv /tmp/CHANGELOG.md CHANGELOG.md
+          fi
+
+          cargo test --all-targets --locked
+          cargo build --release --locked
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add Cargo.toml Cargo.lock CHANGELOG.md
+          if ! git diff --cached --quiet; then
+            git commit -m "chore(release): $tag"
+            git push origin HEAD:main
+          fi
+          release_sha="$(git rev-parse HEAD)"
+
+          if ! git rev-parse -q --verify "refs/tags/$tag" >/dev/null; then
+            git tag -a "$tag" "$release_sha" -m "$tag"
+            git push origin "$tag"
+          fi
+
+          echo "tag=$tag" >> "$GITHUB_OUTPUT"
+          echo "sha=$release_sha" >> "$GITHUB_OUTPUT"
+
+      - name: Empaquetar binarios
+        if: steps.pr.outputs.skip != 'true'
+        env:
+          TAG: ${{ steps.version.outputs.tag }}
+        run: |
+          mkdir -p dist
+          archive="mini-gpt-rust-${TAG}-x86_64-unknown-linux-gnu.tar.gz"
+          tar -czf "dist/$archive" -C target/release gpt_chat gpt_train synth_data tokenizer_train
+          (cd dist && sha256sum "$archive" > SHA256SUMS.txt)
+
+      - name: Publicar GitHub Release
+        if: steps.pr.outputs.skip != 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ steps.version.outputs.tag }}
+          RELEASE_SHA: ${{ steps.version.outputs.sha }}
+        run: |
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            echo "La release $TAG ya existe; no se sobrescribe."
+            exit 0
+          fi
+          gh release create "$TAG" \
+            --target "$RELEASE_SHA" \
+            --title "mini GPT en Rust — $TAG" \
+            --notes-file /tmp/release-notes.md \
+            "dist/mini-gpt-rust-${TAG}-x86_64-unknown-linux-gnu.tar.gz" \
+            "dist/SHA256SUMS.txt"
