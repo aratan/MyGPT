@@ -262,7 +262,7 @@ impl CudaKernelModule {
             (&mut output_arg as *mut u64).cast::<c_void>(),
             (&mut n_arg as *mut u64).cast::<c_void>(),
         ];
-        let kernel = self.function("gelu_tanh_f32")?;
+        let kernel = self.function("gelu_erf_f32")?;
         unsafe { kernel.launch([blocks_for(len)?, 1, 1], [256, 1, 1], 0, stream, &mut args) }
     }
 
@@ -531,7 +531,7 @@ extern "C" __global__ void add_bias_last_dim_f32(
     if (index >= total) return;
     output[index] = input[index] + bias[index % columns];
 }
-extern "C" __global__ void gelu_tanh_f32(
+extern "C" __global__ void gelu_erf_f32(
     const float* input, float* output, unsigned long long n
 ) {
     unsigned long long i = (unsigned long long)blockIdx.x * blockDim.x + threadIdx.x;
