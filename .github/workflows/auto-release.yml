@@ -137,5 +137,5 @@ jobs:
     if: needs.version.outputs.tag != ''
     uses: ./.github/workflows/release.yml
     with:
-      tag: ${{ inputs.tag || needs.version.outputs.tag }}
+      tag: ${{ needs.version.outputs.tag }}
     secrets: inherit
