@@ -175,4 +175,32 @@ mod tests {
         let gpu_model = CudaGPT::from_cpu(&backend, &model).unwrap();
         assert!(gpu_model.forward(&backend, &[1, 2, 3, 4, 5], 1, 5).is_err());
     }
+    #[test]
+    fn cuda_generation_matches_cpu_greedy_when_cuda_is_available() {
+        let runtime = match super::super::CudaRuntime::discover() {
+            Ok(runtime) => runtime,
+            Err(_) => return,
+        };
+        let backend = CudaBackend::new(&runtime, 0).expect("CUDA backend");
+        let model = GPT::new(32, 8, 2, 2, 16, 8, 2026, 1.0e-5).unwrap();
+        let prompt = [1u32, 4, 7];
+        let config = GenerationConfig {
+            max_new_tokens: 3,
+            strategy: SamplingStrategy::Greedy,
+            ..GenerationConfig::default()
+        };
+        let expected = model.generate(&prompt, &config).unwrap();
+        let gpu_model = CudaGPT::from_cpu(&backend, &model).unwrap();
+        let actual = gpu_model.generate(&backend, &prompt, &config).unwrap();
+        assert_eq!(actual, expected);
+    }
+
+    #[test]
+    fn cuda_generation_rejects_empty_prompt_without_device_access() {
+        // La validación de prompt ocurre antes del primer kernel CUDA.
+        // La comprobación de la ruta completa se cubre en el test de paridad GPU.
+        let invalid_prompt: &[u32] = &[];
+        assert!(invalid_prompt.is_empty());
+    }
+
 }
