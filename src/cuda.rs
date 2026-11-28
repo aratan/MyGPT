@@ -267,10 +267,6 @@ impl CudaBuffer {
         )?;
         Ok(values)
     }
-
-    pub(crate) fn device_ptr(&self) -> u64 {
-        self.pointer
-    }
 }
 
 impl Drop for CudaBuffer {
