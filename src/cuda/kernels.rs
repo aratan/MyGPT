@@ -330,6 +330,29 @@ impl CudaKernelModule {
 
     /// Softmax estable por fila para una matriz row-major [rows, columns].
     /// Atención causal sobre Q/K/V [batch, heads, seq, head_dim].
+    /// Reordena [batch, seq, heads, head_dim] <-> [batch, heads, seq, head_dim].
+    pub fn reorder_heads(&self, input: &CudaBuffer, output: &mut CudaBuffer,
+        batch: usize, seq: usize, heads: usize, head_dim: usize, merge: bool,
+        stream: Option<&CudaStream>) -> Result<()> {
+        let total=batch.checked_mul(seq).and_then(|n|n.checked_mul(heads))
+            .and_then(|n|n.checked_mul(head_dim)).ok_or_else(||Error::new("Dimensiones de heads fuera de rango"))?;
+        if batch==0||seq==0||heads==0||head_dim==0||input.len<total||output.len<total {
+            return Err(Error::new("Buffers o dimensiones incompatibles en reorder_heads CUDA"));
+        }
+        self.validate_contexts(&[input,output],stream)?;
+        let mut src=input.pointer; let mut dst=output.pointer;
+        let mut b=batch as u64; let mut s=seq as u64; let mut h=heads as u64; let mut d=head_dim as u64;
+        let mut m=if merge {1u32}else{0u32};
+        let mut args=[
+            (&mut src as *mut u64).cast::<c_void>(),(&mut dst as *mut u64).cast::<c_void>(),
+            (&mut b as *mut u64).cast::<c_void>(),(&mut s as *mut u64).cast::<c_void>(),
+            (&mut h as *mut u64).cast::<c_void>(),(&mut d as *mut u64).cast::<c_void>(),
+            (&mut m as *mut u32).cast::<c_void>(),
+        ];
+        let kernel=self.function("reorder_heads_f32")?;
+        unsafe { kernel.launch([blocks_for(total)?,1,1],[256,1,1],0,stream,&mut args) }
+    }
+
     pub fn causal_attention(&self, queries: &CudaBuffer, keys: &CudaBuffer, values: &CudaBuffer,
         output: &mut CudaBuffer, batch: usize, heads: usize, seq: usize, head_dim: usize,
         stream: Option<&CudaStream>) -> Result<()> {
@@ -587,6 +610,25 @@ extern "C" __global__ void scale_f32(
 ) {
     unsigned long long i = (unsigned long long)blockIdx.x * blockDim.x + threadIdx.x;
     if (i < n) output[i] = input[i] * factor;
+}
+extern "C" __global__ void reorder_heads_f32(
+ const float* input,float* output,unsigned long long batch,unsigned long long seq,
+ unsigned long long heads,unsigned long long head_dim,unsigned int merge) {
+ unsigned long long i=(unsigned long long)blockIdx.x*blockDim.x+threadIdx.x;
+ unsigned long long total=batch*seq*heads*head_dim;
+ if(i>=total)return;
+ unsigned long long d=i%head_dim;
+ unsigned long long token_head=i/head_dim;
+ unsigned long long head,token,b;
+ if(merge){
+  head=token_head%heads; token=(token_head/heads)%seq; b=token_head/(heads*seq);
+  unsigned long long src=(((b*heads+head)*seq+token)*head_dim+d);
+  output[i]=input[src];
+ } else {
+  token=token_head%seq; head=(token_head/seq)%heads; b=token_head/(seq*heads);
+  unsigned long long src=(((b*seq+token)*heads+head)*head_dim+d);
+  output[i]=input[src];
+ }
 }
 extern "C" __global__ void causal_attention_f32(
  const float* q,const float* k,const float* v,float* output,
