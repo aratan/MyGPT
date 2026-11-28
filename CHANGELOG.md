@@ -1,5 +1,15 @@
 # Changelog
 
+## [v0.1.4] - 2026-11-28
+
+## What's Changed
+* feat(cuda): añadir backend tensorial residente FP32 by @aratan in https://github.com/aratan/MyGPT/pull/7
+
+
+**Full Changelog**: https://github.com/aratan/MyGPT/compare/v0.1.3...v0.1.4
+
+
+
 ## [v0.1.3] - 2026-11-28
 
 ## What's Changed

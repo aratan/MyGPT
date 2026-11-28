@@ -1,6 +1,6 @@
 [package]
 name = "mini_gpt"
-version = "0.1.3"
+version = "0.1.4"
 edition = "2021"
 description = "Port a Rust del mini GPT (tensor, BPE, transformer, entrenamiento e inferencia)"
 license = "MIT"
