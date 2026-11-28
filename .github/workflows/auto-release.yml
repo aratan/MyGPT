@@ -120,8 +120,25 @@ jobs:
             git push origin HEAD:main
           fi
           release_sha="$(git rev-parse HEAD)"
-          git tag -a "$tag" "$release_sha" -m "$tag" -m "source:$GITHUB_SHA"
-          git push origin "$tag"
+          # Create an annotated tag through GitHub's Git Database API.
+          # This returns an explicit API error instead of a generic git push rejection.
+          tag_object="$(gh api --method POST "repos/${GITHUB_REPOSITORY}/git/tags" \
+            -f tag="$tag" \
+            -f message="$tag"
+
+  publish:
+    needs: version
+    if: needs.version.outputs.tag != ''
+    uses: ./.github/workflows/release.yml
+    with:
+      tag: ${{ needs.version.outputs.tag }}
+    secrets: inherit
+\n\n'"source:$GITHUB_SHA" \
+            -f object="$release_sha" \
+            -f type=commit --jq .sha)"
+          gh api --method POST "repos/${GITHUB_REPOSITORY}/git/refs" \
+            -f ref="refs/tags/$tag" \
+            -f sha="$tag_object"
           echo "tag=$tag" >> "$GITHUB_OUTPUT"
 
   publish:
