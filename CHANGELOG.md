@@ -1,5 +1,15 @@
 # Changelog
 
+## [v0.1.5] - 2026-11-28
+
+## What's Changed
+* feat(cuda): añadir embeddings y proyecciones lineales GPU by @aratan in https://github.com/aratan/MyGPT/pull/8
+
+
+**Full Changelog**: https://github.com/aratan/MyGPT/compare/v0.1.4...v0.1.5
+
+
+
 ## [v0.1.4] - 2026-11-28
 
 ## What's Changed
