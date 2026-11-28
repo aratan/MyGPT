@@ -1,5 +1,14 @@
 # Changelog
 
+## [Unreleased]
+
+### Added
+- CUDA GPT autoregressive generation proposal in PR #17: reuses the existing sampling configuration, repetition penalty, deterministic seed and EOT/END stopping conditions.
+
+### Notes
+- CUDA inference currently includes full GPT forward and TransformerBlock execution; physical NVIDIA GPU validation is still pending.
+- The initial autoregressive path transfers logits to host for sampling and recomputes the full context per generated token. KV cache and GPU-side sampling are not included yet.
+
 ## [v0.1.11] - 2026-11-28
 
 ## What's Changed
