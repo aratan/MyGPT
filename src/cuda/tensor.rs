@@ -158,7 +158,7 @@ impl CudaBackend {
         Ok(output)
     }
 
-    /// GELU tanh aproximada, consistente con la activación del Transformer CPU.
+    /// GELU con la misma aproximación de `erf` que el backend CPU.
     pub fn gelu(&self, input: &CudaTensor) -> Result<CudaTensor> {
         let mut output = self.allocate_like(input)?;
         self.kernels.gelu(&input.buffer, &mut output.buffer, input.len(), None)?;
