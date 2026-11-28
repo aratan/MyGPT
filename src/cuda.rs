@@ -16,6 +16,7 @@ const CUDA_SUCCESS: c_int = 0;
 
 pub mod cublas;
 pub mod kernels;
+pub mod gpt;
 pub mod tensor;
 pub mod transformer;
 
@@ -509,3 +510,4 @@ mod dynamic {
 }
 
 pub use transformer::CudaTransformerBlock;
+pub use gpt::CudaGPT;
