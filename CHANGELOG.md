@@ -1,5 +1,15 @@
 # Changelog
 
+## [v0.1.10] - 2026-11-28
+
+## What's Changed
+* feat(cuda): compose multi-head attention on GPU by @aratan in https://github.com/aratan/MyGPT/pull/15
+
+
+**Full Changelog**: https://github.com/aratan/MyGPT/compare/v0.1.9...v0.1.10
+
+
+
 ## [v0.1.9] - 2026-11-28
 
 ## What's Changed
