@@ -1,5 +1,16 @@
 # Changelog
 
+## [v0.1.8] - 2026-11-28
+
+## What's Changed
+* fix(release): create annotated tags through GitHub API by @aratan in https://github.com/aratan/MyGPT/pull/12
+* fix(release): repair automatic tag workflow YAML by @aratan in https://github.com/aratan/MyGPT/pull/13
+
+
+**Full Changelog**: https://github.com/aratan/MyGPT/compare/v0.1.7...v0.1.8
+
+
+
 ## [v0.1.7] - 2026-11-28
 
 ## What's Changed
