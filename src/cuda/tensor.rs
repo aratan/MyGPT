@@ -122,6 +122,42 @@ impl CudaBackend {
         Ok(result)
     }
 
+    /// Proyección lineal con bias sobre la última dimensión.
+    pub fn linear_with_bias(
+        &self, input: &CudaTensor, weights: &CudaTensor, bias: &CudaTensor,
+    ) -> Result<CudaTensor> {
+        if weights.shape.len() != 2 || bias.shape != [weights.shape[1]] {
+            return Err(Error::new("Bias debe tener shape [out_features]"));
+        }
+        let projected = self.linear(input, weights)?;
+        let mut output = self.allocate_like(&projected)?;
+        let rows = projected.len() / weights.shape[1];
+        self.kernels.add_bias_last_dim(
+            &projected.buffer, &bias.buffer, &mut output.buffer,
+            rows, weights.shape[1], None,
+        )?;
+        Ok(output)
+    }
+
+    /// Añade embeddings posicionales a activaciones [batch, seq_len, dim].
+    pub fn add_position_embeddings(
+        &self, hidden: &CudaTensor, positions: &CudaTensor,
+    ) -> Result<CudaTensor> {
+        if hidden.shape.len() != 3 || positions.shape.len() != 2
+            || hidden.shape[1] != positions.shape[0]
+            || hidden.shape[2] != positions.shape[1] {
+            return Err(Error::new(
+                "Se requieren activaciones [batch, seq_len, dim] y posiciones [seq_len, dim]",
+            ));
+        }
+        let mut output = self.allocate_like(hidden)?;
+        self.kernels.add_position_embeddings(
+            &hidden.buffer, &positions.buffer, &mut output.buffer,
+            hidden.shape[0], hidden.shape[1], hidden.shape[2], None,
+        )?;
+        Ok(output)
+    }
+
     pub fn add(&self, lhs: &CudaTensor, rhs: &CudaTensor) -> Result<CudaTensor> {
         self.require_same_shape(lhs, rhs)?;
         let mut output = self.allocate_like(lhs)?;
