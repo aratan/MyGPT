@@ -158,6 +158,13 @@ impl CudaBackend {
         Ok(output)
     }
 
+    /// GELU con la misma aproximación de `erf` que el backend CPU.
+    pub fn gelu(&self, input: &CudaTensor) -> Result<CudaTensor> {
+        let mut output = self.allocate_like(input)?;
+        self.kernels.gelu(&input.buffer, &mut output.buffer, input.len(), None)?;
+        Ok(output)
+    }
+
     pub fn add(&self, lhs: &CudaTensor, rhs: &CudaTensor) -> Result<CudaTensor> {
         self.require_same_shape(lhs, rhs)?;
         let mut output = self.allocate_like(lhs)?;
