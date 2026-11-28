@@ -2,10 +2,16 @@
 
 [![CI](https://github.com/aratan/MyGPT/actions/workflows/ci.yml/badge.svg)](https://github.com/aratan/MyGPT/actions/workflows/ci.yml)
 
+[![Rust](https://img.shields.io/badge/Rust-implemented-dea584?logo=rust&logoColor=white)](https://www.rust-lang.org/)
+[![CUDA](https://img.shields.io/badge/CUDA-planned-777777?logo=nvidia&logoColor=white)](https://developer.nvidia.com/cuda-toolkit)
+[![NVIDIA RTX 4060](https://img.shields.io/badge/NVIDIA-RTX%204060%20target-76B900?logo=nvidia&logoColor=white)](https://www.nvidia.com/geforce/graphics-cards/40-series/rtx-4060-4060ti/)
+
 Mini GPT escrito desde cero en Rust para aprender cómo funcionan un
 transformer, el tokenizador BPE y el entrenamiento. Incluye la librería, cuatro
 herramientas de CLI (`synth_data`, `tokenizer_train`, `gpt_train`, `gpt_chat`)
 y un visor de interpretabilidad.
+
+**Estado de tecnologías:** Rust está implementado. CUDA está planificado y registrado en [la issue #2](https://github.com/aratan/MyGPT/issues/2); el objetivo de hardware es NVIDIA RTX 4060 de 8 GB. Los badges indican estado actual y objetivo, no disponibilidad funcional.
 
 El proyecto es **100 % Rust**: sin dependencias externas, sin C/C++, sin CUDA,
 sin `build.rs` y sin `CMakeLists.txt`. Todo el código de aplicación y todas las
