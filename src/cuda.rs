@@ -14,6 +14,7 @@ use std::sync::Arc;
 const CUDA_SUCCESS: c_int = 0;
 
 pub mod cublas;
+pub mod kernels;
 
 /// Información consultada directamente al CUDA Driver API.
 #[derive(Clone, Debug, PartialEq, Eq)]
@@ -364,6 +365,13 @@ type CuMemcpyDtoH = unsafe extern "C" fn(*mut c_void, u64, usize) -> c_int;
 type CuStreamCreate = unsafe extern "C" fn(*mut *mut c_void, c_uint) -> c_int;
 type CuStreamDestroy = unsafe extern "C" fn(*mut c_void) -> c_int;
 type CuStreamSynchronize = unsafe extern "C" fn(*mut c_void) -> c_int;
+type CuModuleLoadData = unsafe extern "C" fn(*mut *mut c_void, *const c_void) -> c_int;
+type CuModuleUnload = unsafe extern "C" fn(*mut c_void) -> c_int;
+type CuModuleGetFunction = unsafe extern "C" fn(*mut *mut c_void, *mut c_void, *const c_char) -> c_int;
+type CuLaunchKernel = unsafe extern "C" fn(
+    *mut c_void, c_uint, c_uint, c_uint, c_uint, c_uint, c_uint, c_uint,
+    *mut c_void, *mut *mut c_void, *mut *mut c_void
+) -> c_int;
 
 struct DriverApi {
     _library: dynamic::Library,
@@ -385,6 +393,10 @@ struct DriverApi {
     stream_create: CuStreamCreate,
     stream_destroy: CuStreamDestroy,
     stream_synchronize: CuStreamSynchronize,
+    module_load_data: CuModuleLoadData,
+    module_unload: CuModuleUnload,
+    module_get_function: CuModuleGetFunction,
+    launch_kernel: CuLaunchKernel,
 }
 
 impl DriverApi {
@@ -409,6 +421,10 @@ impl DriverApi {
             stream_create: library.symbol("cuStreamCreate")?,
             stream_destroy: library.symbol("cuStreamDestroy_v2")?,
             stream_synchronize: library.symbol("cuStreamSynchronize")?,
+            module_load_data: library.symbol("cuModuleLoadData")?,
+            module_unload: library.symbol("cuModuleUnload")?,
+            module_get_function: library.symbol("cuModuleGetFunction")?,
+            launch_kernel: library.symbol("cuLaunchKernel")?,
             _library: library,
         })
     }
