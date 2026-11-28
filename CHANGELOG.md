@@ -1,5 +1,11 @@
 # Changelog
 
+## [v0.1.2] - 2026-11-28
+
+**Full Changelog**: https://github.com/aratan/MyGPT/compare/v0.1.1...v0.1.2
+
+
+
 ## [v0.1.1] - 2026-11-28
 
 ## What's Changed
