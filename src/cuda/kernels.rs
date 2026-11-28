@@ -176,7 +176,7 @@ impl CudaKernelModule {
             (&mut dim as *mut u64).cast::<c_void>(),
         ];
         let kernel = self.function("embedding_lookup_f32")?;
-        unsafe { kernel.launch([blocks_for(ids.len() * embedding_dim)?, 1, 1], [256, 1, 1], 0, stream, &mut args)?; }
+        unsafe { kernel.launch([blocks_for(output_len)?, 1, 1], [256, 1, 1], 0, stream, &mut args)?; }
         // IDs deben permanecer vivos hasta que el kernel haya consumido el buffer.
         // La sincronización local evita liberar el buffer prematuramente.
         if let Some(stream) = stream { stream.synchronize()?; } else { context.synchronize()?; }
