@@ -58,7 +58,7 @@ jobs:
           latest_version="${latest#v}"
 
           version_exists=false
-          if [[ -n "$latest" ]] && git rev-parse -q --verify "refs/tags/v$current" >/dev/null; then
+          if [[ -n "$latest" ]] && git rev-parse -q --verify "refs/tags/v$current" >/dev/null && ! gh release view "v$current" >/dev/null 2>&1; then
             version="$current"
             version_exists=true
           elif [[ -z "$latest" ]]; then
