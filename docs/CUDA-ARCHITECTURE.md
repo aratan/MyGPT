@@ -3,7 +3,7 @@
 ## Estado real
 
 - **CPU:** backend actual y referencia numérica; los tensores y el entrenamiento siguen usando memoria host.
-- **CUDA Driver Runtime y memoria:** primera capa implementada en la rama de trabajo. Carga dinámicamente `libcuda`, inicializa el driver, enumera dispositivos, consulta compute capability/VRAM/versión, administra un contexto RAII y reserva buffers FP32 residentes con transferencias H2D/D2H explícitas.
+- **Runtime, memoria y primera primitiva:** carga dinámica de `libcuda` y cuBLAS, descubrimiento de dispositivos, contexto y streams RAII, buffers FP32 residentes, transferencias H2D/D2H explícitas y multiplicación matricial FP32 mediante `cublasSgemm`.
 - **CUDA tensorial:** todavía no implementado.
 - **Entrenamiento e inferencia GPU:** todavía no implementados. No se debe mostrar CUDA como backend operativo hasta completar y probar estas fases en hardware NVIDIA.
 
@@ -15,8 +15,8 @@ No convertir cada operación CPU en una copia H2D/D2H. La ruta CUDA debe mantene
 
 ### Capas
 
-1. **Runtime y dispositivo** — carga dinámica del CUDA Driver API, inventario de GPU, capacidades, memoria y ciclo de vida de contextos. Esta rama implementa el descubrimiento, contexto RAII y buffers FP32.
-2. **Ejecución** — streams, kernels NVRTC/cuBLAS y sincronización. Los buffers FP32 propietarios y las transferencias explícitas ya están implementados; faltan streams y kernels.
+1. **Runtime y dispositivo** — carga dinámica del CUDA Driver API, inventario de GPU, capacidades, memoria y ciclo de vida de contextos. Esta rama implementa el descubrimiento, contexto/streams RAII, buffers FP32 y la primitiva SGEMM row-major.
+2. **Ejecución** — streams RAII y cuBLAS SGEMM FP32 ya disponibles; falta integrar kernels NVRTC y asociar las operaciones a streams explícitos.
 3. **Primitivas tensoriales** — matmul, elementwise, reducciones, LayerNorm, softmax y activaciones. Pruebas diferenciales contra CPU.
 4. **Modelo** — reutilizar las definiciones y formatos de parámetros actuales; introducir una ruta de ejecución backend explícita sin duplicar la arquitectura Transformer.
 5. **Entrenamiento** — forward, loss, backward, clipping y AdamW en GPU. Estado del optimizador y gradientes residentes.
